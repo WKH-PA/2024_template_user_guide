@@ -1,0 +1,1 @@
+<?php include _source."template/index.php"; ?>
