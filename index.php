@@ -115,10 +115,7 @@
     }
     //end login
     $_SESSION['token'] = md5(RANDOM_chuoi(5));
-if (isset($motty) && $motty == "huong-dan-khach-hang") {
-    include _source . "template/index.php";
-    exit();
-}
+
 
 if (!isset($thongtin_step) || !in_array($thongtin_step['step'], ["36", "37", "38"])) {
     include _source . "tren.php";
