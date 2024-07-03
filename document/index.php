@@ -54,7 +54,11 @@
     <!-- Page Header Start-->
 
 
-        <?php include "header1.php"; ?>
+        <?php
+
+        include "../initLoader.php";
+        include "header1.php";
+        ?>
 
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
