@@ -1,8 +1,11 @@
 Options +FollowSymlinks
 RewriteEngine On
-RewriteCond $1 !^(index\.php|id2\.php|js|font|css|bower_components|(.*)\.ico|(.*)\.jpg|(.*)\.JPG|(.*)\.png|(.*)\.PNG|(.*)\.gif|(.*)\.ico|(.*)\.GIF|(.*)\.jpeg|(.*)\.JPEG|(.*)\.zip|(.*)\.js|(.*)\.css|(.*)\.doc|(.*)\.docx|(.*)\.xls|(.*)\.xlsx|(.*)\.pdf|(.*)\.svg|cke\.php|check\.php)
+RewriteCond $1 !^(index\.php|id2\.php|js|font|css|bower_components|document|(.*)\.ico|(.*)\.jpg|(.*)\.JPG|(.*)\.png|(.*)\.PNG|(.*)\.gif|(.*)\.ico|(.*)\.GIF|(.*)\.jpeg|(.*)\.JPEG|(.*)\.zip|(.*)\.js|(.*)\.css|(.*)\.doc|(.*)\.docx|(.*)\.xls|(.*)\.xlsx|(.*)\.pdf|(.*)\.svg|cke\.php|check\.php)
 RewriteRule ^(.*)$ index.php/$1 [L]
-
+<Files ~ "^w+.(gif|jpe?g|png)$">
+  order deny,allow
+  allow from all
+</Files>
 # BEGIN Expire headers
 <ifModule mod_expires.c>
 ExpiresActive On
