@@ -1355,7 +1355,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	function LEFT_mainmenu_new(){
 		$wh 		= "";
 		if(!CHECK_key_setting('lien-he-nhom-con')){
-			$wh 	= " AND `step` <> 5 ";
+			$wh 	= " AND `step` <> 6 ";
 		}
 
 		$sql        = DB_que("SELECT * FROM `#_step` WHERE `showhi` = 1 $wh ORDER BY `catasort` ASC ");
@@ -1380,7 +1380,8 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 										"id_step" 		=> $rows['step'],
 										"id" 		    => $rows['id'],
 										"cataname" 	    => $rows['tenbaiviet_vi'],
-										"name" 			=> $name_s
+										"name" 			=> $name_s,
+										"seoname"       =>$rows['seo_name'],
 										);
 		    }
 		return $arr;
@@ -2742,7 +2743,57 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
       	}
       	return "";
 	}
-	function admin_check($is_mota = 0){
+function lay_du_lieu_theo_action($action) {
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_module_tinhnang` dựa trên `m_action`
+	$result = DB_que("SELECT * FROM `#_module_tinhnang` WHERE `m_action` = '$action' LIMIT 1");
+
+	// Kiểm tra nếu không có kết quả trả về
+	if (!DB_num($result)) return array();
+
+	// Lấy kết quả dưới dạng mảng kết hợp
+	$data = DB_arr($result);
+
+	// Trả về dữ liệu dưới dạng mảng kết hợp
+	return $data[0]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
+}
+function lay_du_lieu_theo_seoname($action) {
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `seo_name`
+	$result = DB_que("SELECT * FROM `#_step` WHERE `seo_name` = '$action' LIMIT 1");
+
+	// Kiểm tra nếu không có kết quả trả về
+	if (!DB_num($result)) return array();
+
+	// Lấy kết quả dưới dạng mảng kết hợp
+	$data = DB_arr($result);
+
+	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
+	return [
+		'ten_vi' => $data[0]['tenbaiviet_vi'],
+		'mota' => $data[0]['mota'],
+		'noidung' => $data[0]['noidung_vi']
+	]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
+}
+
+function lay_du_lieu_theo_id_parent($action) {
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `seo_name`
+	$result = DB_que("SELECT * FROM `#_banner_danhmuc` WHERE `id` = '$action' LIMIT 1");
+
+	// Kiểm tra nếu không có kết quả trả về
+	if (!DB_num($result)) return array();
+
+	// Lấy kết quả dưới dạng mảng kết hợp
+	$data = DB_arr($result);
+
+	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
+	return [
+		'ten_vi' => $data[0]['tenbaiviet_vi'],
+		'mota' => $data[0]['is_mota'],
+		'noidung' => $data[0]['is_noidung']
+	]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
+}
+
+
+function admin_check($is_mota = 0){
 		if($is_mota == 1 || !empty($_SESSION['admin'])) return true;
 		return false;
 	}

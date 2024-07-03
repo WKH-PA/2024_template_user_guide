@@ -17,7 +17,7 @@
 			DB_que("DELETE FROM `$table` WHERE  `id`= ".$idofme." LIMIT 1");
 		}
 		$_SESSION['show_message_on'] = "Cập nhật dữ liệu thành công!";
-		LOCATION_js("?module=main-module&action=danh-sach-bai-viet&step=".$step."&id_step=".$id_step."&edit=".$id."&upload=".$upload);
+		LOCATION_js("?module=main-module&action=danh-sach.php-bai-viet&step=".$step."&id_step=".$id_step."&edit=".$id."&upload=".$upload);
 		exit();
     }
 

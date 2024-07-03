@@ -53,10 +53,10 @@
                                 $loaibanner = DB_arr($loaibanner);
 
                                 foreach ($loaibanner as $r) {
-                                    $nhom_1 .= '<li class="submenu-group"><a href="?module=quan-ly-hinh-anh&action=danh-sach-hinh-anh&id_parent=' . $r['id'] . '"><i class="fa fa-circle-o"></i> <span>' . $r['tenbaiviet_vi'] . '</span></a></li>';
+                                    $nhom_1 .= '<li class="submenu-group"><a href="?module=quan-ly-hinh-anh&action=danh-sach.php-hinh-anh&id_parent=' . $r['id'] . '"><i class="fa fa-circle-o"></i> <span>' . $r['tenbaiviet_vi'] . '</span></a></li>';
                                 }
-                                $nhom_1 .= '<li class="submenu-group"><a href="?module=quan-ly-hinh-anh&action=danh-sach-loai-hinh-anh&them-moi=true"><i class="fa fa-circle-o"></i> <span>Thêm loại hình ảnh</span></a></li>';
-                                $nhom_1 .= '<li class="submenu-group"><a href="?module=quan-ly-hinh-anh&action=danh-sach-loai-hinh-anh"><i class="fa fa-circle-o"></i> <span>Danh sách loại hình ảnh</span></a></li>';
+                                $nhom_1 .= '<li class="submenu-group"><a href="?module=quan-ly-hinh-anh&action=danh-sach.php-loai-hinh-anh&them-moi=true"><i class="fa fa-circle-o"></i> <span>Thêm loại hình ảnh</span></a></li>';
+                                $nhom_1 .= '<li class="submenu-group"><a href="?module=quan-ly-hinh-anh&action=danh-sach.php-loai-hinh-anh"><i class="fa fa-circle-o"></i> <span>Danh sách loại hình ảnh</span></a></li>';
                                 $nhom_1 .= '</ul>';
                             } elseif ($value['m_action'] == 'main-module') {
                                 // Xử lý cho 'main-module'
@@ -70,12 +70,12 @@
                                             </svg>
                                         </a>
                                         <ul class="submenu-wrapper">
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-bai-viet&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i>Thêm ' . $val['name'] . '</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-bai-viet&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i>Danh sách ' . $val['name'] . '</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-chu-de&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Thêm chủ đề</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-chu-de&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Danh sách chủ đề</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-tinh-nang&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Thêm tính năng</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-tinh-nang&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Danh sách tính năng</a></li>
+                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach.php-bai-viet&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i>Thêm ' . $val['name'] . '</a></li>
+                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach.php-bai-viet&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i>Danh sách ' . $val['name'] . '</a></li>
+                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach.php-chu-de&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Thêm chủ đề</a></li>
+                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach.php-chu-de&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Danh sách chủ đề</a></li>
+                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach.php-tinh-nang&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Thêm tính năng</a></li>
+                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach.php-tinh-nang&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Danh sách tính năng</a></li>
                                         </ul>
                                     </li>';
                                 }

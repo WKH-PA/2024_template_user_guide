@@ -14,7 +14,7 @@
   if(isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit']))){
       include "module-bai-viet-chi-tiet-add.php";
   }else{
- 
+
     if(isset($_REQUEST['addgiatri']) AND isset($_REQUEST['maxvalu']))
     {
       for($i=0;$i<$_REQUEST['maxvalu'];$i++)
@@ -25,7 +25,7 @@
           if(isset($_POST["xoa_gr_arr_$i"])){
             //xoa
             $sql_se         = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
-            $sql_se         = DB_arr($sql_se, 1)
+            $sql_se         = DB_arr($sql_se, 1);
             $icon           = $sql_se['icon'];
             $duongdantin    = $sql_se['duongdantin'];
             @unlink("../".$duongdantin."/".$icon);
@@ -48,7 +48,7 @@
                 }
                 else{
                     TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
-                } 
+                }
 
                 $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
                 $sql_thongtin = DB_arr($sql_thongtin, 1);
@@ -56,7 +56,7 @@
                 @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
                 ACTION_db($data, $table, 'update', NULL, "`id` = '$idofme' ");
               }
-              
+
             }
       }
       $_SESSION['show_message_on'] = 'Cập nhật dữ liệu thành công!';
@@ -83,7 +83,7 @@
     $numshow = ceil($numlist/$numview);
 ?>
 <section class="content-header">
-    <h1><?php if(isset($_SESSION['admin'])){ ?><a class="js_okkk" style="cursor: pointer;" onclick="LOAD_sort()">[SORT] <?php } ?></a><?=$thongtin_step['tenbaiviet_vi'] ?></h1> 
+    <h1><?php if(isset($_SESSION['admin'])){ ?><a class="js_okkk" style="cursor: pointer;" onclick="LOAD_sort()">[SORT] <?php } ?></a><?=$thongtin_step['tenbaiviet_vi'] ?></h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
         <li class="active">Bài viết chi tiết</li>
@@ -100,7 +100,7 @@
   }
 </script>
 <form action="" method="post" enctype='multipart/form-data'>
-   <?php 
+   <?php
     if(isset($_SESSION['admin'])){
   ?>
   <div style=" padding: 0 20px;">
@@ -128,7 +128,7 @@
                       <table class="table table-hover table-danhsach">
                         <tbody>
                           <tr>
-                            
+
                             <th class="w80 text-center">STT</th>
                             <th>Tiêu đề</th>
                             <th class="w100 text-center">Hình ảnh</th>
@@ -140,7 +140,7 @@
                             </th>
                           </tr>
                           <?php
-                            $cl         = 0; 
+                            $cl         = 0;
                             $sql        = DB_arr($sql);
                             foreach ($sql as $rows) {
                               $ida                = SHOW_text($rows['id']);
@@ -148,7 +148,7 @@
                                 ${$key} = $value;
                               }
                               $catasort           = number_format($catasort,0,',','.');
-                   
+
 
                           ?>
                           <tr>
@@ -156,7 +156,7 @@
                               <input name="idme<?=$cl?>" value="<?=$ida?>" type="hidden">
                               <input type="text" class="js_sorty text-center" value="<?=$catasort ?>" onchange="UPDATE_colum(this, '<?=$ida ?>', 'catasort','<?=$table ?> ')">
                             </td>
-                            
+
                             <td>
                               <div class="name">
                                 <a href="<?=$url_page ?>&id-parent=<?=$id_parent."&step=".$step_id ?>&edit=<?=$ida?>" title="Cập nhật"><?=$tenbaiviet_vi?></a>
@@ -174,7 +174,7 @@
                               <div id="cus" class="cus_menu">
                                 <label><input showhi type='checkbox' class='minimal minimal_click' colum="showhi" idcol="<?=$ida ?>" table="<?=$table ?>" value='1' <?=LAY_checked($showhi, 1)?>></label>
                               </div>
-                            </td> 
+                            </td>
                             <td class="text-center">
                               <input name='xoa_gr_arr_<?=$cl?>' type='checkbox' class='minimal cls_showxoa'>
                             </td>
@@ -182,7 +182,7 @@
                     <?php
                           $cl++;
                         }
-                    ?> 
+                    ?>
                         </tbody>
                       </table>
                       <input type='hidden' value='<?=$cl?>' name='maxvalu'>
@@ -207,4 +207,3 @@
     </section>
 </form>
 <?php } ?>
- 

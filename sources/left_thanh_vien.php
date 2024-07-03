@@ -7,7 +7,7 @@
     <a href="<?=$full_url."/doi-mat-khau/" ?>"><?=$glo_lang['doi_mat_khau'] ?></a>
   </li>
   <li>
-    <a href="<?=$full_url."/danh-sach-bai-dang/" ?>"><?=$glo_lang['dan_sach_bai_dang'] ?></a>
+    <a href="<?=$full_url."/danh-sach.php-bai-dang/" ?>"><?=$glo_lang['dan_sach_bai_dang'] ?></a>
   </li>
   <li>
     <a href="<?=$full_url."/thoat/" ?>"><?=$glo_lang['thoat'] ?></a>

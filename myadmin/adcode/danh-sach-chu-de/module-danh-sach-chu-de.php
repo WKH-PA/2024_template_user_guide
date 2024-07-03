@@ -2,7 +2,7 @@
   $thongtin_step = DB_que("SELECT * FROM `#_step` WHERE `id` = '$step' LIMIT 1");
   $thongtin_step = DB_arr($thongtin_step, 1);
   if(isset($_GET['upload']) && (isset($_GET['edit']) && is_numeric($_GET['edit']))){
-      include "module-danh-sach-chu-de-upload.php";
+      include "module-danh-sach.php-chu-de-upload.php";
   }
   else if(isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit']))){
       include "module-danh-sach-chu-de-add.php";

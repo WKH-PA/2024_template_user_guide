@@ -79,7 +79,7 @@
           }
         }
       }
-      LOCATION_js($url_page."?module=main-module&action=danh-sach-ma-giam-gia&edit=".$id);
+      LOCATION_js($url_page."?module=main-module&action=danh-sach.php-ma-giam-gia&edit=".$id);
       exit();
       // $_SESSION['show_message_off'] = 'Lỗi tạo mã giảm giá!';
       

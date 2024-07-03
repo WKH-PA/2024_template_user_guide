@@ -5,7 +5,7 @@
     exit();
   }
   if(isset($_GET['upload']) && (isset($_GET['edit']) && is_numeric($_GET['edit']))){
-      include "module-danh-sach-main-menu-upload.php";
+      include "module-danh-sach.php-main-menu-upload.php";
   }
   else if(isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit']))){
       include "module-danh-sach-main-menu-add.php";

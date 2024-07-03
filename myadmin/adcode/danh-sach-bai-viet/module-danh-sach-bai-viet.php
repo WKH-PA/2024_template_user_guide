@@ -1,13 +1,13 @@
 <?php
 
   if(isset($_GET['lich-day'])){
-      include "module-danh-sach-lich-day.php";
+      include "module-danh-sach.php-lich-day.php";
   }
   else if(isset($_GET['upload']) && (isset($_GET['edit']) && is_numeric($_GET['edit']))){
       include "module-danh-sach-bai-viet-upload.php";
   }
   else if(isset($_GET['tinh-nang']) && (isset($_GET['edit']) && is_numeric($_GET['edit']))){
-      include "module-danh-sach-bai-viet-tinh-nang.php";
+      include "module-danh-sach.php-bai-viet-tinh-nang.php";
   }
   else if(isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit']))){
       include "module-danh-sach-bai-viet-add.php";

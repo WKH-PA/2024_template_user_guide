@@ -138,6 +138,10 @@
                                 class="fa fa-circle-o"></i> Thêm tính năng</a></li>
                 <li><a href="?module=module-he-thong&action=danh-sach-tinh-nang-admin"><i class="fa fa-circle-o"></i>
                         Danh sách tính năng</a></li>
+                <li><a href="?module=module-he-thong&action=danh-sach-huong-dan&them-moi=true"><i
+                                class="fa fa-circle-o"></i> Thêm hướng dẫn </a></li>
+                <li><a href="?module=module-he-thong&action=danh-sach-huong-dan"><i class="fa fa-circle-o"></i>
+                        Danh sách hướng dẫn</a></li>
             </ul>
         </li>
 

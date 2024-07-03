@@ -82,7 +82,7 @@
                                       var js_hienthi_ds    = $(".js_hienthi_ds").val().trim();
                                       if(js_hienthi_ds != 0) url += "&hien-thi="+js_hienthi_ds;
                                     }
-                                    window.location.href = "?module=quan-ly-thanh-vien&action=danh-sach-thanh-vien"+url;
+                                    window.location.href = "?module=quan-ly-thanh-vien&action=danh-sach.php-thanh-vien"+url;
                                 }
                             </script>                        </div>
                         <h3 class="box-title box-title-td pull-right">

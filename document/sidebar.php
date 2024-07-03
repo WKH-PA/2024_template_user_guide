@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div>
         <div class="logo-wrapper">
-            <img class="img-fluid" src="../assets/images/logo/logo.png" alt="">
+            <img class="img-fluid" src="images/logo/logo.png" alt="">
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
         </div>
         <nav class="sidebar-main">
@@ -51,7 +51,7 @@
                                 $loaibanner = DB_arr($loaibanner);
 
                                 foreach ($loaibanner as $r) {
-                                    $nhom_1 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu"href="?module=quan-ly-hinh-anh&action=danh-sach-hinh-anh&id_parent=' . $r['id'] . '"><i class="fa fa-circle-o"></i> ' . $r['tenbaiviet_vi'] . '</a></li>';
+                                    $nhom_1 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu"href="?module=quan-ly-hinh-anh&action=' . $r['id'] . '"><i class="fa fa-circle-o"></i> ' . $r['tenbaiviet_vi'] . '</a></li>';
                                 }
                                 $nhom_1 .= '</ul>';
                             } elseif ($value['m_action'] == 'main-module') {
@@ -59,20 +59,12 @@
                                 $nhom_1 .= '<ul class="sidebar-submenu custom-scrollbar main-module-submenu submenu-group">';
                                 foreach (LEFT_mainmenu_new() as $val) {
                                     $nhom_1 .= '<li class="main-submenu submenu-group">
-                                        <a class="d-flex sidebar-menu" href="javascript:void(0)">
-                                            <i class="fa fa-circle-o"></i> ' . $val['cataname'] . '
+                                        <a class="d-flex sidebar-menu" href="?module=main-module&action=' . $val['seoname'] . '">
+                                            <i class="fa fa-circle-o"></i> <ul> <li>'. $val['cataname'] . '</li> </ul>
                                             <svg class="arrow" >
-                                                <use href="../assets/svg/icon-sprite.svg#Arrow-right"></use>
+                                                <use href="icon-sprite.svg#Arrow-right"></use>
                                             </svg>
                                         </a>
-                                        <ul class="submenu-wrapper">
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-bai-viet&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i>Thêm ' . $val['name'] . '</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-bai-viet&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i>Danh sách ' . $val['name'] . '</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-chu-de&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Thêm chủ đề</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-chu-de&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Danh sách chủ đề</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-tinh-nang&them-moi=true&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Thêm tính năng</a></li>
-                                            <li class="submenu-group"><a href="?module=main-module&action=danh-sach-tinh-nang&step=' . $val['step'] . '&id_step=' . $val['id_step'] . '"><i class="fa fa-circle-o"></i> Danh sách tính năng</a></li>
-                                        </ul>
                                     </li>';
                                 }
                                 $nhom_1 .= '</ul>';

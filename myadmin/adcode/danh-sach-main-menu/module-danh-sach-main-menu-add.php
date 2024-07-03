@@ -5,7 +5,7 @@
 
   if($_SERVER['REQUEST_METHOD']=='POST')
     {
-      
+
       foreach ($_POST as $key => $value) {
         ${$key}           = $value;
       }
@@ -31,7 +31,7 @@
     if(!empty($_POST))
       {
         $seo_name                     = LAY_uutien($seo_name, $tenbaiviet_vi);
-        
+        $mota                         =
         $hinhanh                      = UPLOAD_image("icon", "../".$duongdantin."/", time());
         $_POST['ngaydang']             = time();
         $_POST['duongdantin']          = $duongdantin;
@@ -79,9 +79,9 @@
           ACTION_db($_POST, $table, 'update', array("themmoi"), "`id` = ".$id);
           $_SESSION['show_message_on'] =  "Cập nhật module thành công!";
           THEM_seoname($id, $seo_name, $table, $id, "1");
-          
+
         }
-        
+
       }
   if($id > 0)
     {
@@ -96,10 +96,10 @@
       if ($icon != '') {
         $full_icon  = $fullpath."/".$duongdantin."/".$icon;
       }
- 
+
 
     }
-    else 
+    else
     {
       $step       = 1;
       $catasort   = layCatasort($table);
@@ -107,7 +107,7 @@
     }
 ?>
 <section class="content-header">
-    <h1><?php if(isset($_SESSION['admin'])){ ?><a style="cursor: pointer;" onclick="AUTO_dich(this)">[NGÔN NGỮ]</a> <a class="js_okkk" style="cursor: pointer;" onclick="OKKK_by_lh()">[UPDATE]</a> <?php } ?>Main module</h1> 
+    <h1><?php if(isset($_SESSION['admin'])){ ?><a style="cursor: pointer;" onclick="AUTO_dich(this)">[NGÔN NGỮ]</a> <a class="js_okkk" style="cursor: pointer;" onclick="OKKK_by_lh()">[UPDATE]</a> <?php } ?>Main module</h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
         <li class="active">Quản lý main module</li>
@@ -145,16 +145,16 @@
                   <input type="text" class="form-control" value="<?=!empty($p1_vi) ? SHOW_text($p1_vi) : ''?>" name="p1_vi" id="p1_vi">
                 </div> -->
 
-                <?php if(CHECK_key_setting("main-menu-mo-ta")){ ?>
+<!--                --><?php //if(CHECK_key_setting("main-menu-mo-ta")){ ?>
                 <div class="form-group">
                   <label>Mô tả</label>
-                  <textarea id="p3_vi" name="p3_vi" class="paEditor"><?=!empty($p3_vi) ? SHOW_text($p3_vi) : ''?></textarea>
+                  <textarea id="mota" name="mota" class="paEditor"><?=!empty($mota) ? SHOW_text($mota) : ''?></textarea>
                 </div>
-                <!-- <div class="form-group">
+                    <div class="form-group">
                   <label>Nội dung</label>
                   <textarea id="noidung_vi" name="noidung_vi" class="paEditor"><?=!empty($noidung_vi) ? SHOW_text($noidung_vi) : ''?></textarea>
-                </div> -->
-                <?php } ?>
+                </div>
+<!--                --><?php //} ?>
 
 
                 <div class="form-group">
@@ -322,7 +322,7 @@
           <?php
             }
           ?>
-          
+
           <?php if(isset($_SESSION['admin'])){  ?>
           <div class="form-group">
             <label>Kiểu hiển thị</label>

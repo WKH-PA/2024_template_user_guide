@@ -257,7 +257,7 @@
           </div>
           <?php } ?>
           <?php
-            $danhsach_hinhanh_video = CHECK_key_setting("danh-sach-hinh-anh-video");
+            $danhsach_hinhanh_video = CHECK_key_setting("danh-sach.php-hinh-anh-video");
             if($danhsach_hinhanh_video){
           ?>
           <div class="form-group">
