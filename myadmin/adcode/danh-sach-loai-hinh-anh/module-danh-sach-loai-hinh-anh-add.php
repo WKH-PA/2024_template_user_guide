@@ -43,7 +43,7 @@
     $catasort         = SHOW_text($sql_se['catasort']);
     $showhi           = SHOW_text($sql_se['showhi']);
   }
-  else 
+  else
   {
     $sql_se          = DB_que("SELECT max(catasort) as sort FROM `$table`");
     $sql_se          = DB_arr($sql_se, 1);
@@ -52,7 +52,7 @@
 ?>
 
 <section class="content-header">
-    <h1>Danh sách loại hình ảnh</h1> 
+    <h1>Danh sách loại hình ảnh</h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
         <li class="active">Danh sách loại hình ảnh</li>
@@ -78,7 +78,6 @@
                 <label>Tên loại hình ảnh</label>
                 <input type="text" class="form-control" value="<?=($id > 0) ? SHOW_text($tenbaiviet_vi) : ''?>" name="tenbaiviet_vi" id="tenbaiviet_vi">
               </div>
-
               <div class="form-group">
                 <label>Rộng</label>
                 <input type="text" class="form-control" name="rong" value="<?=($id > 0) ? SHOW_text($rong) : '' ?>">

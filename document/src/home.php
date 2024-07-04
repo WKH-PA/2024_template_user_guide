@@ -1,104 +1,45 @@
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-
-    .sidebar {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 20px; /* Sử dụng top để đặt khoảng cách từ đỉnh trang */
-        z-index: 100; /* Đảm bảo sidebar hiển thị trên các phần tử khác khi cuộn */
-    }
-
-    .container {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    h1, h2, h3 {
-        color: #333;
-    }
-
-    .feature-box {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .feature-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .feature-list li {
-        margin-bottom: 10px;
-    }
-
-    .sidebar {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 20px;
-    }
-
-    .sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar ul li {
-        margin-bottom: 10px;
-    }
-
-    .sidebar ul li a {
-        color: #555;
-        text-decoration: none;
-    }
-</style>
-
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chào mừng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin: 0 0 20px;
+        }
+        .footer {
+            font-size: 48px; /* Tăng kích thước chữ */
+            font-weight: bold;
+            background: linear-gradient(90deg, rgba(255,0,150,1) 0%, rgba(0,204,255,1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.3); /* Tăng độ bóng */
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+        }
+    </style>
+</head>
 <body>
-<div class="page-body">
-    <div class="container-fluid">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-sm-6 pe-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">
-                                <svg class="stroke-icon">
-                                    <use href="svg/icon-sprite.svg#stroke-home"></use>
-                                </svg>
-                            </a></li>
+<h1>Chào bạn đến với hướng dẫn sử dụng quản trị WEB</h1>
+<!--<div class="footer">
+PA Việt Nam - Nhà cung cấp Tên Miền so 1 VN.</div>-->
 
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Container-fluid starts-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card-body card-wrapper input-group-wrapper">
-                <div class="intro">
-                    <h1>Nội dung mới</h1>
-                    <p>Đây là nội dung mới bạn muốn thêm vào.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Container-fluid Ends-->
-</div>
-
+</body>
+</html>

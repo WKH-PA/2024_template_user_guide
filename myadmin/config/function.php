@@ -1355,7 +1355,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	function LEFT_mainmenu_new(){
 		$wh 		= "";
 		if(!CHECK_key_setting('lien-he-nhom-con')){
-			$wh 	= " AND `step` <> 6 ";
+			$wh 	= " AND `step` <> 5 ";
 		}
 
 		$sql        = DB_que("SELECT * FROM `#_step` WHERE `showhi` = 1 $wh ORDER BY `catasort` ASC ");
@@ -1386,11 +1386,21 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		    }
 		return $arr;
 	}
+function get_menu_item_by_seoname($menu_items, $seo_name) {
+	foreach ($menu_items as $item) {
+		if ($item['seoname'] == $seo_name) {
+			return $item;
+		}
+	}
+	return null; // Return null if no item is found with the given seo_name
+}
 
 	function CHECK_key_setting($key){
 		$check = DB_que("SELECT `id` FROM `#_module_setting` WHERE `ten_key` = '$key' AND `is_check` = 1 LIMIT 1");
 		return DB_num($check);
 	}
+
+
 
 
 	function GET_ID_youtube($url){
@@ -2770,7 +2780,9 @@ function lay_du_lieu_theo_seoname($action) {
 	return [
 		'ten_vi' => $data[0]['tenbaiviet_vi'],
 		'mota' => $data[0]['mota'],
-		'noidung' => $data[0]['noidung_vi']
+		'noidung' => $data[0]['noidung_vi'],
+		'noidung2' => $data[0]['noidung_vi_2']
+
 	]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
 }
 

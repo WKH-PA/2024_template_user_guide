@@ -43,4 +43,4 @@
 <!-- Plugins JS Ends-->
 <!-- Theme js-->
 <script src="js/script.js"></script>
-<script src="js/theme-customizer/customizer.js"></script>
+<!--<script src="js/theme-customizer/customizer.js"></script>-->

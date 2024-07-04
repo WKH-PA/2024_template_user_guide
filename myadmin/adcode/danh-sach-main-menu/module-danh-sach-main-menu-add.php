@@ -31,7 +31,6 @@
     if(!empty($_POST))
       {
         $seo_name                     = LAY_uutien($seo_name, $tenbaiviet_vi);
-        $mota                         =
         $hinhanh                      = UPLOAD_image("icon", "../".$duongdantin."/", time());
         $_POST['ngaydang']             = time();
         $_POST['duongdantin']          = $duongdantin;
@@ -145,16 +144,25 @@
                   <input type="text" class="form-control" value="<?=!empty($p1_vi) ? SHOW_text($p1_vi) : ''?>" name="p1_vi" id="p1_vi">
                 </div> -->
 
-<!--                --><?php //if(CHECK_key_setting("main-menu-mo-ta")){ ?>
+                  <?php if (!empty($_SESSION['admin'])) { ?>
                 <div class="form-group">
                   <label>Mô tả</label>
                   <textarea id="mota" name="mota" class="paEditor"><?=!empty($mota) ? SHOW_text($mota) : ''?></textarea>
                 </div>
-                    <div class="form-group">
-                  <label>Nội dung</label>
+                  <div class="form-group">
+                  <label>Nội dung bài viết </label>
                   <textarea id="noidung_vi" name="noidung_vi" class="paEditor"><?=!empty($noidung_vi) ? SHOW_text($noidung_vi) : ''?></textarea>
                 </div>
-<!--                --><?php //} ?>
+<!--                  --><?php //} if(in_array($step, $array_only_bv) ){ ?>
+
+                      <div class="form-group">
+                          <label>Nội dung chủ đề (Nếu có )</label>
+                          <textarea id="noidung_vi_2" name="noidung_vi_2" class="paEditor"><?= !empty($noidung_vi_2) ? SHOW_text($noidung_vi_2) : '' ?></textarea>
+                      </div>
+<!--                      --><?php
+                  }
+                  ?>
+                <?php ?>
 
 
                 <div class="form-group">

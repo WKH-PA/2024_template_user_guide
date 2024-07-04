@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cion admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Cion admin template, dashboard template, flat admin template, responsive admin template, web app">
@@ -39,69 +39,21 @@
     <link id="color" rel="stylesheet" href="css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-</head>
-<body>
-<!-- Loader starts-->
+
+
+
 <div class="loader-wrapper">
     <div class="loader"></div>
 </div>
 <!-- Loader ends-->
 <!-- tap on top starts-->
 <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-<!-- tap on tap ends-->
-<!-- page-wrapper Start-->
-<div class="page-wrapper" id="pageWrapper">
-    <!-- Page Header Start-->
 
 
-        <?php include "header1.php"; ?>
-
-    <!-- Page Body Start-->
-    <div class="page-body-wrapper">
-        <!-- Page Sidebar Start menu-->
-        <?php include "sidebar.php"; ?>
-        <?php include "body.php"; ?>
-        <!-- footer start-->
-        <?php include "footer.php"; ?>
+<div class="page-header">
+    <div class="header-wrapper row">
+        <svg class="stroke-icon toggle-sidebar">
+            <use class="status_toggle middle sidebar-toggle" href="svg/icon-sprite.svg#Grid"></use>
+        </svg>
     </div>
 </div>
-<!-- latest jquery-->
-
-<script src="js/jquery.min.js"></script>
-<!-- Bootstrap js-->
-<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-<!-- feather icon js-->
-<script src="js/icons/feather-icon/feather.min.js"></script>
-<script src="js/icons/feather-icon/feather-icon.js"></script>
-<!-- scrollbar js-->
-<script src="js/scrollbar/simplebar.js"></script>
-<script src="js/scrollbar/custom.js"></script>
-<!-- Sidebar jquery-->
-<script src="js/config.js"></script>
-
-<!-- Plugins JS start-->
-<script src="js/sidebar-menu.js"></script>
-<script src="js/slick/slick.min.js"></script>
-<script src="js/slick/slick.js"></script>
-<script src="js/header-slick.js"></script>
-<!--<script src="js/chart/apex-chart/apex-chart.js"></script>-->
-<!--<script src="js/chart/apex-chart/stock-prices.js"></script>-->
-<script src="js/prism/prism.min.js"></script>
-<script src="js/clipboard/clipboard.min.js"></script>
-<!--<script src="js/custom-card/custom-card.js"></script>-->
-<script src="js/notify/bootstrap-notify.min.js"></script>
-<script src="js/vector-map/jquery-jvectormap-2.0.2.min.js"></script>
-<!--<script src="js/vector-map/map/jquery-jvectormap-world-mill-en.js"></script>-->
-<!--<script src="js/vector-map/map/jquery-jvectormap-us-aea-en.js"></script>-->
-<!--<script src="js/vector-map/map/jquery-jvectormap-chicago-mill-en.js"></script>-->
-<!--<script src="js/vector-map/map/jquery-jvectormap-in-mill.js"></script>-->
-<!--<script src="js/vector-map/map/jquery-jvectormap-asia-mill.js"></script>-->
-
-<!-- Plugins JS Ends-->
-<!-- Theme js-->
-<script src="js/script.js"></script>
-<script src="js/theme-customizer/customizer.js"></script>
-
-
-</body>
-</html>
