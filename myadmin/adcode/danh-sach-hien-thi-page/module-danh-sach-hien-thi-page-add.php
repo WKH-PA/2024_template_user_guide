@@ -1,9 +1,17 @@
 <?php
   $table = '#_module_page';
   $id    = isset($_GET['edit']) && is_numeric($_GET['edit']) ? SHOW_text($_GET['edit']) : 0;
-  if($_SERVER['REQUEST_METHOD']=='POST')
+
+$menu_items = LEFT_mainmenu_new();
+$filtered_menu_item = get_menu_item_by_id($menu_items, $page);
+
+if($_SERVER['REQUEST_METHOD']=='POST')
     {
       $ten_vi             = @$_REQUEST['ten_vi'];
+        $mota               = @$_REQUEST['mota'];
+        $noidung            = @$_REQUEST['noidung'];
+        $mota2               = @$_REQUEST['mota2'];
+        $noidung2            = @$_REQUEST['noidung2'];
       $page               = @$_REQUEST['page'];
       $sort               = @$_REQUEST['sort'];
       $showhi             = isset($_POST['showhi']) ? 1 : 0;
@@ -14,13 +22,17 @@
     {
       $data               = array();
       $data['ten_vi']     = $ten_vi;
+        $data['mota']       = $mota;
+        $data['noidung']    = $noidung;
+        $data['mota2']       = $mota2;
+        $data['noidung2']    = $noidung2;
       $data['page']       = is_numeric($page) ? $page : 0;
       $data['sort']       = is_numeric($sort) ? $sort : 0;
       $data['showhi']     = is_numeric($showhi) ? $showhi : 0;
 
       if($id == 0){
         $id                           = ACTION_db($data, $table , 'add',NULL,NULL);
-        
+
         $_SESSION['show_message_on'] =  "Thêm chủ đề thành công!";
         LOCATION_js($url_page);
         exit();
@@ -29,8 +41,8 @@
         $_SESSION['show_message_on'] =  "Cập nhật chủ đề thành công!";
       }
     }
- 
-    
+
+
   if($id > 0)
     {
       $sql_se             = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
@@ -40,7 +52,7 @@
       $sort               = number_format($sql_se['sort'],0,',','.');
       $showhi             = SHOW_text($sql_se['showhi']);
     }
-    else 
+    else
     {
       $sort   = DB_que("SELECT * FROM `$table`");
       $sort   = number_format((DB_num($sort) + 1),0,',','.');
@@ -48,7 +60,7 @@
 ?>
 
 <section class="content-header">
-  <h1>Danh sách Page</h1> 
+  <h1>Danh sách Page</h1>
   <ol class="breadcrumb">
       <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
       <li class="active">Danh sách Page</li>
@@ -76,6 +88,24 @@
                   <label>Tên Page</label>
                   <input type="text" class="form-control" value="<?=!empty($ten_vi) ? SHOW_text($ten_vi) : ''?>" name="ten_vi">
                 </div>
+                  <div class="form-group">
+                      <label>Mô tả</label>
+                      <textarea id="mota" name="mota" class="paEditor"><?=!empty($mota) ? SHOW_text($mota) : ''?></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label>Nội dung</label>
+                      <textarea id="noidung" name="noidung" class="paEditor"><?=!empty($noidung) ? SHOW_text($noidung) : ''?></textarea>
+                  </div>
+
+                  <div class="form-group">
+                      <label>Mô tả</label>
+                      <textarea id="mota2" name="mota2" class="paEditor"><?=!empty($mota2) ? SHOW_text($mota2) : ''?></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label>Nội dung</label>
+                      <textarea id="noidung2" name="noidung2" class="paEditor"><?=!empty($noidung2) ? SHOW_text($noidung2) : ''?></textarea>
+                  </div>
+
 
                 <div class="form-group">
                   <label>ID Page</label>

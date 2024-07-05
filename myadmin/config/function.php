@@ -1355,10 +1355,10 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	function LEFT_mainmenu_new(){
 		$wh 		= "";
 		if(!CHECK_key_setting('lien-he-nhom-con')){
-			$wh 	= " AND `step` <> 5 ";
+
 		}
 
-		$sql        = DB_que("SELECT * FROM `#_step` WHERE `showhi` = 1 $wh ORDER BY `catasort` ASC ");
+		$sql        = DB_que("SELECT * FROM `#_step` WHERE `showhi` = 1 AND `step` NOT IN (5, 36, 37)  ORDER BY `catasort` ASC ");
 		$arr 		= array();
 	    $sql 		= DB_arr($sql);
 	    foreach ($sql as $rows) {
@@ -2770,9 +2770,9 @@ function lay_du_lieu_theo_id_tinhnang($id) {
 	return $data[0];
 }
 
-function lay_du_lieu_theo_id_step($id) {
+function lay_du_lieu_theo_id_module_page($id) {
 	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `id`
-	$result = DB_que("SELECT * FROM `#_module_page` WHERE `id` = '$id' LIMIT 1");
+	$result = DB_que("SELECT * FROM `#_module_page` WHERE `page` = '$id' AND `showhi` = 1 LIMIT 1");
 	// Kiểm tra nếu không có kết quả trả về
 	if (!DB_num($result)) {
 		return array('error' => "No results found for id: $id");
@@ -2785,11 +2785,28 @@ function lay_du_lieu_theo_id_step($id) {
 		'mota' => $data[0]['mota'],
 		'mota2' => $data[0]['mota2'],
 		'noidung' => $data[0]['noidung'],
-		'noidung1' => $data[0]['noidung2']
+		'noidung2' => $data[0]['noidung2']
 	];
 }
 
-
+function lay_du_lieu_theo_id_step($id) {
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `id`
+	$result = DB_que("SELECT * FROM `#_step` WHERE `id` = '$id' AND `showhi` = 1 LIMIT 1");
+	// Kiểm tra nếu không có kết quả trả về
+	if (!DB_num($result)) {
+		return array('error' => "No results found for id: $id");
+	}
+	// Lấy kết quả dưới dạng mảng kết hợp
+	$data = DB_arr($result);
+	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
+	return [
+		'ten_vi' => $data[0]['ten_vi'],
+		'mota' => $data[0]['mota'],
+		'mota2' => $data[0]['mota2'],
+		'noidung' => $data[0]['noidung_vi'],
+		'noidung2' => $data[0]['noidung_vi_2']
+	];
+}
 
 
 

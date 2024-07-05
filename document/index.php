@@ -53,7 +53,7 @@ foreach ($module_setting as $rows) {
 <!DOCTYPE html>
 <html>
 
-<body>
+<body class="dark-only">
 <div class="page-wrapper" id="pageWrapper">
     <?php include _src ."header1.php"; ?>
     <div class="page-body-wrapper">

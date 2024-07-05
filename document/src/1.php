@@ -2,7 +2,6 @@
 $menu_items = LEFT_mainmenu_new();
 $filtered_menu_item = get_menu_item_by_id($menu_items, $id);
 $dataadd = lay_du_lieu_theo_id_step($id);
-
 if (!empty($id)) {
     if ($module == 'true') {
         $data = lay_du_lieu_theo_id_module_page($id);
@@ -53,18 +52,12 @@ if (!empty($id)) {
                             <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                 <ul>
                                     <?= SHOW_text($data['mota']) ?>
-                                    <?php if (!empty($dataadd['mota']) ) { ?>
-                                        <?= SHOW_text($dataadd['mota']) ?>
-                                    <?php } ?>
                                 </ul>
                             </h5>
                         </div>
                         <div class="intro">
                             <h2>Nội dung</h2>
                             <?= SHOW_text($data['noidung']) ?>
-                            <?php if (!empty($dataadd['noidung']) ) { ?>
-                                <?= SHOW_text($dataadd['noidung']) ?>
-                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -80,17 +73,11 @@ if (!empty($id)) {
                                 <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                     <ul>
                                         <?= SHOW_text($data['mota2']) ?>
-                                        <?php if (!empty($dataadd['mota2']) ) { ?>
-                                            <?= SHOW_text($dataadd['mota2']) ?>
-                                        <?php } ?>
                                     </ul>
                                 </h5>
                             </div>
                             <div class="intro">
                                 <?= SHOW_text($data['noidung2']) ?>
-                                <?php if (!empty($dataadd['noidung2']) ) { ?>
-                                    <?= SHOW_text($dataadd['noidung2']) ?>
-                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -114,7 +101,7 @@ if (!empty($id)) {
                                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                                 </svg>
-                                                Danh sách <?= SHOW_text($data['ten_vi']) ?>
+                                                Danh sách
                                             </a>
                                         </li>
                                         <?php
@@ -173,32 +160,4 @@ if (!empty($id)) {
         max-width: 100%; /* Ensures the image fits within its container */
         height: auto; /* Maintains the aspect ratio */
     }
-
-
-
 </style>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Select all the anchor links within the sidebar
-        const sidebarLinks = document.querySelectorAll('.md-sidebar-aside a');
-
-        // Add click event listener for each link
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function (event) {
-                event.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    // Calculate the distance to scroll
-                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    });
-
-</script>

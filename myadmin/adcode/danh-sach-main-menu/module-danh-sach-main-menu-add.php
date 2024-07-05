@@ -154,7 +154,10 @@
                   <textarea id="noidung_vi" name="noidung_vi" class="paEditor"><?=!empty($noidung_vi) ? SHOW_text($noidung_vi) : ''?></textarea>
                 </div>
 <!--                  --><?php //} if(in_array($step, $array_only_bv) ){ ?>
-
+                      <div class="form-group">
+                          <label>Mô tả</label>
+                          <textarea id="mota2" name="mota2" class="paEditor"><?=!empty($mota2) ? SHOW_text($mota2) : ''?></textarea>
+                      </div>
                       <div class="form-group">
                           <label>Nội dung chủ đề (Nếu có )</label>
                           <textarea id="noidung_vi_2" name="noidung_vi_2" class="paEditor"><?= !empty($noidung_vi_2) ? SHOW_text($noidung_vi_2) : '' ?></textarea>
