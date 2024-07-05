@@ -49,7 +49,6 @@ if (!empty($id)) {
                     </div>
                     <div class="card-body card-wrapper input-group-wrapper">
                         <div class="intro">
-                            <h2>Mô tả</h2>
                             <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                 <ul>
                                     <?= SHOW_text($data['mota']) ?>
@@ -60,7 +59,6 @@ if (!empty($id)) {
                             </h5>
                         </div>
                         <div class="intro">
-                            <h2>Nội dung</h2>
                             <?= SHOW_text($data['noidung']) ?>
                             <?php if (!empty($dataadd['noidung']) ) { ?>
                                 <?= SHOW_text($dataadd['noidung']) ?>
@@ -72,11 +70,10 @@ if (!empty($id)) {
                 <?php if (in_array($filtered_menu_item['id'], $array_only_bv) && !empty($data['mota2']) && !empty($data['noidung2'])) { ?>
                     <div class="card" id="card2">
                         <div class="card-header pb-0">
-                            <h3>Danh sách bài viết</h3>
+                            <h3>Danh sách chủ đề </h3>
                         </div>
                         <div class="card-body card-wrapper input-group-wrapper">
                             <div class="intro">
-                                <h2>Mô tả</h2>
                                 <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                     <ul>
                                         <?= SHOW_text($data['mota2']) ?>

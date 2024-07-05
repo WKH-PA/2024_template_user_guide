@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div>
         <div class="logo-wrapper">
-            <a href="index.php">
+            <a href="<?php echo $fullpath.'/document'?>">
                 <img class="img-fluid" src="images/logo/logo.png" alt="Logo">
             </a>
         </div>
