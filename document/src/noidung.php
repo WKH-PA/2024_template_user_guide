@@ -1,6 +1,6 @@
 <?php
 $menu_items = LEFT_mainmenu_new();
-$filtered_menu_item = get_menu_item_by_seoname($menu_items, $action);
+$filtered_menu_item = get_menu_item_by_id($menu_items, $id);
 ?>
 
 <style>
@@ -60,70 +60,68 @@ $filtered_menu_item = get_menu_item_by_seoname($menu_items, $action);
     <div class="row">
         <div class="col-md-8">
             <?php
-            if (!empty($action)) {
-                if ($module == 'main-module') {
-                    $data = lay_du_lieu_theo_seoname($action);
-                } elseif ($module == 'quan-ly-hinh-anh') {
-                    $data = lay_du_lieu_theo_id_parent($action);
+            if (!empty($id)) {
+                if ($module == 'true') {
+                    $data = lay_du_lieu_theo_id_step($id);
                 } else {
-                    $data = lay_du_lieu_theo_action($action);
+                    $data = lay_du_lieu_theo_id_tinhnang($id);
                 }
-
                 if (is_array($data) && !empty($data)) {
                     ?>
                     <h3 id="section1"><?= SHOW_text($data['ten_vi']) ?></h3>
                     <div class="feature-box" id="bai-viet">
                         <ul class="feature-list">
-                            <h2 id="section2">Mô tả</h2>
+                            <h2>Mô tả</h2>
                             <li><?= SHOW_text($data['mota']) ?></li>
+                            <h2>Nội dung</h2><li><?= SHOW_text($data['noidung']) ?></li>
                         </ul>
-                        <ul>
-                            <h2 id="section3">Nội dung</h2>
-                            <li><?= SHOW_text($data['noidung']) ?></li>
-                        </ul>
-                    <?php if ($module == 'main-module' && !empty($data['noidung2'])) { ?>
-                        <?php if (in_array($filtered_menu_item['id'], $array_only_bv)) { ?>
-                            <ul>
-                                <h2 id="section4">Nội dung chủ đề</h2>
-                                <li><?= SHOW_text($data['noidung2']) ?></li>
-                            </ul>
-                        <?php } ?>
-                    <?php } ?>
+                        <div class="feature-box" id="bai-viet2">
+                            <?php if ($module == 'main-module' && !empty($data['noidung2'])) { ?>
+                                <?php if (in_array($filtered_menu_item['id'], $array_only_bv)) { ?>
+                                    <ul>
+                                        <h2>Mô tả</h2><li><?= SHOW_text($data['mota2']) ?></li>
+                                        <h2 id="section4">Nội dung chủ đề</h2><li><?= SHOW_text($data['noidung2']) ?></li>
+                                    </ul>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
                     <?php
                 } else {
                     echo "No content found for the specified action.";
+                    echo $id;
                 }
             } else {
                 echo "No action specified.";
+
             }
             ?>
         </div>
-        <div class="col-md-4">
-            <div class="sidebar">
-                <h3>Chủ đề</h3>
-                <ul>
-                    <?php
-
-
-                    if ($module == 'main-module' && $filtered_menu_item) {
-                        ?>
-                        <li><a href="#section3"><i class="fa fa-circle-o"></i> Danh sách <?= $filtered_menu_item['name'] ?></a></li>
-                        <?php
-                        if (in_array($filtered_menu_item['id'], $array_only_bv)) {
-                            ?>
-                            <li ><a href="#section4"><i class="fa fa-circle-o"></i> Danh sách chủ đề</a></li>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <h3>Chủ đề</h3>
+                        <ul>
                             <?php
-                        }
-                    } else {
-                        ?>
-                        <li><a href="#section1"><i class="fa fa-circle-o"></i> <?= SHOW_text($data['ten_vi']) ?></a></li>
-                        <?php
-                    }
-                    ?>
-                </ul>
-            </div>
-        </div>
+
+
+                            if ($module == 'true' && $filtered_menu_item) {
+                                ?>
+                                <li><a href="bai_viet"><i class="fa fa-circle-o"></i> Danh sách <?= $filtered_menu_item['name'] ?></a></li>
+                                <?php
+                                if (in_array($filtered_menu_item['id'], $array_only_bv)) {
+                                    ?>
+                                    <li ><a href="bai_viet2"><i class="fa fa-circle-o"></i> Danh sách chủ đề</a></li>
+                                    <?php
+                                }
+                            } else {
+                                ?>
+                                <li><a href="#section1"><i class="fa fa-circle-o"></i> <?= SHOW_text($data['ten_vi']) ?></a></li>
+                                <?php
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
     </div>
 </div>
 

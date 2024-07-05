@@ -1386,9 +1386,9 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		    }
 		return $arr;
 	}
-function get_menu_item_by_seoname($menu_items, $seo_name) {
+function get_menu_item_by_id($menu_items, $id) {
 	foreach ($menu_items as $item) {
-		if ($item['seoname'] == $seo_name) {
+		if ($item['step'] == $id) {
 			return $item;
 		}
 	}
@@ -2753,56 +2753,47 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
       	}
       	return "";
 	}
-function lay_du_lieu_theo_action($action) {
-	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_module_tinhnang` dựa trên `m_action`
-	$result = DB_que("SELECT * FROM `#_module_tinhnang` WHERE `m_action` = '$action' LIMIT 1");
+
+function lay_du_lieu_theo_id_tinhnang($id) {
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_module_tinhnang` dựa trên `id`
+	$result = DB_que("SELECT * FROM `#_module_tinhnang` WHERE `id` = '$id' LIMIT 1");
 
 	// Kiểm tra nếu không có kết quả trả về
-	if (!DB_num($result)) return array();
+	if (!DB_num($result)) {
+		return array('error' => "No results found for id: $id");
+	}
 
 	// Lấy kết quả dưới dạng mảng kết hợp
 	$data = DB_arr($result);
 
-	// Trả về dữ liệu dưới dạng mảng kết hợp
-	return $data[0]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
+	// Trả về dữ liệu của dòng đầu tiên (nếu có)
+	return $data[0];
 }
-function lay_du_lieu_theo_seoname($action) {
-	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `seo_name`
-	$result = DB_que("SELECT * FROM `#_step` WHERE `seo_name` = '$action' LIMIT 1");
 
+function lay_du_lieu_theo_id_step($id) {
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `id`
+	$result = DB_que("SELECT * FROM `#_module_page` WHERE `id` = '$id' LIMIT 1");
 	// Kiểm tra nếu không có kết quả trả về
-	if (!DB_num($result)) return array();
-
+	if (!DB_num($result)) {
+		return array('error' => "No results found for id: $id");
+	}
 	// Lấy kết quả dưới dạng mảng kết hợp
 	$data = DB_arr($result);
-
 	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
 	return [
-		'ten_vi' => $data[0]['tenbaiviet_vi'],
+		'ten_vi' => $data[0]['ten_vi'],
 		'mota' => $data[0]['mota'],
-		'noidung' => $data[0]['noidung_vi'],
-		'noidung2' => $data[0]['noidung_vi_2']
-
-	]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
+		'mota2' => $data[0]['mota2'],
+		'noidung' => $data[0]['noidung'],
+		'noidung1' => $data[0]['noidung2']
+	];
 }
 
-function lay_du_lieu_theo_id_parent($action) {
-	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `seo_name`
-	$result = DB_que("SELECT * FROM `#_banner_danhmuc` WHERE `id` = '$action' LIMIT 1");
 
-	// Kiểm tra nếu không có kết quả trả về
-	if (!DB_num($result)) return array();
 
-	// Lấy kết quả dưới dạng mảng kết hợp
-	$data = DB_arr($result);
 
-	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
-	return [
-		'ten_vi' => $data[0]['tenbaiviet_vi'],
-		'mota' => $data[0]['is_mota'],
-		'noidung' => $data[0]['is_noidung']
-	]; // Trả về dữ liệu của dòng đầu tiên (nếu có)
-}
+
+
 
 
 function admin_check($is_mota = 0){

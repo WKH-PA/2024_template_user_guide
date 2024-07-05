@@ -24,16 +24,15 @@
                             foreach ($sql_array as $value_3) {
                                 if ($value_3['id_parent'] != $value_2['id']) continue;
 
-                                $nhom_3 .= '<li class="submenu-group"><a href="' . $value_3['lien_ket'] . '"><i class="' . ($value_3['icon'] != "" ? $value_3['icon'] : "fa fa-circle-o") . '"></i> ' . $value_3['ten_vi'] . '</a></li>';
+                                $nhom_3 .= '<li class="submenu-group"><a href="?id=' . $value_3['id'] . '"><i class="' . ($value_3['icon'] != "" ? $value_3['icon'] : "fa fa-circle-o") . '"></i> ' . $value_3['ten_vi'] . '</a></li>';
                             }
 
-                            $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="' . $value_2['lien_ket'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o") . '"></i> ' . $value_2['ten_vi'] . '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
+                            $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o") . '"></i> ' . $value_2['ten_vi'] . '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
                         }
 
-                        // Handle 'Quản lý hình ảnh' module separately to prevent submenus
                         if ($value['m_action'] == 'quan-ly-hinh-anh') {
                             $nhom_1 .= '<li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title" href="?module=quan-ly-hinh-anh">
+                                <a class="sidebar-link sidebar-title" href="?id=' . $value['id'] . '">
                                     <i class="' . ($value['icon'] != "" ? $value['icon'] : "fa fa-circle-o") . '"></i> <span>' . $value['ten_vi'] . '</span>
                                 </a>
                             </li>';
@@ -44,29 +43,25 @@
                                 </a>';
 
                             if ($value['m_action'] == 'main-module') {
-                                // Process for 'main-module'
                                 $nhom_1 .= '<ul class="sidebar-submenu custom-scrollbar main-module-submenu submenu-group">';
                                 foreach (LEFT_mainmenu_new() as $val) {
                                     $nhom_1 .= '<li class="main-submenu submenu-group">
-                                        <a class="d-flex sidebar-menu" href="?module=main-module&action=' . $val['seoname'] . '">
-                                            <i class="fa fa-circle-o"></i> <span>' . $val['cataname'] . '</span>
+                                        <a class="d-flex sidebar-menu" href="?module=true&id=' . $val['id'] . '">
+                                            <i class="fa fa-circle-o"></i> ' . $val['cataname'] . '
                                         </a>
                                     </li>';
                                 }
                                 $nhom_1 .= '</ul>';
                             } else {
-                                // If not 'quan-ly-hinh-anh' or 'main-module', display regular submenus
                                 $nhom_1 .= '<ul class="sidebar-submenu custom-scrollbar submenu-group">' . $nhom_2 . '</ul>';
                             }
 
                             $nhom_1 .= '</li>';
                         } else {
-                            // If no subgroups and not 'main-module', display single link
-                            $nhom_1 .= '<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="' . $value['lien_ket'] . '"><i class="' . ($value['icon'] != "" ? $value['icon'] : "fa fa-circle-o") . '"></i> <span>' . $value['ten_vi'] . '</span></a></li>';
+                            $nhom_1 .= '<li class="sidebar-list"><a class="sidebar-link sidebar-title" href="?id=' . $value['id'] . '"><i class="' . ($value['icon'] != "" ? $value['icon'] : "fa fa-circle-o") . '"></i> <span>' . $value['ten_vi'] . '</span></a></li>';
                         }
                     }
 
-                    // Output processed menu list
                     echo $nhom_1;
                     ?>
                 </ul>

@@ -10,6 +10,8 @@ $list_tn = DB_arr($list_tn);
 foreach ($list_tn as $r) {
     $md_tinhnang[$r['m_action']] = $r;
 }
+$id       = isset($_GET['id']) ? $_GET['id'] : '';
+$url_page = "id=$id";
 $module_setting = DB_que("SELECT * FROM `#_module_setting`");
 $module_setting = DB_arr($module_setting);
 foreach ($module_setting as $rows) {
@@ -57,7 +59,7 @@ foreach ($module_setting as $rows) {
     <div class="page-body-wrapper">
         <?php
         include _src."sidebar.php";
-        if ($module != '') {
+        if ($id != '') {
             include _src ."noidung.php";
         } else {
             include _src. "home.php";
