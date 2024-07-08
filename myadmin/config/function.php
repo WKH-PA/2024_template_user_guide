@@ -2822,7 +2822,7 @@ function lay_du_lieu_theo_id_step($id) {
 	$data = DB_arr($result);
 	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
 	return [
-		'ten_vi' => $data[0]['ten_vi'],
+		'ten_vi' => $data[0]['tenbaiviet_vi'],
 		'mota' => $data[0]['mota'],
 		'mota2' => $data[0]['mota2'],
 		'noidung' => $data[0]['noidung_vi'],

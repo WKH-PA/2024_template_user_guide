@@ -1,8 +1,21 @@
+<style>
+    .logo-wrapper {
+        text-align: center; /* Căn giữa logo */
+    }
+
+    .logo-wrapper img {
+        max-width: 90px; /* Độ rộng tối đa của logo */
+        height: auto; /* Đảm bảo tỷ lệ khung hình */
+        display: block; /* Đảm bảo hình ảnh hiển thị đúng dạng block */
+        margin: 0 auto; /* Canh giữa hình ảnh */
+        background-color: transparent; /* Đặt nền trong suốt */
+    }
+</style>
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div>
         <div class="logo-wrapper">
             <a href="<?php echo $fullpath.'/document'?>">
-                <img class="img-fluid" src="images/logo/logo.png" alt="Logo">
+                <img class="img-fluid" src="images/logo/logo.jpg" alt="Logo">
             </a>
         </div>
         <nav class="sidebar-main">
@@ -27,7 +40,7 @@
                                 $nhom_3 .= '<li class="submenu-group"><a href="?id=' . $value_3['id'] . '"><i class="' . ($value_3['icon'] != "" ? $value_3['icon'] : "fa fa-circle-o") . '"></i> ' . $value_3['ten_vi'] . '</a></li>';
                             }
 
-                            $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o" ) . '" > </i>    ' . shorten_text( $value_2['ten_vi'], 22 ). '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
+                            $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o" ) . '"></i>&nbsp;&nbsp;' . shorten_text( $value_2['ten_vi'], 28 ). '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
                         }
 
                         if ($value['m_action'] == 'quan-ly-hinh-anh') {
@@ -47,7 +60,7 @@
                                 foreach (LEFT_mainmenu_new() as $val) {
                                     $nhom_1 .= '<li class="main-submenu submenu-group">
                                         <a class="d-flex sidebar-menu" href="?module=true&id=' . $val['id'] . '">
-                                            <i class="fa fa-circle-o"></i> ' . $val['cataname'] . '
+                                            <i class="fa fa-circle-o"></i> &nbsp;&nbsp;' . $val['cataname'] . '
                                         </a>
                                     </li>';
                                 }

@@ -53,6 +53,7 @@ foreach ($module_setting as $rows) {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +64,7 @@ foreach ($module_setting as $rows) {
           content="admin template, Cion admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" src="https://www.pavietnam.vn/images/home_version_new/pa2023_logo_ver3.svg" type="image/x-icon">
     <title>Cion - Premium Admin Template</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">

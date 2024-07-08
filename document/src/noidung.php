@@ -33,7 +33,24 @@ if (!empty($id)) {
                                     <use href="svg/icon-sprite.svg#stroke-home"></use>
                                 </svg>
                             </a></li>
-                        <li class="breadcrumb-item"><?php echo $parent_name; ?></li>
+                        <?php
+                        if ($module == 'true') {
+                            ?>
+                            <li class="breadcrumb-item">Main module</li>
+                            <?php
+                        } else {
+                            ?>
+                            <?php if ($parent_name !== null && $parent_name !== '') : ?>
+                                <li class="breadcrumb-item"><?= $parent_name ?></li>
+                            <?php endif; ?>
+                            <?php
+                        }
+                        ?>
+
+
+
+                        </php>
+
                         <li class="breadcrumb-item active"> <?= SHOW_text($data['ten_vi']) ?></li>
                     </ol>
                 </div>
@@ -46,7 +63,7 @@ if (!empty($id)) {
             <div class="col-md-9">
                 <div class="card" id="card1">
                     <div class="card-header pb-0">
-                        <h3>Danh sách bài viết</h3>
+                        <h3>Danh sách <?=(SHOW_text($data['ten_vi'])) ?></h3>
                     </div>
                     <div class="card-body card-wrapper input-group-wrapper">
                         <div class="intro">
@@ -60,6 +77,7 @@ if (!empty($id)) {
                             </h5>
                         </div>
                         <div class="intro">
+
                             <?= SHOW_text($data['noidung']) ?>
                             <?php if (!empty($dataadd['noidung']) ) { ?>
                                 <?= SHOW_text($dataadd['noidung']) ?>
