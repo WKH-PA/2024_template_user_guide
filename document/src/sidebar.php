@@ -1,16 +1,23 @@
 <style>
     .logo-wrapper {
-        text-align: center; /* Căn giữa logo */
+        text-align: center; /* Center align logo */
     }
 
     .logo-wrapper img {
-        max-width: 90px; /* Độ rộng tối đa của logo */
-        height: auto; /* Đảm bảo tỷ lệ khung hình */
-        display: block; /* Đảm bảo hình ảnh hiển thị đúng dạng block */
-        margin: 0 auto; /* Canh giữa hình ảnh */
-        background-color: transparent; /* Đặt nền trong suốt */
+        max-width: 90px; /* Maximum width of the logo */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Ensure image displays as block */
+        margin: 0 auto; /* Center align the image */
+        background-color: transparent; /* Transparent background */
     }
+
+    .sidebar-list {
+        list-style-type: none; /* Remove default list styling */
+    }
+
+    /* Add any additional styling as needed */
 </style>
+
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div>
         <div class="logo-wrapper">
@@ -43,7 +50,7 @@
                             $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o" ) . '"></i>&nbsp;&nbsp;' . shorten_text( $value_2['ten_vi'], 28 ). '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
                         }
 
-                        if ($value['m_action'] == 'quan-ly-hinh-anh') {
+                        if ($value['m_action'] == 'quan-ly-hinh-anh' || in_array($value['id'], ['13', '34'])) {
                             $nhom_1 .= '<li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title" href="?id=' . $value['id'] . '">
                                     <i class="' . ($value['icon'] != "" ? $value['icon'] : "fa fa-circle-o") . '"></i> <span>' . $value['ten_vi'] . '</span>
