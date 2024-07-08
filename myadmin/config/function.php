@@ -1352,6 +1352,28 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
         }
         return $list_array;
 	}
+function get_parent_menu_name($menus, $child_id) {
+	$parent_name = '';
+	foreach ($menus as $menu) {
+		if ($menu['id'] == $child_id) {
+			foreach ($menus as $potential_parent) {
+				if ($potential_parent['id'] == $menu['id_parent']) {
+					$parent_name = $potential_parent['ten_vi'];
+					break;
+				}
+			}
+			break;
+		}
+	}
+	return $parent_name;
+}
+// gioi han do dai chu ...
+function shorten_text($text, $max_length) {
+	if (strlen($text) > $max_length) {
+		return substr($text, 0, $max_length) . '...';
+	}
+	return $text;
+}
 	function LEFT_mainmenu_new(){
 		$wh 		= "";
 		if(!CHECK_key_setting('lien-he-nhom-con')){

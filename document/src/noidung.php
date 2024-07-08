@@ -1,6 +1,7 @@
 <?php
 $menu_items = LEFT_mainmenu_new();
 $filtered_menu_item = get_menu_item_by_id($menu_items, $id);
+$parent_name = get_parent_menu_name($sql_array, $id);
 $dataadd = lay_du_lieu_theo_id_step($id);
 
 if (!empty($id)) {
@@ -32,7 +33,7 @@ if (!empty($id)) {
                                     <use href="svg/icon-sprite.svg#stroke-home"></use>
                                 </svg>
                             </a></li>
-                        <li class="breadcrumb-item">Main modules</li>
+                        <li class="breadcrumb-item"><?php echo $parent_name; ?></li>
                         <li class="breadcrumb-item active"> <?= SHOW_text($data['ten_vi']) ?></li>
                     </ol>
                 </div>
@@ -67,7 +68,7 @@ if (!empty($id)) {
                     </div>
                 </div>
 
-                <?php if (in_array($filtered_menu_item['id'], $array_only_bv) && !empty($data['mota2']) && !empty($data['noidung2'])) { ?>
+                <?php if (isset($filtered_menu_item['id']) && isset($array_only_bv) && in_array($filtered_menu_item['id'], $array_only_bv) && !empty($data['mota2']) && !empty($data['noidung2'])) { ?>
                     <div class="card" id="card2">
                         <div class="card-header pb-0">
                             <h3>Danh sách chủ đề </h3>
@@ -77,7 +78,7 @@ if (!empty($id)) {
                                 <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                     <ul>
                                         <?= SHOW_text($data['mota2']) ?>
-                                        <?php if (!empty($dataadd['mota2']) ) { ?>
+                                        <?php if (!empty($dataadd['mota2'])) { ?>
                                             <?= SHOW_text($dataadd['mota2']) ?>
                                         <?php } ?>
                                     </ul>
@@ -85,13 +86,14 @@ if (!empty($id)) {
                             </div>
                             <div class="intro">
                                 <?= SHOW_text($data['noidung2']) ?>
-                                <?php if (!empty($dataadd['noidung2']) ) { ?>
+                                <?php if (!empty($dataadd['noidung2'])) { ?>
                                     <?= SHOW_text($dataadd['noidung2']) ?>
                                 <?php } ?>
                             </div>
                         </div>
                     </div>
                 <?php } ?>
+
             </div>
             <div class="col-md-3">
                 <div class="md-sidebar-aside custom-scrollbar">
@@ -111,7 +113,7 @@ if (!empty($id)) {
                                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                                 </svg>
-                                                Danh sách <?= SHOW_text($data['ten_vi']) ?>
+                                                Danh sách <?= shorten_text(SHOW_text($data['ten_vi']),15) ?>
                                             </a>
                                         </li>
                                         <?php
