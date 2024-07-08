@@ -425,7 +425,7 @@
 			$matkhau  		= create_pass($auto_key_pass.strip_tags($_POST['passmd5']),$keypass);
  
 			$_SESSION['phanquyen'] = @$sqlu["phanquyen"];
-			// die($matkhau);
+//			 die($matkhau);
 			if($matkhauin != $matkhau)
 			{
 				ALERT_js("Tên đăng nhập hoặc mật khẩu không đúng!");
