@@ -6,6 +6,16 @@ $id = isset($_GET['edit']) && is_numeric($_GET['edit']) ? intval($_GET['edit']) 
 $menu_items = LEFT_mainmenu_new();
 $filtered_menu_item = get_menu_item_by_id($menu_items, $id);
 
+// Khởi tạo các biến với giá trị mặc định
+$ten_vi = '';
+$mota = '';
+$noidung = '';
+$mota2 = '';
+$noidung2 = '';
+$page = '';
+$sort = '';
+$showhi = 0;
+
 // Xử lý khi form được submit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ten_vi   = isset($_POST['ten_vi']) ? $_POST['ten_vi'] : '';
@@ -101,11 +111,11 @@ if ($id > 0) {
                                     <textarea id="noidung" name="noidung" class="paEditor"><?=$noidung ?></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Mô tả</label>
+                                    <label>Mô tả2</label>
                                     <textarea id="mota2" name="mota2" class="paEditor"><?=$mota2 ?></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nội dung</label>
+                                    <label>Nội dung2</label>
                                     <textarea id="noidung2" name="noidung2" class="paEditor"><?=$noidung2 ?></textarea>
                                 </div>
                                 <div class="form-group">

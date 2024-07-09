@@ -44046,11 +44046,13 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
 .intro h3{
     text-align: center; /* Căn giữa nội dung */
     color: #3e8e75; /* Màu chữ */
+    font-size: 30px; /* Đổi kích thước phông chữ của h4 */
     margin: 0 auto 20px; /* Canh giữa và tạo khoảng cách dưới cùng */
     max-width: 80%; /* Giới hạn chiều rộng tối đa để không quá rộng */
 }
 .intro h4{
     color: #3e8e75; /* Màu chữ */
+    font-size: 22px; /* Đổi kích thước phông chữ của h4 */
     font-weight: bold;
 }
 .intro ul li {

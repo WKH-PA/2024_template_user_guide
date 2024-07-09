@@ -50,7 +50,7 @@
                             $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o" ) . '"></i>&nbsp;&nbsp;' . shorten_text( $value_2['ten_vi'], 28 ). '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
                         }
 
-                        if ($value['m_action'] == 'quan-ly-hinh-anh' || in_array($value['id'], ['13', '34'])) {
+                        if ($value['m_action'] == 'quan-ly-hinh-anh' || in_array($value['id'], ['13', '66', '75', '49', '90'])) {
                             $nhom_1 .= '<li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title" href="?id=' . $value['id'] . '">
                                     <i class="' . ($value['icon'] != "" ? $value['icon'] : "fa fa-circle-o") . '"></i> <span>' . $value['ten_vi'] . '</span>

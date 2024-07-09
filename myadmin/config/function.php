@@ -1864,7 +1864,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 	function LAY_khuvuc($limit = 0, $where = ""){
 		if($limit == 0)  $limit = "";
 		if($where != "") $where = " AND $where";
-		$danhmuc  = DB_fet("*","`#_ship_khuvuc`","`showhi` = 1 $where ","`catasort` ASC, `id` DESC",$limit,"arr", 2);
+		$danhmuc  = DB_fet("*","`#_ship_khuvuc`","`showhi` = 1 $where ","`catasort` ASC, `id` DESC",$limit,"arr", 1);
 		return $danhmuc;
 	}
 	
