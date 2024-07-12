@@ -44060,14 +44060,20 @@ intro h3::after {
     margin-bottom: 10px; /* Khoảng cách giữa <hr> và nội dung tiếp theo */
 }
 
-/*.intro h4{*/
-/*    color: #3e8e75; !* Màu chữ *!*/
-/*    font-size: 22px; !* Đổi kích thước phông chữ của h4 *!*/
-/*    font-weight: bold;*/
-/*}*/
+.intro h4{
+    font-size: 22px; /* Đổi kích thước phông chữ của h4 */
+    font-weight: bold;
+}
+.intro ul {
+    margin-top: 10px; /* Khoảng cách từ phía trên */
+    margin-bottom: 10px; /* Khoảng cách từ phía dưới */
+    padding-left: 30px;
+}
+
 .intro ul li {
-    line-height: 1.5;
-    list-style-type: disc;
+    line-height: 1.5; /* Chiều cao dòng là 1.5 lần chiều cao của văn bản */
+    list-style-type: disc; /* Kiểu dạng danh sách là dấu chấm */
+    margin-bottom: 5px; /* Khoảng cách giữa các mục danh sách */
 }
 .intro {
     margin-bottom: 25px; /* Khoảng cách giữa các card */
