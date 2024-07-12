@@ -69,18 +69,18 @@ if (!empty($id)) {
                         <div class="intro">
                             <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                 <ul>
-                                    <?= SHOW_text($data['mota']) ?>
+                                    <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$data['mota'])) ?>
                                     <?php if (!empty($dataadd['mota']) ) { ?>
-                                        <?= SHOW_text($dataadd['mota']) ?>
+                                        <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$dataadd['mota'])) ?>
                                     <?php } ?>
                                 </ul>
                             </h5>
                         </div>
                         <div class="intro">
 
-                            <?= SHOW_text($data['noidung']) ?>
+                            <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$data['noidung'])) ?>
                             <?php if (!empty($dataadd['noidung']) ) { ?>
-                                <?= SHOW_text($dataadd['noidung']) ?>
+                                <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$dataadd['noidung'])) ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -95,17 +95,17 @@ if (!empty($id)) {
                             <div class="intro">
                                 <h5 class="border rounded card-body f-w-300 mt-3" id="clipboardExample3">
                                     <ul>
-                                        <?= SHOW_text($data['mota2']) ?>
+                                        <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$data['mota2'])) ?>
                                         <?php if (!empty($dataadd['mota2'])) { ?>
-                                            <?= SHOW_text($dataadd['mota2']) ?>
+                                            <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$dataadd['mota2'])) ?>
                                         <?php } ?>
                                     </ul>
                                 </h5>
                             </div>
                             <div class="intro">
-                                <?= SHOW_text($data['noidung2']) ?>
+                                <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$data['noidung2'])) ?>
                                 <?php if (!empty($dataadd['noidung2'])) { ?>
-                                    <?= SHOW_text($dataadd['noidung2']) ?>
+                                    <?= SHOW_text(str_replace("[MODULE]", (SHOW_text($data['ten_vi'])) ,$dataadd['noidung'])) ?>
                                 <?php } ?>
                             </div>
                         </div>
