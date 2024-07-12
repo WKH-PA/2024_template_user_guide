@@ -44050,14 +44050,38 @@ html[dir=rtl] body.dark-only .page-wrapper .page-body-wrapper .page-body .card:n
     margin: 0 auto 20px; /* Canh giữa và tạo khoảng cách dưới cùng */
     max-width: 80%; /* Giới hạn chiều rộng tối đa để không quá rộng */
 }
-.intro h4{
-    color: #3e8e75; /* Màu chữ */
-    font-size: 22px; /* Đổi kích thước phông chữ của h4 */
-    font-weight: bold;
+intro h3::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #000; /* Màu của đường kẻ */
+    margin-top: 10px; /* Khoảng cách giữa <h3> và <hr> */
+    margin-bottom: 10px; /* Khoảng cách giữa <hr> và nội dung tiếp theo */
 }
+
+/*.intro h4{*/
+/*    color: #3e8e75; !* Màu chữ *!*/
+/*    font-size: 22px; !* Đổi kích thước phông chữ của h4 *!*/
+/*    font-weight: bold;*/
+/*}*/
 .intro ul li {
-    line-height: 3;
+    line-height: 1.5;
+    list-style-type: disc;
 }
 .intro {
     margin-bottom: 25px; /* Khoảng cách giữa các card */
+}
+.intro p img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+}
+hr.dashed {
+    border: 0;
+    border-top: 1px dashed #000;
+    margin-top: 10px; /* Khoảng cách giữa <h3> và <hr> */
+    margin-bottom: 10px; /* Khoảng cách giữa <hr> và nội dung phía trên */
 }

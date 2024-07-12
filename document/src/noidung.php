@@ -7,8 +7,19 @@ $dataadd = lay_du_lieu_theo_id_step($id);
 if (!empty($id)) {
     if ($module == 'true') {
         $data = lay_du_lieu_theo_id_module_page($id);
+        $href = $fullpath . "/myadmin/?module=main-module&action=danh-sach-bai-viet&step=" . $data['page'] . "&id_step=" . $data['id'];
+
     } else {
+
         $data = lay_du_lieu_theo_id_tinhnang($id);
+
+            $href = $fullpath . '/myadmin/' . $data['lien_ket'];
+
+
+
+
+
+
     }
     if (is_array($data) && !empty($data)) {
     } else {
@@ -24,7 +35,10 @@ if (!empty($id)) {
         <div class="page-title">
             <div class="row">
                 <div class="col-sm-6 ps-0">
-                    <h3><?= SHOW_text($data['ten_vi']) ?></h3>
+                    <a href="<?= $href ?>"><h3><?= SHOW_text($data['ten_vi']) ?></h3></a>
+        
+
+
                 </div>
                 <div class="col-sm-6 pe-0">
                     <ol class="breadcrumb">
@@ -46,9 +60,6 @@ if (!empty($id)) {
                             <?php
                         }
                         ?>
-
-
-
                         </php>
 
                         <li class="breadcrumb-item active"> <?= SHOW_text($data['ten_vi']) ?></li>
@@ -218,4 +229,11 @@ if (!empty($id)) {
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.intro h3').forEach(function(h3) {
+            var hr = document.createElement('hr');
+            hr.className = 'dashed';
+            h3.parentNode.insertBefore(hr, h3);
+        });
+    });
 </script>

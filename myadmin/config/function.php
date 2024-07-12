@@ -1367,6 +1367,7 @@ function get_parent_menu_name($menus, $child_id) {
 	}
 	return $parent_name;
 }
+
 // gioi han do dai chu ...
 function shorten_text($text, $max_length) {
 	if (strlen($text) > $max_length) {
@@ -2792,6 +2793,35 @@ function lay_du_lieu_theo_id_tinhnang($id) {
 	return $data[0];
 }
 
+
+function lay_du_lieu_tinhnang_khi_lk_null($menus, $child_id) {
+	foreach ($menus as $menu) {
+		if ($menu['id'] == $child_id) {
+			foreach ($menus as $potential_id) {
+				if ($potential_id['id'] == $menu['id_parent']) {
+					$id = $potential_id['id'];
+
+				}
+			}
+
+		}
+	}
+	// Thực hiện truy vấn để lấy dữ liệu từ bảng #_module_tinhnang chỉ lấy trường id dựa trên id
+	$result = DB_que("SELECT id FROM #_module_tinhnang WHERE id_parent = '$id' LIMIT 1");
+
+	// Lấy kết quả dưới dạng mảng kết hợp
+	$data = DB_arr($result);
+
+	// Kiểm tra nếu không có kết quả trả về hoặc không có trường 'id' trong kết quả
+	if (empty($data) || !isset($data[0]['id'])) {
+		return ['error' => "No results found for id: $id"];
+	}
+
+	// Trả về giá trị của trường id
+	return $data[0]['id'];
+}
+
+
 function lay_du_lieu_theo_id_module_page($id) {
 	// Thực hiện truy vấn để lấy dữ liệu từ bảng `#_step` dựa trên `id`
 	$result = DB_que("SELECT * FROM `#_module_page` WHERE `page` = '$id' AND `showhi` = 1 LIMIT 1");
@@ -2803,6 +2833,8 @@ function lay_du_lieu_theo_id_module_page($id) {
 	$data = DB_arr($result);
 	// Trả về dữ liệu dưới dạng mảng kết hợp với các trường mong muốn
 	return [
+		'id' => $data[0]['id'],
+		'page' => $data[0]['page'],
 		'ten_vi' => $data[0]['ten_vi'],
 		'mota' => $data[0]['mota'],
 		'mota2' => $data[0]['mota2'],
