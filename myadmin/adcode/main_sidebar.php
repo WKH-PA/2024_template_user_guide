@@ -5,7 +5,17 @@
         </a>
     </div>
     <div class="pull-left info">
-    	<a href="../" target="_blank" style="margin-top: 3px; margin-bottom: 4px;">Administrator</a>
+        <?
+        if (!empty($_SESSION['usergain'])) {
+        ?>
+            <a href="../" target="_blank" style="margin-top: 3px; margin-bottom: 4px;">User_gain</a>
+        <?
+        }else{?>
+            <a href="../" target="_blank" style="margin-top: 3px; margin-bottom: 4px;">Administrator</a>
+        <?
+        }?>
+
+
         <p style="margin-bottom: 8px;">
         	<a href="../" target="_blank" class="a_is_addmin">[<span>Xem website</span>]</a>
         	<a href="index.php?clear=cache" class="a_is_addmin">[<span>Xóa cache</span>]</a>

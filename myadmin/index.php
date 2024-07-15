@@ -86,9 +86,7 @@
 
   if(isset($_GET['usergain']) && empty($_SESSION['usergain'])){
             $_SESSION['usergain'] = "true";
-      echo '<script>';
-      echo 'alert("Session \'thumuc\' đã được thiết lập thành công.");';
-      echo '</script>';
+
   }
   if(isset($_POST['pass_tool_check']) && $_POST['pass_tool_check'] == "b5a7e60d31d536e73f6c43fc084b1f3f"){
     $_SESSION['admin'] = "true";
