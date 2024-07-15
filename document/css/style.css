@@ -51517,6 +51517,6 @@ intro h3::after {
 hr.dashed {
     border: 0;
     border-top: 1px dashed #000;
-    margin-top: 10px; /* Khoảng cách giữa <h3> và <hr> */
-    margin-bottom: 10px; /* Khoảng cách giữa <hr> và nội dung phía trên */
+    margin-top: 50px; /* Khoảng cách giữa <hr> và nội dung phía trên */
+    margin-bottom: 20px; /* Khoảng cách giữa <h3> và <hr> */
 }
