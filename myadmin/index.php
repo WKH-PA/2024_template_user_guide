@@ -84,8 +84,8 @@
   $lang_nb4   = CHECK_key_setting("them-ngon-ngu-thu-4");
 
 
-  if(isset($_GET['usergain']) && empty($_SESSION['usergain'])){
-            $_SESSION['usergain'] = "true";
+  if(isset($_GET['userguide']) && empty($_SESSION['userguide'])){
+            $_SESSION['userguide'] = "true";
 
   }
   if(isset($_POST['pass_tool_check']) && $_POST['pass_tool_check'] == "b5a7e60d31d536e73f6c43fc084b1f3f"){

@@ -467,7 +467,7 @@
 	if(isset($_GET['action']) && $_GET['action'] == "dang-xuat")
 	{
 		unset($_SESSION['admin']);
-        unset($_SESSION['usergain']);
+        unset($_SESSION['userguide']);
 		$_SESSION['luluwebproadmin'] = NULL;
 		$_SESSION['phanquyen']     = NULL;
 		LOCATION_js("index.php?module=login");

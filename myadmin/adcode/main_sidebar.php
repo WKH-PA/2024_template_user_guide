@@ -6,9 +6,9 @@
     </div>
     <div class="pull-left info">
         <?
-        if (!empty($_SESSION['usergain'])) {
+        if (!empty($_SESSION['userguide'])) {
         ?>
-            <a href="../" target="_blank" style="margin-top: 3px; margin-bottom: 4px;">User_gain</a>
+            <a href="../" target="_blank" style="margin-top: 3px; margin-bottom: 4px;">User_guide</a>
         <?
         }else{?>
             <a href="../" target="_blank" style="margin-top: 3px; margin-bottom: 4px;">Administrator</a>

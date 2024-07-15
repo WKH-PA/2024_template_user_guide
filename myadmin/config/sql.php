@@ -23,7 +23,7 @@
 		$_SESSION['thumuc']  		= "datafiles";
 		$_SESSION['sub_demo_check'] = true;
 	}
-    if (!empty($_SESSION['usergain'])) {
+    if (!empty($_SESSION['userguide'])) {
         $_SESSION['thumuc']  		= $_SESSION['sub_demo']."document/dataimg";
     }
 	if($php_vs == "5.6") {
