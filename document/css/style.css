@@ -51506,7 +51506,14 @@ intro h3::after {
     width: 100%;
     height: auto;
 }
-
+.intro ul li img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+}
 hr.dashed {
     border: 0;
     border-top: 1px dashed #000;

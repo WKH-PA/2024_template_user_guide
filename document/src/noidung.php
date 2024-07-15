@@ -7,6 +7,7 @@ $dataadd = lay_du_lieu_theo_id_step($id);
 if (!empty($id)) {
     if ($module == 'true') {
         $data = lay_du_lieu_theo_id_module_page($id);
+
         $href = $fullpath . "/myadmin/?module=main-module&action=danh-sach-bai-viet&step=" . $data['page'] . "&id_step=" . $data['id'];
 
     } else {
@@ -14,12 +15,6 @@ if (!empty($id)) {
         $data = lay_du_lieu_theo_id_tinhnang($id);
 
             $href = $fullpath . '/myadmin/' . $data['lien_ket'];
-
-
-
-
-
-
     }
     if (is_array($data) && !empty($data)) {
     } else {
@@ -36,9 +31,6 @@ if (!empty($id)) {
             <div class="row">
                 <div class="col-sm-6 ps-0">
                     <a href="<?= $href ?>"><h3><?= SHOW_text($data['ten_vi']) ?></h3></a>
-        
-
-
                 </div>
                 <div class="col-sm-6 pe-0">
                     <ol class="breadcrumb">
@@ -74,7 +66,7 @@ if (!empty($id)) {
             <div class="col-md-9">
                 <div class="card" id="card1">
                     <div class="card-header pb-0">
-                        <h3>Danh sách <?=(SHOW_text($data['ten_vi'])) ?></h3>
+                        <a href="<?= $href ?>"><h3>Danh sách <?=(SHOW_text($data['ten_vi'])) ?> <i class="fas fa-link"></i></h3></a>
                     </div>
                     <div class="card-body card-wrapper input-group-wrapper">
                         <div class="intro">
@@ -100,7 +92,9 @@ if (!empty($id)) {
                 <?php if (isset($filtered_menu_item['id']) && isset($array_only_bv) && in_array($filtered_menu_item['id'], $array_only_bv) && !empty($data['mota2']) && !empty($data['noidung2'])) { ?>
                     <div class="card" id="card2">
                         <div class="card-header pb-0">
-                            <h3>Danh sách chủ đề </h3>
+                            <a href="<?=$fullpath?>/myadmin/?module=main-module&action=danh-sach-chu-de&step=<?=$data['page']?>&id_step=<?=$data['id']?>">
+                                <h3>Danh sách chủ đề  <i class="fas fa-link"></i></h3> </a>
+
                         </div>
                         <div class="card-body card-wrapper input-group-wrapper">
                             <div class="intro">
