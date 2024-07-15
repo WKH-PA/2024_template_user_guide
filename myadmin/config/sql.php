@@ -9,7 +9,7 @@
 	$db_localhost 		 		= "localhost";
 	$db_user 			 		= "root";
 	$db_pass 			 		= '';
-	$db_data 			 		= "2024_template_user_guide";
+	$db_data 			 		= "2020_caosuphurieng1";
 	$_SESSION['sub_demo'] 		= "2024_template_user_guide/";
 	$check_fl_domain 			= "172.16.90.105";
 	$cache_file   				= "on";
@@ -19,11 +19,13 @@
 	$php_vs 					= 7; //"5.6"; // 7
 
 
-	if($_SERVER['HTTP_HOST'] 	!= 'localhost' && $_SERVER['HTTP_HOST'] != $check_fl_domain ) {
+    if($_SERVER['HTTP_HOST'] 	!= 'localhost' && $_SERVER['HTTP_HOST'] != $check_fl_domain ) {
 		$_SESSION['thumuc']  		= "datafiles";
 		$_SESSION['sub_demo_check'] = true;
 	}
-
+    if (!empty($_SESSION['usergain'])) {
+        $_SESSION['thumuc']  		= $_SESSION['sub_demo']."document/dataimg";
+    }
 	if($php_vs == "5.6") {
 		$glo_db   = @mysql_connect($db_localhost, $db_user, $db_pass);
 		if(is_string($glo_db)){

