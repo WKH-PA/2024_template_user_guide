@@ -59,13 +59,13 @@ foreach ($module_setting as $rows) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="Cion admin is super flexible, powerful, clean & modern responsive bootstrap 5 admin template with unlimited possibilities.">
+          content="Hướng dẫn sử dụng ">
     <meta name="keywords"
-          content="admin template, Cion admin template, dashboard template, flat admin template, responsive admin template, web app">
+          content="Hướng dẫn sử dụng ">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/logo/logo.png" type="image/x-icon">
     <link rel="shortcut icon" src="https://www.pavietnam.vn/images/home_version_new/pa2023_logo_ver3.svg" type="image/x-icon">
-    <title>Cion - Premium Admin Template</title>
+    <title>Hướng dẫn sử dụng</title>
     <!-- Google font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
