@@ -22,7 +22,7 @@
     <div>
         <div class="logo-wrapper">
             <a href="<?php echo $fullpath.'/document'?>">
-                <img class="img-fluid" src="images/logo/logo.jpg" alt="Logo">
+                <img class="img-fluid" src="images/logo/logo.png" alt="Logo">
             </a>
         </div>
         <nav class="sidebar-main">
