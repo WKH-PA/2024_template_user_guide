@@ -105,7 +105,7 @@
             function submitForm() {
                 const key = searchInput.value.trim();
                 if (key !== '') {
-                    const url = 'http://localhost/phurieng/search/?key=' + encodeURIComponent(key);
+                    const url = '<?php echo $fullpath.'/search/'?>?key=' + encodeURIComponent(key);
                     window.location.href = url;
                 }
             }
@@ -118,6 +118,7 @@
 </script>
 
 <?php
+$step_ids ='';
 $sp_steps = LAY_step1($step_ids); // Fetch all steps that match the IDs
 ?>
 <script>

@@ -59,6 +59,18 @@
 </div>
 <div class="bottom_ft">
     <p><?=$glo_lang['ban_quyen_name'] ?>
-    <div class="clr"></div>
+    <div class="clr">
+    </div>
 </div>
-<div id="back-top" style="display: block;"><a href="#top"><i class="fa fa-angle-double-up"></i></a></div>
+
+<div id="fb-messenger-icon">
+    <a href="<?= $thongtin['url_fb'] ?>" target="_blank"><img src="https://png.pngtree.com/png-clipart/20230401/original/pngtree-facebook-icon-png-image_9015416.png" alt="Liên hệ Facebook"></a>
+</div>
+
+<div id="zalo-icon">
+    <a href="<?= $thongtin['url_zalo'] ?>" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png" alt="Liên hệ Zalo"></a>
+</div>
+
+<div id="back-top">
+    <a href="#top"><i class="fa fa-angle-double-up"></i></a>
+</div>

@@ -6290,3 +6290,35 @@ body, html {
         width: 100%; /* Full width trên màn hình nhỏ */
     }
 }
+
+
+#fb-messenger-icon, #zalo-icon, #back-top {
+    position: fixed;
+    right: 20px;
+    z-index: 999;
+    bottom: 10px;
+    display: none;
+}
+
+#fb-messenger-icon img,
+#zalo-icon img,
+#back-top a {
+    width: 50px; /* Thay đổi kích thước icon */
+    height: 50px;
+    display: none;
+}
+
+#back-top a {
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #007bff;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+#back-top a:hover  {
+    background-color: #0056b3;
+}

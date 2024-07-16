@@ -17,28 +17,63 @@
 <script type="text/javascript" src="js/jquery.mmenu.all.js"></script>
 
 <script>
-    $(document).ready(function(){
-        // hide #back-top first
-        $("#back-top").hide();
+    $(document).ready(function () {
+        // Kiểm tra điều kiện và hiển thị icon tương ứng
+        if (<?= $thongtin['show_fb'] ?> == 1) {
+            $("#fb-messenger-icon").show();
+        }
 
-        // fade in #back-top
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 100) {
-                    $('#back-top').fadeIn();
-                } else {
-                    $('#back-top').fadeOut();
-                }
-            });
+        if (<?= $thongtin['show_zalo'] ?> == 1) {
+            $("#zalo-icon").show();
+        }
 
-            // scroll body to 0px on click
-            $('#back-top a').click(function () {
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 800);
-                return false;
-            });
+        // Tính toán lại khoảng cách bottom dựa trên số lượng icon được hiển thị
+            adjustIconPosition();
+
+        // Fade in #back-top khi cuộn lên trên
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+            adjustIconPosition(); // Adjust position on scroll to account for back-top visibility
         });
 
+        // Cuộn body lên đầu trang khi click vào #back-top
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
     });
+
+    // Hàm để tính toán lại khoảng cách bottom của từng icon
+    function adjustIconPosition() {
+        var icons = ['#fb-messenger-icon', '#zalo-icon'];
+        var bottomOffset = 20; // Khoảng cách mặc định từ bottom
+        var visibleIconsCount = 0;
+
+        // Kiểm tra nếu #back-top không hiển thị, chỉ tính hai icon khác
+        if ($(this).scrollTop() > 100) {
+            icons.push('#back-top'); // Thêm #back-top vào danh sách icon
+        }
+
+        // Đếm số lượng icon đang hiển thị
+        for (var i = 0; i < icons.length; i++) {
+            if ($(icons[i]).is(":visible")) {
+                visibleIconsCount++;
+            }
+        }
+
+        // Điều chỉnh khoảng cách bottom cho mỗi icon
+        for (var i = 0; i < icons.length; i++) {
+            if ($(icons[i]).is(":visible")) {
+                $(icons[i]).css('bottom', bottomOffset + (visibleIconsCount - 1 - i) * 60 + 'px');
+            }
+        }
+    }
+
 </script>
+

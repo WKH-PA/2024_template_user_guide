@@ -36,6 +36,8 @@
     
     $data['fb_app']             = $fb_app;
     $data['fb_id']              = $fb_id;
+    $data['url_fb']             = $url_fb;
+    $data['url_zalo']           = $url_zalo;
 
     $data['em_ip']              = $em_ip;
     $data['em_taikhoan']        = $em_taikhoan;
@@ -247,7 +249,13 @@
             <label class="mr-20 checkbox-mini">
               <input type="checkbox" name="is_tiengviet" class="minimal minimal_click" <?=isset($is_tiengviet) && $is_tiengviet == 1 ? 'checked="checked"' : '' ?> colum="is_tiengviet" table="#_seo" idcol="1"> Tiếng Việt (Mặc định)
             </label>
+              <label class="mr-20 checkbox-mini">
+                  <input type="checkbox" name="show_fb" class="minimal minimal_click" <?=isset($show_fb) && $show_fb == 1 ? 'checked="checked"' : '' ?> colum="show_fb" table="#_seo" idcol="1"> Bật Facebook
+              </label>
 
+              <label class="mr-20 checkbox-mini">
+                  <input type="checkbox" name="show_zalo" class="minimal minimal_click" <?=isset($show_zalo) && $show_zalo == 1 ? 'checked="checked"' : '' ?> colum="show_zalo" table="#_seo" idcol="1"> Bật Zalo
+              </label>
           </div>
           <div class="form-group">
             <label for="exampleInputFile">Facebook App</label>
@@ -257,6 +265,15 @@
             <label for="exampleInputFile">Facebook ID</label>
             <input type="text" class="form-control" name="fb_id" value="<?=$fb_id ?>">
           </div>
+            <div class="form-group">
+                <label for="exampleInputFile"> Popup Facebook URL</label>
+                <input type="text" class="form-control" name="url_fb" value="<?=$url_fb ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputFile">Popup Zalo URL</label>
+                <input type="text" class="form-control" name="url_zalo" value="<?=$url_zalo ?>">
+            </div>
         </div>
       </section>
       <section class="col-lg-12">
