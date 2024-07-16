@@ -1,30 +1,37 @@
 <?php
-if ((!empty($thongtin_step) && $thongtin_step['num_view'] == 0) || empty($thongtin_step))
-    $numview = 12;
-else
-    $numview = $thongtin_step['num_view'];
+$numview = (!empty($thongtin_step) && $thongtin_step['num_view'] != 0) ? $thongtin_step['num_view'] : 12;
 
 $key = isset($_GET['key']) ? str_replace("+", " ", strip_tags($_GET['key'])) : '';
-$is_search = isset($_GET['key']);
+$is_search = !empty($key);
 
 $lay_all_kx = "";
 $name_titile = !empty($arr_running['tenbaiviet_'.$lang]) ? SHOW_text($arr_running['tenbaiviet_'.$lang]) : "";
+
 if ($is_search) {
     $slug_step = "2";
     $name_titile = $glo_lang['tim_kiem'];
 } else if ($slug_table != 'step') {
     $lay_all_kx = LAYDANHSACH_idkietxuat($arr_running['id'], $slug_step);
 }
+
 $wh = "";
 if ($lay_all_kx != "") {
     $wh = " AND `id_parent` IN (".$lay_all_kx.") ";
 }
 
 if ($is_search) {
-    $wh .= " AND (`tenbaiviet_vi` LIKE '%".$key."%' OR `tenbaiviet_en` LIKE '%".$key."%')";
+    $key_lower = strtolower($key);
+    //Sử dụng explode(' ', $key_lower) để chia từ khóa thành các phần nhỏ hơn.
+    $key_parts = explode(' ', $key_lower);
+    $wh .= " AND (";
+    foreach ($key_parts as $part) {
+        $wh .= "LOWER(`tenbaiviet_vi`) LIKE '%".$part."%' OR LOWER(`tenbaiviet_en`) LIKE '%".$part."%' OR ";
+    }
+    $wh = rtrim($wh, " OR ") . ")";
 }
 
 include _source."phantrang_kietxuat.php";
+
 
 ?>
 <div class="banner">

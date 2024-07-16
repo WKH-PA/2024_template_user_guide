@@ -33,7 +33,7 @@
 
     $data['robots']             = $robots;
     $data['duongdantin']        = $duongdantin;
-    
+
     $data['fb_app']             = $fb_app;
     $data['fb_id']              = $fb_id;
     $data['url_fb']             = $url_fb;
@@ -75,7 +75,7 @@
   foreach ($sql_se as $key => $value) {
     ${$key} = Show_text($value);
     if($key = 'js_google_anilatic') {
-      $js_google_anilatic = $sql_se['js_google_anilatic'];  
+      $js_google_anilatic = $sql_se['js_google_anilatic'];
     }
   }
 
@@ -89,7 +89,7 @@
 ?>
 
 <section class="content-header">
-    <h1><?php if(isset($_SESSION['admin'])){ ?><a style="cursor: pointer;" onclick="AUTO_dich(this)">[NGÔN NGỮ]</a> <a class="js_okkk" style="cursor: pointer;" onclick="OKKK_by_lh()">[UPDATE]</a> <?php } ?>Thiết lập website</h1> 
+    <h1><?php if(isset($_SESSION['admin'])){ ?><a style="cursor: pointer;" onclick="AUTO_dich(this)">[NGÔN NGỮ]</a> <a class="js_okkk" style="cursor: pointer;" onclick="OKKK_by_lh()">[UPDATE]</a> <?php } ?>Thiết lập website</h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
         <li class="active">Thiết lập website</li>
@@ -118,7 +118,7 @@
                   <label>Tên công ty</label>
                   <input type="text" class="form-control" name="tenbaiviet_vi" value="<?=$tenbaiviet_vi ?>">
                 </div>
-                
+
                 <div class="form-group">
                   <label>Địa chỉ</label>
                   <input type="text" class="form-control" name="diachi_vi" value="<?=$diachi_vi ?>">
@@ -144,7 +144,7 @@
                   <label>Tên công ty (<?=_lang_nb2_key ?>)</label>
                   <input type="text" class="form-control" name="tenbaiviet_en" value="<?=$tenbaiviet_en ?>">
                 </div>
-                
+
                 <div class="form-group">
                   <label>Địa chỉ (<?=_lang_nb2_key ?>)</label>
                   <input type="text" class="form-control" name="diachi_en" value="<?=$diachi_en ?>">
@@ -218,7 +218,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="form-group">
             <label>Số điện thoại</label>
             <input type="text" class="form-control" name="sodienthoai_vi" value="<?=$sodienthoai_vi ?>">
@@ -244,7 +244,7 @@
               <input type="checkbox" name="is_lang" class="minimal minimal_click" <?=isset($is_lang) && $is_lang == 1 ? 'checked="checked"' : '' ?> colum="is_lang" idcol="<?=$id ?>" table="#_seo" value="1"> Bật ngôn ngữ
             </label>
             <label class="mr-20 checkbox-mini">
-              <input type="checkbox" name="is_saochep" class="minimal minimal_click" <?=isset($is_saochep) && $is_saochep == 1 ? 'checked="checked"' : '' ?> colum="is_saochep" idcol="<?=$id ?>" table="#_seo" value="1"> Chống sao chép 
+              <input type="checkbox" name="is_saochep" class="minimal minimal_click" <?=isset($is_saochep) && $is_saochep == 1 ? 'checked="checked"' : '' ?> colum="is_saochep" idcol="<?=$id ?>" table="#_seo" value="1"> Chống sao chép
             </label>
             <label class="mr-20 checkbox-mini">
               <input type="checkbox" name="is_tiengviet" class="minimal minimal_click" <?=isset($is_tiengviet) && $is_tiengviet == 1 ? 'checked="checked"' : '' ?> colum="is_tiengviet" table="#_seo" idcol="1"> Tiếng Việt (Mặc định)
@@ -269,7 +269,6 @@
                 <label for="exampleInputFile"> Popup Facebook URL</label>
                 <input type="text" class="form-control" name="url_fb" value="<?=$url_fb ?>">
             </div>
-
             <div class="form-group">
                 <label for="exampleInputFile">Popup Zalo URL</label>
                 <input type="text" class="form-control" name="url_zalo" value="<?=$url_zalo ?>">

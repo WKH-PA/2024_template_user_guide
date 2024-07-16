@@ -166,6 +166,25 @@ function UPDATE_colum(obj, id, col, table) {
         locale   :['Chọn', 'Thoát', 'Chọn tất cả', ' aa'],
         noMatch : 'Không tìm thấy kết quả phù hợp \'{0}\' ',
     };
+    window.CKEDITOR_BASEPATH = 'ckeditor';
+    $('.paEditorimg').each(function() {
+        CKEDITOR.replace($(this).attr('name'), {
+            toolbar: [
+                { name: 'insert', items: ['Image'] } // Chỉ hiển thị nút chèn ảnh trong thanh công cụ
+            ],
+            removePlugins: 'elementspath', // Loại bỏ thanh đường dẫn các phần tử (breadcrumbs)
+            height: 10,  // Điều chỉnh chiều cao của CKEditor để phù hợp với phần chèn ảnh
+            filebrowserImageBrowseUrl: 'bower_components/ckfinder/ckfinder.html?type=Images',
+            filebrowserImageUploadUrl: 'bower_components/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            on: {
+                instanceReady: function (ev) {
+                    ev.editor.on('focus', function (e) {
+                        e.editor.execCommand('browse'); // Tự động mở cửa sổ duyệt ảnh khi editor được focus
+                    });
+                }
+            }
+        });
+    });
 
     if ($('.SlectBoxNew').length > 0) {
         $('.SlectBoxNew').SumoSelect(settingSelect);

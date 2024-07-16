@@ -57,8 +57,9 @@
                   </label>
                 </div>
                 <div class="form-group">
+
                   <label>Nội dung <a data-tooltip="Dù website bị ĐÓNG, nhưng nếu bạn đăng nhập bằng tài khoản admin, bạn vẫn thấy như bình thường."> </a></label>
-                  <textarea id="noidung_vi" class="paEditor" name="noidung_vi" rows="10" cols="80"><?=!empty($noidung_vi) ? SHOW_text($noidung_vi) : ''?></textarea>
+                    <textarea id="noidung_vi" class="paEditor" name="noidung_vi" rows="10" cols="80"><?=!empty($noidung_vi) ? SHOW_text($noidung_vi) : ''?></textarea>
                 </div>
               </div>
             </div>
