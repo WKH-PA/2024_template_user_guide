@@ -52,8 +52,8 @@
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
 
 
-      $data['icon'] = str_replace('/2024_template_user_guide/datafiles', '', $icon);
-    $favico                     = isset($_POST['is_tiengviet']) ? 1 : 0;
+    $icon                       = $icon;
+    $favico                     = $favico;
 
     $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
     $sql_thongtin = DB_arr($sql_thongtin, 1);
@@ -81,12 +81,12 @@
     }
   }
 
-  if($icon != ''){
-    $full_icon = "../$duongdantin/$icon";
-  }
-  if($favico != ''){
-    $full_icon_hover = "../$duongdantin/$favico";
-  }
+//  if($icon != ''){
+//    $full_icon = "../$duongdantin/$icon";
+//  }
+//  if($favico != ''){
+//    $full_icon_hover = "../$duongdantin/$favico";
+//  }
 
 ?>
 
@@ -210,49 +210,42 @@
 <!--              </div>-->
 <!--            </div>-->
 <!--          </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="exampleInputFile2">Favico</label>-->
+<!--                    <div class="dv-anh-chitiet-img-cont">-->
+<!--                        <div class="dv-anh-chitiet-img">-->
+<!--                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>-->
+<!--                            <input type="file" name="favico" id="input_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon_hover','input_icon_hover');">-->
+<!--                            <img src="--><?//=@$full_icon_hover  ?><!--" alt="" class="img_chile_dangtin" style="--><?php //if(!empty($full_icon_hover) && $full_icon_hover != "") echo "display: block"; else echo "display: none" ?><!--" id="img_icon_hover">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-            <form action="upload.php" method="post">
                 <div class="form-group">
                     <label for="exampleInputFile2">Logo</label>
                     <div class="dv-anh-chitiet-img-cont">
                         <div class="dv-anh-chitiet-img">
                             <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                            <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon');" value="<?= $icon?>">
-                            <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                            <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon');" value="<?= $icon ?>">
+                            <img src="<?=@$icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($icon) && $icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
                         </div>
                     </div>
                 </div>
-
-            </form>
-
-                <!-- Nút lưu để lưu đường dẫn của ảnh đã chọn -->
-                <input type="button" value="Save" name="submit" onclick="showIconUrl()">
-            </form>
-
-            <!-- Thêm đoạn script để xử lý sự kiện onclick -->
-            <script>
-                function showIconUrl() {
-                    // Lấy giá trị từ input icon
-                    var iconUrl = document.getElementById('input_icon').value;
-
-                    // Hiển thị URL của icon (có thể dùng alert, hoặc cập nhật vào một phần tử trên trang)
-                    alert("URL của icon là: " + iconUrl);
-
-                    // Nếu muốn hiển thị trong một phần tử HTML khác
-                    // document.getElementById('someElement').innerText = iconUrl;
-                }
-            </script>
-
             <div class="form-group">
-            <label for="exampleInputFile2">Favico</label>
-            <div class="dv-anh-chitiet-img-cont">
-              <div class="dv-anh-chitiet-img">
-                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="favico" id="input_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon_hover','input_icon_hover');">
-                <img src="<?=@$full_icon_hover  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon_hover) && $full_icon_hover != "") echo "display: block"; else echo "display: none" ?>" id="img_icon_hover">
-              </div>
+                <label for="exampleInputFile2">Favico</label>
+                <div class="dv-anh-chitiet-img-cont">
+                    <div class="dv-anh-chitiet-img">
+                        <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                        <input type="text" name="favico" id="input_favico" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_favico');" value="#img_favico">
+                        <img src="<?=$favico?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($favico) && $favico != "") echo "display: block"; else echo "display: none" ?>" id="img_favico">
+                    </div>
+                </div>
             </div>
-          </div>
+
+
+
+
+
 
           <div class="form-group">
             <label>Số điện thoại</label>
