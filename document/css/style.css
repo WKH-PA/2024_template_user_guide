@@ -51520,3 +51520,7 @@ hr.dashed {
     margin-top: 50px; /* Khoảng cách giữa <hr> và nội dung phía trên */
     margin-bottom: 20px; /* Khoảng cách giữa <h3> và <hr> */
 }
+.fa-circle-o{
+    color: #de1a59;
+    font-size: 12px;
+}
