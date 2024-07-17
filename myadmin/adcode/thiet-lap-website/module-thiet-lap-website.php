@@ -89,7 +89,6 @@
   if($favico != ''){
     $full_icon_hover = "../$duongdantin/$favico";
   }
-echo $pattern;
 ?>
 
 <section class="content-header">
