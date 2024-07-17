@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="bottom_id_copyright">
-                <p style="text-align: center; font-weight: bold; padding-top: 10px; color: #999">Thiết kế và
+                <p style="text-align: center; font-weight: bold; padding-top: 10px; color: #999; margin-bottom: 0">Thiết kế và
                     phát triển bởi P.A Việt Nam</p></div>
 
         </div>
