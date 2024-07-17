@@ -198,4 +198,43 @@ function UPDATE_colum(obj, id, col, table) {
 	        $('.v2_select').css("opacity", "1");
 	    }
     });
-</script>	
+</script>
+
+<script src="bower_components/ckfinder/ckfinder.js"></script>
+<script>
+    function selectFileWithCKFinder(elementId) {
+        CKFinder.popup({
+            chooseFiles: true,
+            onInit: function (finder) {
+                finder.on('files:choose', function (evt) {
+                    var file = evt.data.files.first();
+                    var relativeUrl = file.getUrl(); // Chỉ giữ phần tương đối
+                    var output = document.getElementById(elementId);
+                    output.value = relativeUrl;
+
+                    // Cập nhật xem trước hình ảnh
+                    var imgPreview = document.getElementById('img_icon');
+                    if (imgPreview) {
+                        imgPreview.src = file.getUrl();
+                        imgPreview.style.display = 'block';
+                    }
+                });
+
+                finder.on('file:choose:resizedImage', function (evt) {
+                    var relativeUrl = evt.data.resizedUrl; // Chỉ giữ phần tương đối
+                    var output = document.getElementById(elementId);
+                    output.value = relativeUrl;
+
+                    // Cập nhật xem trước hình ảnh
+                    var imgPreview = document.getElementById('img_icon');
+                    if (imgPreview) {
+                        imgPreview.src = evt.data.resizedUrl;
+                        imgPreview.style.display = 'block';
+                    }
+                });
+            }
+        });
+    }
+</script>
+
+

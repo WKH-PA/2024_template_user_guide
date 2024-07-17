@@ -51,12 +51,17 @@
 
     // Hàm để tính toán lại khoảng cách bottom của từng icon
     function adjustIconPosition() {
-        var icons = ['#fb-messenger-icon', '#zalo-icon'];
-        var bottomOffset = 20; // Khoảng cách mặc định từ bottom
+        var icons = [];
+        var bottomOffset = 30; // Khoảng cách mặc định từ bottom
         var visibleIconsCount = 0;
-
+        if ($('#fb-messenger-icon').is(":visible")) {
+            icons.push('#fb-messenger-icon');
+        }
+        if ($('#zalo-icon').is(":visible")) {
+            icons.push('#zalo-icon');
+        }
         // Kiểm tra nếu #back-top không hiển thị, chỉ tính hai icon khác
-        if ($(this).scrollTop() > 100) {
+        if ($(window).scrollTop() > 100 && $('#back-top').is(":visible")) {
             icons.push('#back-top'); // Thêm #back-top vào danh sách icon
         }
 

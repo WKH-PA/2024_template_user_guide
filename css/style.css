@@ -6292,7 +6292,7 @@ body, html {
 }
 
 
-#fb-messenger-icon, #zalo-icon, #back-top {
+#back-top, #fb-messenger-icon, #zalo-icon  {
     position: fixed;
     right: 20px;
     z-index: 999;
