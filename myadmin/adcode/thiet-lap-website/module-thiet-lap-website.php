@@ -52,13 +52,13 @@
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
 
 
-      $pattern = '#^/2024_template_user_guide/datafiles/#';
+      $pattern = '#^/' . preg_quote($_SESSION['sub_demo'] , '#')  . preg_quote($duongdantin, '#') . '/#';
       $icon = preg_replace($pattern, '', $icon);
       $favico = preg_replace($pattern, '', $favico);
 
 
       $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
-    $sql_thongtin = DB_arr($sql_thongtin, 1);
+      $sql_thongtin = DB_arr($sql_thongtin, 1);
 
     if($icon != ''){
       $data['icon']             = $icon;
@@ -89,7 +89,7 @@
   if($favico != ''){
     $full_icon_hover = "../$duongdantin/$favico";
   }
-
+echo $pattern;
 ?>
 
 <section class="content-header">
