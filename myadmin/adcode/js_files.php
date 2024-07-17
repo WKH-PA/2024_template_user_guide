@@ -202,7 +202,7 @@ function UPDATE_colum(obj, id, col, table) {
 
 <script src="bower_components/ckfinder/ckfinder.js"></script>
 <script>
-    function selectFileWithCKFinder(elementId) {
+    function selectFileWithCKFinder(elementId, id_img) {
         CKFinder.popup({
             chooseFiles: true,
             onInit: function (finder) {
@@ -213,7 +213,7 @@ function UPDATE_colum(obj, id, col, table) {
                     output.value = relativeUrl;
 
                     // Cập nhật xem trước hình ảnh
-                    var imgPreview = document.getElementById('img_icon');
+                    var imgPreview = document.getElementById(id_img);
                     if (imgPreview) {
                         imgPreview.src = file.getUrl();
                         imgPreview.style.display = 'block';
@@ -226,7 +226,7 @@ function UPDATE_colum(obj, id, col, table) {
                     output.value = relativeUrl;
 
                     // Cập nhật xem trước hình ảnh
-                    var imgPreview = document.getElementById('img_icon');
+                    var imgPreview = document.getElementById(id_img);
                     if (imgPreview) {
                         imgPreview.src = evt.data.resizedUrl;
                         imgPreview.style.display = 'block';

@@ -52,10 +52,12 @@
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
 
 
-    $icon                       = $icon;
-    $favico                     = $favico;
+      $pattern = '#^/2024_template_user_guide/datafiles/#';
+      $icon = preg_replace($pattern, '', $icon);
+      $favico = preg_replace($pattern, '', $favico);
 
-    $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
+
+      $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
     $sql_thongtin = DB_arr($sql_thongtin, 1);
 
     if($icon != ''){
@@ -81,12 +83,12 @@
     }
   }
 
-//  if($icon != ''){
-//    $full_icon = "../$duongdantin/$icon";
-//  }
-//  if($favico != ''){
-//    $full_icon_hover = "../$duongdantin/$favico";
-//  }
+  if($icon != ''){
+    $full_icon = "../$duongdantin/$icon";
+  }
+  if($favico != ''){
+    $full_icon_hover = "../$duongdantin/$favico";
+  }
 
 ?>
 
@@ -221,23 +223,23 @@
 <!--                    </div>-->
 <!--                </div>-->
 
-                <div class="form-group">
-                    <label for="exampleInputFile2">Logo</label>
-                    <div class="dv-anh-chitiet-img-cont">
-                        <div class="dv-anh-chitiet-img">
-                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                            <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon');" value="<?= $icon ?>">
-                            <img src="<?=@$icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($icon) && $icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
-                        </div>
+            <div class="form-group">
+                <label for="exampleInputFile2">Logo</label>
+                <div class="dv-anh-chitiet-img-cont">
+                    <div class="dv-anh-chitiet-img">
+                        <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                        <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                        <img src="<?=@$full_icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($icon) && $icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
                     </div>
                 </div>
+            </div>
             <div class="form-group">
                 <label for="exampleInputFile2">Favico</label>
                 <div class="dv-anh-chitiet-img-cont">
                     <div class="dv-anh-chitiet-img">
                         <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                        <input type="text" name="favico" id="input_favico" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_favico');" value="#img_favico">
-                        <img src="<?=$favico?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($favico) && $favico != "") echo "display: block"; else echo "display: none" ?>" id="img_favico">
+                        <input type="text" name="favico" id="input_favico" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_favico', 'img_favico');" value="<?= $favico ?>">
+                        <img src="<?=@$full_icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($favico) && $favico != "") echo "display: block"; else echo "display: none" ?>" id="img_favico">
                     </div>
                 </div>
             </div>
