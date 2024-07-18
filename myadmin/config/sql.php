@@ -9,7 +9,7 @@
 	$db_localhost 		 		= "localhost";
 	$db_user 			 		= "root";
 	$db_pass 			 		= '';
-	$db_data 			 		= "2020_caosuphurieng1";
+	$db_data 			 		= "2020_caosuphurieng4";
 	$_SESSION['sub_demo'] 		= "2024_template_user_guide/";
 	$check_fl_domain 			= "172.16.90.105";
 	$cache_file   				= "on";

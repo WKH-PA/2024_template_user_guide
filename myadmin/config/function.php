@@ -2515,14 +2515,24 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 					return $sql_cap['tenbaiviet_vi'];
 				}
 		}
-	
-	function ADMIN_show_img ($duongdan, $icon) {
-		$iconxx = explode(".", $icon);
-		$ext  	= end($iconxx);
-		if($ext == "svg") return "<img class='img_show_ds' src='".$duongdan."/".$icon."' style='display: block;'>";
-		else return "<img class='img_show_ds' src='".$duongdan."/thumb_".$icon."' style='display: block;'>";
+
+function ADMIN_show_img($duongdan, $icon) {
+	// Giải mã URL
+	$icon = urldecode($icon);
+
+	// Tách tên tệp để lấy phần mở rộng
+	$iconxx = explode(".", $icon);
+	$ext    = end($iconxx);
+
+	// Kiểm tra phần mở rộng và trả về mã HTML tương ứng
+	if($ext != "svg") {
+		return "<img class='img_show_ds' src='".$duongdan."/".$icon."' style='display: block;'>";
+	} else {
+		return "<img class='img_show_ds' src='".$duongdan."/thumb_".$icon."' style='display: block;'>";
 	}
-	function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_lang){
+}
+
+function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_lang){
 		$tongtien      = 0;
 	    foreach ($cart as $key => $value) { 
 	    	$id_sp     = explode("_", $key);

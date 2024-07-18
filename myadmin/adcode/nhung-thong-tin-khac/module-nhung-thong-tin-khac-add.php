@@ -25,7 +25,7 @@
       $data['seo_name']       = @$seo_name;
       $data['duongdantin']    = @$duongdantin;
 
-      $hinhanh        = UPLOAD_image("icon", "../".$duongdantin."/", time());
+      $hinhanh        = $icon;
 
       if($id > 0){
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
@@ -179,8 +179,8 @@
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
                 <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
-                <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                  <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                  <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
               </div>
             </div>
           </div>

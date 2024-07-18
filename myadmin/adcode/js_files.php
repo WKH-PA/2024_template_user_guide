@@ -245,7 +245,7 @@ function UPDATE_colum(obj, id, col, table) {
     }
 
     function removePattern(url) {
-        var pattern = new RegExp('^/' + pregQuote('<?php echo $_SESSION["sub_demo"]; ?>', '#') + pregQuote('<?php echo $duongdantin; ?>', '#') + '/', '');
+        var pattern = new RegExp('^/' + pregQuote('<?php echo $file_coder; ?>', '#') + pregQuote('<?php echo $duongdantin; ?>', '#') + '/', '');
         return url.replace(pattern, '');
     }
 

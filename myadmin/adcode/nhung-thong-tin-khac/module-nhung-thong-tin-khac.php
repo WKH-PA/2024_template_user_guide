@@ -82,7 +82,7 @@
                               </div>
                             </td>
                             <td class="text-center">
-                              <img class='img_show_ds' src='<?=$fullpath."/".$duongdantin."/thumb_".$icon ?>'>
+                              <img class='img_show_ds' src='<?=$fullpath."/".$duongdantin."/".$icon ?>'>
                             </td>
                             <td class="text-center">
                               <div id="cus" class="cus_menu">

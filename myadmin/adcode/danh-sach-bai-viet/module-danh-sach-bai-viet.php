@@ -41,7 +41,7 @@
     }
     if(isset($_POST['is_coppy_sl']) && $_POST['is_coppy_sl'] != 0 && isset($_POST['is_coppy_sl_id']) && $_POST['is_coppy_sl_id'] != 0) {
 
-      for ($i=0; $i < $_POST['is_coppy_sl']; $i++) { 
+      for ($i=0; $i < $_POST['is_coppy_sl']; $i++) {
         COPPY_row($table, $_POST['is_coppy_sl_id'], $step);
       }
     }
@@ -97,8 +97,9 @@
           }
           //
         }else{
-          $hinhanh      = UPLOAD_image("upload_$i", "../".$duongdantin."/", time());
-          if($hinhanh != false)
+          $hinhanh      = $_POST['upload_'.$i];
+
+          if($hinhanh != '')
           {
             $data['icon'] = $hinhanh;
             if($_POST['anh_sp_'.$i] != ''){
@@ -109,7 +110,7 @@
             }
             else{
                 TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
-            } 
+            }
             TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumbnew_".$hinhanh, 300, 300);
 
             $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
@@ -124,12 +125,12 @@
       }
       //update anh voi row = null
       if(isset($_FILES['is_muti_file'])) {
-        // 
+        //
         foreach($_FILES['is_muti_file']['name'] as $name => $value) {
           if($_FILES['is_muti_file']['name'][$name] == "") continue;
 
-          $uploaddir      = "../$duongdantin/"; 
-          $img_real_name  = time()."_".CONVERT_vn($_FILES['is_muti_file']['name'][$name]);  
+          $uploaddir      = "../$duongdantin/";
+          $img_real_name  = time()."_".CONVERT_vn($_FILES['is_muti_file']['name'][$name]);
           $size_img       = isset($_POST["anh_sp_0"]) ? $_POST["anh_sp_0"] : "";
 
           // check _sp co anh null
@@ -137,7 +138,7 @@
 
           if(DB_num($sql)) {
 
-            if (move_uploaded_file($_FILES['is_muti_file']['tmp_name'][$name], $uploaddir.$img_real_name)) { 
+            if (move_uploaded_file($_FILES['is_muti_file']['tmp_name'][$name], $uploaddir.$img_real_name)) {
               if($size_img == ""){
                 TAO_anhthumb($uploaddir.$img_real_name,$uploaddir."thumb_".$img_real_name, 500, 500, "images/trang_500_500.png");
               }
@@ -156,7 +157,7 @@
           $sql  = DB_arr($sql, 1);
           $id_x = $sql["id"];
           DB_que("UPDATE  `$table` SET `icon` = '$img_real_name' WHERE `id` = '".$id_x."' LIMIT 1", $table);
-           
+
         }
       }
       //
@@ -209,7 +210,7 @@
     if($s_chude != 0 ){
 
 
-      if($id_step == 2) { 
+      if($id_step == 2) {
         $lay_all_kietxuat = LAYDANHSACH_idkietxuat($s_chude, $step);
         $mo              .= ' AND (FIND_IN_SET( '.$s_chude.', `id_parent_muti`) <> 0 OR  `id_parent` IN ('.$lay_all_kietxuat.'))  ';
       }
@@ -217,7 +218,7 @@
         $lay_all_kietxuat = LAYDANHSACH_idkietxuat($s_chude, $step);
         $mo              .= ' AND `id_parent` in ('.$lay_all_kietxuat.')';
       }
-      
+
       $uri             .= '&chu-de='.$s_chude;
     }
 
@@ -237,11 +238,11 @@
     $thongtin_step = DB_arr($thongtin_step, 1);
 
     $list_danhmuc  = DB_fet("*", "#_danhmuc", "","`id` DESC", "", "arr", 1);
-    $list_bv_img   = DB_fet("*", "#_baiviet_img","`the_loai` <> 0",'`id` ASC', '', 'arr'); 
-    $members_dang = DB_fet("*","`#_members`","`phanquyen` <> 0","`id` ASC","","arr",1);   
+    $list_bv_img   = DB_fet("*", "#_baiviet_img","`the_loai` <> 0",'`id` ASC', '', 'arr');
+    $members_dang = DB_fet("*","`#_members`","`phanquyen` <> 0","`id` ASC","","arr",1);
 ?>
 <section class="content-header">
-    <h1><?php if(isset($_SESSION['admin'])){ ?><a onclick="LOAD_sort()" class="cur load_okkk">[SORT]</a> <?php } ?><?=GETNAME_step($step)?></h1> 
+    <h1><?php if(isset($_SESSION['admin'])){ ?><a onclick="LOAD_sort()" class="cur load_okkk">[SORT]</a> <?php } ?><?=GETNAME_step($step)?></h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
         <li class="active">Quản lý <?=GETNAME_step($step)?></li>
@@ -258,7 +259,7 @@
   }
 </script>
 <form action="" method="post" enctype='multipart/form-data'>
-  <?php 
+  <?php
     if(isset($_SESSION['admin'])){
   ?>
   <div style=" padding: 0 20px;">
@@ -272,12 +273,12 @@
         <div class="row">
             <section class="col-lg-12">
                 <div class="box">
-                    <?php 
+                    <?php
                       $name_list_opti = json_decode($name_list_opti, true);
                     ?>
                     <div class="box-header" style='padding-bottom: 0'>
                         <h3 class="box-title box-title-td pull-right">
-                          
+
                           <button type="submit" name="addgiatri" class="btn btn-primary" onclick="return CHECK_name_emty()"><i class="fa fa-floppy-o"></i> <?=luu_lai ?></button>
                           <a href="<?=$url_page ?>&them-moi=true&step=<?=$step?>&id_step=<?=$id_step?>" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm mới</a>
                         </h3>
@@ -285,8 +286,8 @@
                           <?php include _source."search_baiviet.php" ?>
                         </div>
                     </div>
-                    <?php 
-                      if(is_file("step/".$id_step."a.php")) include("step/".$id_step."a.php"); 
+                    <?php
+                      if(is_file("step/".$id_step."a.php")) include("step/".$id_step."a.php");
                     ?>
                     <div class="box-header">
                       <div class="paging_simple_numbers">

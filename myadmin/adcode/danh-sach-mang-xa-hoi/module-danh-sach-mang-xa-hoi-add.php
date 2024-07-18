@@ -13,7 +13,7 @@
 
   if(!empty($_POST))
     {
-      $hinhanh                 = UPLOAD_image("icon", "../".$duongdantin."/", time());
+      $hinhanh                 = $icon;
       $data                    = array();
       $data['duongdantin']     = $duongdantin;
       $data['fontawesome']     = $fontawesome;
@@ -129,7 +129,7 @@
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
                 <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                  <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
                 <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
               </div>
             </div>

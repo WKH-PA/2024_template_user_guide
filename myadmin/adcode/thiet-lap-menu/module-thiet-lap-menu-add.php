@@ -13,8 +13,8 @@
     }
   if(!empty($_POST))
     {
-      $hinhanh                = UPLOAD_image("icon", "../".$duongdantin."/", time());
-      $icon_hover                = UPLOAD_image("icon_hover", "../".$duongdantin."/", time());
+      $hinhanh                = $icon;
+      $icon_hover             = $icon_hover;
       $data                   = array();
       $data['catasort']       = is_numeric(@$catasort) ? @$catasort : 0;
       $data['showhi']         = is_numeric(@$showhi) ? @$showhi : 0;
@@ -254,7 +254,7 @@
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
                 <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                  <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
                 <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
               </div>
             </div>
@@ -268,13 +268,13 @@
             <label for="exampleInputFile">
               Hình thay đổi <?=$thongtin['menu_hinhanh_size'] ?>
             </label>
-            <div class="dv-anh-chitiet-img-cont">
-              <div class="dv-anh-chitiet-img">
-                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="icon_hover" id="input_icon_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#icon_hover','input_icon_icon_hover');">
-                <img src="<?=@$full_icon_hover  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon_hover) && $full_icon_hover != "") echo "display: block"; else echo "display: none" ?>" id="icon_hover">
+              <div class="dv-anh-chitiet-img-cont">
+                  <div class="dv-anh-chitiet-img">
+                      <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                      <input type="text" name="icon_hover" id="input_hover" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_hover', 'img_hover');" value="<?= $icon_hover ?>">
+                      <img src="<?=@$full_icon_hover ?>" alt="" class="img_chile_dangtin" style="<?= !empty($full_icon_hover) ? 'display: block' : 'display: none' ?>" id="img_hover">
+                  </div>
               </div>
-            </div>
           </div>
           <?php } ?>
           <!-- end -->
