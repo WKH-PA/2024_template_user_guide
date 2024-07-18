@@ -51,11 +51,8 @@
     $data['is_saochep']         = isset($_POST['is_saochep']) ? 1 : 0;
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
 
-
-      $pattern = '#^/' . preg_quote($_SESSION['sub_demo'] , '#')  . preg_quote($duongdantin, '#') . '/#';
-      $icon = preg_replace($pattern, '', $icon);
-      $favico = preg_replace($pattern, '', $favico);
-
+    $icon                       = $icon;
+    $favico                     = $favico;
 
       $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
       $sql_thongtin = DB_arr($sql_thongtin, 1);
@@ -238,7 +235,7 @@
                     <div class="dv-anh-chitiet-img">
                         <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
                         <input type="text" name="favico" id="input_favico" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_favico', 'img_favico');" value="<?= $favico ?>">
-                        <img src="<?=@$full_icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($favico) && $favico != "") echo "display: block"; else echo "display: none" ?>" id="img_favico">
+                        <img src="<?=@$full_icon_hover?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($favico) && $favico != "") echo "display: block"; else echo "display: none" ?>" id="img_favico">
                     </div>
                 </div>
             </div>

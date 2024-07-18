@@ -209,32 +209,50 @@ function UPDATE_colum(obj, id, col, table) {
                 finder.on('files:choose', function (evt) {
                     var file = evt.data.files.first();
                     var relativeUrl = file.getUrl(); // Chỉ giữ phần tương đối
-                    var output = document.getElementById(elementId);
-                    output.value = relativeUrl;
 
-                    // Cập nhật xem trước hình ảnh
+                    // Xóa nội dung pattern cho elementId
+                    var cleanedUrl = removePattern(relativeUrl);
+
+                    var output = document.getElementById(elementId);
+                    output.value = cleanedUrl;
+
+                    // Cập nhật xem trước hình ảnh với URL gốc cho id_img
                     var imgPreview = document.getElementById(id_img);
                     if (imgPreview) {
-                        imgPreview.src = file.getUrl();
+                        imgPreview.src = relativeUrl;
                         imgPreview.style.display = 'block';
                     }
                 });
 
                 finder.on('file:choose:resizedImage', function (evt) {
                     var relativeUrl = evt.data.resizedUrl; // Chỉ giữ phần tương đối
-                    var output = document.getElementById(elementId);
-                    output.value = relativeUrl;
 
-                    // Cập nhật xem trước hình ảnh
+                    // Xóa nội dung pattern cho elementId
+                    var cleanedUrl = removePattern(relativeUrl);
+
+                    var output = document.getElementById(elementId);
+                    output.value = cleanedUrl;
+
+                    // Cập nhật xem trước hình ảnh với URL gốc cho id_img
                     var imgPreview = document.getElementById(id_img);
                     if (imgPreview) {
-                        imgPreview.src = evt.data.resizedUrl;
+                        imgPreview.src = relativeUrl;
                         imgPreview.style.display = 'block';
                     }
                 });
             }
         });
     }
+
+    function removePattern(url) {
+        var pattern = new RegExp('^/' + pregQuote('<?php echo $_SESSION["sub_demo"]; ?>', '#') + pregQuote('<?php echo $duongdantin; ?>', '#') + '/', '');
+        return url.replace(pattern, '');
+    }
+
+    function pregQuote(str, delimiter) {
+        return (str + '').replace(new RegExp('[.\\\\+*?\\[\\^\\]$(){}=!<>|:\/' + (delimiter || '') + '-]', 'g'), '\\$&');
+    }
 </script>
+
 
 
