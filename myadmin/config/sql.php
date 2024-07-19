@@ -9,7 +9,7 @@
 	$db_localhost 		 		= "localhost";
 	$db_user 			 		= "root";
 	$db_pass 			 		= '';
-	$db_data 			 		= "2020_caosuphurieng4";
+	$db_data 			 		= "2020_caosuphurieng1";
 	$_SESSION['sub_demo'] 		= "2024_template_user_guide/";
 	$check_fl_domain 			= "172.16.90.105";
 	$cache_file   				= "on";
@@ -17,11 +17,11 @@
 	$_SESSION['sub_demo_check'] = false;
 	$_SESSION['thumuc']  		= $_SESSION['sub_demo']."datafiles";
 	$php_vs 					= 7; //"5.6"; // 7
-
+    $upckfinder                 = true;
 
 	if($_SERVER['HTTP_HOST'] 	!= 'localhost' && $_SERVER['HTTP_HOST'] != $check_fl_domain ) {
 		$_SESSION['thumuc']  		= "datafiles";
-		$_SESSION['sub_demo_check'] = true;
+		$_SESSION['sub_demo_check'] = false;
 	}
 
 	if($php_vs == "5.6") {

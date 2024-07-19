@@ -24,8 +24,12 @@
       $data['noidung_jp']     = @$noidung_jp;
       $data['seo_name']       = @$seo_name;
       $data['duongdantin']    = @$duongdantin;
+      if($upckfinder != true){
+          $hinhanh        = UPLOAD_image("icon", "../".$duongdantin."/", time());
+      }else{
+          $hinhanh        = $icon;
+      }
 
-      $hinhanh        = $icon;
 
       if($id > 0){
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
@@ -177,11 +181,20 @@
             <?=admin_input_text("is_hinhanh_size", @$is_hinhanh_size, "#_seo_name", @$id) ?>
             <label for="exampleInputFile2">Hình ảnh <?=@$is_hinhanh_size ?></label>
             <div class="dv-anh-chitiet-img-cont">
-              <div class="dv-anh-chitiet-img">
+                <?php  if($upckfinder != true){ ?>
+                <div class="dv-anh-chitiet-img">
+                    <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                    <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                    <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                </div>
+                <?php }else{ ?>
+                <div class="dv-anh-chitiet-img">
                 <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
                   <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
                   <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
               </div>
+                <?php } ?>
+
             </div>
           </div>
           <?php } ?>

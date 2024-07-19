@@ -58,10 +58,22 @@
         </td>
         <?php if(in_array($step, $check_img_step)){ ?>
         <td class="text-center">
-          <?=ADMIN_show_img($fullpath."/".$rows['duongdantin'], $icon) ?>
+            <?php
+            // Lấy nội dung thẻ <img> từ hàm ADMIN_show_img
+            $imgTag = ADMIN_show_img('../' . $rows['duongdantin'], $icon);
+            // Thêm id vào thẻ <img>
+            $imgTag = str_replace('<img', '<img id="img_icon_' . $cl . '"', $imgTag);
+            // Hiển thị thẻ <img>
+            echo $imgTag;
+            ?>
           <?php if(isset($_SESSION['admin'])){ ?>
-          <input type="file" name="upload_<?=$cl?>">
-          <input type="hidden" name="anh_sp_<?=$cl?>" value="<?=!empty($thongtin_step['size_img']) && $thongtin_step['size_img'] != '' ? $thongtin_step['size_img'] : '' ?>">
+              <?php if($upckfinder != true){ ?>
+                  <input type="file" name="upload_<?=$cl?>">
+                  <input type="hidden" name="anh_sp_<?=$cl?>" value="<?=!empty($thongtin_step['size_img']) && $thongtin_step['size_img'] != '' ? $thongtin_step['size_img'] : '' ?>">
+              <?php }else{ ?>
+                  <input type="hidden" name="upload_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
+                  <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+              <?php } ?>
           <?php } ?>
         </td>
         <?php } ?>

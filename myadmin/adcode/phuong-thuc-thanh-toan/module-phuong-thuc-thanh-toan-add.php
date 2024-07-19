@@ -21,21 +21,30 @@
      
       $data['catasort']       = @$catasort;
       $data['showhi']         = @$showhi;
-      $data['duongdantin']    = @$duongdantin; 
-      
-      $hinhanh              = UPLOAD_image("icon", "../".$duongdantin."/", time());
-      if($hinhanh) {
-          $data['icon']   = $hinhanh;
-          TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 100, 100); 
-          if($id > 0){
-            //xoa anh
-            $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
-            $sql_thongtin = DB_arr($sql_thongtin, 1);
-            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-            @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-            //end
+      $data['duongdantin']    = @$duongdantin;
+
+      if($upckfinder != true){
+          $hinhanh              = UPLOAD_image("icon", "../".$duongdantin."/", time());
+          if($hinhanh) {
+              $data['icon']   = $hinhanh;
+              TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 100, 100);
+              if($id > 0){
+                  //xoa anh
+                  $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
+                  $sql_thongtin = DB_arr($sql_thongtin, 1);
+                  @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                  @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                  //end
+              }
           }
-        }
+      }else{
+          $hinhanh              = $icon;
+          if($hinhanh) {
+              $data['icon']   = $hinhanh;
+
+          }
+      }
+
 
       if($id == 0){
         $id = ACTION_db($data, $table , 'add', NULL,NULL);
@@ -66,6 +75,9 @@
       $catasort   = layCatasort($table);
       $catasort   = number_format(SHOW_text($catasort),0,',','.');
     }
+if ($icon != '') {
+    $full_icon  = $fullpath."/".$duongdantin."/".$icon;
+}
 ?>
  
 <section class="content-header">
@@ -122,11 +134,32 @@
       </section>
       <section class="col-lg-12">
         <div class="box p10">
-          <div class="form-group">
-            <label for="exampleInputFile">Hình ảnh (<?=$loaibanner['rong'].'x'.$loaibanner['cao'].'px' ?>)</label>
-            <?=!empty($icon) ? $icon : '' ?>
-            <input name="icon" type="file" class="form-control" id="exampleInputFile">
-          </div>
+            <?php  if($upckfinder != true) {?>
+                <div class="form-group">
+                    <label for="exampleInputFile2">Ảnh đại diện </label>
+                    <div class="dv-anh-chitiet-img-cont">
+                        <div class="dv-anh-chitiet-img">
+                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                            <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                            <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                        </div>
+                    </div>
+                </div>
+            <?php }else{ ?>
+                <div class="form-group">
+                    <?php ?>
+
+                    <label for="exampleInputFile2">Ảnh đại diện </label>
+                    <div class="dv-anh-chitiet-img-cont">
+                        <div class="dv-anh-chitiet-img">
+                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                            <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                            <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+
+                        </div>
+                    </div>
+                </div>
+            <?php }?>
           <div class="form-group">
             <label>Số thứ tự</label>
             <input type="text" class="form-control" name="catasort" id="catasort" value="<?=SHOW_text($catasort)?>" onkeyup="SetCurrency(this)">

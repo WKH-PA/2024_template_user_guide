@@ -13,7 +13,12 @@
 
   if(!empty($_POST))
     {
-      $hinhanh                 = $icon;
+        if($upckfinder != true){
+            $hinhanh                 = UPLOAD_image("icon", "../".$duongdantin."/", time());
+        }else{
+            $hinhanh                 = $icon;
+        }
+
       $data                    = array();
       $data['duongdantin']     = $duongdantin;
       $data['fontawesome']     = $fontawesome;
@@ -124,7 +129,21 @@
           </div>
         </div>
         <div class="box p10">
+            <?php  if($upckfinder != true) {?>
+            <div class="form-group">
+                <label for="exampleInputFile2">Ảnh đại diện </label>
+                <div class="dv-anh-chitiet-img-cont">
+                    <div class="dv-anh-chitiet-img">
+                        <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                        <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                        <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                    </div>
+                </div>
+            </div>
+            <?php }else{ ?>
           <div class="form-group">
+              <?php ?>
+
             <label for="exampleInputFile2">Ảnh đại diện </label>
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
@@ -134,6 +153,7 @@
               </div>
             </div>
           </div>
+            <?php }?>
           <div class="form-group" style="display: none">
             <label>Fontawesome</label>
             <input type="text" class="form-control" name="fontawesome" id="fontawesome" value="<?=!empty($fontawesome) ? Show_text($fontawesome) : "" ?>">

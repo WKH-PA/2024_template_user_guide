@@ -49,20 +49,27 @@
               $add_admin    .= ", `size_img_dm` = '$size_img_dm'";
               DB_que("UPDATE `$table` SET  $add_admin WHERE `id`='$idofme' LIMIT 1", $table);
             }
+            if($upckfinder != true){
+                $hinhanh     = UPLOAD_image("upload_$i", "../".$duongdantin."/", time());
+                $data 		 = array();
+                if($hinhanh != false)
+                {
+                    $data['icon'] = $hinhanh;
+                    TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
 
-        	$hinhanh     = UPLOAD_image("upload_$i", "../".$duongdantin."/", time());
-        	$data 		 = array();
-            if($hinhanh != false)
-              {
-                $data['icon'] = $hinhanh;
-                TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
+                    $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
+                    $sql_thongtin = DB_arr($sql_thongtin, 1);
 
-                $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
-                $sql_thongtin = DB_arr($sql_thongtin, 1);
+                    @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                    @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                }
+            }else{
+                $hinhanh     = $_POST['upload_' . $i];
+                $data 		 = array();
+                if($hinhanh != false)
+                { $data['icon'] = $hinhanh; }
+            }
 
-                @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-                @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-             }
             ACTION_db($data, $table, 'update', NULL, "`id` = '$idofme' ");
      
             
@@ -175,9 +182,23 @@
                               <?php } ?>
                             </td>
                             <td class="text-center">
-                              <img class='img_show_ds' src='<?=$fullpath."/".$rows['duongdantin']."/thumb_".$icon ?>'>
+<!--                              <img class='img_show_ds' src='--><?//=$fullpath."/".$rows['duongdantin']."/thumb_".$icon ?><!--'>-->
+                                <?php
+                                // Lấy nội dung thẻ <img> từ hàm ADMIN_show_img
+                                $imgTag = ADMIN_show_img('../' . $rows['duongdantin'], $icon);
+                                // Thêm id vào thẻ <img>
+                                $imgTag = str_replace('<img', '<img id="img_icon_' . $cl . '"', $imgTag);
+                                // Hiển thị thẻ <img>
+                                echo $imgTag;
+                                ?>
                               <?php if(isset($_SESSION['admin'])){ ?>
-                              <input type="file" name="upload_<?=$cl?>">
+                                  <?php if($upckfinder != true){ ?>
+                                      <input type="file" name="upload_<?=$cl?>">
+                                  <?php }else{ ?>
+                                      <input type="hidden" name="upload_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
+                                      <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+                                  <?php } ?>
+
                               <?php } ?>
                             </td>
                             <!-- <td class="text-center">

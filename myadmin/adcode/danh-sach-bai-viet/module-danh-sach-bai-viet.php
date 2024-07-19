@@ -81,44 +81,51 @@
             DB_que("DELETE FROM `#_baiviet_select_tinhnang` WHERE `id_baiviet` = '".$idofme."'", "#_baiviet_select_tinhnang");
             DB_que("DELETE FROM `#_binhluan` WHERE `id_sp` = '".$idofme."'", "#_binhluan");
             // Xóa ảnh con
-            $sql_img    = DB_que("SELECT * FROM `#_baiviet_img` WHERE `id_parent` ='".$idofme."'");
-            if(DB_num($sql_img) > 0)
-            {
-              $sql_img = DB_arr($sql_img);
-              foreach ($sql_img as $row) {
-                $p_name   = $row['icon'];
-                $path_img = $row['duongdantin'];
-                @unlink("../datafiles/".$path_img."/".$p_name);
-                @unlink("../datafiles/".$path_img."/thumb_".$p_name);
-                @unlink("../datafiles/".$path_img."/thumbnew_".$p_name);
-              }
-              DB_que("DELETE FROM `#_baiviet_img` WHERE `id_parent` = '".$idofme."'", "#_baiviet_img");;
+            if($upckfinder != true) {
+                $sql_img    = DB_que("SELECT * FROM `#_baiviet_img` WHERE `id_parent` ='".$idofme."'");
+                if(DB_num($sql_img) > 0)
+                {
+                    $sql_img = DB_arr($sql_img);
+                    foreach ($sql_img as $row) {
+                        $p_name   = $row['icon'];
+                        $path_img = $row['duongdantin'];
+                        @unlink("../datafiles/".$path_img."/".$p_name);
+                        @unlink("../datafiles/".$path_img."/thumb_".$p_name);
+                        @unlink("../datafiles/".$path_img."/thumbnew_".$p_name);
+                    }
+                    DB_que("DELETE FROM `#_baiviet_img` WHERE `id_parent` = '".$idofme."'", "#_baiviet_img");;
+                }
             }
+
           }
           //
-        }else{
-          $hinhanh      = $_POST['upload_'.$i];
+        }else {
+            if ($upckfinder != true) {
+                $hinhanh = UPLOAD_image("upload_$i", "../" . $duongdantin . "/", time());
+                if ($hinhanh != false) {
+                    $data['icon'] = $hinhanh;
+                    if ($_POST['anh_sp_' . $i] != '') {
+                        $anh_sp = explode("x", $_POST['anh_sp_' . $i]);
+                        $wid = $anh_sp[0];
+                        $hig = $anh_sp[1];
+                        TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, $wid, $hig, "images/trang_" . $wid . "_" . $hig . ".png");
+                    } else {
+                        TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, 500, 500);
+                    }
+                    TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumbnew_" . $hinhanh, 300, 300);
 
-          if($hinhanh != '')
-          {
-            $data['icon'] = $hinhanh;
-            if($_POST['anh_sp_'.$i] != ''){
-              $anh_sp = explode("x", $_POST['anh_sp_'.$i]);
-              $wid    = $anh_sp[0];
-              $hig    = $anh_sp[1];
-              TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, $wid, $hig, "images/trang_".$wid."_".$hig.".png");
+                    $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='" . $idofme . "' LIMIT 1");
+                    $sql_thongtin = DB_arr($sql_thongtin, 1);
+                    @unlink("../" . $sql_thongtin["duongdantin"] . "/thumb_" . $sql_thongtin["icon"]);
+                    @unlink("../" . $sql_thongtin["duongdantin"] . "/thumbnew_" . $sql_thongtin["icon"]);
+                }
+            } else {
+                $hinhanh = $_POST['upload_' . $i];
+                if ($hinhanh != false) {
+                    $data['icon'] = $hinhanh;
+                }
             }
-            else{
-                TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
-            }
-            TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumbnew_".$hinhanh, 300, 300);
 
-            $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
-            $sql_thongtin = DB_arr($sql_thongtin, 1);
-            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-            @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-            @unlink("../".$sql_thongtin["duongdantin"]."/thumbnew_".$sql_thongtin["icon"]);
-          }
           //end
           ACTION_db($data, $table, 'update', NULL, "`id` = '$idofme' ");
         }
@@ -240,7 +247,7 @@
     $list_danhmuc  = DB_fet("*", "#_danhmuc", "","`id` DESC", "", "arr", 1);
     $list_bv_img   = DB_fet("*", "#_baiviet_img","`the_loai` <> 0",'`id` ASC', '', 'arr');
     $members_dang = DB_fet("*","`#_members`","`phanquyen` <> 0","`id` ASC","","arr",1);
-?>
+    ?>
 <section class="content-header">
     <h1><?php if(isset($_SESSION['admin'])){ ?><a onclick="LOAD_sort()" class="cur load_okkk">[SORT]</a> <?php } ?><?=GETNAME_step($step)?></h1>
     <ol class="breadcrumb">

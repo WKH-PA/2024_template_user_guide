@@ -28,7 +28,7 @@
       <div class="form-group">
         <label>Tên <?=$thongtin_step['tenbaiviet_vi']?> (<?=_lang_nb2_key ?>)</label>
         <input type="text" class="form-control" value="<?=!empty($tenbaiviet_en) ? SHOW_text($tenbaiviet_en) : ''?>" name="tenbaiviet_en" id="tenbaiviet_en">
-      </div>    
+      </div>
       <?php if(!in_array($step, $st_bv_mota)){ ?>
       <div class="form-group">
         <label>Mô tả (<?=_lang_nb2_key ?>)</label>
@@ -44,6 +44,7 @@
     </div>
   </div>
 </div>
+<? $p1 ="" ?>
 <div class="box p10">
   <div class="form-group" >
     <label>Link dowload</label>

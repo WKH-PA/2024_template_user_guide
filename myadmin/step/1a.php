@@ -1,3 +1,4 @@
+
 <div class="box-body table-responsive no-padding table-danhsach-cont">
   <table class="table table-hover table-danhsach">
     <tbody>
@@ -70,9 +71,13 @@
 
 
           <?php if(isset($_SESSION['admin'])){ ?>
-              <input type="hidden" name="upload_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
-              <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
-          <input type="hidden" name="anh_sp_<?=$cl?>" value="<?=!empty($thongtin_step['size_img']) && $thongtin_step['size_img'] != '' ? $thongtin_step['size_img'] : '' ?>">
+               <?php if($upckfinder != true){?>
+                  <input type="file" name="upload_<?=$cl?>">
+                  <input type="hidden" name="anh_sp_<?=$cl?>" value="<?=!empty($thongtin_step['size_img']) && $thongtin_step['size_img'] != '' ? $thongtin_step['size_img'] : '' ?>">
+              <?php }else{?>
+                  <input type="hidden" name="upload_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
+                  <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+              <?php }?>
           <?php } ?>
 
         </td>
@@ -119,3 +124,14 @@
   </table>
   <input type='hidden' value='<?=$cl?>' name='maxvalu'>
 </div>
+<?php
+// Giả sử $cl là số lượng phần tử
+for ($i = 0; $i < $cl; $i++) {
+    $upload_key = "upload_$i";
+
+    // Kiểm tra sự tồn tại của chỉ mục trong $_POST hoặc $_FILES
+    $upload_value = isset($_POST[$upload_key]) ? $_POST[$upload_key] : '';
+
+    // Tiến hành xử lý với $upload_value
+}
+?>

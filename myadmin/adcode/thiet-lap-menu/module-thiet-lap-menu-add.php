@@ -1,4 +1,8 @@
 <?php
+    $icon = isset($icon) ? $icon : '';
+    $favico = isset($favico) ? $favico : '';
+    $full_icon = isset($full_icon) ? $full_icon : '';
+    $full_icon_hover = isset($full_icon_hover) ? $full_icon_hover : '';
   $table = '#_menu';
   $id    = isset($_GET['edit']) && is_numeric($_GET['edit']) ? $_GET['edit'] : 0;
   if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -13,8 +17,14 @@
     }
   if(!empty($_POST))
     {
-      $hinhanh                = $icon;
-      $icon_hover             = $icon_hover;
+        if($upckfinder != true){
+            $hinhanh                = UPLOAD_image("icon", "../".$duongdantin."/", time());
+            $icon_hover                = UPLOAD_image("icon_hover", "../".$duongdantin."/", time());
+        }else{
+            $hinhanh                = $icon;
+            $icon_hover             = $icon_hover;
+        }
+
       $data                   = array();
       $data['catasort']       = is_numeric(@$catasort) ? @$catasort : 0;
       $data['showhi']         = is_numeric(@$showhi) ? @$showhi : 0;
@@ -35,6 +45,8 @@
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$_GET['edit']."' LIMIT 1");
         $sql_thongtin = DB_arr($sql_thongtin, 1);
       }
+
+
       if($hinhanh != false) {
         $data['icon']     = $hinhanh;
         TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, 200, 200);
@@ -44,7 +56,6 @@
             //end
           }
         }
-
       if($icon_hover != false) {
         $data['icon_hover']     = $icon_hover;
         TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, 200, 200);
@@ -243,41 +254,78 @@
             </select>
           </div>
           <?php } ?>
-          <!-- hinh anh -->
-          <?php if(admin_check(@$thongtin['menu_hinhanh'])){ ?>
-          <div class="form-group">
-            <?=admin_input("menu_hinhanh", @$thongtin['menu_hinhanh'], "#_seo", 1) ?>
-            <?=admin_input_text("menu_hinhanh_size", @$thongtin['menu_hinhanh_size'], "#_seo", 1) ?>
-            <label for="exampleInputFile">
-              Hình đại diện <?=$thongtin['menu_hinhanh_size'] ?>
-            </label>
-            <div class="dv-anh-chitiet-img-cont">
-              <div class="dv-anh-chitiet-img">
-                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                  <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
-                <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
-              </div>
-            </div>
-          </div>
-          <?php } ?>
-          <!-- end -->
-          <!-- hinh anh hv-->
-          <?php if(admin_check(@$thongtin['menu_hinhanh_hv'])){ ?>
-          <div class="form-group">
-            <?=admin_input("menu_hinhanh_hv", @$thongtin['menu_hinhanh_hv'], "#_seo", 1) ?>
-            <label for="exampleInputFile">
-              Hình thay đổi <?=$thongtin['menu_hinhanh_size'] ?>
-            </label>
-              <div class="dv-anh-chitiet-img-cont">
-                  <div class="dv-anh-chitiet-img">
-                      <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                      <input type="text" name="icon_hover" id="input_hover" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_hover', 'img_hover');" value="<?= $icon_hover ?>">
-                      <img src="<?=@$full_icon_hover ?>" alt="" class="img_chile_dangtin" style="<?= !empty($full_icon_hover) ? 'display: block' : 'display: none' ?>" id="img_hover">
+            <?php if($upckfinder != true){  ?>
+                <!-- hinh anh -->
+                <?php if(admin_check(@$thongtin['menu_hinhanh'])){ ?>
+                    <div class="form-group">
+                        <?=admin_input("menu_hinhanh", @$thongtin['menu_hinhanh'], "#_seo", 1) ?>
+                        <?=admin_input_text("menu_hinhanh_size", @$thongtin['menu_hinhanh_size'], "#_seo", 1) ?>
+                        <label for="exampleInputFile">
+                            Hình đại diện <?=$thongtin['menu_hinhanh_size'] ?>
+                        </label>
+                        <div class="dv-anh-chitiet-img-cont">
+                            <div class="dv-anh-chitiet-img">
+                                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                                <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <!-- end -->
+                <!-- hinh anh hv-->
+                <?php if(admin_check(@$thongtin['menu_hinhanh_hv'])){ ?>
+                    <div class="form-group">
+                        <?=admin_input("menu_hinhanh_hv", @$thongtin['menu_hinhanh_hv'], "#_seo", 1) ?>
+                        <label for="exampleInputFile">
+                            Hình thay đổi <?=$thongtin['menu_hinhanh_size'] ?>
+                        </label>
+                        <div class="dv-anh-chitiet-img-cont">
+                            <div class="dv-anh-chitiet-img">
+                                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                                <input type="file" name="icon_hover" id="input_icon_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#icon_hover','input_icon_icon_hover');">
+                                <img src="<?=@$full_icon_hover  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon_hover) && $full_icon_hover != "") echo "display: block"; else echo "display: none" ?>" id="icon_hover">
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            <?php }else{ ?>
+                  <!-- hinh anh -->
+                  <?php if(admin_check(@$thongtin['menu_hinhanh'])){ ?>
+                  <div class="form-group">
+                    <?=admin_input("menu_hinhanh", @$thongtin['menu_hinhanh'], "#_seo", 1) ?>
+                    <?=admin_input_text("menu_hinhanh_size", @$thongtin['menu_hinhanh_size'], "#_seo", 1) ?>
+                    <label for="exampleInputFile">
+                      Hình đại diện <?=$thongtin['menu_hinhanh_size'] ?>
+                    </label>
+                    <div class="dv-anh-chitiet-img-cont">
+                      <div class="dv-anh-chitiet-img">
+                        <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                          <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                        <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                      </div>
+                    </div>
                   </div>
-              </div>
-          </div>
-          <?php } ?>
-          <!-- end -->
+                  <?php } ?>
+                  <!-- end -->
+                  <!-- hinh anh hv-->
+                  <?php if(admin_check(@$thongtin['menu_hinhanh_hv'])){ ?>
+                  <div class="form-group">
+                    <?=admin_input("menu_hinhanh_hv", @$thongtin['menu_hinhanh_hv'], "#_seo", 1) ?>
+                    <label for="exampleInputFile">
+                      Hình thay đổi <?=$thongtin['menu_hinhanh_size'] ?>
+                    </label>
+                      <div class="dv-anh-chitiet-img-cont">
+                          <div class="dv-anh-chitiet-img">
+                              <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                              <input type="text" name="icon_hover" id="input_hover" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_hover', 'img_hover');" value="<?= $icon_hover ?>">
+                              <img src="<?=@$full_icon_hover ?>" alt="" class="img_chile_dangtin" style="<?= !empty($full_icon_hover) ? 'display: block' : 'display: none' ?>" id="img_hover">
+                          </div>
+                      </div>
+                  </div>
+                  <?php } ?>
+                  <!-- end -->
+            <?php } ?>
           <div class="form-group">
             <label class="mr-20 checkbox-mini noweight" style="display: block; margin-bottom: 10px">
               <input type="checkbox" name="cua_so_moi" class="minimal" <?=isset($cua_so_moi) && $cua_so_moi == 1 ? 'checked="checked"' : '' ?>> Hiển thị cửa sổ mới

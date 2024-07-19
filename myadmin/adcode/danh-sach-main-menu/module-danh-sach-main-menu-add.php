@@ -31,7 +31,12 @@
     if(!empty($_POST))
       {
         $seo_name                     = LAY_uutien($seo_name, $tenbaiviet_vi);
-        $hinhanh                      = UPLOAD_image("icon", "../".$duongdantin."/", time());
+          if($upckfinder != true){
+              $hinhanh                      = UPLOAD_image("icon", "../".$duongdantin."/", time());
+          }else{
+              $hinhanh                      = $icon;
+          }
+
         $_POST['ngaydang']             = time();
         $_POST['duongdantin']          = $duongdantin;
         $_POST['seo_title_vi']         = $seo_title_vi;
@@ -58,16 +63,23 @@
           $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
           $sql_thongtin = DB_arr($sql_thongtin, 1);
         }
-
-        if($hinhanh != false)
-          {
-            $_POST['icon']             = $hinhanh;
-            TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
-            if($id > 0 AND is_array($sql_thongtin)){
-              @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-              @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-            }
+          if($upckfinder != true){
+              if($hinhanh != false)
+              {
+                  $_POST['icon']             = $hinhanh;
+                  TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
+                  if($id > 0 AND is_array($sql_thongtin)){
+                      @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                      @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                  }
+              }
+          }else{
+              if($hinhanh != false)
+              {
+                  $_POST['icon']             = $hinhanh;
+              }
           }
+
         if($id == 0){
           $id                           = ACTION_db($_POST, $table , 'add', array("themmoi"),NULL);
           $_SESSION['show_message_on'] =  "Thêm module thành công!";
@@ -316,7 +328,11 @@
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
                 <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                  <?php if($upckfinder != true){ ?>
+                      <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                  <?php }else{ ?>
+                      <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                  <?php } ?>
                 <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
               </div>
             </div>

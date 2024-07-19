@@ -10,27 +10,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = array(
         'ten_vi' => $ten_vi,
         'noidung_vi' => $noidung_vi,
-        'ten_sp' => strtoupper($ten_sp),
-        'ma_sp' => strtoupper($ma_sp),
-        'gia_md' => strtoupper($gia_md),
-        'gia_km' => strtoupper($gia_km),
-        'bat_gia_km' => strtoupper($bat_gia_km),
-        'duongdantin' => "datafiles/files",
+        'duongdantin' => "datafiles",
+        'file_excel' => $file_excel,
         'ngay_dang' => time()
     );
 
     // Upload file và lưu thông tin file nếu có
-    $file_excel = UPLOAD_file("file", "../datafiles/files/", time());
-    if ($file_excel !== false) {
-        $data['file_excel'] = $file_excel;
+    if($upckfinder != true){
+        $file_excel                = UPLOAD_file("file", "../datafiles/files/", time());
+        if($file_excel != false)
+        {
+            $data['file_excel']   = $file_excel;
+            if($id > 0){
+                $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
+                $sql_thongtin = DB_arr($sql_thongtin, 1);
+                @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["file_excel"]);
+            }
+        }
+    }else{
+        if (!empty($_FILES['file_excel']['name'])) {
+            $file = $_FILES['file_excel'];
+            $filename = time() . '_' . $file['name'];
+            move_uploaded_file($file['tmp_name'], "../datafiles/" . $filename);
+            $data['file_excel'] = $filename;
 
-        // Xóa file cũ nếu đang chỉnh sửa
-        if ($id > 0) {
-            $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='$id' LIMIT 1");
-            $sql_thongtin = DB_arr($sql_thongtin, 1);
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/" . $sql_thongtin["file_excel"]);
         }
     }
+
 
     if ($id == 0) {
         $id = ACTION_db($data, $table, 'add', NULL, NULL);
@@ -86,40 +92,26 @@ if ($id > 0) {
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab_1">
                                 <div class="form-group">
-                                    <label for="exampleInputFile">File <span style="font-weight: 500; color: #ec2626;">(Chỉ hỗ trợ import dữ liệu file dạng *.xlsx)</span></label>
-                                    <input name="file" type="file" class="form-control" id="exampleInputFile">
-                                    <?=!empty($file_excel) ? "<p style='font-size: 12px; margin-top: 5px;'>$file_excel " . (!is_file("../" . $duongdantin . "/" . $file_excel) ? "<span style='font-weight: 500; color: #ec2626;'>(File không tồn tại)</span>" : "<a href='" . $file_excel_url . "' download>[Tải về]</a>") . "</p>" : '' ?>
+                                    <label for="file_excel">File <span style="font-weight: 500; color: #ec2626;">(Chỉ hỗ trợ import dữ liệu file dạng *.xlsx)</span></label>
+                                    <?php if($upckfinder != true){ ?>
+                                        <input name="file" type="file" class="form-control" id="exampleInputFile">
+                                    <?php }else{ ?>
+                                    <button type="button" class="btn btn-primary" onclick="selectFileWithCKFinder('file_excel');">Chọn file</button>
+                                    <input type="hidden" name="file_excel" id="file_excel" value="<?= !empty($file_excel) ? $file_excel : '' ?>">
+                                    <?php } ?>
+                                    <p style="padding: 0" id="file_excel">
+                                        <?= !empty($file_excel) ? '<a href="../datafiles/' . $file_excel . '" download>' . $file_excel . '</a>' : '' ?>
+                                    </p>
+                                    <?= !empty($file_excel) ? "<p style='font-size: 12px; margin-top: 5px;'>$file_excel " . (!is_file("../" . $duongdantin . "/" . $file_excel) ? "<span style='font-weight: 500; color: #ec2626;'>(File không tồn tại)</span>" : "<a href='" . $file_excel_url . "' download>[Tải về]</a>") . "</p>" : '' ?>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tên file</label>
-                                    <input type="text" class="form-control" value="<?=!empty($ten_vi) ? SHOW_text($ten_vi) : ''?>" name="ten_vi" id="ten_vi">
+                                    <input type="text" class="form-control" value="<?= !empty($ten_vi) ? SHOW_text($ten_vi) : '' ?>" name="ten_vi" id="ten_vi">
                                 </div>
-                                <div class="form-group">
-                                    <label>Cột Mã SP <a data-tooltip="Quan trọng! Mã sản phẩm được so sánh từ CSDL và file excel để cập nhật giá"> </a></label>
-                                    <input type="text" class="form-control" value="<?=!empty($ma_sp) ? SHOW_text($ma_sp) : ''?>" name="ma_sp" id="ma_sp">
-                                </div>
-                                <div class="form-group">
-                                    <label>Cột Tên sản phẩm <a data-tooltip="Giới hạn 50 cột trong excel, tính đến cột AX"> </a></label>
-                                    <input type="text" class="form-control" value="<?=!empty($ten_sp) ? SHOW_text($ten_sp) : ''?>" name="ten_sp" id="ten_sp">
-                                </div>
-                                <div class="form-group">
-                                    <label>Cột Giá mặc định</label>
-                                    <input type="text" class="form-control" value="<?=!empty($gia_md) ? SHOW_text($gia_md) : ''?>" name="gia_md" id="gia_md">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Cột Giá KM</label>
-                                    <input type="text" class="form-control" value="<?=!empty($gia_km) ? SHOW_text($gia_km) : ''?>" name="gia_km" id="gia_km">
-                                </div>
-                                <div class="form-group">
-                                    <label>Cột Bật Giá KM <a data-tooltip="Trạng thái trên file excel là Y (có) N (không)"> </a></label>
-                                    <input type="text" class="form-control" value="<?=!empty($bat_gia_km) ? SHOW_text($bat_gia_km) : ''?>" name="bat_gia_km" id="bat_gia_km">
-                                </div>
-
                                 <div class="form-group">
                                     <label>Ghi chú</label>
-                                    <textarea id="noidung_vi" name="noidung_vi" class="form-control" rows="10"><?=!empty($noidung_vi) ? SHOW_text($noidung_vi) : ''?></textarea>
+                                    <textarea id="noidung_vi" name="noidung_vi" class="form-control" rows="10"><?= !empty($noidung_vi) ? SHOW_text($noidung_vi) : '' ?></textarea>
                                 </div>
 
                             </div>
@@ -137,3 +129,5 @@ if ($id > 0) {
         </h3>
     </div>
 </form>
+
+

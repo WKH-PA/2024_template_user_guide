@@ -68,9 +68,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 if (!empty($_POST)) {
     $seo_name                       = LAY_uutien($seo_name, $tenbaiviet_vi);
-    $hinhanh                        = UPLOAD_image("icon", "../" . $duongdantin . "/", time());
-    $icon_hover                     = UPLOAD_image("icon_hover", "../" . $duongdantin . "/", time());
-    $dowload                        = UPLOAD_file("dowload", "../datafiles/files/", time());
+    if($upckfinder != true){
+        $hinhanh                        = UPLOAD_image("icon", "../" . $duongdantin . "/", time());
+        $icon_hover                     = UPLOAD_image("icon_hover", "../" . $duongdantin . "/", time());
+        $dowload                        = UPLOAD_file("dowload", "../datafiles/files/", time());
+    }else{
+        $hinhanh                        = $icon;
+        $icon_hover                     = $icon_hover;
+        $dowload                        = $dowload;
+    }
+
 
     $data = array();
     $data['tenbaiviet_vi']         = @$tenbaiviet_vi;
@@ -143,55 +150,70 @@ if (!empty($_POST)) {
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='" . $id . "' LIMIT 1");
         $sql_thongtin = DB_arr($sql_thongtin, 1);
     }
+    if($upckfinder != true){
+        if ($hinhanh != false) {
+            $data['icon'] = $hinhanh;
+            if ($_REQUEST['anh_sp'] != '') {
+                $anh_sp = explode("x", $_REQUEST['anh_sp']);
+                $wid = $anh_sp[0];
+                $hig = $anh_sp[1];
+                TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, $wid, $hig, "images/trang_" . $wid . "_" . $hig . ".png");
+            } else {
+                TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, 500, 500);
+            }
+            TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumbnew_" . $hinhanh, 300, 300);
+            if ($id > 0 && is_array($sql_thongtin)) {
+//                @unlink("../" . $sql_thongtin["duongdantin"] . "/" . $sql_thongtin["icon"]);
+                @unlink("../" . $sql_thongtin["duongdantin"] . "/thumb_" . $sql_thongtin["icon"]);
+                @unlink("../" . $sql_thongtin["duongdantin"] . "/thumbnew_" . $sql_thongtin["icon"]);
+            }
+        }
 
-    if ($hinhanh != false) {
+        if ($icon_hover != false) {
+            $data['icon_hover'] = $icon_hover;
+            if ($_REQUEST['anh_sp'] != '') {
+                $anh_sp = explode("x", $_REQUEST['anh_sp']);
+                $wid = $anh_sp[0];
+                $hig = $anh_sp[1];
+                TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, $wid, $hig, "images/trang_" . $wid . "_" . $hig . ".png");
+            } else {
+                TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, 500, 500, "images/trang_500_500.png");
+            }
+            TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumbnew_" . $icon_hover, 300, 300);
+
+            if ($id > 0 && is_array($sql_thongtin)) {
+//                @unlink("../" . $sql_thongtin["duongdantin"] . "/" . $sql_thongtin["icon_hover"]);
+                @unlink("../" . $sql_thongtin["duongdantin"] . "/thumb_" . $sql_thongtin["icon_hover"]);
+                @unlink("../" . $sql_thongtin["duongdantin"] . "/thumbnew_" . $sql_thongtin["icon_hover"]);
+            }
+        }
+
+        if ($dowload != false && $id > 0) {
+            $data['dowload'] = $dowload;
+            if ($id > 0 && is_array($sql_thongtin)) {
+//                @unlink("../datafiles/files/" . $sql_thongtin["dowload"]);
+            }
+        }
+    }else{
         $data['icon'] = $hinhanh;
-        if ($_REQUEST['anh_sp'] != '') {
-            $anh_sp = explode("x", $_REQUEST['anh_sp']);
-            $wid = $anh_sp[0];
-            $hig = $anh_sp[1];
-            TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, $wid, $hig, "images/trang_" . $wid . "_" . $hig . ".png");
-        } else {
-            TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, 500, 500);
-        }
-        TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumbnew_" . $hinhanh, 300, 300);
-        if ($id > 0 && is_array($sql_thongtin)) {
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/" . $sql_thongtin["icon"]);
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/thumb_" . $sql_thongtin["icon"]);
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/thumbnew_" . $sql_thongtin["icon"]);
-        }
-    }
-    
-    if ($icon_hover != false) {
         $data['icon_hover'] = $icon_hover;
-        if ($_REQUEST['anh_sp'] != '') {
-            $anh_sp = explode("x", $_REQUEST['anh_sp']);
-            $wid = $anh_sp[0];
-            $hig = $anh_sp[1];
-            TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, $wid, $hig, "images/trang_" . $wid . "_" . $hig . ".png");
-        } else {
-            TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, 500, 500, "images/trang_500_500.png");
-        }
-        TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumbnew_" . $icon_hover, 300, 300);
-
-        if ($id > 0 && is_array($sql_thongtin)) {
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/" . $sql_thongtin["icon_hover"]);
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/thumb_" . $sql_thongtin["icon_hover"]);
-            @unlink("../" . $sql_thongtin["duongdantin"] . "/thumbnew_" . $sql_thongtin["icon_hover"]);
-        }
-    }
-
-    if ($dowload != false && $id > 0) {
         $data['dowload'] = $dowload;
-        if ($id > 0 && is_array($sql_thongtin)) {
-            @unlink("../datafiles/files/" . $sql_thongtin["dowload"]);
-        }
     }
+
 
     //update mu nguyen lieu
-    $bc_ctiet_pmutn                        = UPLOAD_file("bc_ctiet_pmutn", "../datafiles/files/", time());
-    $bc_ctiet_pmunm                        = UPLOAD_file("bc_ctiet_pmunm", "../datafiles/files/", time());
-    $bc_ctiet_pmunt                        = UPLOAD_file("bc_ctiet_pmunt", "../datafiles/files/", time());
+    if($upckfinder != true){
+        $bc_ctiet_pmutn                        = UPLOAD_file("bc_ctiet_pmutn", "../datafiles/files/", time());
+        $bc_ctiet_pmunm                        = UPLOAD_file("bc_ctiet_pmunm", "../datafiles/files/", time());
+        $bc_ctiet_pmunt                        = UPLOAD_file("bc_ctiet_pmunt", "../datafiles/files/", time());
+
+    }else{
+        $bc_ctiet_pmutn                        = $bc_ctiet_pmutn  ;
+        $bc_ctiet_pmunm                        = $bc_ctiet_pmunm ;
+        $bc_ctiet_pmunt                        = $bc_ctiet_pmunt  ;
+
+    }
+
     if($step == 5){ //mu nguyen lieu
         if($bc_ctiet_pmutn != false) {
             $data['bc_ctiet_pmutn'] = $bc_ctiet_pmutn;
@@ -341,8 +363,14 @@ if (!empty($_POST)) {
                 $v          = $k_arr[1];
                 $check      = DB_que("SELECT * FROM `#_baiviet_select_tinhnang` WHERE `id_baiviet` = '$id' AND `id_tinhnang` = '$k' AND `id_val` = '".$v."' LIMIT 1");
 
+                if($upckfinder != true){
+                    $hinhanh = UPLOAD_image("upload_file_".$key, "../" . $duongdantin . "/", time());
 
-                $hinhanh = UPLOAD_image("upload_file_".$key, "../" . $duongdantin . "/", time());
+                }else{
+                    $hinhanh = $upload_file_.$key;
+
+                }
+
                 if(!DB_num($check)) {
                     if(!$hinhanh) $hinhanh = "";
                     DB_que("INSERT INTO `#_baiviet_select_tinhnang` (`id_baiviet`,`id_tinhnang`,`id_val`, `showhi`, `duongdantin`, `icon`) VALUES ('$id', '$k', '$v', 1, '$duongdantin', '$hinhanh')");

@@ -110,8 +110,12 @@
                                                     <a onclick="IMPORT_data('<?=$ida ?>')" class="cur" style="cursor: pointer;">[Import dữ liệu]</a>
                                                 </td>
                                                 <td>
-                                                    <a href="../<?=$duongdantin ?>/<?=$file_excel ?>" download><?=$file_excel ?></a>
-                                                    <?=!is_file("../$duongdantin/$file_excel") ? '<span style="font-size: 12px; color: #f43636;">(File không tồn tại)<span>' : '' ?>
+                                                    <?php
+                                                    $url_excel = str_replace('files/', '', $file_excel);
+                                                    ?>
+                                                    <a href="../<?=$duongdantin ?>/<?=$url_excel ?>" download><?= $url_excel?></a>
+
+                                                    <?=!is_file("../$duongdantin/files/$url_excel") ? '<span style="font-size: 12px; color: #f43636;">(File không tồn tại)<span>' : '' ?>
                                                     <p style="font-size: 12px; margin-top: 3px; color: #989797;">Số lần import <b><?=$so_lan_import ?></b>. <br/>Import cuối: <?=($import_cuoi != 0) ? date('d-m-Y H:i:s', $import_cuoi) : "" ?></p>
                                                 </td>
                                                 <td class="text-center">

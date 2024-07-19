@@ -22,16 +22,32 @@ if (isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit'
                     $_SESSION['show_message_on'] = 'Xóa dữ liệu [<strong>' . $del_name . '</strong>] thành công';
                 }
             } else {
-                $icon = $_POST["icon_$i"];
-                $data = array();
-                if ($icon != "") {
-                    $data['icon'] = $icon;
-                    $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='$idofme' LIMIT 1");
-                    $sql_thongtin = DB_arr($sql_thongtin, 1);
-                    @unlink("../" . $sql_thongtin["duongdantin"] . "/" . $sql_thongtin["icon"]);
-                    @unlink("../" . $sql_thongtin["duongdantin"] . "/thumb_" . $sql_thongtin["icon"]);
+                if($upckfinder != true){
+                    $hinhanh      = UPLOAD_image("upload_$i", "../".$duongdantin."/", time());
+                    $data         = array();
+                    if($hinhanh != false)
+                    {
+                        $data['icon'] = $hinhanh;
+                        TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 300, 300);
+
+                        $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
+                        $sql_thongtin = DB_arr($sql_thongtin, 1);
+                        @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                        @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                    }
+                }else{
+                    $icon = $_POST["icon_$i"];
+                    $data = array();
+                    if ($icon != "") {
+                        $data['icon'] = $icon;
+                        $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='$idofme' LIMIT 1");
+                        $sql_thongtin = DB_arr($sql_thongtin, 1);
+
+
+                    }
                 }
                 ACTION_db($data, $table, 'update', NULL, "`id` = '$idofme' ");
+
             }
         }
         $_SESSION['show_message_on'] = 'Cập nhật dữ liệu thành công!';
@@ -106,6 +122,14 @@ if (isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit'
                                                 <p class="p_lang_en"><?=$tenbaiviet_en ?></p>
                                             </div>
                                         </td>
+                                        <?php if($upckfinder != true){ ?>
+                                        <td class="text-center">
+                                            <img class='img_show_ds' src='<?=$full_icon?>'>
+                                            <?php if(isset($_SESSION['admin'])){ ?>
+                                                <input type="file" name="upload_<?=$cl?>">
+                                            <?php } ?>
+                                        </td>
+                                        <?php }else{ ?>
                                         <td class="text-center">
                                             <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($icon) ? 'display: block' : 'display: none'?>" id="img_icon_<?=$cl?>">
 
@@ -114,6 +138,7 @@ if (isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit'
                                                 <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
                                             <?php } ?>
                                         </td>
+                                        <?php } ?>
                                         <td class="text-center cls_hide">
                                             <div id="cus" class="cus_menu">
                                                 <label><input is_top type='checkbox' class='minimal minimal_click' colum="is_top" idcol="<?=$ida ?>" table="<?=$table ?>" value='1' <?=LAY_checked($is_top, 1)?>></label>

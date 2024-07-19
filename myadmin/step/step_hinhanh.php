@@ -5,7 +5,12 @@
 <div class="dv-anh-chitiet-img-cont">
   <div class="dv-anh-chitiet-img">
     <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-    <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+     <?php if($upckfinder != true){ ?>
+         <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+      <?php }else{ ?>
+         <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+      <?php } ?>
+
     <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
   </div>
 </div>
@@ -17,7 +22,12 @@
 <div class="dv-anh-chitiet-img-cont">
   <div class="dv-anh-chitiet-img">
     <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-    <input type="file" name="icon_hover" id="input_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon_hover','input_icon_hover');">
+      <?php if($upckfinder != true){ ?>
+          <input type="file" name="icon_hover" id="input_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon_hover','input_icon_hover');">
+      <?php }else{ ?>
+          <input type="text" name="icon_hover" id="input_icon_hover" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon_hover', 'icon_hover');" value="<?= $icon_hover ?>">
+      <?php }?>
+
     <img src="<?=@$full_icon_hover  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon_hover) && $full_icon_hover != "") echo "display: block"; else echo "display: none" ?>" id="img_icon_hover">
   </div>
 </div>
@@ -55,11 +65,24 @@
 </div>
 <?php } ?>
 <?php if(in_array($step, $st_dowload_fl)){ ?>
-<div class="form-group">
-<label for="exampleInputFile">File Dowload: <span>Chỉ upload 1 file [*.pdf] [*.docx] [*.rar] [*.zip] [*.xlsx] dung lượng file tối đa 10MB.</span></label>
-<input name="dowload" type="file" class="form-control" id="exampleInputFile">
-<p style="padding: 0"><?=!empty($dowload) ? '<a href="../datafiles/files/'.$dowload.'" download>'.$dowload.'</a>' : '' ?></p>
-</div>
+    <div class="form-group">
+        <label for="exampleInputFile">File Dowload:
+            <span>Chỉ upload 1 file [*.pdf] [*.docx] [*.rar] [*.zip] [*.xlsx] dung lượng file tối đa 10MB.</span><br>
+        </label>
+        <?php if ($upckfinder != true) { ?>
+            <input name="dowload" type="file" class="form-control" id="exampleInputFile">
+        <?php } else { ?>
+        <div>
+            <button type="button" class="btn btn-primary" onclick="selectFileWithCKFinder('exampleInputFile', 'dowload');">
+                Chọn file
+            </button>
+            <input type="hidden" name="dowload" id="exampleInputFile" value="<?= isset($dowload) ? $dowload : '' ?>">        <?php } ?>
+        <p style="padding: 0" id="dowload">
+            <?= !empty($dowload) ? '<a href="../datafiles/files/' . $dowload . '" download>' . $dowload . '</a>' : '' ?>
+        </p>
+        </div>
+    </div>
+
 <?php } ?>
 <?php if(in_array($step, $array_only_bv)){ ?>
 <div class="form-group">
