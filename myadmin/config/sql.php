@@ -17,7 +17,10 @@
 	$_SESSION['sub_demo_check'] = false;
 	$_SESSION['thumuc']  		= $_SESSION['sub_demo']."datafiles";
 	$php_vs 					= 7; //"5.6"; // 7
-    $upckfinder                 = true;
+
+
+
+
 
 	if($_SERVER['HTTP_HOST'] 	!= 'localhost' && $_SERVER['HTTP_HOST'] != $check_fl_domain ) {
 		$_SESSION['thumuc']  		= "datafiles";
@@ -89,7 +92,8 @@
 		$is_myadmin = "on";
 	}
 
-	include("function.php");
+
+include("function.php");
 	include("redis.php");
 
 

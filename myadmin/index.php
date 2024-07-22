@@ -47,7 +47,11 @@
     if($rows['id'] == 63) $sl_quanlybaiviet= explode(",", $rows['ten_key']);
     if($rows['id'] == 62) $name_list_opti = $rows['ten_key'];
   }
-
+if($thongtin['upload_ckfinder'] == 1) {
+    $upckfinder = true;
+} else {
+    $upckfinder = false;
+}
   include _source.'post.php';
   //check login IP
   // if(!empty($_SESSION['luluwebproadmin'])) {

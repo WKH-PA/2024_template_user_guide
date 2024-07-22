@@ -209,10 +209,27 @@
       $uri .= '&js_thuoctinh='.$js_thuoctinh;
     }
 
-    if($s_ksearch != ""){
-      $mo  .=  " AND (`tenbaiviet_vi` LIKE '%".$s_ksearch."%' OR `tenbaiviet_en` LIKE '%".$s_ksearch."%')";
-      $uri .= '&ksearch='.str_replace(" ", "+", $s_ksearch);
-    }
+
+//
+//    if($s_ksearch != ""){
+//      $mo  .=  " AND (`tenbaiviet_vi` LIKE '%".$s_ksearch."%' OR `tenbaiviet_en` LIKE '%".$s_ksearch."%')";
+//      $uri .= '&ksearch='.str_replace(" ", "+", $s_ksearch);
+//    }
+      if ($s_ksearch != "") {
+          // Phân tích từ khóa thành các phần nhỏ hơn
+          $key_parts = explode(' ', strtolower($s_ksearch));
+          $mo = " AND (";
+
+          foreach ($key_parts as $part) {
+              $mo .= "LOWER(`tenbaiviet_vi`) LIKE '%" . $part . "%' OR LOWER(`tenbaiviet_en`) LIKE '%" . $part . "%' OR ";
+          }
+
+          // Loại bỏ phần " OR " cuối cùng và đóng ngoặc
+          $mo = rtrim($mo, " OR ") . ")";
+          $uri .= '&ksearch=' . str_replace(" ", "+", $s_ksearch);
+      }
+
+
 
     if($s_chude != 0 ){
 

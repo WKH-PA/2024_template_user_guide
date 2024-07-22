@@ -50,6 +50,7 @@
     $data['is_lang']            = isset($_POST['is_lang']) ? 1 : 0;
     $data['is_saochep']         = isset($_POST['is_saochep']) ? 1 : 0;
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
+    $data['upload_ckfinder']    = isset($_POST['upload_ckfinder']) ? 1 : 0;
 
 
 
@@ -287,6 +288,10 @@
 
               <label class="mr-20 checkbox-mini">
                   <input type="checkbox" name="show_zalo" class="minimal minimal_click" <?=isset($show_zalo) && $show_zalo == 1 ? 'checked="checked"' : '' ?> colum="show_zalo" table="#_seo" idcol="1"> Bật Zalo
+              </label>
+
+              <label class="mr-20 checkbox-mini">
+                  <input type="checkbox" name="upload_ckfinder" class="minimal minimal_click" <?=isset($upload_ckfinder) && $upload_ckfinder == 1 ? 'checked="checked"' : '' ?> colum="upload_ckfinder" table="#_seo" idcol="1"> Bật upload_ckfinder
               </label>
           </div>
           <div class="form-group">
