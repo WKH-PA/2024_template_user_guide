@@ -26,7 +26,9 @@
 		$_SESSION['thumuc']  		= "datafiles";
 		$_SESSION['sub_demo_check'] = false;
 	}
-
+    if (!empty($_SESSION['userguide'])) {
+        $_SESSION['thumuc']  		= $_SESSION['sub_demo']."document/dataimg";
+    }
 	if($php_vs == "5.6") {
 		$glo_db   = @mysql_connect($db_localhost, $db_user, $db_pass);
 		if(is_string($glo_db)){
