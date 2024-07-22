@@ -122,23 +122,17 @@ if (isset($_GET['them-moi']) || (isset($_GET['edit']) && is_numeric($_GET['edit'
                                                 <p class="p_lang_en"><?=$tenbaiviet_en ?></p>
                                             </div>
                                         </td>
-                                        <?php if($upckfinder != true){ ?>
                                         <td class="text-center">
-                                            <img class='img_show_ds' src='<?=$full_icon?>'>
+                                        <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($icon) ? 'display: block' : 'display: none'?>" id="img_icon_<?=$cl?>">
                                             <?php if(isset($_SESSION['admin'])){ ?>
-                                                <input type="file" name="upload_<?=$cl?>">
-                                            <?php } ?>
-                                        </td>
-                                        <?php }else{ ?>
-                                        <td class="text-center">
-                                            <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($icon) ? 'display: block' : 'display: none'?>" id="img_icon_<?=$cl?>">
-
-                                            <?php if(isset($_SESSION['admin'])) { ?>
+                                                <?php if($upckfinder != true){ ?>
+                                                    <input type="file" name="upload_<?=$cl?>">
+                                                <?php }else{ ?>
                                                 <input type="hidden" name="icon_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
                                                 <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+                                                <?php } ?>
                                             <?php } ?>
                                         </td>
-                                        <?php } ?>
                                         <td class="text-center cls_hide">
                                             <div id="cus" class="cus_menu">
                                                 <label><input is_top type='checkbox' class='minimal minimal_click' colum="is_top" idcol="<?=$ida ?>" table="<?=$table ?>" value='1' <?=LAY_checked($is_top, 1)?>></label>

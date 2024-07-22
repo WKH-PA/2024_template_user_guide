@@ -99,9 +99,6 @@ if ($id > 0) {
                                     <button type="button" class="btn btn-primary" onclick="selectFileWithCKFinder('file_excel');">Chọn file</button>
                                     <input type="hidden" name="file_excel" id="file_excel" value="<?= !empty($file_excel) ? $file_excel : '' ?>">
                                     <?php } ?>
-                                    <p style="padding: 0" id="file_excel">
-                                        <?= !empty($file_excel) ? '<a href="../datafiles/' . $file_excel . '" download>' . $file_excel . '</a>' : '' ?>
-                                    </p>
                                     <?= !empty($file_excel) ? "<p style='font-size: 12px; margin-top: 5px;'>$file_excel " . (!is_file("../" . $duongdantin . "/" . $file_excel) ? "<span style='font-weight: 500; color: #ec2626;'>(File không tồn tại)</span>" : "<a href='" . $file_excel_url . "' download>[Tải về]</a>") . "</p>" : '' ?>
                                 </div>
 

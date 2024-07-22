@@ -27,18 +27,26 @@
       $data['showhi']           = @$showhi;
       $data['duongdantin']    = @$duongdantin; 
       $data['id_user']          = @$id_user;
-      $hinhanh              = UPLOAD_image("icon", "../".$duongdantin."/", time());
-      if($hinhanh)
-        {
-          $data['icon']   = $hinhanh;
-          if($id > 0){
-            //xoa anh
-            $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
-            $sql_thongtin = DB_arr($sql_thongtin, 1);
-            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-            //end
+      if($upckfinder != true){
+          $hinhanh              = UPLOAD_image("icon", "../".$duongdantin."/", time());
+          if($hinhanh)
+          {
+              $data['icon']   = $hinhanh;
+              if($id > 0){
+                  //xoa anh
+                  $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
+                  $sql_thongtin = DB_arr($sql_thongtin, 1);
+                  @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                  //end
+              }
           }
-        }
+      }else{
+          $hinhanh              = $icon;
+          if($hinhanh)
+          {
+              $data['icon']   = $hinhanh;
+          }
+      }
 
       if($id  == 0){
         $id = ACTION_db($data, $table, 'add',NULL,NULL);
@@ -49,8 +57,8 @@
       }
       LOCATION_js($url_page."&edit=".$id);
       exit();
-      
-      
+
+
   }
 
   if($id > 0){
@@ -61,14 +69,17 @@
       ${$key} = $value;
     }
     $catasort         = number_format($catasort,0,',','.');
-    if($icon != '') 
-        $icon   = "<img src='../$duongdantin/$icon' width='255' height='auto' style='display:block'>";    
+      if ($icon != '') {
+          $full_icon  = $fullpath."/".$duongdantin."/".$icon;
+      }
+
   }
   else 
   {
     $catasort   = layCatasort($table);
     $catasort   = number_format(SHOW_text($catasort),0,',','.');
   }
+
 ?>
 <section class="content-header">
     <h1>Danh sách hỗ trợ</h1> 
@@ -139,10 +150,22 @@
             <label>Skype</label>
             <input type="text" class="form-control" name="note" value="<?=(isset($note)) ? $note : ''?>">
           </div>
-          <div class="form-group">
             <label for="exampleInputFile">Hình ảnh</label>
-            <?=!empty($icon) ? $icon : '' ?>
-            <input name="icon" type="file" class="form-control" id="exampleInputFile">
+          <div class="form-group">
+              <td class="text-center">
+                  <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($icon) ? 'display: block' : 'display: none'?>" id="img_icon">
+                  <?php if(isset($_SESSION['admin'])){ ?>
+                      <?php if($upckfinder != true){ ?>
+                          <input type="file" name="icon">
+                      <?php }else{ ?>
+                          <input type="hidden" name="icon" id="input_icon" value="<?= $icon ?>">
+                          <button type="button" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" class="btn btn-primary">Chọn hình</button>
+                      <?php } ?>
+                  <?php } ?>
+              </td>
+
+          </div>
+
           </div>
           <div class="form-group" style="display: none">
             <label>Nằm trong</label>

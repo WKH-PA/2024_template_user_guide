@@ -17,13 +17,7 @@
     }
   if(!empty($_POST))
     {
-        if($upckfinder != true){
-            $hinhanh                = UPLOAD_image("icon", "../".$duongdantin."/", time());
-            $icon_hover                = UPLOAD_image("icon_hover", "../".$duongdantin."/", time());
-        }else{
-            $hinhanh                = $icon;
-            $icon_hover             = $icon_hover;
-        }
+
 
       $data                   = array();
       $data['catasort']       = is_numeric(@$catasort) ? @$catasort : 0;
@@ -45,26 +39,41 @@
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$_GET['edit']."' LIMIT 1");
         $sql_thongtin = DB_arr($sql_thongtin, 1);
       }
+        if($upckfinder != true){
+            $hinhanh                = UPLOAD_image("icon", "../".$duongdantin."/", time());
+            $icon_hover                = UPLOAD_image("icon_hover", "../".$duongdantin."/", time());
+            if($hinhanh != false) {
+                $data['icon']     = $hinhanh;
+                TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, 200, 200);
+                if($id > 0 && is_array($sql_thongtin)){
+                    @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                    @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                    //end
+                }
+            }
+            if($icon_hover != false) {
+                $data['icon_hover']     = $icon_hover;
+                TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, 200, 200);
+                if($id > 0 && is_array($sql_thongtin)){
+                    @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon_hover"]);
+                    @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon_hover"]);
+                }
+            }
+
+        }else{
+            $hinhanh                = $icon;
+            $icon_hover             = $icon_hover;
+            if($hinhanh != false) {
+                $data['icon']     = $hinhanh;
+
+            }
+            if($icon_hover != false) {
+                $data['icon_hover']     = $icon_hover;
+
+            }
+        }
 
 
-      if($hinhanh != false) {
-        $data['icon']     = $hinhanh;
-        TAO_anhthumb("../" . $duongdantin . "/" . $hinhanh, "../" . $duongdantin . "/thumb_" . $hinhanh, 200, 200);
-        if($id > 0 && is_array($sql_thongtin)){
-              @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-              @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-            //end
-          }
-        }
-      if($icon_hover != false) {
-        $data['icon_hover']     = $icon_hover;
-        TAO_anhthumb("../" . $duongdantin . "/" . $icon_hover, "../" . $duongdantin . "/thumb_" . $icon_hover, 200, 200);
-        if($id > 0 && is_array($sql_thongtin)){
-            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon_hover"]);
-            @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon_hover"]);
-          }
-        }
-      
       if($id == 0){
         $id = ACTION_db($data, $table , 'add', NULL,NULL);
         $_SESSION['show_message_on'] =  "Thêm menu thành công!";
@@ -83,10 +92,12 @@
         ${$key} = SHOW_text($value);
       }
       $catasort         = number_format($catasort,0,',','.');
-      if ($icon != '') {
-        $full_icon  = $fullpath."/".$duongdantin."/".$icon;
+      if($hinhanh != '') {
+
+          $full_icon  = $fullpath."/".$duongdantin."/".$icon;
       }
-      if ($icon_hover != '') {
+      if($icon_hover != '') {
+
           $full_icon_hover    = $fullpath."/".$duongdantin."/".$icon_hover;
       }
     }
@@ -95,6 +106,7 @@
       $catasort   = layCatasort($table);
       $catasort   = number_format(SHOW_text($catasort),0,',','.');
     }
+
 ?>
 <style>
   .nhom_module_menu_hide{display: none !important}

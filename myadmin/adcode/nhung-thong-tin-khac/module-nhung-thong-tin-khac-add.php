@@ -24,26 +24,30 @@
       $data['noidung_jp']     = @$noidung_jp;
       $data['seo_name']       = @$seo_name;
       $data['duongdantin']    = @$duongdantin;
-      if($upckfinder != true){
-          $hinhanh        = UPLOAD_image("icon", "../".$duongdantin."/", time());
-      }else{
-          $hinhanh        = $icon;
-      }
-
 
       if($id > 0){
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
         $sql_thongtin = DB_arr($sql_thongtin, 1);
       }
-      if($hinhanh != false)
-        {
-          $data['icon']   = $hinhanh;
-          TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500); 
-          if($id > 0 && is_array($sql_thongtin)){
-            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-            @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-          }
+        if($upckfinder != true){
+            $hinhanh        = UPLOAD_image("icon", "../".$duongdantin."/", time());
+            if($hinhanh != false)
+            {
+                $data['icon']   = $hinhanh;
+                TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 500, 500);
+                if($id > 0 && is_array($sql_thongtin)){
+                    @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                    @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                }
+            }
+        }else{
+            $hinhanh        = $icon;
+            if($hinhanh != false)
+            {
+                $data['icon']   = $hinhanh;
+            }
         }
+
         if($id == 0){
           $id = ACTION_db($data, $table , 'add', NULL, NULL);
           $_SESSION['show_message_on'] =  "Thêm thông tin khác thành công!";
@@ -181,20 +185,17 @@
             <?=admin_input_text("is_hinhanh_size", @$is_hinhanh_size, "#_seo_name", @$id) ?>
             <label for="exampleInputFile2">Hình ảnh <?=@$is_hinhanh_size ?></label>
             <div class="dv-anh-chitiet-img-cont">
-                <?php  if($upckfinder != true){ ?>
                 <div class="dv-anh-chitiet-img">
                     <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                <?php  if($upckfinder != true){ ?>
                     <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
                     <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
-                </div>
                 <?php }else{ ?>
-                <div class="dv-anh-chitiet-img">
-                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
                   <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
                   <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
-              </div>
-                <?php } ?>
 
+                <?php } ?>
+                </div>
             </div>
           </div>
           <?php } ?>

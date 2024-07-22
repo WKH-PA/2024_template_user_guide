@@ -17,25 +17,36 @@
                 //
                 }
                 else{
-                      $hinhanh      = UPLOAD_image("upload_$i", "../".$duongdantin."/", time());
-                      $data         = array();
-                      if($hinhanh != false)
-                      {
-                        $data['icon'] = $hinhanh;
-                        $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
-                        $sql_thongtin = DB_arr($sql_thongtin, 1);
-                        @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-                      }
-                      ACTION_db($data, $table, 'update', NULL, "`id` = '$idofme' ");
-                      
+                    if($upckfinder != true){
+                        $hinhanh      = UPLOAD_image("upload_$i", "../".$duongdantin."/", time());
+                        $data         = array();
+                        if($hinhanh != false)
+                        {
+                            $data['icon'] = $hinhanh;
+                            $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
+                            $sql_thongtin = DB_arr($sql_thongtin, 1);
+                            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                        }
+                    }else{
+                        $hinhanh      = $_POST["icon_$i"];
+                        $data         = array();
+                        if($hinhanh != false)
+                        {
+                            $data['icon'] = $hinhanh;
+                            $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
+                            $sql_thongtin = DB_arr($sql_thongtin, 1);
+                        }
                     }
+                      ACTION_db($data, $table, 'update', NULL, "`id` = '$idofme' ");
+                    }
+
             }
             $_SESSION['show_message_on'] = 'Cập nhật dữ liệu thành công!';
       }
 ?>
 
 <section class="content-header">
-    <h1><?php if(isset($_SESSION['admin'])){ ?><a onclick="LOAD_sort()" class="cur load_okkk">[SORT]</a> <?php } ?>Danh sách hỗ trợ</h1> 
+    <h1><?php if(isset($_SESSION['admin'])){ ?><a onclick="LOAD_sort()" class="cur load_okkk">[SORT]</a> <?php } ?>Danh sách hỗ trợ</h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
         <li class="active">Danh sách hỗ trợ</li>
@@ -70,7 +81,7 @@
                         <table class="table table-hover table-danhsach">
                             <tbody>
                                 <tr>
-                                    
+
                                     <th class="w80 text-center">STT</th>
                                     <th>Tên hỗ trợ</th>
                                     <th class="w100 text-center">Hình ảnh</th>
@@ -86,16 +97,19 @@
                                 $sql_array  = DB_arr($sql);
 
                                 $cl         = 0;
-                                foreach ($sql_array as $rows) { 
+                                foreach ($sql_array as $rows) {
                                     if($rows['id_user'] != 0) continue;
                                     $ida              = $rows['id'];
                                     foreach ($rows as $key => $value) {
                                         ${$key} = $value;
                                     }
                                     $cl++;
+                                    if($icon != ''){
+                                        $full_icon = "../$duongdantin/$icon";
+                                    }
                             ?>
                                 <tr>
-                                    
+
                                     <td class="text-center">
                                         <input name="idme<?=$cl?>" value="<?=$ida?>" type="hidden">
                                         <input type="text" class="text-center" value="<?=$catasort ?>" onchange="UPDATE_colum(this, '<?=$ida ?>', 'catasort','<?=$table ?> ')">
@@ -112,10 +126,15 @@
                                         <?php } ?>
                                     </td>
                                     <td class="text-center">
-                                      <img class='img_show_ds' src='<?=$fullpath."/".$rows['duongdantin']."/".$icon ?>'>
-                                      <?php if(isset($_SESSION['admin'])){ ?>
-                                      <input type="file" name="upload_<?=$cl?>">
-                                      <?php } ?>
+                                        <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($icon) ? 'display: block' : 'display: none'?>" id="img_icon_<?=$cl?>">
+                                        <?php if(isset($_SESSION['admin'])){ ?>
+                                            <?php if($upckfinder != true){ ?>
+                                                <input type="file" name="upload_<?=$cl?>">
+                                            <?php }else{ ?>
+                                                <input type="hidden" name="icon_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
+                                                <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </td>
                                     <td class="text-center">
                                       <div id="cus" class="cus_menu">
@@ -124,19 +143,22 @@
                                     </td>
                                     <td class="text-center">
                                         <input name='xoa_gr_arr_<?=$cl?>' type='checkbox' class='minimal cls_showxoa'>
-                                    </td> 
+                                    </td>
                                 </tr>
                                 <?php
-                                foreach ($sql_array as $rows_1) { 
+                                foreach ($sql_array as $rows_1) {
                                     if($rows_1['id_user'] != $rows['id']) continue;
                                     $ida_1              = $rows_1['id'];
                                     foreach ($rows_1 as $key  => $value) {
                                         ${$key.'_1'}          = SHOW_text($value);
                                       }
                                     $cl++;
+                                    if($icon != ''){
+                                        $full_icon = "../$duongdantin/$icon";
+                                    }
                                 ?>
                                 <tr>
-                                    
+
                                     <td class="text-center">
                                         <input name="idme<?=$cl?>" value="<?=$ida_1 ?>" type="hidden">
                                         <input type="text" class="text-center" value="<?=$catasort_1 ?>" onchange="UPDATE_colum(this, '<?=$ida_1 ?>', 'catasort','<?=$table ?> ')">
@@ -152,12 +174,17 @@
                                                 <input name='coppy_row<?=$cl?>' type='checkbox' class='minimal'> [Coppy]
                                             </label>
                                         <?php } ?>
-                                    </td> 
+                                    </td>
                                     <td class="text-center">
-                                      <img class='img_show_ds' src='<?=$fullpath."/".$rows_1['duongdantin']."/".$rows_1['icon'] ?>'>
-                                      <?php if(isset($_SESSION['admin'])){ ?>
-                                      <input type="file" name="upload_<?=$cl?>">
-                                      <?php } ?>
+                                        <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($icon) ? 'display: block' : 'display: none'?>" id="img_icon_<?=$cl?>">
+                                        <?php if(isset($_SESSION['admin'])){ ?>
+                                            <?php if($upckfinder != true){ ?>
+                                                <input type="file" name="upload_<?=$cl?>">
+                                            <?php }else{ ?>
+                                                <input type="hidden" name="icon_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
+                                                <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </td>
                                     <td class="text-center">
                                       <div id="cus" class="cus_menu">
@@ -166,9 +193,9 @@
                                     </td>
                                     <td class="text-center">
                                         <input name='xoa_gr_arr_<?=$cl?>' type='checkbox' class='minimal cls_showxoa'>
-                                    </td> 
+                                    </td>
                                 </tr>
-                                <?php }} ?> 
+                                <?php }} ?>
                             </tbody>
                         </table>
                         <input type='hidden' value='<?=$cl?>' name='maxvalu'>

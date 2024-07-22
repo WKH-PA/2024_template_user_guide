@@ -37,30 +37,45 @@
       $data['ngaydang']     = time();
       $data['catasort']     = is_numeric($catasort) ? $catasort : 0;
 
-      $hinhanh              = UPLOAD_image("icon", "../".$duongdantin."/", time());
-      $video                = UPLOAD_file("video", "../datafiles/files/", time());
+
+
 
       if($id > 0){
         $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$id."' LIMIT 1");
         $sql_thongtin = DB_arr($sql_thongtin, 1);
       }
-      if ($video) {
-        $data['video']     = $video;
-        if($id > 0 && is_array($sql_thongtin)){
-          @unlink("../datafiles/files/".$sql_thongtin["video"]);
-        }
-      }
-
-      if($hinhanh) {
-          $data['icon']   = $hinhanh;
-          TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 300, 300);
-          if($id > 0 && is_array($sql_thongtin)){
-
-            @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-            @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-
+      if($upckfinder != true){
+          $video                = UPLOAD_file("video", "../datafiles/files/", time());
+          if ($video) {
+              $data['video']     = $video;
+              if($id > 0 && is_array($sql_thongtin)){
+                  @unlink("../datafiles/files/".$sql_thongtin["video"]);
+              }
           }
-        }
+          $hinhanh              = UPLOAD_image("icon", "../".$duongdantin."/", time());
+          if($hinhanh) {
+              $data['icon']   = $hinhanh;
+              TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 300, 300);
+              if($id > 0 && is_array($sql_thongtin)){
+
+                  @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                  @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+
+              }
+          }
+      }else{
+          $video                = $video;
+          if ($video) {
+              $data['video']     = $video;
+          }
+          $hinhanh              = $icon;
+          if($hinhanh) {
+              $data['icon']   = $hinhanh;
+          }
+      } if($icon != '') {
+        $full_icon   = "../$duongdantin/$icon";
+    }
+
       if($id == 0){
         $id = ACTION_db($data, $table , 'add', NULL,NULL);
         $_SESSION['show_message_on'] =  "Thêm hình ảnh thành công!";
@@ -83,15 +98,14 @@
       $catasort         = number_format($catasort,0,',','.');
 
 
-      if($icon != '') {
-        $full_icon   = "../$duongdantin/$icon";
-      }
+
     }
   else
     {
       $catasort   = layCatasort($table, " `id_parent` = '$id_parent'");
       $catasort   = number_format(SHOW_text($catasort),0,',','.');
     }
+
 ?>
 
 <section class="content-header">
@@ -219,9 +233,15 @@
             <label for="exampleInputFile2">Hình ảnh (<?=$loaibanner['rong'].'x'.$loaibanner['cao'].'px' ?>)</label>
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
-                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
-                <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                  <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                  <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                  <?php if($upckfinder != true){ ?>
+                      <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
+                  <?php }else{ ?>
+                      <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                  <?php } ?>
+
+
               </div>
             </div>
           </div>
@@ -261,10 +281,16 @@
             if($danhsach_hinhanh_video){
           ?>
           <div class="form-group">
-            <label for="exampleInputFile">Video <a data-tooltip="Chỉ upload 1 file [*.mp4] dung lượng file tối đa 10MB. Chỉ áp dụng cho vide banner"> </a></label>
-            <?=!empty($video) ? '</br>'.$video : '' ?>
-            <input name="video" type="file" class="form-control" id="exampleInputFile">
-            <label style=" margin-top: 10px; margin-bottom: 0;"><input type="checkbox" class="minimal" name="check_video" value="1" <?=LAY_checked(@$check_video, 1) ?>> Ưu tiên chạy video</label>
+              <label for="exampleInputFile">Video <a data-tooltip="Chỉ upload 1 file [*.mp4] dung lượng file tối đa 10MB. Chỉ áp dụng cho vide banner"> </a></label>
+              <?php if($upckfinder != true){ ?>
+                  <?=!empty($video) ? '</br>'.$video : '' ?>
+                  <input name="video" type="file" class="form-control" id="exampleInputFile">
+                  <label style=" margin-top: 10px; margin-bottom: 0;"><input type="checkbox" class="minimal" name="check_video" value="1" <?=LAY_checked(@$check_video, 1) ?>> Ưu tiên chạy video</label>
+              <?php }else{ ?>
+                  <input type="hidden" name="video" id="input_video" value="<?= $video ?>">
+                  <button type="button" onclick="selectFileWithCKFinder('input_video', 'video');" class="btn btn-primary">Chọn video</button>
+              <?php } ?>
+
           </div>
           <?php } ?>
           <?php if($loaibanner['is_lienket'] == 1 || !empty($_SESSION['admin'])){ ?>

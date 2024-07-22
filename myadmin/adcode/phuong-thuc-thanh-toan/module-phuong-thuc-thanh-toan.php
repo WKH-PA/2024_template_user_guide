@@ -34,19 +34,27 @@
             //
           }else{
             if(isset($_SESSION['admin'])){
+                if($upckfinder != true){
+                    $hinhanh            = UPLOAD_image("icon$i", "../".$duongdantin."/", time());
+                    if($hinhanh != false){
+                        $wh       = "`icon`='$hinhanh',`duongdantin`='$duongdantin'";
+                        TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 200, 200);
+                        //xoa anh
+                        $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
+                        $sql_thongtin = DB_arr($sql_thongtin, 1);
+                        @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+                        @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
+                        //end
+                        DB_que("UPDATE `$table` SET  $wh WHERE `id`='$idofme' limit 1");
+                    }
+                }else{
+                    $hinhanh            = $_POST["icon_$i"];
+                    if($hinhanh != false){
+                        $wh       = "`icon`='$hinhanh',`duongdantin`='$duongdantin'";
+                        DB_que("UPDATE `$table` SET  $wh WHERE `id`='$idofme' limit 1");
+                    }
+                }
 
-              $hinhanh            = UPLOAD_image("icon$i", "../".$duongdantin."/", time());
-              if($hinhanh != false){
-                $wh       = "`icon`='$hinhanh',`duongdantin`='$duongdantin'";
-                TAO_anhthumb("../".$duongdantin."/".$hinhanh, "../".$duongdantin."/thumb_".$hinhanh, 200, 200); 
-                //xoa anh
-                $sql_thongtin = DB_que("SELECT * FROM `$table` WHERE `id`='".$idofme."' LIMIT 1");
-                $sql_thongtin = DB_arr($sql_thongtin, 1);
-                @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-                @unlink("../".$sql_thongtin["duongdantin"]."/thumb_".$sql_thongtin["icon"]);
-                //end
-                DB_que("UPDATE `$table` SET  $wh WHERE `id`='$idofme' limit 1");       
-              }     
             }
           }
       }
@@ -141,7 +149,10 @@
                                 ${$key} = $value;
                               }
                               $catasort           = number_format($catasort,0,',','.');
-                   
+
+                                if($icon != ''){
+                                    $full_icon = "../$duongdantin/$icon";
+                                }
 
                           ?>
                           <tr>
@@ -162,12 +173,19 @@
                               </label>
                               <?php } ?>
                             </td>
-                            <td class="text-center">
-                              <img class='img_show_ds' src='<?=$fullpath."/".$rows['duongdantin']."/".$icon ?>'>
-                              <?php if(isset($_SESSION['admin'])){ ?>
-                              <input name="icon<?=$cl?>" type="file" class="form-control" id="exampleInputFile">
+                              <td class="text-center">
+                                  <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?=!empty($full_icon) ? 'display: block' : 'display: none'?>" id="img_icon_<?=$cl?>">
+                                <?php if($upckfinder != true){ ?>
+                                  <?php if(isset($_SESSION['admin'])){ ?>
+                                      <input name="icon<?=$cl?>" type="file" class="form-control" id="exampleInputFile">
+                                  <?php } ?>
+                              <?php }else{ ?>
+                                      <?php if(isset($_SESSION['admin'])) { ?>
+                                          <input type="hidden" name="icon_<?=$cl?>" id="input_icon_<?=$cl?>" value="<?= $icon ?>">
+                                          <button type="button" onclick="selectFileWithCKFinder('input_icon_<?=$cl?>', 'img_icon_<?=$cl?>');" class="btn btn-primary">Chọn hình</button>
+                                      <?php } ?>
                               <?php } ?>
-                            </td>
+                              </td>
                             <td class="text-center">
                               <div id="cus" class="cus_menu">
                                 <label><input showhi type='checkbox' class='minimal minimal_click' colum="showhi" idcol="<?=$ida ?>" table="<?=$table ?>" value='1' <?=LAY_checked($showhi, 1)?>></label>
