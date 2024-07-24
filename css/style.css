@@ -2931,10 +2931,10 @@ ul.menu-footer .new_id_bs ul a:hover {
     margin-bottom: 20px;
     line-height: 33px;
 }
-.col-md-5 {
-    width: 41.66666667%;
-    float: left;
-}
+/*.col-md-5 {*/
+/*    width: 41.66666667%;*/
+/*    float: left;*/
+/*}*/
 .col-md-5 img {
     width: 100%;
 }

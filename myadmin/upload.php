@@ -1,6 +1,7 @@
 <?php
-include("myadmin/config/sql.php");
-include "vendor/autoload.php";
+
+include("config/sql.php");
+include "../vendor/autoload.php";
 // Lấy dữ liệu từ cơ sở dữ liệu
 $result = DB_que("SELECT `api_kraken` FROM `#_seo` LIMIT 1");
 $sql_se = DB_arr($result, 1);
@@ -8,7 +9,6 @@ $sql_se = DB_arr($result, 1);
 $json_data = $sql_se['api_kraken'] ?? '[]'; // Đảm bảo rằng biến có giá trị hợp lệ
 // Giải mã dữ liệu JSON
 $api_keys = json_decode($json_data, true);
-
 
 // Hàm để tạo đối tượng Kraken nếu thông tin API hợp lệ
 function createKrakenInstance($api_key, $api_secret) {
@@ -33,8 +33,6 @@ foreach (range(1, 5) as $group_number) {
         }
     }
 }
-echo $api_key;
-echo $api_secret;
 
 //$kraken = new Kraken("11514c60bb216e287a2b6f357663f8e9", "e64668f982d3b443cbaa0cf0034aeb1dff2da906");
 $localDirectory = '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img'; // Local directory path
@@ -44,6 +42,7 @@ echo $webDirectory;
 // Get the list of images from the local directory
 $images = glob($localDirectory . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 $totalImages = count($images);
+
 // Function to process an image
 function processImage($kraken, $imagePath, $webDirectory) {
     $imageName = basename($imagePath);
@@ -86,32 +85,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
+echo $api_key;
+echo $api_secret;
 ?>
 <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        #progress-container {
-            width: 100%;
-            background-color: #f3f3f3;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 20px auto;
-            max-width: 600px;
-            padding: 5px;
-        }
-        #progress-bar {
-            height: 30px;
-            width: 0;
-            background-color: #4caf50;
-            border-radius: 5px;
-        }
-        #status {
-            margin-top: 10px;
-        }
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+    }
+    #progress-container {
+        width: 100%;
+        background-color: #f3f3f3;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 20px auto;
+        max-width: 600px;
+        padding: 5px;
+    }
+    #progress-bar {
+        height: 30px;
+        width: 0;
+        background-color: #4caf50;
+        border-radius: 5px;
+    }
+    #status {
+        margin-top: 10px;
+    }
+</style>
 
 <h1>Image Optimization Progress</h1>
 <div id="status">

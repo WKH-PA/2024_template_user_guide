@@ -52,7 +52,40 @@ if(!empty($_POST))
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
     $data['upload_ckfinder']    = isset($_POST['upload_ckfinder']) ? 1 : 0;
 
+//    $api_keys = [
+//        'group_1' => ['api_key' => $_POST['api_key_1'], 'api_secret' => $_POST['api_secret_1']],
+//        'group_2' => ['api_key' => $_POST['api_key_2'], 'api_secret' => $_POST['api_secret_2']],
+//        'group_3' => ['api_key' => $_POST['api_key_3'], 'api_secret' => $_POST['api_secret_3']],
+//        'group_4' => ['api_key' => $_POST['api_key_4'], 'api_secret' => $_POST['api_secret_4']],
+//        'group_5' => ['api_key' => $_POST['api_key_5'], 'api_secret' => $_POST['api_secret_5']],
+//    ];
 
+    // Lấy dữ liệu từ POST, kiểm tra sự tồn tại trước
+    $api_keys = [
+        'group_1' => ['api_key' => $_POST['api_key_1'] ?? '', 'api_secret' => $_POST['api_secret_1'] ?? ''],
+        'group_2' => ['api_key' => $_POST['api_key_2'] ?? '', 'api_secret' => $_POST['api_secret_2'] ?? ''],
+        'group_3' => ['api_key' => $_POST['api_key_3'] ?? '', 'api_secret' => $_POST['api_secret_3'] ?? ''],
+        'group_4' => ['api_key' => $_POST['api_key_4'] ?? '', 'api_secret' => $_POST['api_secret_4'] ?? ''],
+        'group_5' => ['api_key' => $_POST['api_key_5'] ?? '', 'api_secret' => $_POST['api_secret_5'] ?? ''],
+    ];
+
+    $json_data = json_encode($api_keys);
+    $data['api_kraken'] = $json_data;
+
+    $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
+    $sql_thongtin = DB_arr($sql_thongtin, 1);
+
+
+
+    ACTION_db($data, '#_seo', 'update', NULL, "1 = 1");
+    $_SESSION['show_message_on'] = "Cập nhật dữ liệu thành công!";
+    $sql_se = DB_que("SELECT * FROM `#_seo` LIMIT 1");
+    $sql_se = DB_arr($sql_se, 1);
+    $api_keys = json_decode($sql_se['api_kraken'], true) ?: [];
+
+
+
+// Xử lý tệp tin icon và favico nếu có
 
     $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
     $sql_thongtin = DB_arr($sql_thongtin, 1);
@@ -332,6 +365,44 @@ if($favico != ''){
                 </div>
             </section>
             <section class="col-lg-12">
+                <div class="box p10" style="margin-top: 10px; ">
+                        <!-- Group API Keys and Secrets -->
+                        <?php
+                        for ($i = 1; $i <= 5; $i++) {
+                            $api_key = htmlspecialchars($api_keys["group_$i"]['api_key'] ?? '');
+                            $api_secret = htmlspecialchars($api_keys["group_$i"]['api_secret'] ?? '');
+
+                            ?>
+                            <div style="margin-bottom: 10px;">
+                                <div style="margin-bottom: 10px;">
+                                    <strong>Group <?= $i ?></strong>
+                                </div>
+
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div style="flex: 1; margin-right: 10px;">
+                                        <label for="api_key_<?= $i ?>">API Key:</label>
+                                        <input type="text" style="width: 100%;" name="api_key_<?= $i ?>" id="api_key_<?= $i ?>" value="<?= $api_key ?>" />
+                                    </div>
+
+                                    <div style="flex: 1;">
+                                        <label for="api_secret_<?= $i ?>">API Secret:</label>
+                                        <input type="text" style="width: 100%;" name="api_secret_<?= $i ?>" id="api_secret_<?= $i ?>" value="<?= $api_secret ?>" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        <?php } ?>
+                </div>
+            </section>
+
+
+
+
+    </section>
+
+            <section class="col-lg-12">
                 <div class="box p10" style="margin-top: 10px">
                     <div class="form-group" stylw=" margin-bottom: 5px;">
                         <label for="exampleInputFile">Code Header</label>
@@ -346,7 +417,6 @@ if($favico != ''){
                 </div>
             </section>
         </div>
-        <?php include "../test.php";?>>
     </section>
     <div class="box-header mb-60">
         <h3 class="box-title box-title-td pull-right">
