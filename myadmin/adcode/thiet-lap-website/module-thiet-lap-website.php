@@ -50,34 +50,25 @@
     $data['is_lang']            = isset($_POST['is_lang']) ? 1 : 0;
     $data['is_saochep']         = isset($_POST['is_saochep']) ? 1 : 0;
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
-    $data['upload_ckfinder']    = isset($_POST['upload_ckfinder']) ? 1 : 0;
 
+
+      $pattern = '#^/2024_template_user_guide/datafiles/#';
+      $icon = preg_replace($pattern, '', $icon);
+      $favico = preg_replace($pattern, '', $favico);
 
 
       $sql_thongtin = DB_que("SELECT * FROM `#_seo` LIMIT 1");
-      $sql_thongtin = DB_arr($sql_thongtin, 1);
-      if($upckfinder != true){
-          $icon                       = UPLOAD_image("icon", "../".$duongdantin."/", time());
-          $favico                     = UPLOAD_image("favico", "../".$duongdantin."/", time());
-          if($icon != ''){
-              $data['icon']             = $icon;
-              @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
-          }
-          if($favico != ''){
-              $data['favico']           = $favico;
-              @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["favico"]);
-          }
-      }else{
-          $icon                       = $icon;
-          if($icon != ''){
-              $data['icon']             = $icon;
-          }
-          $favico                     = $favico;
-          if($favico != ''){
-              $data['favico']           = $favico;
-          }
-      }
+    $sql_thongtin = DB_arr($sql_thongtin, 1);
 
+    if($icon != ''){
+      $data['icon']             = $icon;
+      @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["icon"]);
+    }
+
+    if($favico != ''){
+      $data['favico']           = $favico;
+      @unlink("../".$sql_thongtin["duongdantin"]."/".$sql_thongtin["favico"]);
+    }
 
     ACTION_db($data, '#_seo','update',NULL,"1 = 1");
     $_SESSION['show_message_on'] = "Cập nhật dữ liệu thành công!";
@@ -211,48 +202,54 @@
       </section>
       <section class="col-lg-12">
         <div class="box p10">
+<!--          <div class="form-group">-->
+<!--            <label for="exampleInputFile2">Logo</label>-->
+<!--            <div class="dv-anh-chitiet-img-cont">-->
+<!--              <div class="dv-anh-chitiet-img">-->
+<!--                <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>-->
+<!--                <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">-->
+<!--                <img src="--><?//=@$full_icon  ?><!--" alt="" class="img_chile_dangtin" style="--><?php //if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?><!--" id="img_icon">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="exampleInputFile2">Favico</label>-->
+<!--                    <div class="dv-anh-chitiet-img-cont">-->
+<!--                        <div class="dv-anh-chitiet-img">-->
+<!--                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>-->
+<!--                            <input type="file" name="favico" id="input_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon_hover','input_icon_hover');">-->
+<!--                            <img src="--><?//=@$full_icon_hover  ?><!--" alt="" class="img_chile_dangtin" style="--><?php //if(!empty($full_icon_hover) && $full_icon_hover != "") echo "display: block"; else echo "display: none" ?><!--" id="img_icon_hover">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
             <div class="form-group">
                 <label for="exampleInputFile2">Logo</label>
                 <div class="dv-anh-chitiet-img-cont">
                     <div class="dv-anh-chitiet-img">
                         <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-            <?php if ($upckfinder != true) { ?>
-                            <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon', 'input_icon');">
-                            <img src="<?=@$full_icon ?>" alt="" class="img_chile_dangtin" style="<?php if (!empty($full_icon)) echo 'display: block'; else echo 'display: none'; ?>" id="img_icon">
-                        </div>
+                        <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
+                        <img src="<?=@$full_icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($icon) && $icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputFile2">Favico</label>
-                    <div class="dv-anh-chitiet-img-cont">
-                        <div class="dv-anh-chitiet-img">
-                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                            <input type="file" name="favico" id="input_icon_hover" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon_hover', 'input_icon_hover');">
-                            <img src="<?=@$full_icon_hover ?>" alt="" class="img_chile_dangtin" style="<?php if (!empty($full_icon_hover)) echo 'display: block'; else echo 'display: none'; ?>" id="img_icon_hover">
-            <?php } else { ?>
-                            <input type="text" name="icon" id="input_icon" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_icon', 'img_icon');" value="<?= $icon ?>">
-                            <img src="<?=@$full_icon ?>" alt="" class="img_chile_dangtin" style="<?php if (!empty($icon)) echo 'display: block'; else echo 'display: none'; ?>" id="img_icon">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile2">Favico</label>
-                    <div class="dv-anh-chitiet-img-cont">
-                        <div class="dv-anh-chitiet-img">
-                            <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                            <input type="text" name="favico" id="input_favico" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_favico', 'img_favico');" value="<?= $favico ?>">
-                            <img src="<?=@$full_icon_hover ?>" alt="" class="img_chile_dangtin" style="<?php if (!empty($favico)) echo 'display: block'; else echo 'display: none'; ?>" id="img_favico">
-            <?php } ?>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
+            </div>
             <div class="form-group">
+                <label for="exampleInputFile2">Favico</label>
+                <div class="dv-anh-chitiet-img-cont">
+                    <div class="dv-anh-chitiet-img">
+                        <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
+                        <input type="text" name="favico" id="input_favico" class="cls_hinhanh" onclick="selectFileWithCKFinder('input_favico', 'img_favico');" value="<?= $favico ?>">
+                        <img src="<?=@$full_icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($favico) && $favico != "") echo "display: block"; else echo "display: none" ?>" id="img_favico">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+          <div class="form-group">
             <label>Số điện thoại</label>
             <input type="text" class="form-control" name="sodienthoai_vi" value="<?=$sodienthoai_vi ?>">
           </div>
@@ -288,10 +285,6 @@
 
               <label class="mr-20 checkbox-mini">
                   <input type="checkbox" name="show_zalo" class="minimal minimal_click" <?=isset($show_zalo) && $show_zalo == 1 ? 'checked="checked"' : '' ?> colum="show_zalo" table="#_seo" idcol="1"> Bật Zalo
-              </label>
-
-              <label class="mr-20 checkbox-mini">
-                  <input type="checkbox" name="upload_ckfinder" class="minimal minimal_click" <?=isset($upload_ckfinder) && $upload_ckfinder == 1 ? 'checked="checked"' : '' ?> colum="upload_ckfinder" table="#_seo" idcol="1"> Bật upload_ckfinder
               </label>
           </div>
           <div class="form-group">
