@@ -76,7 +76,6 @@ class Kraken {
 
     private function request($data, $url, $type) {
         $curl = curl_init();
-
         if ($type === 'url') {
             curl_setopt($curl, CURLOPT_HTTPHEADER, array(
                 'Content-Type: application/json'
@@ -91,7 +90,7 @@ class Kraken {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_FAILONERROR, 0);
-        curl_setopt($curl, CURLOPT_CAINFO, __DIR__ . "/cacert.pem");
+//        curl_setopt($curl, CURLOPT_CAINFO, __DIR__ . "/cacert.pem");
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
 

@@ -123,11 +123,11 @@
       <path value="$PROJECT_DIR$/kraken-io-php-sdk-master/vendor/ergebnis/json-schema-validator" />
       <path value="$PROJECT_DIR$/kraken-io-php-sdk-master/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/kraken-io-php-sdk-master/vendor/localheinz/diff" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/kraken-io/kraken-php" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7">
-    <option name="suggestChangeDefaultLanguageLevel" value="false" />
-  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7" />
   <component name="PhpUnit">
     <phpunit_settings>
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/kraken-io-php-sdk-master/vendor/autoload.php" />
