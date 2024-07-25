@@ -51,7 +51,7 @@ if(!empty($_POST))
     $data['is_saochep']         = isset($_POST['is_saochep']) ? 1 : 0;
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
     $data['upload_ckfinder']    = isset($_POST['upload_ckfinder']) ? 1 : 0;
-
+    $data['sl_toiuu']           = $sl_toiuu;
 //    $api_keys = [
 //        'group_1' => ['api_key' => $_POST['api_key_1'], 'api_secret' => $_POST['api_secret_1']],
 //        'group_2' => ['api_key' => $_POST['api_key_2'], 'api_secret' => $_POST['api_secret_2']],
@@ -279,12 +279,6 @@ if($favico != ''){
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <input type="text" class="form-control" name="sodienthoai_vi" value="<?=$sodienthoai_vi ?>">
@@ -339,6 +333,7 @@ if($favico != ''){
                         <label for="exampleInputFile"> Popup Facebook URL</label>
                         <input type="text" class="form-control" name="url_fb" value="<?=$url_fb ?>">
                     </div>
+
                     <div class="form-group">
                         <label for="exampleInputFile">Popup Zalo URL</label>
                         <input type="text" class="form-control" name="url_zalo" value="<?=$url_zalo ?>">
@@ -390,11 +385,13 @@ if($favico != ''){
                                     </div>
                                 </div>
                             </div>
-
-
-
                         <?php } ?>
+                    <div class="form-group">
+                        <label>Số lượng hình ảnh tối ưu </label>
+                        <input type="text" class="form-control" name="sl_toiuu" value="<?=$sl_toiuu?>">
+                    </div>
                 </div>
+
             </section>
 
 

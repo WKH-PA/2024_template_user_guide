@@ -2920,5 +2920,118 @@ function admin_check($is_mota = 0){
         return preg_replace($search, $replace, $buffer);
 
     }
-    
+// Hàm để tạo đối tượng Kraken nếu thông tin API hợp lệ
+function getValidKrakenInstance() {
+	$result = DB_que("SELECT `api_kraken` FROM `#_seo` LIMIT 1");
+	$sql_se = DB_arr($result, 1);
+	$json_data = $sql_se['api_kraken'] ?? '[]'; // Ensure valid JSON data
+	$api_keys = json_decode($json_data, true);
+
+	foreach (range(1, 5) as $group_number) {
+		$group_key = 'group_' . $group_number;
+		if (isset($api_keys[$group_key])) {
+			$api_key = $api_keys[$group_key]['api_key'];
+			$api_secret = $api_keys[$group_key]['api_secret'];
+
+			if ($api_key && $api_secret) {
+				$kraken = new Kraken($api_key, $api_secret);
+				if (checkQuota($kraken)) {
+					return $kraken;
+				}
+			}
+		}
+	}
+	return null; // Return null if no valid Kraken instance is found
+}
+
+function checkQuota($kraken) {
+	$response = $kraken->status(); // Assuming `status` is the method to check quota
+	return $response['quota_remaining'] > 0;
+}
+
+
+function getImagesFromDirectory($directory) {
+	$images = []; // Mảng để lưu trữ các tệp hình ảnh
+	$files = glob($directory . '/*'); // Lấy tất cả các tệp và thư mục trong thư mục được chỉ định
+
+	foreach ($files as $file) { // Duyệt qua từng tệp và thư mục
+		if (is_dir($file)) { // Nếu là thư mục
+			$images = array_merge($images, getImagesFromDirectory($file)); // Gọi đệ quy để lấy hình ảnh từ thư mục con
+		} else { // Nếu là tệp
+			if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $file)) { // Kiểm tra xem tệp có phải là hình ảnh không (theo đuôi tệp)
+				$images[] = $file; // Nếu đúng, thêm tệp vào mảng hình ảnh
+			}
+		}
+	}
+
+	return $images; // Trả về mảng hình ảnh
+}
+function update_db_optimized_img($localDirectory) {
+	$table = '#_optimized_img';
+	$images = getImagesFromDirectory($localDirectory);
+
+	// Thực hiện thêm hoặc cập nhật dữ liệu vào cơ sở dữ liệu
+	foreach ($images as $image_path) {
+		// Xử lý dữ liệu trước khi thêm vào cơ sở dữ liệu
+		$current_date = date('Y-m-d H:i:s'); // Ngày hiện tại
+		$data = [
+			'image_path' => $image_path, // Đường dẫn hình ảnh
+			'status' => 0,               // Trạng thái ban đầu là 0 (chưa xử lý)
+			'date' => $current_date,     // Ngày thêm vào
+			'updated' => $current_date,  // Ngày cập nhật
+			'error' => ''                // Lỗi ban đầu là rỗng
+		];
+
+		// Kiểm tra xem image_path đã tồn tại chưa
+		$existing_record = DB_que("SELECT * FROM `$table` WHERE `image_path` = '$image_path' LIMIT 1");
+
+		if (DB_num($existing_record) > 0) {
+			// Nếu tồn tại, cập nhật bản ghi
+			$existing_record = DB_arr($existing_record, 1);
+			$id = $existing_record['id'];
+
+			// Cập nhật ngày cập nhật
+			$data['updated'] = $current_date;
+
+			// Cập nhật bản ghi trong cơ sở dữ liệu
+			ACTION_db($data, $table, 'update', NULL, "`id` = $id");
+		} else {
+			// Nếu không tồn tại, thêm bản ghi mới
+			ACTION_db($data, $table, 'add', NULL, NULL);
+		}
+	}
+}
+
+
+// Function to process an image
+function processImage($kraken, $imagePath, $webDirectory) {
+	$imageName = basename($imagePath);
+	$Url = dirname($imagePath);
+	$imageUrl = $webDirectory . '/' . $imageName;
+
+	// Create parameters for Kraken
+	$params = array(
+		"url" => $imageUrl,
+		"wait" => true
+	);
+
+	// Send request to Kraken
+	$data = $kraken->url($params);
+
+	if ($data['success']) {
+		$optimizedImageUrl = $data['kraked_url'];
+		$optimizedImageContent = file_get_contents($optimizedImageUrl);
+		// Delete the uploaded image
+		if (file_exists($imagePath)) {
+			unlink($imagePath);
+		}
+		// Save the optimized image file with the original name
+		file_put_contents($Url . '/' . $imageName, $optimizedImageContent);
+		return true;
+	} else {
+		$error_message = isset($data['message']) ? $data['message'] : 'Unknown error';
+		error_log("Kraken error: " . $error_message); // Ghi lỗi vào log
+		return false;
+	}
+}
 ?>
