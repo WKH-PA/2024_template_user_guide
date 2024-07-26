@@ -18,9 +18,11 @@
 	$_SESSION['thumuc']  		= $_SESSION['sub_demo']."datafiles";
 	$php_vs 					= 7; //"5.6"; // 7
 
-
-
-
+    if($_SERVER['HTTP_HOST'] 	== 'localhost') {
+        $webDirectory = "https://webdemo5.pavietnam.vn/document/datafiles";
+    }else{
+        $webDirectory = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $_SESSION['thumuc']   ;
+    }
 
 	if($_SERVER['HTTP_HOST'] 	!= 'localhost' && $_SERVER['HTTP_HOST'] != $check_fl_domain ) {
 		$_SESSION['thumuc']  		= "datafiles";

@@ -2986,15 +2986,15 @@ function update_db_optimized_img($localDirectory) {
 		$existing_record = DB_que("SELECT * FROM `$table` WHERE `image_path` = '$image_path' LIMIT 1");
 
 		if (DB_num($existing_record) > 0) {
-			// Nếu tồn tại, cập nhật bản ghi
-			$existing_record = DB_arr($existing_record, 1);
-			$id = $existing_record['id'];
-
-			// Cập nhật ngày cập nhật
-			$data['updated'] = $current_date;
-
-			// Cập nhật bản ghi trong cơ sở dữ liệu
-			ACTION_db($data, $table, 'update', NULL, "`id` = $id");
+//			// Nếu tồn tại, cập nhật bản ghi
+//			$existing_record = DB_arr($existing_record, 1);
+//			$id = $existing_record['id'];
+//
+//			// Cập nhật ngày cập nhật
+//			$data['updated'] = $current_date;
+//
+//			// Cập nhật bản ghi trong cơ sở dữ liệu
+//			ACTION_db($data, $table, 'update', NULL, "`id` = $id");
 		} else {
 			// Nếu không tồn tại, thêm bản ghi mới
 			ACTION_db($data, $table, 'add', NULL, NULL);
@@ -3027,11 +3027,22 @@ function processImage($kraken, $imagePath, $webDirectory) {
 		}
 		// Save the optimized image file with the original name
 		file_put_contents($Url . '/' . $imageName, $optimizedImageContent);
-		return true;
+		return [
+			'success' => true
+		];
 	} else {
-		$error_message = isset($data['message']) ? $data['message'] : 'Unknown error';
-		error_log("Kraken error: " . $error_message); // Ghi lỗi vào log
-		return false;
+		$error_message = isset($data['message']) ? $data['message'] : 'Kraken API request failed.';
+		$error_code = isset($data['error_code']) ? $data['error_code'] : null;
+
+		// Ghi log lỗi chi tiết hơn
+		error_log("Kraken error: " . $error_message . ' (Error code: ' . $error_code . ')');
+
+		// Trả về mảng chứa thông tin lỗi
+		return [
+			'success' => false,
+			'message' => $error_message,
+			'error_code' => $error_code
+		];
 	}
 }
 ?>

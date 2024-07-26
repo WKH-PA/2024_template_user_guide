@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 22, 2024 at 11:32 AM
+-- Generation Time: Jul 26, 2024 at 12:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -28,67 +28,67 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `lh_baiviet` (
-                              `id` int(11) NOT NULL,
-                              `id_user` int(11) NOT NULL DEFAULT 0,
-                              `id_parent` int(11) NOT NULL DEFAULT 0,
-                              `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                              `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                              `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                              `mota_vi` text DEFAULT NULL,
-                              `mota_en` text DEFAULT NULL,
-                              `mota_cn` text DEFAULT NULL,
-                              `noidung_vi` text DEFAULT NULL,
-                              `noidung_en` text DEFAULT NULL,
-                              `noidung_cn` text DEFAULT NULL,
-                              `tags_vi` varchar(255) DEFAULT NULL,
-                              `tags_en` varchar(255) DEFAULT NULL,
-                              `tags_cn` varchar(255) DEFAULT NULL,
-                              `seo_name` varchar(250) DEFAULT NULL,
-                              `id_parent_muti` varchar(255) DEFAULT NULL,
-                              `catasort` int(11) NOT NULL DEFAULT 0,
-                              `icon` varchar(255) DEFAULT NULL,
-                              `icon_hover` varchar(255) DEFAULT NULL,
-                              `dowload` varchar(255) DEFAULT NULL,
-                              `duongdantin` varchar(255) NOT NULL DEFAULT 'datafiles/setone',
-                              `ngaydang` int(11) NOT NULL DEFAULT 0,
-                              `capnhat` int(11) NOT NULL DEFAULT 0,
-                              `soluotxem` int(11) NOT NULL DEFAULT 1,
-                              `step` tinyint(3) NOT NULL DEFAULT 1,
-                              `giatien` bigint(11) NOT NULL DEFAULT 0,
-                              `giakm` bigint(11) NOT NULL DEFAULT 0,
-                              `seo_title_vi` varchar(255) DEFAULT NULL,
-                              `seo_title_en` varchar(255) DEFAULT NULL,
-                              `seo_title_cn` varchar(255) DEFAULT NULL,
-                              `seo_keywords_vi` varchar(255) DEFAULT NULL,
-                              `seo_keywords_en` varchar(255) DEFAULT NULL,
-                              `seo_keywords_cn` varchar(255) DEFAULT NULL,
-                              `seo_description_vi` varchar(255) DEFAULT NULL,
-                              `seo_description_en` varchar(255) DEFAULT NULL,
-                              `seo_description_cn` varchar(255) DEFAULT NULL,
-                              `opt_km` tinyint(1) NOT NULL DEFAULT 0,
-                              `opt` tinyint(1) NOT NULL DEFAULT 0,
-                              `opt1` tinyint(1) NOT NULL DEFAULT 0,
-                              `opt2` tinyint(1) NOT NULL DEFAULT 0,
-                              `top_video` tinyint(4) NOT NULL DEFAULT 0,
-                              `p1` varchar(255) DEFAULT NULL,
-                              `p2` int(11) NOT NULL DEFAULT 0,
-                              `p3` varchar(255) DEFAULT NULL,
-                              `link_video` varchar(255) DEFAULT NULL,
-                              `num_1` int(11) NOT NULL DEFAULT 0,
-                              `num_2` int(11) NOT NULL DEFAULT 0,
-                              `num_3` int(11) NOT NULL DEFAULT 0,
-                              `num_4` int(11) NOT NULL DEFAULT 0,
-                              `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                              `tinh_nang` text DEFAULT NULL,
-                              `thuoc_tinh_1_vi` varchar(255) DEFAULT NULL,
-                              `thuoc_tinh_1_en` varchar(255) DEFAULT NULL,
-                              `thuoc_tinh_2_vi` varchar(255) DEFAULT NULL,
-                              `thuoc_tinh_2_en` varchar(255) DEFAULT NULL,
-                              `thuoc_tinh_3_vi` varchar(255) DEFAULT NULL,
-                              `thuoc_tinh_3_en` varchar(255) DEFAULT NULL,
-                              `gia_tri_1_vi` varchar(255) DEFAULT NULL,
-                              `gia_tri_2_vi` varchar(255) DEFAULT NULL,
-                              `gia_tri_3_vi` varchar(255) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `mota_vi` text DEFAULT NULL,
+  `mota_en` text DEFAULT NULL,
+  `mota_cn` text DEFAULT NULL,
+  `noidung_vi` text DEFAULT NULL,
+  `noidung_en` text DEFAULT NULL,
+  `noidung_cn` text DEFAULT NULL,
+  `tags_vi` varchar(255) DEFAULT NULL,
+  `tags_en` varchar(255) DEFAULT NULL,
+  `tags_cn` varchar(255) DEFAULT NULL,
+  `seo_name` varchar(250) DEFAULT NULL,
+  `id_parent_muti` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `icon` varchar(255) DEFAULT NULL,
+  `icon_hover` varchar(255) DEFAULT NULL,
+  `dowload` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) NOT NULL DEFAULT 'datafiles/setone',
+  `ngaydang` int(11) NOT NULL DEFAULT 0,
+  `capnhat` int(11) NOT NULL DEFAULT 0,
+  `soluotxem` int(11) NOT NULL DEFAULT 1,
+  `step` tinyint(3) NOT NULL DEFAULT 1,
+  `giatien` bigint(11) NOT NULL DEFAULT 0,
+  `giakm` bigint(11) NOT NULL DEFAULT 0,
+  `seo_title_vi` varchar(255) DEFAULT NULL,
+  `seo_title_en` varchar(255) DEFAULT NULL,
+  `seo_title_cn` varchar(255) DEFAULT NULL,
+  `seo_keywords_vi` varchar(255) DEFAULT NULL,
+  `seo_keywords_en` varchar(255) DEFAULT NULL,
+  `seo_keywords_cn` varchar(255) DEFAULT NULL,
+  `seo_description_vi` varchar(255) DEFAULT NULL,
+  `seo_description_en` varchar(255) DEFAULT NULL,
+  `seo_description_cn` varchar(255) DEFAULT NULL,
+  `opt_km` tinyint(1) NOT NULL DEFAULT 0,
+  `opt` tinyint(1) NOT NULL DEFAULT 0,
+  `opt1` tinyint(1) NOT NULL DEFAULT 0,
+  `opt2` tinyint(1) NOT NULL DEFAULT 0,
+  `top_video` tinyint(4) NOT NULL DEFAULT 0,
+  `p1` varchar(255) DEFAULT NULL,
+  `p2` int(11) NOT NULL DEFAULT 0,
+  `p3` varchar(255) DEFAULT NULL,
+  `link_video` varchar(255) DEFAULT NULL,
+  `num_1` int(11) NOT NULL DEFAULT 0,
+  `num_2` int(11) NOT NULL DEFAULT 0,
+  `num_3` int(11) NOT NULL DEFAULT 0,
+  `num_4` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `tinh_nang` text DEFAULT NULL,
+  `thuoc_tinh_1_vi` varchar(255) DEFAULT NULL,
+  `thuoc_tinh_1_en` varchar(255) DEFAULT NULL,
+  `thuoc_tinh_2_vi` varchar(255) DEFAULT NULL,
+  `thuoc_tinh_2_en` varchar(255) DEFAULT NULL,
+  `thuoc_tinh_3_vi` varchar(255) DEFAULT NULL,
+  `thuoc_tinh_3_en` varchar(255) DEFAULT NULL,
+  `gia_tri_1_vi` varchar(255) DEFAULT NULL,
+  `gia_tri_2_vi` varchar(255) DEFAULT NULL,
+  `gia_tri_3_vi` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='Bang chua catalag News' ROW_FORMAT=DYNAMIC;
 
 --
@@ -242,24 +242,24 @@ INSERT INTO `lh_baiviet` (`id`, `id_user`, `id_parent`, `tenbaiviet_vi`, `tenbai
 --
 
 CREATE TABLE `lh_baiviet_chitiet` (
-                                      `id` int(11) NOT NULL,
-                                      `id_parent` int(11) NOT NULL DEFAULT 0,
-                                      `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                      `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                      `noidung_vi` text DEFAULT NULL,
-                                      `noidung_en` text DEFAULT NULL,
-                                      `step` int(11) NOT NULL DEFAULT 0,
-                                      `seo_name` varchar(255) DEFAULT NULL,
-                                      `catasort` int(11) NOT NULL DEFAULT 0,
-                                      `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                      `duongdantin` varchar(255) DEFAULT NULL,
-                                      `icon` varchar(255) DEFAULT NULL,
-                                      `seo_title_vi` varchar(255) DEFAULT NULL,
-                                      `seo_title_en` varchar(255) DEFAULT NULL,
-                                      `seo_keywords_vi` varchar(255) DEFAULT NULL,
-                                      `seo_keywords_en` varchar(255) DEFAULT NULL,
-                                      `seo_description_vi` varchar(255) DEFAULT NULL,
-                                      `seo_description_en` varchar(255) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `noidung_vi` text DEFAULT NULL,
+  `noidung_en` text DEFAULT NULL,
+  `step` int(11) NOT NULL DEFAULT 0,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `seo_title_vi` varchar(255) DEFAULT NULL,
+  `seo_title_en` varchar(255) DEFAULT NULL,
+  `seo_keywords_vi` varchar(255) DEFAULT NULL,
+  `seo_keywords_en` varchar(255) DEFAULT NULL,
+  `seo_description_vi` varchar(255) DEFAULT NULL,
+  `seo_description_en` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -269,14 +269,14 @@ CREATE TABLE `lh_baiviet_chitiet` (
 --
 
 CREATE TABLE `lh_baiviet_img` (
-                                  `id` int(11) NOT NULL,
-                                  `id_parent` int(11) NOT NULL DEFAULT 0,
-                                  `icon` varchar(255) DEFAULT NULL,
-                                  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                  `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                  `sort` int(11) NOT NULL DEFAULT 0,
-                                  `duongdantin` varchar(255) DEFAULT NULL,
-                                  `the_loai` tinyint(4) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `icon` varchar(255) DEFAULT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `sort` int(11) NOT NULL DEFAULT 0,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `the_loai` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -317,13 +317,13 @@ INSERT INTO `lh_baiviet_img` (`id`, `id_parent`, `icon`, `tenbaiviet_vi`, `tenba
 --
 
 CREATE TABLE `lh_baiviet_sao` (
-                                  `id` int(11) NOT NULL,
-                                  `id_baiviet` int(11) NOT NULL DEFAULT 0,
-                                  `sao_1` int(11) NOT NULL DEFAULT 0,
-                                  `sao_2` int(11) NOT NULL DEFAULT 0,
-                                  `sao_3` int(11) NOT NULL DEFAULT 0,
-                                  `sao_4` int(11) NOT NULL DEFAULT 0,
-                                  `sao_5` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `id_baiviet` int(11) NOT NULL DEFAULT 0,
+  `sao_1` int(11) NOT NULL DEFAULT 0,
+  `sao_2` int(11) NOT NULL DEFAULT 0,
+  `sao_3` int(11) NOT NULL DEFAULT 0,
+  `sao_4` int(11) NOT NULL DEFAULT 0,
+  `sao_5` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -333,18 +333,18 @@ CREATE TABLE `lh_baiviet_sao` (
 --
 
 CREATE TABLE `lh_baiviet_select_tinhnang` (
-                                              `id` int(11) NOT NULL,
-                                              `id_baiviet` int(11) NOT NULL DEFAULT 0,
-                                              `id_tinhnang` int(11) NOT NULL DEFAULT 0,
-                                              `id_val` varchar(255) DEFAULT NULL,
-                                              `id_tinhnang_2` int(11) NOT NULL DEFAULT 0,
-                                              `gia` int(11) NOT NULL DEFAULT 0,
-                                              `mota_vi` varchar(255) DEFAULT NULL,
-                                              `mota_en` varchar(255) DEFAULT NULL,
-                                              `loaihienthi` tinyint(4) NOT NULL DEFAULT 0,
-                                              `duongdantin` varchar(255) DEFAULT NULL,
-                                              `icon` varchar(255) DEFAULT NULL,
-                                              `showhi` tinyint(1) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `id_baiviet` int(11) NOT NULL DEFAULT 0,
+  `id_tinhnang` int(11) NOT NULL DEFAULT 0,
+  `id_val` varchar(255) DEFAULT NULL,
+  `id_tinhnang_2` int(11) NOT NULL DEFAULT 0,
+  `gia` int(11) NOT NULL DEFAULT 0,
+  `mota_vi` varchar(255) DEFAULT NULL,
+  `mota_en` varchar(255) DEFAULT NULL,
+  `loaihienthi` tinyint(4) NOT NULL DEFAULT 0,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `showhi` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -401,13 +401,13 @@ INSERT INTO `lh_baiviet_select_tinhnang` (`id`, `id_baiviet`, `id_tinhnang`, `id
 --
 
 CREATE TABLE `lh_baiviet_thuoctinh` (
-                                        `id` bigint(20) NOT NULL,
-                                        `id_sp` int(11) NOT NULL DEFAULT 0,
-                                        `phien_ban` mediumtext DEFAULT NULL,
-                                        `gia` int(11) NOT NULL DEFAULT 0,
-                                        `catasort` int(11) NOT NULL DEFAULT 0,
-                                        `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                        `key_update` varchar(255) DEFAULT NULL
+  `id` bigint(20) NOT NULL,
+  `id_sp` int(11) NOT NULL DEFAULT 0,
+  `phien_ban` mediumtext DEFAULT NULL,
+  `gia` int(11) NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `key_update` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -417,27 +417,27 @@ CREATE TABLE `lh_baiviet_thuoctinh` (
 --
 
 CREATE TABLE `lh_baiviet_tinhnang` (
-                                       `id` int(11) NOT NULL,
-                                       `id_kietxuat` int(11) NOT NULL DEFAULT 0,
-                                       `id_parent` int(11) NOT NULL DEFAULT 0,
-                                       `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                       `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                       `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                                       `tenbaiviet_jp` varchar(255) DEFAULT NULL,
-                                       `catasort` int(11) NOT NULL DEFAULT 0,
-                                       `loai_hienthi` tinyint(4) NOT NULL DEFAULT 0,
-                                       `ma_mau` varchar(255) DEFAULT NULL,
-                                       `showhi` tinyint(4) NOT NULL DEFAULT 1,
-                                       `step` int(11) NOT NULL DEFAULT 0,
-                                       `val_min` int(11) NOT NULL DEFAULT 0,
-                                       `val_max` int(11) NOT NULL DEFAULT 0,
-                                       `tieu_bieu` tinyint(4) NOT NULL DEFAULT 0,
-                                       `noi_bat` tinyint(4) NOT NULL DEFAULT 0,
-                                       `tim_kiem` tinyint(4) NOT NULL DEFAULT 0,
-                                       `only_timkiem` tinyint(4) NOT NULL DEFAULT 0,
-                                       `duongdantin` varchar(255) DEFAULT NULL,
-                                       `icon` varchar(255) DEFAULT NULL,
-                                       `khong_xoa` tinyint(4) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `id_kietxuat` int(11) NOT NULL DEFAULT 0,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `loai_hienthi` tinyint(4) NOT NULL DEFAULT 0,
+  `ma_mau` varchar(255) DEFAULT NULL,
+  `showhi` tinyint(4) NOT NULL DEFAULT 1,
+  `step` int(11) NOT NULL DEFAULT 0,
+  `val_min` int(11) NOT NULL DEFAULT 0,
+  `val_max` int(11) NOT NULL DEFAULT 0,
+  `tieu_bieu` tinyint(4) NOT NULL DEFAULT 0,
+  `noi_bat` tinyint(4) NOT NULL DEFAULT 0,
+  `tim_kiem` tinyint(4) NOT NULL DEFAULT 0,
+  `only_timkiem` tinyint(4) NOT NULL DEFAULT 0,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `khong_xoa` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -464,29 +464,29 @@ INSERT INTO `lh_baiviet_tinhnang` (`id`, `id_kietxuat`, `id_parent`, `tenbaiviet
 --
 
 CREATE TABLE `lh_banner` (
-                             `id` int(12) NOT NULL,
-                             `id_danhmuc` int(11) NOT NULL DEFAULT 0,
-                             `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                             `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                             `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                             `mota_vi` varchar(255) DEFAULT NULL,
-                             `mota_en` varchar(255) DEFAULT NULL,
-                             `mota_cn` mediumtext DEFAULT NULL,
-                             `noidung_vi` mediumtext DEFAULT NULL,
-                             `noidung_en` mediumtext DEFAULT NULL,
-                             `noidung_cn` mediumtext DEFAULT NULL,
-                             `id_parent` int(11) DEFAULT NULL,
-                             `id_kietxuat` int(11) NOT NULL DEFAULT 0,
-                             `seo_name` varchar(255) DEFAULT NULL,
-                             `catasort` int(20) DEFAULT 0,
-                             `icon` varchar(200) DEFAULT NULL,
-                             `video` varchar(255) DEFAULT NULL,
-                             `check_video` tinyint(1) NOT NULL DEFAULT 0,
-                             `ngaydang` int(11) NOT NULL DEFAULT 0,
-                             `showhi` tinyint(2) NOT NULL DEFAULT 1,
-                             `duongdantin` varchar(200) DEFAULT NULL,
-                             `p1` varchar(255) DEFAULT NULL,
-                             `blank` varchar(255) DEFAULT NULL
+  `id` int(12) NOT NULL,
+  `id_danhmuc` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `mota_vi` varchar(255) DEFAULT NULL,
+  `mota_en` varchar(255) DEFAULT NULL,
+  `mota_cn` mediumtext DEFAULT NULL,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `noidung_en` mediumtext DEFAULT NULL,
+  `noidung_cn` mediumtext DEFAULT NULL,
+  `id_parent` int(11) DEFAULT NULL,
+  `id_kietxuat` int(11) NOT NULL DEFAULT 0,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `catasort` int(20) DEFAULT 0,
+  `icon` varchar(200) DEFAULT NULL,
+  `video` varchar(255) DEFAULT NULL,
+  `check_video` tinyint(1) NOT NULL DEFAULT 0,
+  `ngaydang` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(2) NOT NULL DEFAULT 1,
+  `duongdantin` varchar(200) DEFAULT NULL,
+  `p1` varchar(255) DEFAULT NULL,
+  `blank` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='Bang chua catalag News' ROW_FORMAT=DYNAMIC;
 
 --
@@ -519,17 +519,17 @@ INSERT INTO `lh_banner` (`id`, `id_danhmuc`, `tenbaiviet_vi`, `tenbaiviet_en`, `
 --
 
 CREATE TABLE `lh_banner_danhmuc` (
-                                     `id` int(11) NOT NULL,
-                                     `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                     `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                     `catasort` int(11) NOT NULL DEFAULT 0,
-                                     `showhi` tinyint(2) NOT NULL DEFAULT 1,
-                                     `ngaydang` int(15) NOT NULL DEFAULT 0,
-                                     `cao` varchar(255) DEFAULT NULL,
-                                     `rong` varchar(255) DEFAULT NULL,
-                                     `is_mota` tinyint(4) NOT NULL DEFAULT 0,
-                                     `is_noidung` tinyint(4) NOT NULL DEFAULT 0,
-                                     `is_lienket` tinyint(4) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(2) NOT NULL DEFAULT 1,
+  `ngaydang` int(15) NOT NULL DEFAULT 0,
+  `cao` varchar(255) DEFAULT NULL,
+  `rong` varchar(255) DEFAULT NULL,
+  `is_mota` tinyint(4) NOT NULL DEFAULT 0,
+  `is_noidung` tinyint(4) NOT NULL DEFAULT 0,
+  `is_lienket` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
@@ -559,18 +559,18 @@ INSERT INTO `lh_banner_danhmuc` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `cataso
 --
 
 CREATE TABLE `lh_binhluan` (
-                               `id` int(11) NOT NULL,
-                               `id_sp` int(11) NOT NULL DEFAULT 0,
-                               `id_parent` int(11) NOT NULL DEFAULT 0,
-                               `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                               `noidung_vi` mediumtext DEFAULT NULL,
-                               `ngay_dang` int(11) NOT NULL DEFAULT 0,
-                               `luot_thich` int(11) NOT NULL DEFAULT 0,
-                               `ip_gui` varchar(255) DEFAULT NULL,
-                               `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                               `is_nuti` tinyint(1) NOT NULL DEFAULT 0,
-                               `loai_binhluan` tinyint(4) NOT NULL DEFAULT 0,
-                               `uid` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `id_sp` int(11) NOT NULL DEFAULT 0,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `ngay_dang` int(11) NOT NULL DEFAULT 0,
+  `luot_thich` int(11) NOT NULL DEFAULT 0,
+  `ip_gui` varchar(255) DEFAULT NULL,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `is_nuti` tinyint(1) NOT NULL DEFAULT 0,
+  `loai_binhluan` tinyint(4) NOT NULL DEFAULT 0,
+  `uid` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -580,14 +580,14 @@ CREATE TABLE `lh_binhluan` (
 --
 
 CREATE TABLE `lh_clanguage` (
-                                `id` int(11) NOT NULL,
-                                `code_lang` varchar(255) DEFAULT NULL,
-                                `lang_vi` varchar(255) DEFAULT NULL,
-                                `lang_en` varchar(255) DEFAULT NULL,
-                                `lang_cn` varchar(255) DEFAULT NULL,
-                                `nhom` int(11) NOT NULL DEFAULT 0,
-                                `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                `lang_jp` varchar(255) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `code_lang` varchar(255) DEFAULT NULL,
+  `lang_vi` varchar(255) DEFAULT NULL,
+  `lang_en` varchar(255) DEFAULT NULL,
+  `lang_cn` varchar(255) DEFAULT NULL,
+  `nhom` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `lang_jp` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -928,8 +928,8 @@ INSERT INTO `lh_clanguage` (`id`, `code_lang`, `lang_vi`, `lang_en`, `lang_cn`, 
 --
 
 CREATE TABLE `lh_counter` (
-                              `id` int(11) NOT NULL,
-                              `coonter` double NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `coonter` double NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -937,7 +937,7 @@ CREATE TABLE `lh_counter` (
 --
 
 INSERT INTO `lh_counter` (`id`, `coonter`) VALUES
-(1, 109038);
+(1, 109065);
 
 -- --------------------------------------------------------
 
@@ -946,11 +946,11 @@ INSERT INTO `lh_counter` (`id`, `coonter`) VALUES
 --
 
 CREATE TABLE `lh_count_date` (
-                                 `id` int(11) NOT NULL,
-                                 `day` int(2) NOT NULL DEFAULT 0,
-                                 `month` int(2) NOT NULL DEFAULT 0,
-                                 `year` int(4) NOT NULL DEFAULT 0,
-                                 `count` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `day` int(2) NOT NULL DEFAULT 0,
+  `month` int(2) NOT NULL DEFAULT 0,
+  `year` int(4) NOT NULL DEFAULT 0,
+  `count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -987,7 +987,10 @@ INSERT INTO `lh_count_date` (`id`, `day`, `month`, `year`, `count`) VALUES
 (27, 16, 7, 2024, 20),
 (28, 17, 7, 2024, 13),
 (29, 19, 7, 2024, 12),
-(30, 22, 7, 2024, 15);
+(30, 22, 7, 2024, 15),
+(31, 23, 7, 2024, 4),
+(32, 24, 7, 2024, 19),
+(33, 25, 7, 2024, 4);
 
 -- --------------------------------------------------------
 
@@ -996,57 +999,57 @@ INSERT INTO `lh_count_date` (`id`, `day`, `month`, `year`, `count`) VALUES
 --
 
 CREATE TABLE `lh_danhmuc` (
-                              `id` int(11) NOT NULL,
-                              `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                              `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                              `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                              `tenbaiviet_jp` varchar(255) DEFAULT NULL,
-                              `p1_vi` varchar(255) DEFAULT NULL,
-                              `p1_en` varchar(255) DEFAULT NULL,
-                              `p1_cn` varchar(255) DEFAULT NULL,
-                              `p1_jp` varchar(255) DEFAULT NULL,
-                              `seo_name` varchar(250) DEFAULT NULL,
-                              `lien_ket` varchar(255) DEFAULT NULL,
-                              `id_parent` int(11) NOT NULL DEFAULT 0,
-                              `icon` varchar(200) DEFAULT NULL,
-                              `icon_hover` varchar(255) DEFAULT NULL,
-                              `mota_en` mediumtext DEFAULT NULL,
-                              `mota_vi` mediumtext DEFAULT NULL,
-                              `mota_cn` mediumtext DEFAULT NULL,
-                              `mota_jp` mediumtext DEFAULT NULL,
-                              `noidung_en` mediumtext DEFAULT NULL,
-                              `noidung_vi` mediumtext DEFAULT NULL,
-                              `noidung_cn` mediumtext DEFAULT NULL,
-                              `noidung_jp` mediumtext DEFAULT NULL,
-                              `duongdantin` varchar(200) DEFAULT NULL,
-                              `step` int(11) DEFAULT NULL,
-                              `id_step` int(11) NOT NULL DEFAULT 0,
-                              `ngaydang` int(15) NOT NULL DEFAULT 0,
-                              `seo_title_vi` varchar(255) DEFAULT NULL,
-                              `seo_title_en` varchar(255) DEFAULT NULL,
-                              `seo_title_cn` varchar(255) DEFAULT NULL,
-                              `seo_title_jp` varchar(255) DEFAULT NULL,
-                              `seo_description_vi` varchar(255) DEFAULT NULL,
-                              `seo_description_en` varchar(255) DEFAULT NULL,
-                              `seo_description_cn` varchar(255) DEFAULT NULL,
-                              `seo_description_jp` varchar(255) DEFAULT NULL,
-                              `seo_keywords_vi` varchar(255) DEFAULT NULL,
-                              `seo_keywords_en` varchar(255) DEFAULT NULL,
-                              `seo_keywords_cn` varchar(255) DEFAULT NULL,
-                              `seo_keywords_jp` varchar(255) DEFAULT NULL,
-                              `opt` tinyint(1) NOT NULL DEFAULT 0,
-                              `mt_1_jp` varchar(255) DEFAULT NULL,
-                              `catasort` int(11) DEFAULT NULL,
-                              `showhi` tinyint(2) NOT NULL DEFAULT 1,
-                              `num_1` int(11) NOT NULL DEFAULT 0,
-                              `num_2` int(11) NOT NULL DEFAULT 0,
-                              `nhom_sp` tinyint(1) NOT NULL DEFAULT 0,
-                              `p_khuyenmai` tinyint(1) NOT NULL DEFAULT 0,
-                              `p_banchay` tinyint(1) NOT NULL DEFAULT 0,
-                              `p_noibat` tinyint(1) NOT NULL DEFAULT 0,
-                              `p_spmoi` tinyint(1) NOT NULL DEFAULT 0,
-                              `p_hethang` tinyint(1) NOT NULL DEFAULT 0,
-                              `id_parent_muti` mediumtext DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
+  `p1_vi` varchar(255) DEFAULT NULL,
+  `p1_en` varchar(255) DEFAULT NULL,
+  `p1_cn` varchar(255) DEFAULT NULL,
+  `p1_jp` varchar(255) DEFAULT NULL,
+  `seo_name` varchar(250) DEFAULT NULL,
+  `lien_ket` varchar(255) DEFAULT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `icon` varchar(200) DEFAULT NULL,
+  `icon_hover` varchar(255) DEFAULT NULL,
+  `mota_en` mediumtext DEFAULT NULL,
+  `mota_vi` mediumtext DEFAULT NULL,
+  `mota_cn` mediumtext DEFAULT NULL,
+  `mota_jp` mediumtext DEFAULT NULL,
+  `noidung_en` mediumtext DEFAULT NULL,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `noidung_cn` mediumtext DEFAULT NULL,
+  `noidung_jp` mediumtext DEFAULT NULL,
+  `duongdantin` varchar(200) DEFAULT NULL,
+  `step` int(11) DEFAULT NULL,
+  `id_step` int(11) NOT NULL DEFAULT 0,
+  `ngaydang` int(15) NOT NULL DEFAULT 0,
+  `seo_title_vi` varchar(255) DEFAULT NULL,
+  `seo_title_en` varchar(255) DEFAULT NULL,
+  `seo_title_cn` varchar(255) DEFAULT NULL,
+  `seo_title_jp` varchar(255) DEFAULT NULL,
+  `seo_description_vi` varchar(255) DEFAULT NULL,
+  `seo_description_en` varchar(255) DEFAULT NULL,
+  `seo_description_cn` varchar(255) DEFAULT NULL,
+  `seo_description_jp` varchar(255) DEFAULT NULL,
+  `seo_keywords_vi` varchar(255) DEFAULT NULL,
+  `seo_keywords_en` varchar(255) DEFAULT NULL,
+  `seo_keywords_cn` varchar(255) DEFAULT NULL,
+  `seo_keywords_jp` varchar(255) DEFAULT NULL,
+  `opt` tinyint(1) NOT NULL DEFAULT 0,
+  `mt_1_jp` varchar(255) DEFAULT NULL,
+  `catasort` int(11) DEFAULT NULL,
+  `showhi` tinyint(2) NOT NULL DEFAULT 1,
+  `num_1` int(11) NOT NULL DEFAULT 0,
+  `num_2` int(11) NOT NULL DEFAULT 0,
+  `nhom_sp` tinyint(1) NOT NULL DEFAULT 0,
+  `p_khuyenmai` tinyint(1) NOT NULL DEFAULT 0,
+  `p_banchay` tinyint(1) NOT NULL DEFAULT 0,
+  `p_noibat` tinyint(1) NOT NULL DEFAULT 0,
+  `p_spmoi` tinyint(1) NOT NULL DEFAULT 0,
+  `p_hethang` tinyint(1) NOT NULL DEFAULT 0,
+  `id_parent_muti` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='Bang chua catalag News' ROW_FORMAT=DYNAMIC;
 
 --
@@ -1065,20 +1068,20 @@ INSERT INTO `lh_danhmuc` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `tenbaiviet_cn
 --
 
 CREATE TABLE `lh_du_lieu_sn` (
-                                 `id` int(11) NOT NULL,
-                                 `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                 `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                 `mota_vi` varchar(255) DEFAULT NULL,
-                                 `mota_en` varchar(255) DEFAULT NULL,
-                                 `id_parent` int(11) NOT NULL DEFAULT 0,
-                                 `seo_name` varchar(255) DEFAULT NULL,
-                                 `val_1` varchar(255) DEFAULT NULL,
-                                 `val_2` varchar(255) DEFAULT NULL,
-                                 `blank` varchar(255) DEFAULT NULL,
-                                 `catasort` int(11) NOT NULL DEFAULT 0,
-                                 `opt` tinyint(1) NOT NULL DEFAULT 0,
-                                 `spchon` mediumtext DEFAULT NULL,
-                                 `showhi` tinyint(4) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `mota_vi` varchar(255) DEFAULT NULL,
+  `mota_en` varchar(255) DEFAULT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `val_1` varchar(255) DEFAULT NULL,
+  `val_2` varchar(255) DEFAULT NULL,
+  `blank` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `opt` tinyint(1) NOT NULL DEFAULT 0,
+  `spchon` mediumtext DEFAULT NULL,
+  `showhi` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1101,10 +1104,10 @@ INSERT INTO `lh_du_lieu_sn` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `mota_vi`, 
 --
 
 CREATE TABLE `lh_email_config` (
-                                   `id` int(11) NOT NULL,
-                                   `email` varchar(255) DEFAULT NULL,
-                                   `type` tinyint(1) NOT NULL DEFAULT 0,
-                                   `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1122,13 +1125,13 @@ INSERT INTO `lh_email_config` (`id`, `email`, `type`, `showhi`) VALUES
 --
 
 CREATE TABLE `lh_email_follow` (
-                                   `id` int(11) NOT NULL,
-                                   `email` varchar(255) DEFAULT NULL,
-                                   `v_name` varchar(255) DEFAULT NULL,
-                                   `v_phone` varchar(255) DEFAULT NULL,
-                                   `ddate` int(11) NOT NULL DEFAULT 0,
-                                   `icon` varchar(255) DEFAULT NULL,
-                                   `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `v_name` varchar(255) DEFAULT NULL,
+  `v_phone` varchar(255) DEFAULT NULL,
+  `ddate` int(11) NOT NULL DEFAULT 0,
+  `icon` varchar(255) DEFAULT NULL,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1155,14 +1158,14 @@ INSERT INTO `lh_email_follow` (`id`, `email`, `v_name`, `v_phone`, `ddate`, `ico
 --
 
 CREATE TABLE `lh_file_import_data` (
-                                       `id` int(11) NOT NULL,
-                                       `ten_vi` varchar(255) DEFAULT NULL,
-                                       `duongdantin` varchar(255) DEFAULT NULL,
-                                       `file_excel` varchar(255) DEFAULT NULL,
-                                       `ngay_dang` int(11) NOT NULL DEFAULT 0,
-                                       `so_lan_import` int(11) NOT NULL DEFAULT 0,
-                                       `noidung_vi` mediumtext DEFAULT NULL,
-                                       `import_cuoi` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `ten_vi` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `file_excel` varchar(255) DEFAULT NULL,
+  `ngay_dang` int(11) NOT NULL DEFAULT 0,
+  `so_lan_import` int(11) NOT NULL DEFAULT 0,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `import_cuoi` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1185,18 +1188,18 @@ INSERT INTO `lh_file_import_data` (`id`, `ten_vi`, `duongdantin`, `file_excel`, 
 --
 
 CREATE TABLE `lh_form_lienhe` (
-                                  `id` int(11) NOT NULL,
-                                  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                  `ip_gui` varchar(255) DEFAULT NULL,
-                                  `ngay_dang` int(11) NOT NULL DEFAULT 0,
-                                  `noi_dung_vn` longtext DEFAULT NULL,
-                                  `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                  `loai` int(11) NOT NULL DEFAULT 0,
-                                  `nd_json` longtext DEFAULT NULL,
-                                  `file_1` varchar(255) DEFAULT NULL,
-                                  `file_2` varchar(255) DEFAULT NULL,
-                                  `id_bv` int(11) NOT NULL DEFAULT 0,
-                                  `is_nuti` tinyint(4) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `ip_gui` varchar(255) DEFAULT NULL,
+  `ngay_dang` int(11) NOT NULL DEFAULT 0,
+  `noi_dung_vn` longtext DEFAULT NULL,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `loai` int(11) NOT NULL DEFAULT 0,
+  `nd_json` longtext DEFAULT NULL,
+  `file_1` varchar(255) DEFAULT NULL,
+  `file_2` varchar(255) DEFAULT NULL,
+  `id_bv` int(11) NOT NULL DEFAULT 0,
+  `is_nuti` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1242,12 +1245,12 @@ INSERT INTO `lh_form_lienhe` (`id`, `tenbaiviet_vi`, `ip_gui`, `ngay_dang`, `noi
 --
 
 CREATE TABLE `lh_lienket` (
-                              `id` int(11) NOT NULL,
-                              `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                              `lien_ket` varchar(255) DEFAULT NULL,
-                              `thuc_hien` int(11) NOT NULL DEFAULT 0,
-                              `lan_cuoi` int(11) NOT NULL DEFAULT 0,
-                              `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `lien_ket` varchar(255) DEFAULT NULL,
+  `thuc_hien` int(11) NOT NULL DEFAULT 0,
+  `lan_cuoi` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1264,13 +1267,13 @@ INSERT INTO `lh_lienket` (`id`, `tenbaiviet_vi`, `lien_ket`, `thuc_hien`, `lan_c
 --
 
 CREATE TABLE `lh_lien_ket_nhanh` (
-                                     `id` int(11) NOT NULL,
-                                     `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                     `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                     `gia_min` int(11) NOT NULL DEFAULT 0,
-                                     `gia_max` int(11) NOT NULL DEFAULT 0,
-                                     `catasort` int(11) NOT NULL DEFAULT 0,
-                                     `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `gia_min` int(11) NOT NULL DEFAULT 0,
+  `gia_max` int(11) NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1287,13 +1290,13 @@ INSERT INTO `lh_lien_ket_nhanh` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `gia_mi
 --
 
 CREATE TABLE `lh_lien_ket_nhanh_phan_tram` (
-                                               `id` int(11) NOT NULL,
-                                               `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                               `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                               `gia_min` int(11) NOT NULL DEFAULT 0,
-                                               `gia_max` int(11) NOT NULL DEFAULT 0,
-                                               `catasort` int(11) NOT NULL DEFAULT 0,
-                                               `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `gia_min` int(11) NOT NULL DEFAULT 0,
+  `gia_max` int(11) NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1310,19 +1313,19 @@ INSERT INTO `lh_lien_ket_nhanh_phan_tram` (`id`, `tenbaiviet_vi`, `tenbaiviet_en
 --
 
 CREATE TABLE `lh_magiamgia` (
-                                `id` int(11) NOT NULL,
-                                `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                `so_lan_su_dung` int(11) NOT NULL DEFAULT 0,
-                                `khong_gioi_han` tinyint(1) NOT NULL DEFAULT 0,
-                                `loai_km` tinyint(1) NOT NULL DEFAULT 0,
-                                `gia_tri_giam` int(11) NOT NULL DEFAULT 0,
-                                `ap_dung_cho` int(11) NOT NULL DEFAULT 0,
-                                `gia_tri_ap_dung` int(11) NOT NULL DEFAULT 0,
-                                `ap_dung_khuyen_mail_tren_don_hang` tinyint(1) NOT NULL DEFAULT 0,
-                                `bat_dau` int(11) NOT NULL DEFAULT 0,
-                                `ket_thuc` int(11) NOT NULL DEFAULT 0,
-                                `ngay_tao` int(11) NOT NULL DEFAULT 0,
-                                `catasort` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `so_lan_su_dung` int(11) NOT NULL DEFAULT 0,
+  `khong_gioi_han` tinyint(1) NOT NULL DEFAULT 0,
+  `loai_km` tinyint(1) NOT NULL DEFAULT 0,
+  `gia_tri_giam` int(11) NOT NULL DEFAULT 0,
+  `ap_dung_cho` int(11) NOT NULL DEFAULT 0,
+  `gia_tri_ap_dung` int(11) NOT NULL DEFAULT 0,
+  `ap_dung_khuyen_mail_tren_don_hang` tinyint(1) NOT NULL DEFAULT 0,
+  `bat_dau` int(11) NOT NULL DEFAULT 0,
+  `ket_thuc` int(11) NOT NULL DEFAULT 0,
+  `ngay_tao` int(11) NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1332,11 +1335,11 @@ CREATE TABLE `lh_magiamgia` (
 --
 
 CREATE TABLE `lh_magiamgia_chitiet` (
-                                        `id` int(11) NOT NULL,
-                                        `id_parent` int(11) NOT NULL DEFAULT 0,
-                                        `ma_giam_gia` varchar(255) DEFAULT NULL,
-                                        `so_lan_su_dung` int(11) NOT NULL DEFAULT 0,
-                                        `tong_su_dung` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `ma_giam_gia` varchar(255) DEFAULT NULL,
+  `so_lan_su_dung` int(11) NOT NULL DEFAULT 0,
+  `tong_su_dung` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1362,19 +1365,19 @@ INSERT INTO `lh_magiamgia_chitiet` (`id`, `id_parent`, `ma_giam_gia`, `so_lan_su
 --
 
 CREATE TABLE `lh_mangxahoi` (
-                                `id` int(11) NOT NULL,
-                                `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                                `seo_name` varchar(255) DEFAULT NULL,
-                                `icon` varchar(255) DEFAULT NULL,
-                                `duongdantin` varchar(255) DEFAULT NULL,
-                                `fontawesome` varchar(255) DEFAULT NULL,
-                                `catasort` int(11) NOT NULL DEFAULT 1,
-                                `showhi` tinyint(4) NOT NULL DEFAULT 1,
-                                `background` varchar(255) DEFAULT NULL,
-                                `is_top` tinyint(4) NOT NULL DEFAULT 0,
-                                `is_foot` tinyint(4) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `fontawesome` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 1,
+  `showhi` tinyint(4) NOT NULL DEFAULT 1,
+  `background` varchar(255) DEFAULT NULL,
+  `is_top` tinyint(4) NOT NULL DEFAULT 0,
+  `is_foot` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1391,29 +1394,29 @@ INSERT INTO `lh_mangxahoi` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `tenbaiviet_
 --
 
 CREATE TABLE `lh_members` (
-                              `id` int(7) NOT NULL,
-                              `tentruycap` varchar(100) DEFAULT NULL,
-                              `matkhau` varchar(255) DEFAULT NULL,
-                              `keypass` varchar(10) DEFAULT NULL,
-                              `hoten` varchar(255) DEFAULT NULL,
-                              `email` varchar(100) DEFAULT NULL,
-                              `diachi` varchar(255) DEFAULT NULL,
-                              `sodienthoai` varchar(255) DEFAULT NULL,
-                              `gioitinh` tinyint(1) NOT NULL DEFAULT 0,
-                              `ngaysinh` varchar(15) DEFAULT NULL,
-                              `cmnd` varchar(255) DEFAULT NULL,
-                              `idsp_view` mediumtext DEFAULT NULL,
-                              `active` varchar(255) DEFAULT NULL,
-                              `phanquyen` int(11) NOT NULL DEFAULT 0,
-                              `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                              `icon` varchar(255) DEFAULT NULL,
-                              `id_facebook` int(11) NOT NULL DEFAULT 0,
-                              `id_google` int(11) NOT NULL DEFAULT 0,
-                              `google_icon` varchar(255) DEFAULT NULL,
-                              `ip_login` varchar(255) DEFAULT NULL,
-                              `ip_login_last` varchar(255) DEFAULT NULL,
-                              `ip_login_time` int(11) NOT NULL DEFAULT 0,
-                              `ip_login_last_time` int(11) NOT NULL DEFAULT 0
+  `id` int(7) NOT NULL,
+  `tentruycap` varchar(100) DEFAULT NULL,
+  `matkhau` varchar(255) DEFAULT NULL,
+  `keypass` varchar(10) DEFAULT NULL,
+  `hoten` varchar(255) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `diachi` varchar(255) DEFAULT NULL,
+  `sodienthoai` varchar(255) DEFAULT NULL,
+  `gioitinh` tinyint(1) NOT NULL DEFAULT 0,
+  `ngaysinh` varchar(15) DEFAULT NULL,
+  `cmnd` varchar(255) DEFAULT NULL,
+  `idsp_view` mediumtext DEFAULT NULL,
+  `active` varchar(255) DEFAULT NULL,
+  `phanquyen` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `icon` varchar(255) DEFAULT NULL,
+  `id_facebook` int(11) NOT NULL DEFAULT 0,
+  `id_google` int(11) NOT NULL DEFAULT 0,
+  `google_icon` varchar(255) DEFAULT NULL,
+  `ip_login` varchar(255) DEFAULT NULL,
+  `ip_login_last` varchar(255) DEFAULT NULL,
+  `ip_login_time` int(11) NOT NULL DEFAULT 0,
+  `ip_login_last_time` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1421,7 +1424,7 @@ CREATE TABLE `lh_members` (
 --
 
 INSERT INTO `lh_members` (`id`, `tentruycap`, `matkhau`, `keypass`, `hoten`, `email`, `diachi`, `sodienthoai`, `gioitinh`, `ngaysinh`, `cmnd`, `idsp_view`, `active`, `phanquyen`, `showhi`, `icon`, `id_facebook`, `id_google`, `google_icon`, `ip_login`, `ip_login_last`, `ip_login_time`, `ip_login_last_time`) VALUES
-(1, 'admin', '0EFF101E20434DE8D7810E658CA6FE989942F05F82A3816E4CE2EFDAFB617143AF0A8D64', '70H3T', 'admin', 'minhgiang@pavietnam.vn', 'TpHCM', '', 0, '', NULL, '', '', 1, 1, '0', 0, 0, NULL, '::1', '::1', 1721632977, 1721632977),
+(1, 'admin', '0EFF101E20434DE8D7810E658CA6FE989942F05F82A3816E4CE2EFDAFB617143AF0A8D64', '70H3T', 'admin', 'minhgiang@pavietnam.vn', 'TpHCM', '', 0, '', NULL, '', '', 1, 1, '0', 0, 0, NULL, '172.16.90.105', '172.16.90.105', 1721987688, 1721987688),
 (111, 'a1db45ce9b9c8603eae68b9facd055b9', '8CA2D056AF6EDC5DD364CE79E52E03DF038CC550CB3F207763BED0885A98E0108D7C6DFF', 'L0QZP', '', 'minhgiang1@pavietnam.vn', '', '', 0, NULL, NULL, NULL, NULL, 0, 1, NULL, 0, 0, NULL, NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
@@ -1431,11 +1434,11 @@ INSERT INTO `lh_members` (`id`, `tentruycap`, `matkhau`, `keypass`, `hoten`, `em
 --
 
 CREATE TABLE `lh_members_log` (
-                                  `id` int(20) NOT NULL,
-                                  `log` varchar(255) DEFAULT NULL,
-                                  `time_log` int(11) NOT NULL DEFAULT 0,
-                                  `id_user` int(11) NOT NULL DEFAULT 0,
-                                  `id_mb` int(11) NOT NULL DEFAULT 0
+  `id` int(20) NOT NULL,
+  `log` varchar(255) DEFAULT NULL,
+  `time_log` int(11) NOT NULL DEFAULT 0,
+  `id_user` int(11) NOT NULL DEFAULT 0,
+  `id_mb` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1445,11 +1448,11 @@ CREATE TABLE `lh_members_log` (
 --
 
 CREATE TABLE `lh_members_nhom` (
-                                   `id` int(11) NOT NULL,
-                                   `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                   `phan_tram` float NOT NULL DEFAULT 0,
-                                   `catasort` int(11) NOT NULL DEFAULT 0,
-                                   `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `phan_tram` float NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1466,23 +1469,23 @@ INSERT INTO `lh_members_nhom` (`id`, `tenbaiviet_vi`, `phan_tram`, `catasort`, `
 --
 
 CREATE TABLE `lh_menu` (
-                           `id` int(11) NOT NULL,
-                           `id_parent` int(11) NOT NULL DEFAULT 0,
-                           `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                           `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                           `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                           `tenbaiviet_jp` varchar(255) DEFAULT NULL,
-                           `seo_name` varchar(255) DEFAULT NULL,
-                           `step` int(11) NOT NULL DEFAULT 0,
-                           `danhmuc` int(11) NOT NULL DEFAULT 0,
-                           `kieu_hien_thi` tinyint(4) NOT NULL DEFAULT 0,
-                           `kieu_chon` tinyint(1) NOT NULL DEFAULT 0,
-                           `cua_so_moi` tinyint(4) NOT NULL DEFAULT 0,
-                           `catasort` int(11) NOT NULL DEFAULT 1,
-                           `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                           `icon` varchar(255) DEFAULT NULL,
-                           `icon_hover` varchar(255) DEFAULT NULL,
-                           `duongdantin` varchar(255) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `step` int(11) NOT NULL DEFAULT 0,
+  `danhmuc` int(11) NOT NULL DEFAULT 0,
+  `kieu_hien_thi` tinyint(4) NOT NULL DEFAULT 0,
+  `kieu_chon` tinyint(1) NOT NULL DEFAULT 0,
+  `cua_so_moi` tinyint(4) NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 1,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `icon` varchar(255) DEFAULT NULL,
+  `icon_hover` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1506,11 +1509,11 @@ INSERT INTO `lh_menu` (`id`, `id_parent`, `tenbaiviet_vi`, `tenbaiviet_en`, `ten
 --
 
 CREATE TABLE `lh_module_nhomtaikhoan` (
-                                          `id` int(11) NOT NULL,
-                                          `ten_vi` varchar(255) DEFAULT NULL,
-                                          `sort` int(11) NOT NULL DEFAULT 1,
-                                          `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                          `phan_quyen` longtext DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `ten_vi` varchar(255) DEFAULT NULL,
+  `sort` int(11) NOT NULL DEFAULT 1,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `phan_quyen` longtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1528,15 +1531,15 @@ INSERT INTO `lh_module_nhomtaikhoan` (`id`, `ten_vi`, `sort`, `showhi`, `phan_qu
 --
 
 CREATE TABLE `lh_module_page` (
-                                  `id` int(11) NOT NULL,
-                                  `ten_vi` varchar(255) DEFAULT NULL,
-                                  `page` int(11) NOT NULL DEFAULT 0,
-                                  `sort` int(11) NOT NULL DEFAULT 0,
-                                  `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                  `mota` longtext DEFAULT NULL,
-                                  `mota2` longtext DEFAULT NULL,
-                                  `noidung` longtext DEFAULT NULL,
-                                  `noidung2` longtext DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `ten_vi` varchar(255) DEFAULT NULL,
+  `page` int(11) NOT NULL DEFAULT 0,
+  `sort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `mota` longtext DEFAULT NULL,
+  `mota2` longtext DEFAULT NULL,
+  `noidung` longtext DEFAULT NULL,
+  `noidung2` longtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1569,11 +1572,11 @@ INSERT INTO `lh_module_page` (`id`, `ten_vi`, `page`, `sort`, `showhi`, `mota`, 
 --
 
 CREATE TABLE `lh_module_setting` (
-                                     `id` int(11) NOT NULL,
-                                     `ten_vi` varchar(255) DEFAULT NULL,
-                                     `ten_key` varchar(255) DEFAULT NULL,
-                                     `is_check` tinyint(4) NOT NULL DEFAULT 1,
-                                     `sort` int(11) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `ten_vi` varchar(255) DEFAULT NULL,
+  `ten_key` varchar(255) DEFAULT NULL,
+  `is_check` tinyint(4) NOT NULL DEFAULT 1,
+  `sort` int(11) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1622,22 +1625,22 @@ INSERT INTO `lh_module_setting` (`id`, `ten_vi`, `ten_key`, `is_check`, `sort`) 
 --
 
 CREATE TABLE `lh_module_tinhnang` (
-                                      `id` int(11) NOT NULL,
-                                      `id_parent` int(11) NOT NULL DEFAULT 0,
-                                      `ten_vi` varchar(255) DEFAULT NULL,
-                                      `m_action` varchar(255) DEFAULT NULL,
-                                      `m_xem` tinyint(4) NOT NULL DEFAULT 0,
-                                      `m_them` tinyint(4) NOT NULL DEFAULT 0,
-                                      `m_sua` tinyint(4) NOT NULL DEFAULT 0,
-                                      `m_xoa` tinyint(4) NOT NULL DEFAULT 0,
-                                      `m_other` tinyint(4) NOT NULL DEFAULT 0,
-                                      `m_dev` tinyint(1) NOT NULL DEFAULT 0,
-                                      `sort` int(11) NOT NULL DEFAULT 0,
-                                      `icon` varchar(255) DEFAULT NULL,
-                                      `lien_ket` varchar(255) DEFAULT NULL,
-                                      `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                                      `mota` longtext DEFAULT NULL,
-                                      `noidung` longtext DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `ten_vi` varchar(255) DEFAULT NULL,
+  `m_action` varchar(255) DEFAULT NULL,
+  `m_xem` tinyint(4) NOT NULL DEFAULT 0,
+  `m_them` tinyint(4) NOT NULL DEFAULT 0,
+  `m_sua` tinyint(4) NOT NULL DEFAULT 0,
+  `m_xoa` tinyint(4) NOT NULL DEFAULT 0,
+  `m_other` tinyint(4) NOT NULL DEFAULT 0,
+  `m_dev` tinyint(1) NOT NULL DEFAULT 0,
+  `sort` int(11) NOT NULL DEFAULT 0,
+  `icon` varchar(255) DEFAULT NULL,
+  `lien_ket` varchar(255) DEFAULT NULL,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `mota` longtext DEFAULT NULL,
+  `noidung` longtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1701,7 +1704,8 @@ INSERT INTO `lh_module_tinhnang` (`id`, `id_parent`, `ten_vi`, `m_action`, `m_xe
 (100, 29, 'Quản lý link 301', 'quan-ly-link', 1, 1, 1, 1, 0, 0, 71, '', '?module=quan-ly-link&action=quan-ly-link', 1, '<p><span style=\"color:#16a085;\">M&ocirc; tả</span>: Trang [MODULE] gi&uacute;p bạn dễ d&agrave;ng th&ecirc;m mới, sửa đổi, v&agrave; x&oacute;a c&aacute;c link chuyển hướng 301 tr&ecirc;n trang web của m&igrave;nh, đảm bảo sự hiệu quả v&agrave; tiện lợi trong việc quản l&yacute; c&aacute;c chuyển hướng URL.</p>\r\n\r\n<p><span style=\"color:#16a085;\">Phi&ecirc;n bản</span>: 1.0</p>', '<h3>Danh s&aacute;ch [MODULE]</h3>\r\n\r\n<p>Trang &quot;Danh s&aacute;ch [MODULE]&quot; sẽ hiển thị c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>STT</strong>: Số thứ tự của link 301.</li>\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của link 301.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn để hiển thị hoặc ẩn link 301.</li>\r\n	<li><strong>X&oacute;a</strong>: T&ugrave;y chọn để x&oacute;a link 301.\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"297\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_13-52-50.png\" width=\"1106\" /></p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chức năng [MODULE]</h3>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Th&ecirc;m mới Link 301</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Th&ecirc;m mới&quot;.</li>\r\n		<li>Nhập c&aacute;c th&ocirc;ng tin chi tiết:\r\n		<ul style=\"margin-left: 40px;\">\r\n			<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của link 301.</li>\r\n			<li><strong>Link nguồn</strong>: Địa chỉ URL nguồn của link 301.</li>\r\n			<li><strong>Link đến</strong>: Địa chỉ URL đ&iacute;ch của link 301.</li>\r\n			<li><strong>K&iacute;ch hoạt</strong>: T&ugrave;y chọn để k&iacute;ch hoạt link 301.</li>\r\n		</ul>\r\n		</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để th&ecirc;m mới link 301.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>Sửa Link 301</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o ti&ecirc;u đề của link 301 bạn muốn sửa.</li>\r\n		<li>Chỉnh sửa c&aacute;c th&ocirc;ng tin cần thiết.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để lưu c&aacute;c thay đổi đ&atilde; chỉnh sửa.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>X&oacute;a Link 301</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o &ocirc; vu&ocirc;ng b&ecirc;n cạnh ti&ecirc;u đề của link 301 bạn muốn x&oacute;a.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;X&oacute;a&quot;.</li>\r\n		<li>X&aacute;c nhận h&agrave;nh động x&oacute;a khi được hỏi để ho&agrave;n tất việc x&oacute;a link 301.</li>\r\n	</ul>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chi tiết Link 301</h3>\r\n\r\n<p>Trong phần chi tiết của mỗi link 301, bạn c&oacute; thể xem v&agrave; chỉnh sửa c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>Link nguồn</strong>: Địa chỉ URL nguồn của link 301.</li>\r\n	<li><strong>Link đến</strong>: Địa chỉ URL đ&iacute;ch của link 301.</li>\r\n	<li><strong>K&iacute;ch hoạt</strong>: T&ugrave;y chọn k&iacute;ch hoạt hoặc hủy k&iacute;ch hoạt link 301.\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"351\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_13-53-35.png\" width=\"1117\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>'),
 (101, 29, 'Quản lý liên kết', 'lien-ket-sn', 1, 1, 1, 1, 0, 0, 222, '', '?module=lien-ket-sn&action=lien-ket-sn', 1, '<p><span style=\"color:#16a085;\">M&ocirc; tả</span>: Trang [MODULE] Menu gi&uacute;p bạn dễ d&agrave;ng th&ecirc;m mới, sửa đổi, v&agrave; x&oacute;a c&aacute;c li&ecirc;n kết menu tr&ecirc;n trang web của m&igrave;nh, đảm bảo sự hiệu quả v&agrave; tiện lợi trong việc quản l&yacute; c&aacute;c li&ecirc;n kết điều hướng của trang web.</p>\r\n\r\n<p><span style=\"color:#16a085;\">Phi&ecirc;n bản</span>:1.0</p>', '<h3>Danh s&aacute;ch [MODULE] Menu</h3>\r\n\r\n<p>Trang &quot;Danh s&aacute;ch [MODULE] Menu&quot; sẽ hiển thị c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul>\r\n	<li><strong>STT</strong>: Số thứ tự của [MODULE] menu.</li>\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE] menu.</li>\r\n	<li><strong>Li&ecirc;n kết</strong>: URL [MODULE] của menu.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn để hiển thị hoặc ẩn [MODULE] menu.</li>\r\n	<li><strong>X&oacute;a</strong>: T&ugrave;y chọn để x&oacute;a [MODULE] menu.\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"442\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_14-09-44.png\" width=\"1117\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chức năng Quản l&yacute; [MODULE] Menu</h3>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Th&ecirc;m mới [MODULE] Menu</strong>:</p>\r\n\r\n	<ul>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Th&ecirc;m mới&quot;.</li>\r\n		<li>Nhập c&aacute;c th&ocirc;ng tin chi tiết:\r\n		<ul>\r\n			<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE] menu.</li>\r\n			<li><strong>SEO Name</strong>: T&ecirc;n SEO cho [MODULE] menu.</li>\r\n			<li><strong>Target</strong>: T&ugrave;y chọn để mở [MODULE] trong cửa sổ mới hoặc hiện tại.</li>\r\n			<li><strong>Số thứ tự</strong>: Số thứ tự hiển thị của [MODULE] menu.</li>\r\n			<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn để hiển thị [MODULE] menu.</li>\r\n		</ul>\r\n		</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để th&ecirc;m mới [MODULE] menu.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>Sửa [MODULE] Menu</strong>:</p>\r\n\r\n	<ul>\r\n		<li>Nhấp v&agrave;o ti&ecirc;u đề của [MODULE] menu bạn muốn sửa.</li>\r\n		<li>Chỉnh sửa c&aacute;c th&ocirc;ng tin cần thiết.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để lưu c&aacute;c thay đổi đ&atilde; chỉnh sửa.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>X&oacute;a [MODULE] Menu</strong>:</p>\r\n\r\n	<ul>\r\n		<li>Nhấp v&agrave;o &ocirc; vu&ocirc;ng b&ecirc;n cạnh ti&ecirc;u đề của [MODULE] menu bạn muốn x&oacute;a.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;X&oacute;a&quot;.</li>\r\n		<li>X&aacute;c nhận h&agrave;nh động x&oacute;a khi được hỏi để ho&agrave;n tất việc x&oacute;a [MODULE] menu.</li>\r\n	</ul>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chi tiết [MODULE] Menu</h3>\r\n\r\n<p>Trong phần chi tiết của mỗi [MODULE] menu, bạn c&oacute; thể xem v&agrave; chỉnh sửa c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul>\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE] menu.</li>\r\n	<li><strong>SEO Name</strong>: T&ecirc;n SEO cho [MODULE] menu.</li>\r\n	<li><strong>Target</strong>: T&ugrave;y chọn để mở [MODULE] trong cửa sổ mới hoặc hiện tại.</li>\r\n	<li><strong>Số thứ tự</strong>: Số thứ tự hiển thị của [MODULE] menu.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn hiển thị [MODULE] menu.\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"450\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_14-09-29.png\" width=\"1109\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>'),
 (102, 90, 'Thêm địa điểm', 'danh-sach-dia-diem', 1, 1, 1, 1, 0, 0, 1, '', '?module=danh-sach-dia-diem&action=danh-sach-dia-diem&them-moi=true', 1, NULL, NULL),
-(104, 29, 'Thiết lập tìm theo %', 'thiet-lap-tim-kiem-phan-tram', 1, 1, 1, 1, 0, 0, 38, '', '?module=thiet-lap-tim-kiem-phan-tram&action=thiet-lap-tim-kiem-phan-tram', 1, '<p><span style=\"color:#16a085;\">M&ocirc; tả</span>: Trang quản l&yacute; [MODULE] gi&uacute;p bạn dễ d&agrave;ng th&ecirc;m mới, chỉnh sửa, x&oacute;a, v&agrave; quản l&yacute; c&aacute;c thiết lập li&ecirc;n quan đến t&igrave;m kiếm phần trăm tr&ecirc;n trang web của m&igrave;nh, đảm bảo sự hiệu quả v&agrave; tiện lợi trong việc quản l&yacute; nội dung.</p>\r\n\r\n<p><span style=\"color:#16a085;\">Phi&ecirc;n bản</span>: 1.0</p>', '<h3>Danh s&aacute;ch [MODULE]</h3>\r\n\r\n<p>Trang &quot;Danh s&aacute;ch [MODULE]&quot; sẽ hiển thị c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>STT</strong>: Số thứ tự của thiết lập.</li>\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE].</li>\r\n	<li><strong>%</strong>: Khoảng phần trăm được thiết lập.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn để hiển thị hoặc ẩn [MODULE].</li>\r\n	<li><strong>X&oacute;a</strong>: T&ugrave;y chọn để x&oacute;a [MODULE].\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"284\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_13-39-14.png\" width=\"1112\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chức năng Quản l&yacute; [MODULE]</h3>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Th&ecirc;m mới [MODULE]</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Th&ecirc;m mới&quot;.</li>\r\n		<li>Nhập c&aacute;c th&ocirc;ng tin chi tiết:\r\n		<ul style=\"margin-left: 40px;\">\r\n			<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE].</li>\r\n			<li><strong>Từ %</strong>: Phần trăm bắt đầu của khoảng phần trăm.</li>\r\n			<li><strong>Đến %</strong>: Phần trăm kết th&uacute;c của khoảng phần trăm.</li>\r\n			<li><strong>Số thứ tự</strong>: Số thứ tự hiển thị của thiết lập.</li>\r\n			<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn hiển thị thiết lập.</li>\r\n		</ul>\r\n		</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để th&ecirc;m mới thiết lập.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>Sửa [MODULE]</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o ti&ecirc;u đề của thiết lập bạn muốn sửa.</li>\r\n		<li>Chỉnh sửa c&aacute;c th&ocirc;ng tin cần thiết.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để lưu c&aacute;c thay đổi đ&atilde; chỉnh sửa.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>X&oacute;a [MODULE]</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o &ocirc; vu&ocirc;ng b&ecirc;n cạnh ti&ecirc;u đề của thiết lập bạn muốn x&oacute;a.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;X&oacute;a&quot;.</li>\r\n		<li>X&aacute;c nhận h&agrave;nh động x&oacute;a khi được hỏi để ho&agrave;n tất việc x&oacute;a thiết lập.</li>\r\n	</ul>\r\n	</li>\r\n</ul>\r\n\r\n<h4>T&igrave;m kiếm [MODULE]</h4>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>T&igrave;m kiếm theo phần trăm</strong>:\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhập từ kh&oacute;a t&igrave;m kiếm v&agrave;o &ocirc; t&igrave;m kiếm, v&iacute; dụ: &quot;20%&quot; hoặc &quot;30%&quot;.</li>\r\n		<li>Hệ thống sẽ tự động t&igrave;m kiếm v&agrave; hiển thị kết quả ph&ugrave; hợp với từ kh&oacute;a đ&atilde; nhập.</li>\r\n	</ul>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chi tiết [MODULE]</h3>\r\n\r\n<p>Trong phần chi tiết của mỗi thiết lập, bạn c&oacute; thể chỉnh sửa c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE].</li>\r\n	<li><strong>Từ %</strong>: Phần trăm bắt đầu của khoảng phần trăm.</li>\r\n	<li><strong>Đến %</strong>: Phần trăm kết th&uacute;c của khoảng phần trăm.</li>\r\n	<li><strong>Số thứ tự</strong>: Số thứ tự hiển thị của thiết lập.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn hiển thị thiết lập.\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"421\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_13-29-59.png\" width=\"1112\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>');
+(104, 29, 'Thiết lập tìm theo %', 'thiet-lap-tim-kiem-phan-tram', 1, 1, 1, 1, 0, 0, 38, '', '?module=thiet-lap-tim-kiem-phan-tram&action=thiet-lap-tim-kiem-phan-tram', 1, '<p><span style=\"color:#16a085;\">M&ocirc; tả</span>: Trang quản l&yacute; [MODULE] gi&uacute;p bạn dễ d&agrave;ng th&ecirc;m mới, chỉnh sửa, x&oacute;a, v&agrave; quản l&yacute; c&aacute;c thiết lập li&ecirc;n quan đến t&igrave;m kiếm phần trăm tr&ecirc;n trang web của m&igrave;nh, đảm bảo sự hiệu quả v&agrave; tiện lợi trong việc quản l&yacute; nội dung.</p>\r\n\r\n<p><span style=\"color:#16a085;\">Phi&ecirc;n bản</span>: 1.0</p>', '<h3>Danh s&aacute;ch [MODULE]</h3>\r\n\r\n<p>Trang &quot;Danh s&aacute;ch [MODULE]&quot; sẽ hiển thị c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>STT</strong>: Số thứ tự của thiết lập.</li>\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE].</li>\r\n	<li><strong>%</strong>: Khoảng phần trăm được thiết lập.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn để hiển thị hoặc ẩn [MODULE].</li>\r\n	<li><strong>X&oacute;a</strong>: T&ugrave;y chọn để x&oacute;a [MODULE].\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"284\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_13-39-14.png\" width=\"1112\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chức năng Quản l&yacute; [MODULE]</h3>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Th&ecirc;m mới [MODULE]</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Th&ecirc;m mới&quot;.</li>\r\n		<li>Nhập c&aacute;c th&ocirc;ng tin chi tiết:\r\n		<ul style=\"margin-left: 40px;\">\r\n			<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE].</li>\r\n			<li><strong>Từ %</strong>: Phần trăm bắt đầu của khoảng phần trăm.</li>\r\n			<li><strong>Đến %</strong>: Phần trăm kết th&uacute;c của khoảng phần trăm.</li>\r\n			<li><strong>Số thứ tự</strong>: Số thứ tự hiển thị của thiết lập.</li>\r\n			<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn hiển thị thiết lập.</li>\r\n		</ul>\r\n		</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để th&ecirc;m mới thiết lập.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>Sửa [MODULE]</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o ti&ecirc;u đề của thiết lập bạn muốn sửa.</li>\r\n		<li>Chỉnh sửa c&aacute;c th&ocirc;ng tin cần thiết.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;Lưu lại&quot; để lưu c&aacute;c thay đổi đ&atilde; chỉnh sửa.</li>\r\n	</ul>\r\n	</li>\r\n	<li>\r\n	<p><strong>X&oacute;a [MODULE]</strong>:</p>\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhấp v&agrave;o &ocirc; vu&ocirc;ng b&ecirc;n cạnh ti&ecirc;u đề của thiết lập bạn muốn x&oacute;a.</li>\r\n		<li>Nhấp v&agrave;o n&uacute;t &quot;X&oacute;a&quot;.</li>\r\n		<li>X&aacute;c nhận h&agrave;nh động x&oacute;a khi được hỏi để ho&agrave;n tất việc x&oacute;a thiết lập.</li>\r\n	</ul>\r\n	</li>\r\n</ul>\r\n\r\n<h4>T&igrave;m kiếm [MODULE]</h4>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>T&igrave;m kiếm theo phần trăm</strong>:\r\n\r\n	<ul style=\"margin-left: 40px;\">\r\n		<li>Nhập từ kh&oacute;a t&igrave;m kiếm v&agrave;o &ocirc; t&igrave;m kiếm, v&iacute; dụ: &quot;20%&quot; hoặc &quot;30%&quot;.</li>\r\n		<li>Hệ thống sẽ tự động t&igrave;m kiếm v&agrave; hiển thị kết quả ph&ugrave; hợp với từ kh&oacute;a đ&atilde; nhập.</li>\r\n	</ul>\r\n	</li>\r\n</ul>\r\n\r\n<h3>Chi tiết [MODULE]</h3>\r\n\r\n<p>Trong phần chi tiết của mỗi thiết lập, bạn c&oacute; thể chỉnh sửa c&aacute;c th&ocirc;ng tin sau:</p>\r\n\r\n<ul style=\"margin-left: 40px;\">\r\n	<li><strong>Ti&ecirc;u đề</strong>: Ti&ecirc;u đề của [MODULE].</li>\r\n	<li><strong>Từ %</strong>: Phần trăm bắt đầu của khoảng phần trăm.</li>\r\n	<li><strong>Đến %</strong>: Phần trăm kết th&uacute;c của khoảng phần trăm.</li>\r\n	<li><strong>Số thứ tự</strong>: Số thứ tự hiển thị của thiết lập.</li>\r\n	<li><strong>Chọn hiển thị</strong>: T&ugrave;y chọn hiển thị thiết lập.\r\n	<p style=\"text-align:center\"><img alt=\"\" height=\"421\" src=\"/2024_template_user_guide/document/dataimg/images/QL%20Web/Screenshot_2024-07-09_13-29-59.png\" width=\"1112\" /></p>\r\n\r\n	<p>&nbsp;</p>\r\n	</li>\r\n</ul>'),
+(106, 29, 'Danh sách Optimized img', 'Danh sách Optimized img', 1, 0, 0, 0, 0, 0, 56, '', '?module=quan-ly-website&action=danh-sach-optimized-img', 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -1710,10 +1714,10 @@ INSERT INTO `lh_module_tinhnang` (`id`, `id_parent`, `ten_vi`, `m_action`, `m_xe
 --
 
 CREATE TABLE `lh_online` (
-                             `uip` varchar(150) NOT NULL DEFAULT '',
-                             `sidd` varchar(200) DEFAULT NULL,
-                             `timer` varchar(10) DEFAULT NULL,
-                             `uid` int(12) NOT NULL DEFAULT 0
+  `uip` varchar(150) NOT NULL DEFAULT '',
+  `sidd` varchar(200) DEFAULT NULL,
+  `timer` varchar(10) DEFAULT NULL,
+  `uid` int(12) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1721,7 +1725,675 @@ CREATE TABLE `lh_online` (
 --
 
 INSERT INTO `lh_online` (`uip`, `sidd`, `timer`, `uid`) VALUES
-('::1', 'ed1932efc046363fb17581047c2a09fe', '1721640749', 0);
+('::1', '0d3884b0af20108a843a6189b9980eab', '1721893552', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lh_optimized_img`
+--
+
+CREATE TABLE `lh_optimized_img` (
+  `id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` varchar(50) DEFAULT NULL,
+  `error` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `lh_optimized_img`
+--
+
+INSERT INTO `lh_optimized_img` (`id`, `image_path`, `date`, `updated`, `status`, `error`) VALUES
+(6174, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589691711_0.jpg', '2024-07-26 07:33:38', '2024-07-26 07:59:30', '1', ''),
+(6175, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692080_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:59:36', '1', ''),
+(6176, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692080_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:59:43', '1', ''),
+(6177, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692080_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:59:50', '1', ''),
+(6178, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692080_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:59:58', '1', ''),
+(6179, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692080_5.jpg', '2024-07-26 07:33:38', '2024-07-26 08:00:14', '1', ''),
+(6180, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692080_6.jpg', '2024-07-26 07:33:38', '2024-07-26 08:00:20', '1', ''),
+(6181, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_10.jpg', '2024-07-26 07:33:38', '2024-07-26 08:00:29', '1', ''),
+(6182, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_11.jpg', '2024-07-26 07:33:38', '2024-07-26 10:12:25', '1', ''),
+(6183, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_12.jpg', '2024-07-26 07:33:38', '2024-07-26 10:12:32', '1', ''),
+(6184, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_13.jpg', '2024-07-26 07:33:38', '2024-07-26 10:12:42', '1', ''),
+(6185, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_7.jpg', '2024-07-26 07:33:38', '2024-07-26 10:12:50', '1', ''),
+(6186, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6187, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692081_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6188, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6189, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6190, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6191, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6192, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_18.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6193, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6194, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692082_20.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6195, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692083_21.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6196, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692083_22.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6197, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692083_23.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6198, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692083_24.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6199, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692083_25.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6200, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692119_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6201, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6202, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6203, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6204, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6205, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6206, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6207, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6208, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6209, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6210, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589692120_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6211, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719035_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6212, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719035_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6213, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719035_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6214, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719035_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6215, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719035_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6216, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719035_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6217, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_18.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6218, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6219, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_20.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6220, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_21.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6221, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_22.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6222, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_23.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6223, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_24.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6224, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719036_25.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6225, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719045_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6226, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719045_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6227, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719045_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6228, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719045_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6229, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719045_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6230, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589719046_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6231, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939012_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6232, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939012_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6233, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939012_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6234, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_10.jpg', '2024-07-26 07:33:38', '2024-07-26 09:05:14', '1', ''),
+(6235, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6236, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6237, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6238, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6239, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6240, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6241, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6242, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6243, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6244, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6245, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6246, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6247, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939013_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6248, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939014_18.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6249, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939014_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6250, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939027_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6251, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939027_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6252, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939028_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6253, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939028_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6254, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939028_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6255, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939028_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6256, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939030_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6257, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939031_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6258, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939032_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6259, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939032_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6260, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939032_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6261, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1589939032_16.jpg', '2024-07-26 07:33:38', '2024-07-26 09:18:58', '0', 'Kraken error: Unknown error'),
+(6262, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1590716473_1589685110_bg_header-1.jpg', '2024-07-26 07:33:38', '2024-07-26 09:24:00', '1', ''),
+(6263, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1590717290_2.JPG', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6264, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1590717558_trong_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6265, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1590726485_logo-VRG.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6266, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591237206_dd5060.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6267, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591264291_herder.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6268, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591264582_herdercs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6269, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591672280_l35icon.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6270, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591672466_1020icon.jpg', '2024-07-26 07:33:38', '2024-07-26 09:19:03', '0', 'Kraken error: Unknown error'),
+(6271, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591672845_latexicon.jpg', '2024-07-26 07:33:38', '2024-07-26 09:19:22', '0', 'Kraken error: Unknown error'),
+(6272, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591673323_HINH-TRU-SO-cs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6273, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591674180_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6274, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591674198_2-5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6275, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591674199_33.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6276, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591674203_DSCF3684.JPG', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6277, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591674293_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6278, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1591674294_1.JPG', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6279, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593137679_prd.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6280, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593137811_dt-vh.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6281, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593138041_sep.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6282, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593138494_thocao.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6283, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593138756_he-thong-xu-ly-nuoc-thai-o-cong-ty-cao-su-phu-rieng-14052020112101.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6284, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593139047_dong-chi-tran-ngoc-thuan-bi-thu-dang-uy-chu-tich-hoi-dong-quan-tri-tap-doan-cong-nghiep-cao-su-viet-nam-phat-bieu-tai-dai-hoi22062020042717.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6285, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593139197_vuonuom.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6286, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593142010_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6287, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593567333_33.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6288, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1593739660_hinh-tru-so-nt2-dai-dien.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6289, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1594347731_tsnt3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6290, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1594865067_dh-tt.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6291, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1594866266_ICON.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6292, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1594866692_ICON.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6293, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1594868640_ICON.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6294, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1595208968_cs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6295, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1595218556_vc.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6296, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1595230561_image003.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6297, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1595294402_tsprdcs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6298, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718246705_01_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6299, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718260189_02_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6300, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718270891_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6301, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718271048_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6302, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718271225_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6303, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718327649_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6304, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718331125_logo.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6305, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718346225_logo-w.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6306, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718526553_inner_header-3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6307, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718542613_03_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6308, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718587266_inner_header-3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6309, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718587382_03_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6310, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718674395_1.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6311, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718680262_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6312, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718680303_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6313, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718680589_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6314, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718680631_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6315, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693401_dt2.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6316, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693678_3.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6317, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693715_dt4.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6318, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693740_6.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6319, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693767_5.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6320, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693767_7.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6321, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718693780_8.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6322, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6323, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6324, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6325, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6326, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6327, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6328, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6329, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718694771_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6330, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718934889_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6331, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718952601_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6332, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718952601_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6333, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718952850_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6334, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718954910_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6335, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718954928_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6336, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1718955168_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6337, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1719193095_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6338, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1719195687_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6339, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1719195921_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6340, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1719450580_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6341, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/1719450597_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 09:25:01', '1', ''),
+(6342, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/files/1720493577_Screenshot_2024-07-08_15-27-43.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6343, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/6.jpg', '2024-07-26 07:33:38', '2024-07-26 09:24:45', '1', ''),
+(6344, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/02_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6345, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/03_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6346, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/bg2.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6347, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/counter_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6348, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/inner_header-3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6349, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/logo.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6350, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/date/logo-w.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6351, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/dtn/2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6352, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/dtn/4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6353, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/dtn/7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6354, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/dtn/8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6355, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/dtn/9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6356, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/hcld II.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6357, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/HINH TRU SO.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6358, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/hnh tru so nt2.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6359, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/image056.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6360, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/image065.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6361, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_14-31-59.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6362, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-27-20.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6363, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-27-43.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6364, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-31-06.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6365, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-31-25.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6366, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-32-37.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6367, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-40-35.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6368, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_15-41-04.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6369, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_16-20-26.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6370, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_16-20-58.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6371, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_16-21-27.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6372, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_16-37-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6373, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_16-40-58.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6374, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-08_16-41-12.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6375, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_14-58-24.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6376, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_14-58-36.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6377, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_15-00-46.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6378, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_15-00-59.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6379, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_15-09-28.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6380, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_15-09-40.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6381, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_15-24-26.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6382, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img/Screenshot_2024-07-09_15-24-56.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6383, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_14-31-59.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6384, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-27-20.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6385, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-27-43.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6386, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-31-06.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6387, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-31-25.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6388, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-32-37.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6389, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-40-35.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6390, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_15-41-04.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6391, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_16-20-26.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6392, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_16-20-58.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6393, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_16-21-27.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6394, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_16-37-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6395, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_16-40-58.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6396, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-08_16-41-12.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6397, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_14-58-24.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6398, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_14-58-36.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6399, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_15-00-46.png', '2024-07-26 07:33:38', '2024-07-26 10:09:30', '0', 'Kraken error: Kraken does not support IPs from private networks in the url (Code: )'),
+(6400, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_15-00-59.png', '2024-07-26 07:33:38', '2024-07-26 09:25:56', '1', ''),
+(6401, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_15-09-28.png', '2024-07-26 07:33:38', '2024-07-26 09:25:42', '1', ''),
+(6402, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_15-09-40.png', '2024-07-26 07:33:38', '2024-07-26 09:25:19', '1', ''),
+(6403, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_15-24-26.png', '2024-07-26 07:33:38', '2024-07-26 09:25:35', '1', ''),
+(6404, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/imgScreenshot_2024-07-09_15-24-56.png', '2024-07-26 07:33:38', '2024-07-26 09:26:47', '1', ''),
+(6405, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/l35.jpg', '2024-07-26 07:33:38', '2024-07-26 07:57:41', '0', 'Kraken error: Unknown error'),
+(6406, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/latex.jpg', '2024-07-26 07:33:38', '2024-07-26 09:54:23', '1', ''),
+(6407, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/lcld h1(1).png', '2024-07-26 07:33:38', '2024-07-26 07:49:53', '0', 'Kraken error: Unknown error'),
+(6408, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/lcld h1.png', '2024-07-26 07:33:38', '2024-07-26 10:00:38', '1', ''),
+(6409, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/lcld h3.png', '2024-07-26 07:33:38', '2024-07-26 07:57:55', '0', 'Kraken error: Unknown error'),
+(6410, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main menu/logo.png', '2024-07-26 07:33:38', '2024-07-26 09:56:24', '0', 'Kraken error: '),
+(6411, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main menu/pa2023_logo_ver3-_1_.jpg', '2024-07-26 07:33:38', '2024-07-26 09:29:36', '1', ''),
+(6412, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main menu/Screenshot_2024-07-08_14-31-59.png', '2024-07-26 07:33:38', '2024-07-26 09:29:20', '1', ''),
+(6413, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main menu/Screenshot_2024-07-08_14-32-26.png', '2024-07-26 07:33:38', '2024-07-26 10:08:33', '0', 'Kraken error: Kraken does not support IPs from private networks in the url (Code: )'),
+(6414, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main menu/Screenshot_2024-07-08_14-56-00.png', '2024-07-26 07:33:38', '2024-07-26 10:01:28', '1', ''),
+(6415, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main menu/Screenshot_2024-07-08_14-56-25.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6416, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-08_14-31-59(1).png', '2024-07-26 07:33:38', '2024-07-26 09:56:30', '0', 'Kraken error: '),
+(6417, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-08_14-31-59.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6418, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-22-07.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6419, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-22-37.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6420, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-23-30.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6421, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-49-26.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6422, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-55-09.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6423, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-55-43.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6424, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_08-56-14.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6425, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-08-35(1).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6426, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-08-35.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6427, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-08-48(1).png', '2024-07-26 07:33:38', '2024-07-26 09:03:44', '0', 'Kraken error: Unknown error'),
+(6428, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-08-48.png', '2024-07-26 07:33:38', '2024-07-26 08:15:44', '0', 'Kraken error: Unknown error'),
+(6429, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-28-02.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6430, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-29-04.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6431, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-29-28.png', '2024-07-26 07:33:38', '2024-07-26 08:15:54', '0', 'Kraken error: Unknown error'),
+(6432, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-30-53.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6433, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-35-54.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6434, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-36-22.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6435, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-36-36.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6436, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-46-07.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6437, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-46-30.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6438, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-47-04.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6439, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-47-29.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6440, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-53-41.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6441, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-54-04.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6442, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_09-54-45.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6443, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_11-40-46(1).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6444, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_11-40-46.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6445, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-09_11-41-16.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6446, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_09-33-16.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6447, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_09-34-22.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6448, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_09-34-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6449, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_09-34-55.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6450, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_09-47-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6451, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_09-49-27.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6452, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Screenshot_2024-07-12_17-32-03.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6453, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Trang quản trị (1).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6454, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Trang quản trị (2).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6455, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Trang quản trị (3).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6456, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Trang quản trị (4).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6457, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/Main module/Trang quản trị (5).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6458, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_11-40-46(1).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6459, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_11-40-46.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6460, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_16-23-53.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6461, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_16-24-12.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6462, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_16-24-26.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6463, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_16-41-56.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6464, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_16-42-23.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6465, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-09_16-42-34.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6466, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-14-22.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6467, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-28-05.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6468, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-30-55.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6469, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-31-06.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6470, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-47-43.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6471, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-48-12.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6472, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_08-56-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6473, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_09-05-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6474, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL giaohang/Screenshot_2024-07-12_09-07-54.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6475, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-21-11.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6476, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-21-35.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6477, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-21-49.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6478, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-22-04.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6479, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-22-15.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6480, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-22-27.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6481, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-41-43(1).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6482, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_11-41-43.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6483, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_13-12-00.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6484, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_13-13-13.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6485, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_13-26-40.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6486, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_13-32-05.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6487, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-08_13-35-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6488, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-12-17.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6489, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-13-10.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6490, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-13-28.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6491, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-15-25.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6492, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-15-51.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6493, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-29-59.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6494, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-39-14.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6495, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-42-31.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6496, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-52-50.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6497, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_13-53-35.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6498, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_14-02-22.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6499, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_14-02-52.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6500, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_14-09-29.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6501, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-09_14-09-44.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6502, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-12_17-04-32(1).png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6503, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-12_17-04-32.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', '');
+INSERT INTO `lh_optimized_img` (`id`, `image_path`, `date`, `updated`, `status`, `error`) VALUES
+(6504, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Screenshot_2024-07-12_17-13-42.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6505, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/QL Web/Trang quản trị.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6506, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/So_do_to_chuc_cong_ty_2017.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6507, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/__thumbs/HINH TRU SO.jpg/HINH TRU SO__600x262.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6508, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/__thumbs/HINH TRU SO.jpg/HINH TRU SO__800x350.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6509, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/__thumbs/image036.jpg/image036__200x208.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6510, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/__thumbs/image036.jpg/image036__307x320.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6511, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/__thumbs/image052.jpg/image052__480x269.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6512, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/__thumbs/image056.jpg/image056__360x320.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6513, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/tsnt3(1).jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6514, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/tsnt3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6515, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/TSNT4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6516, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/tsnT5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6517, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/TSNT8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6518, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/TSnt9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6519, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589691711_0.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6520, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692080_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6521, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692080_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6522, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692080_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6523, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692080_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6524, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692080_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6525, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692080_6.jpg', '2024-07-26 07:33:38', '2024-07-26 09:24:34', '1', ''),
+(6526, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_10.jpg', '2024-07-26 07:33:38', '2024-07-26 09:23:48', '1', ''),
+(6527, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6528, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6529, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6530, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6531, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6532, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692081_9.jpg', '2024-07-26 07:33:38', '2024-07-26 09:24:24', '1', ''),
+(6533, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6534, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6535, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6536, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6537, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_18.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6538, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6539, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692082_20.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6540, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692083_21.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6541, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692083_22.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6542, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692083_23.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6543, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692083_24.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6544, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692083_25.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6545, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692119_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6546, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6547, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6548, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6549, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6550, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6551, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6552, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6553, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6554, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6555, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589692120_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6556, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719035_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6557, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719035_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6558, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719035_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6559, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719035_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6560, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719035_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6561, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719035_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6562, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_18.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6563, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6564, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_20.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6565, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_21.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6566, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_22.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6567, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_23.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6568, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_24.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6569, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719036_25.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6570, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719045_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6571, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719045_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6572, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719045_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6573, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719045_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6574, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719045_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6575, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589719046_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6576, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939012_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6577, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939012_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6578, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939012_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6579, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6580, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6581, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6582, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6583, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6584, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6585, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6586, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6587, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6588, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6589, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6590, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6591, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6592, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939013_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6593, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939014_18.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6594, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939014_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6595, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939027_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6596, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939027_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6597, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939028_3.jpg', '2024-07-26 07:33:38', '2024-07-26 09:24:51', '1', ''),
+(6598, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939028_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6599, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939028_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6600, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939028_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6601, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939030_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6602, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939031_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6603, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939032_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6604, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939032_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6605, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939032_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6606, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1589939032_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6607, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1590716473_1589685110_bg_header-1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6608, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1590717290_2.JPG', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6609, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1590717558_trong_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6610, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591237206_dd5060.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6611, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591264291_herder.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6612, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591264582_herdercs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6613, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591672280_l35icon.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6614, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591672466_1020icon.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6615, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591672845_latexicon.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6616, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591673323_HINH-TRU-SO-cs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6617, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591674180_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6618, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591674198_2-5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6619, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591674199_33.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6620, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591674203_DSCF3684.JPG', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6621, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591674293_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6622, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1591674294_1.JPG', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6623, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593137679_prd.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6624, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593137811_dt-vh.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6625, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593138041_sep.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6626, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593138494_thocao.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6627, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593138756_he-thong-xu-ly-nuoc-thai-o-cong-ty-cao-su-phu-rieng-14052020112101.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6628, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593139047_dong-chi-tran-ngoc-thuan-bi-thu-dang-uy-chu-tich-hoi-dong-quan-tri-tap-doan-cong-nghiep-cao-su-viet-nam-phat-bieu-tai-dai-hoi22062020042717.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6629, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593139197_vuonuom.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6630, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593142010_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6631, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593567333_33.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6632, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1593739660_hinh-tru-so-nt2-dai-dien.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6633, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1594347731_tsnt3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6634, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1594865067_dh-tt.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6635, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1594866266_ICON.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6636, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1594866692_ICON.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6637, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1594868640_ICON.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6638, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1595208968_cs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6639, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1595218556_vc.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6640, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1595230561_image003.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6641, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1595294402_tsprdcs.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6642, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718246705_01_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6643, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718260189_02_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6644, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718270891_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6645, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718271048_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6646, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718271225_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6647, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718327649_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6648, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718331125_logo.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6649, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718346225_logo-w.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6650, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718526553_inner_header-3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6651, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718542613_03_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6652, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718587266_inner_header-3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6653, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718587382_03_header.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6654, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718674395_1.png', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6655, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718680262_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 09:27:59', '1', ''),
+(6656, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718680303_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:40:55', '1', ''),
+(6657, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718680589_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:42:16', '1', ''),
+(6658, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718680631_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 09:25:14', '1', ''),
+(6659, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693401_dt2.png', '2024-07-26 07:33:38', '2024-07-26 09:31:10', '1', ''),
+(6660, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693678_3.png', '2024-07-26 07:33:38', '2024-07-26 09:03:27', '1', ''),
+(6661, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693715_dt4.png', '2024-07-26 07:33:38', '2024-07-26 09:03:33', '1', ''),
+(6662, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693740_6.png', '2024-07-26 07:33:38', '2024-07-26 09:54:57', '1', ''),
+(6663, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693767_5.png', '2024-07-26 07:33:38', '2024-07-26 09:56:37', '0', 'Kraken error: '),
+(6664, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693767_7.png', '2024-07-26 07:33:38', '2024-07-26 09:30:33', '1', ''),
+(6665, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718693780_8.png', '2024-07-26 07:33:38', '2024-07-26 10:01:33', '1', ''),
+(6666, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_1.jpg', '2024-07-26 07:33:38', '2024-07-26 10:06:58', '0', 'Kraken error: Kraken does not support IPs from private networks in the url (Code: )'),
+(6667, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_2.jpg', '2024-07-26 07:33:38', '2024-07-26 09:29:05', '1', ''),
+(6668, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:42:07', '1', ''),
+(6669, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_4.jpg', '2024-07-26 07:33:38', '2024-07-26 10:07:59', '0', 'Kraken error: Kraken does not support IPs from private networks in the url (Code: )'),
+(6670, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6671, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6672, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:58:16', '1', ''),
+(6673, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718694771_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:50:03', '1', ''),
+(6674, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718934889_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:58:01', '1', ''),
+(6675, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718952601_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6676, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718952601_8.jpg', '2024-07-26 07:33:38', '2024-07-26 09:18:45', '0', 'Kraken error: Unknown error'),
+(6677, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718952850_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6678, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718954910_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6679, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718954928_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6680, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1718955168_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6681, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1719193095_5.jpg', '2024-07-26 07:33:38', '2024-07-26 09:18:52', '0', 'Kraken error: Unknown error'),
+(6682, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1719195687_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6683, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1719195921_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6684, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1719450580_01_about.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6685, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumb_1719450597_s_features_quote_bg.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6686, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692080_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6687, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692080_2.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6688, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692080_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6689, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692080_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6690, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692080_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6691, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692080_6.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6692, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6693, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_11.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6694, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6695, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6696, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_7.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6697, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_8.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6698, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692081_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6699, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6700, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6701, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_16.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6702, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_17.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6703, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_18.jpg', '2024-07-26 07:33:38', '2024-07-26 08:16:04', '1', ''),
+(6704, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_19.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6705, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692082_20.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6706, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692083_21.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6707, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692083_22.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6708, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692083_23.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6709, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692083_24.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6710, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692083_25.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6711, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692119_1.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6712, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_10.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6713, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_11.jpg', '2024-07-26 07:33:38', '2024-07-26 08:05:12', '1', ''),
+(6714, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6715, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6716, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6717, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6718, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_3.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6719, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_4.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6720, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_5.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6721, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589692120_9.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6722, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719035_12.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6723, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719035_13.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6724, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719035_14.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6725, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719035_15.jpg', '2024-07-26 07:33:38', '2024-07-26 07:33:38', '0', ''),
+(6726, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719035_16.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6727, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719035_17.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6728, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_18.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6729, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_19.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6730, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_20.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6731, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_21.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6732, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_22.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6733, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_23.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6734, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_24.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6735, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719036_25.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6736, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719045_12.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6737, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719045_13.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6738, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719045_14.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6739, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719045_15.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6740, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719045_16.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6741, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589719046_17.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6742, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939012_19.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6743, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939012_1.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6744, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939012_7.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6745, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_10.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6746, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_11.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6747, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_12.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6748, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_13.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6749, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_14.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6750, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_15.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6751, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_16.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6752, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_17.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6753, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_3.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6754, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_4.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6755, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_5.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6756, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_6.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6757, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_8.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6758, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939013_9.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6759, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939014_18.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6760, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939014_2.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6761, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939027_1.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6762, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939027_2.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6763, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939028_3.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6764, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939028_4.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6765, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939028_5.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6766, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939028_6.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6767, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939030_7.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6768, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939030_8.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6769, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939030_9.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6770, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939031_10.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6771, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_11.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6772, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_12.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6773, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_13.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6774, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_14.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6775, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_15.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6776, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_16.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6777, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939032_17.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6778, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939033_18.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6779, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939033_19.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6780, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1589939033_20.jpg', '2024-07-26 07:33:39', '2024-07-26 09:24:13', '1', ''),
+(6781, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591237206_dd5060.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6782, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591672280_l35icon.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6783, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591672466_1020icon.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6784, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591672845_latexicon.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6785, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591674180_3.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6786, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591674198_2-5.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6787, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591674199_33.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6788, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591674203_DSCF3684.JPG', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6789, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591674293_2.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6790, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1591674294_1.JPG', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6791, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593137679_prd.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6792, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593137811_dt-vh.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6793, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593138041_sep.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6794, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593138494_thocao.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6795, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593138756_he-thong-xu-ly-nuoc-thai-o-cong-ty-cao-su-phu-rieng-14052020112101.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6796, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593139047_dong-chi-tran-ngoc-thuan-bi-thu-dang-uy-chu-tich-hoi-dong-quan-tri-tap-doan-cong-nghiep-cao-su-viet-nam-phat-bieu-tai-dai-hoi22062020042717.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6797, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593139197_vuonuom.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6798, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593142010_5.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6799, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1593739660_hinh-tru-so-nt2-dai-dien.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6800, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1594347731_tsnt3.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6801, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1594865067_dh-tt.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6802, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1594866266_ICON.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6803, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1594866692_ICON.jpg', '2024-07-26 07:33:39', '2024-07-26 08:01:04', '1', ''),
+(6804, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1594868640_ICON.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6805, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1595208968_cs.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6806, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1595218556_vc.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6807, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1595230561_image003.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6808, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1595294402_tsprdcs.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6809, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718270891_1.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6810, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718271048_2.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6811, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718271225_3.jpg', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6812, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718674395_1.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6813, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693401_dt2.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6814, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693678_3.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6815, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693715_dt4.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6816, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693740_6.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6817, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693767_5.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6818, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693767_7.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', ''),
+(6819, '/opt/lampp/htdocs/2024_template_user_guide/datafiles/thumbnew_1718693780_8.png', '2024-07-26 07:33:39', '2024-07-26 07:33:39', '0', '');
 
 -- --------------------------------------------------------
 
@@ -1730,42 +2402,42 @@ INSERT INTO `lh_online` (`uip`, `sidd`, `timer`, `uid`) VALUES
 --
 
 CREATE TABLE `lh_order` (
-                            `id` int(11) NOT NULL,
-                            `madh` varchar(255) DEFAULT NULL,
-                            `iduser` int(11) NOT NULL DEFAULT 0,
-                            `ngaydat` int(11) NOT NULL DEFAULT 0,
-                            `tam_tinh` int(11) NOT NULL DEFAULT 0,
-                            `gia_km` int(11) NOT NULL DEFAULT 0,
-                            `ma_giam_gia` varchar(255) DEFAULT NULL,
-                            `phi_ship` int(11) NOT NULL DEFAULT 0,
-                            `thanh_tien` int(11) NOT NULL DEFAULT 0,
-                            `thanh_toan` tinyint(4) NOT NULL DEFAULT 0,
-                            `thongtin_thanhtoan` longtext DEFAULT NULL,
-                            `id_sp` mediumtext DEFAULT NULL,
-                            `gia_tien` mediumtext DEFAULT NULL,
-                            `trangthai` tinyint(2) NOT NULL DEFAULT 1,
-                            `cus_del` tinyint(4) NOT NULL DEFAULT 0,
-                            `phieu_xuat_kho` int(11) NOT NULL DEFAULT 0,
-                            `ma_paypal` varchar(255) DEFAULT NULL,
-                            `hoten` varchar(255) DEFAULT NULL,
-                            `sodienthoai` varchar(255) DEFAULT NULL,
-                            `email` varchar(255) DEFAULT NULL,
-                            `diachi` varchar(255) DEFAULT NULL,
-                            `ghichu` varchar(255) DEFAULT NULL,
-                            `don_vi` mediumtext DEFAULT NULL,
-                            `idsp` mediumtext DEFAULT NULL,
-                            `soluong` mediumtext DEFAULT NULL,
-                            `dongia` mediumtext DEFAULT NULL,
-                            `thanhtoan` int(11) NOT NULL DEFAULT 0,
-                            `thanh_pho` int(11) NOT NULL DEFAULT 0,
-                            `quan_huyen` int(11) NOT NULL DEFAULT 0,
-                            `is_key` mediumtext DEFAULT NULL,
-                            `is_nuti` tinyint(4) NOT NULL DEFAULT 0,
-                            `is_nhan` tinyint(1) NOT NULL DEFAULT 0,
-                            `hoten_nhan` varchar(255) DEFAULT NULL,
-                            `sodienthoai_nhan` varchar(255) DEFAULT NULL,
-                            `email_nhan` varchar(255) DEFAULT NULL,
-                            `diachi_nhan` varchar(255) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `madh` varchar(255) DEFAULT NULL,
+  `iduser` int(11) NOT NULL DEFAULT 0,
+  `ngaydat` int(11) NOT NULL DEFAULT 0,
+  `tam_tinh` int(11) NOT NULL DEFAULT 0,
+  `gia_km` int(11) NOT NULL DEFAULT 0,
+  `ma_giam_gia` varchar(255) DEFAULT NULL,
+  `phi_ship` int(11) NOT NULL DEFAULT 0,
+  `thanh_tien` int(11) NOT NULL DEFAULT 0,
+  `thanh_toan` tinyint(4) NOT NULL DEFAULT 0,
+  `thongtin_thanhtoan` longtext DEFAULT NULL,
+  `id_sp` mediumtext DEFAULT NULL,
+  `gia_tien` mediumtext DEFAULT NULL,
+  `trangthai` tinyint(2) NOT NULL DEFAULT 1,
+  `cus_del` tinyint(4) NOT NULL DEFAULT 0,
+  `phieu_xuat_kho` int(11) NOT NULL DEFAULT 0,
+  `ma_paypal` varchar(255) DEFAULT NULL,
+  `hoten` varchar(255) DEFAULT NULL,
+  `sodienthoai` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `diachi` varchar(255) DEFAULT NULL,
+  `ghichu` varchar(255) DEFAULT NULL,
+  `don_vi` mediumtext DEFAULT NULL,
+  `idsp` mediumtext DEFAULT NULL,
+  `soluong` mediumtext DEFAULT NULL,
+  `dongia` mediumtext DEFAULT NULL,
+  `thanhtoan` int(11) NOT NULL DEFAULT 0,
+  `thanh_pho` int(11) NOT NULL DEFAULT 0,
+  `quan_huyen` int(11) NOT NULL DEFAULT 0,
+  `is_key` mediumtext DEFAULT NULL,
+  `is_nuti` tinyint(4) NOT NULL DEFAULT 0,
+  `is_nhan` tinyint(1) NOT NULL DEFAULT 0,
+  `hoten_nhan` varchar(255) DEFAULT NULL,
+  `sodienthoai_nhan` varchar(255) DEFAULT NULL,
+  `email_nhan` varchar(255) DEFAULT NULL,
+  `diachi_nhan` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -1775,15 +2447,15 @@ CREATE TABLE `lh_order` (
 --
 
 CREATE TABLE `lh_phuongthucthanhtoan` (
-                                          `id` int(11) NOT NULL,
-                                          `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                          `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                          `noidung_vi` mediumtext DEFAULT NULL,
-                                          `noidung_en` mediumtext DEFAULT NULL,
-                                          `icon` varchar(255) DEFAULT NULL,
-                                          `duongdantin` varchar(255) DEFAULT NULL,
-                                          `catasort` int(11) NOT NULL DEFAULT 1,
-                                          `showhi` tinyint(1) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `noidung_en` mediumtext DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 1,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1802,60 +2474,62 @@ INSERT INTO `lh_phuongthucthanhtoan` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `n
 --
 
 CREATE TABLE `lh_seo` (
-                          `id` int(11) NOT NULL,
-                          `seo_title_vi` varchar(255) DEFAULT NULL,
-                          `seo_description_vi` varchar(255) DEFAULT NULL,
-                          `seo_keywords_vi` varchar(255) DEFAULT NULL,
-                          `seo_title_en` varchar(255) DEFAULT NULL,
-                          `seo_description_en` varchar(255) DEFAULT NULL,
-                          `seo_keywords_en` varchar(255) DEFAULT NULL,
-                          `seo_title_cn` varchar(255) DEFAULT NULL,
-                          `seo_description_cn` varchar(255) DEFAULT NULL,
-                          `seo_keywords_cn` varchar(255) DEFAULT NULL,
-                          `duongdantin` varchar(255) DEFAULT NULL,
-                          `icon` varchar(255) DEFAULT NULL,
-                          `favico` varchar(255) DEFAULT NULL,
-                          `robots` mediumtext DEFAULT NULL,
-                          `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                          `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                          `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                          `sodienthoai_vi` varchar(255) DEFAULT NULL,
-                          `diachi_vi` varchar(255) DEFAULT NULL,
-                          `diachi_en` varchar(255) DEFAULT NULL,
-                          `diachi_cn` varchar(255) DEFAULT NULL,
-                          `hotline_vi` varchar(255) DEFAULT NULL,
-                          `email_vi` varchar(255) DEFAULT NULL,
-                          `em_ip` varchar(255) DEFAULT NULL,
-                          `em_taikhoan` varchar(255) DEFAULT NULL,
-                          `em_pass` varchar(255) DEFAULT NULL,
-                          `js_google_anilatic` mediumtext DEFAULT NULL,
-                          `khoa_website` mediumtext DEFAULT NULL,
-                          `is_khoasite` tinyint(4) NOT NULL DEFAULT 0,
-                          `is_https` tinyint(1) NOT NULL DEFAULT 0,
-                          `fb_app` varchar(255) DEFAULT NULL,
-                          `fb_id` varchar(255) DEFAULT NULL,
-                          `is_comment` tinyint(4) NOT NULL DEFAULT 0,
-                          `is_lang` tinyint(4) NOT NULL DEFAULT 0,
-                          `is_saochep` tinyint(1) NOT NULL DEFAULT 0,
-                          `is_tiengviet` tinyint(1) NOT NULL DEFAULT 1,
-                          `menu_hinhanh` tinyint(4) NOT NULL DEFAULT 0,
-                          `menu_hinhanh_size` varchar(50) DEFAULT NULL,
-                          `menu_hinhanh_hv` tinyint(4) NOT NULL DEFAULT 0,
-                          `menu_danhmuc` tinyint(4) NOT NULL DEFAULT 0,
-                          `menu_kieuhienthi` tinyint(4) NOT NULL DEFAULT 0,
-                          `show_fb` tinyint(1) NOT NULL DEFAULT 0,
-                          `url_fb` varchar(255) DEFAULT NULL,
-                          `show_zalo` tinyint(1) NOT NULL DEFAULT 0,
-                          `url_zalo` varchar(255) DEFAULT NULL,
-                          `upload_ckfinder` tinyint(1) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `seo_title_vi` varchar(255) DEFAULT NULL,
+  `seo_description_vi` varchar(255) DEFAULT NULL,
+  `seo_keywords_vi` varchar(255) DEFAULT NULL,
+  `seo_title_en` varchar(255) DEFAULT NULL,
+  `seo_description_en` varchar(255) DEFAULT NULL,
+  `seo_keywords_en` varchar(255) DEFAULT NULL,
+  `seo_title_cn` varchar(255) DEFAULT NULL,
+  `seo_description_cn` varchar(255) DEFAULT NULL,
+  `seo_keywords_cn` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `favico` varchar(255) DEFAULT NULL,
+  `robots` mediumtext DEFAULT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `sodienthoai_vi` varchar(255) DEFAULT NULL,
+  `diachi_vi` varchar(255) DEFAULT NULL,
+  `diachi_en` varchar(255) DEFAULT NULL,
+  `diachi_cn` varchar(255) DEFAULT NULL,
+  `hotline_vi` varchar(255) DEFAULT NULL,
+  `email_vi` varchar(255) DEFAULT NULL,
+  `em_ip` varchar(255) DEFAULT NULL,
+  `em_taikhoan` varchar(255) DEFAULT NULL,
+  `em_pass` varchar(255) DEFAULT NULL,
+  `js_google_anilatic` mediumtext DEFAULT NULL,
+  `khoa_website` mediumtext DEFAULT NULL,
+  `is_khoasite` tinyint(4) NOT NULL DEFAULT 0,
+  `is_https` tinyint(1) NOT NULL DEFAULT 0,
+  `fb_app` varchar(255) DEFAULT NULL,
+  `fb_id` varchar(255) DEFAULT NULL,
+  `is_comment` tinyint(4) NOT NULL DEFAULT 0,
+  `is_lang` tinyint(4) NOT NULL DEFAULT 0,
+  `is_saochep` tinyint(1) NOT NULL DEFAULT 0,
+  `is_tiengviet` tinyint(1) NOT NULL DEFAULT 1,
+  `menu_hinhanh` tinyint(4) NOT NULL DEFAULT 0,
+  `menu_hinhanh_size` varchar(50) DEFAULT NULL,
+  `menu_hinhanh_hv` tinyint(4) NOT NULL DEFAULT 0,
+  `menu_danhmuc` tinyint(4) NOT NULL DEFAULT 0,
+  `menu_kieuhienthi` tinyint(4) NOT NULL DEFAULT 0,
+  `show_fb` tinyint(1) NOT NULL DEFAULT 0,
+  `url_fb` varchar(255) DEFAULT NULL,
+  `show_zalo` tinyint(1) NOT NULL DEFAULT 0,
+  `url_zalo` varchar(255) DEFAULT NULL,
+  `upload_ckfinder` tinyint(1) DEFAULT NULL,
+  `api_kraken` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`api_kraken`)),
+  `sl_toiuu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `lh_seo`
 --
 
-INSERT INTO `lh_seo` (`id`, `seo_title_vi`, `seo_description_vi`, `seo_keywords_vi`, `seo_title_en`, `seo_description_en`, `seo_keywords_en`, `seo_title_cn`, `seo_description_cn`, `seo_keywords_cn`, `duongdantin`, `icon`, `favico`, `robots`, `tenbaiviet_vi`, `tenbaiviet_en`, `tenbaiviet_cn`, `sodienthoai_vi`, `diachi_vi`, `diachi_en`, `diachi_cn`, `hotline_vi`, `email_vi`, `em_ip`, `em_taikhoan`, `em_pass`, `js_google_anilatic`, `khoa_website`, `is_khoasite`, `is_https`, `fb_app`, `fb_id`, `is_comment`, `is_lang`, `is_saochep`, `is_tiengviet`, `menu_hinhanh`, `menu_hinhanh_size`, `menu_hinhanh_hv`, `menu_danhmuc`, `menu_kieuhienthi`, `show_fb`, `url_fb`, `show_zalo`, `url_zalo`, `upload_ckfinder`) VALUES
-(1, 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', '', '', '', 'datafiles', 'images/date/logo.png', '../datafiles/../datafiles/../datafiles/../datafiles/../datafiles/../datafiles/images/date/logo.png', '', 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', '', '', 'Tầng 15 Tòa tháp Hòa Bình, 106 Hoàng Quốc Việt, Nghĩa Đô, Cầu Giấy, Hà Nội', '15th Floor, Hoa Binh Tower, 106 Hoang Quoc Viet, Nghia Do, Cau Giay, Hanoi', '', '', '', '', '', '', '', '', 0, 0, '', '', 1, 1, 0, 1, 1, '(100px x 100px)', 1, 0, 1, 1, '', 1, '', 0);
+INSERT INTO `lh_seo` (`id`, `seo_title_vi`, `seo_description_vi`, `seo_keywords_vi`, `seo_title_en`, `seo_description_en`, `seo_keywords_en`, `seo_title_cn`, `seo_description_cn`, `seo_keywords_cn`, `duongdantin`, `icon`, `favico`, `robots`, `tenbaiviet_vi`, `tenbaiviet_en`, `tenbaiviet_cn`, `sodienthoai_vi`, `diachi_vi`, `diachi_en`, `diachi_cn`, `hotline_vi`, `email_vi`, `em_ip`, `em_taikhoan`, `em_pass`, `js_google_anilatic`, `khoa_website`, `is_khoasite`, `is_https`, `fb_app`, `fb_id`, `is_comment`, `is_lang`, `is_saochep`, `is_tiengviet`, `menu_hinhanh`, `menu_hinhanh_size`, `menu_hinhanh_hv`, `menu_danhmuc`, `menu_kieuhienthi`, `show_fb`, `url_fb`, `show_zalo`, `url_zalo`, `upload_ckfinder`, `api_kraken`, `sl_toiuu`) VALUES
+(1, 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', '', '', '', 'datafiles', 'images/date/logo.png', '../datafiles/../datafiles/../datafiles/../datafiles/../datafiles/../datafiles/../datafiles/images/date/logo.png', '', 'CÔNG TY CỔ PHẦN VẬN TẢI BIỂN CONTAINER THÁI BÌNH DƯƠNG', 'PACIFIC CONTAINER SHIPPING JOINT STOCK COMPANY', '', '+84 24 3200 5711', 'Tầng 15 Tòa tháp Hòa Bình, 106 Hoàng Quốc Việt, Nghĩa Đô, Cầu Giấy, Hà Nội', '15th Floor, Hoa Binh Tower, 106 Hoang Quoc Viet, Nghia Do, Cau Giay, Hanoi', '', '+84 24 3200 9854', 'PCL@PCL.vn', '', '', '', '', '', 0, 0, '', '', 1, 1, 0, 1, 1, '(100px x 100px)', 1, 0, 1, 1, '1', 1, '1', 1, '{\"group_1\":{\"api_key\":\"11514c60bb216e287a2b6f357663f8e9\",\"api_secret\":\"e64668f982d3b443cbaa0cf0034aeb1dff2da906\"},\"group_2\":{\"api_key\":\"5139fae8a08fbcd511e3165986a02527\",\"api_secret\":\"027f40d7a55c2444617133d6e6ec5d9921ee4718\"},\"group_3\":{\"api_key\":\"\",\"api_secret\":\"\"},\"group_4\":{\"api_key\":\"\",\"api_secret\":\"\"},\"group_5\":{\"api_key\":\"\",\"api_secret\":\"\"}}', 2);
 
 -- --------------------------------------------------------
 
@@ -1864,28 +2538,28 @@ INSERT INTO `lh_seo` (`id`, `seo_title_vi`, `seo_description_vi`, `seo_keywords_
 --
 
 CREATE TABLE `lh_seo_name` (
-                               `id` int(11) NOT NULL,
-                               `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                               `noidung_vi` mediumtext DEFAULT NULL,
-                               `icon` varchar(255) DEFAULT NULL,
-                               `duongdantin` varchar(255) DEFAULT 'datafiles/setone',
-                               `seo_name` mediumtext DEFAULT NULL,
-                               `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                               `noidung_en` mediumtext DEFAULT NULL,
-                               `tenbaiviet_cn` mediumtext DEFAULT NULL,
-                               `noidung_cn` mediumtext DEFAULT NULL,
-                               `p1_cn` mediumtext DEFAULT NULL,
-                               `opt` tinyint(1) NOT NULL DEFAULT 0,
-                               `p1_vi` mediumtext DEFAULT NULL,
-                               `p1_en` mediumtext DEFAULT NULL,
-                               `tenbaiviet_jp` varchar(255) DEFAULT NULL,
-                               `noidung_jp` mediumtext DEFAULT NULL,
-                               `p1_jp` mediumtext DEFAULT NULL,
-                               `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                               `is_mota` tinyint(4) NOT NULL DEFAULT 0,
-                               `is_hinhanh` tinyint(4) NOT NULL DEFAULT 0,
-                               `is_lienket` tinyint(4) NOT NULL DEFAULT 0,
-                               `is_hinhanh_size` varchar(50) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT 'datafiles/setone',
+  `seo_name` mediumtext DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `noidung_en` mediumtext DEFAULT NULL,
+  `tenbaiviet_cn` mediumtext DEFAULT NULL,
+  `noidung_cn` mediumtext DEFAULT NULL,
+  `p1_cn` mediumtext DEFAULT NULL,
+  `opt` tinyint(1) NOT NULL DEFAULT 0,
+  `p1_vi` mediumtext DEFAULT NULL,
+  `p1_en` mediumtext DEFAULT NULL,
+  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
+  `noidung_jp` mediumtext DEFAULT NULL,
+  `p1_jp` mediumtext DEFAULT NULL,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `is_mota` tinyint(4) NOT NULL DEFAULT 0,
+  `is_hinhanh` tinyint(4) NOT NULL DEFAULT 0,
+  `is_lienket` tinyint(4) NOT NULL DEFAULT 0,
+  `is_hinhanh_size` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -1906,16 +2580,16 @@ INSERT INTO `lh_seo_name` (`id`, `tenbaiviet_vi`, `noidung_vi`, `icon`, `duongda
 --
 
 CREATE TABLE `lh_ship_khuvuc` (
-                                  `id` int(11) NOT NULL,
-                                  `id_parent` int(11) NOT NULL DEFAULT 0,
-                                  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                  `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                                  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
-                                  `id_shipchung` int(11) NOT NULL DEFAULT 0,
-                                  `id_giaohangnhanh` int(11) NOT NULL DEFAULT 0,
-                                  `catasort` int(11) NOT NULL DEFAULT 0,
-                                  `showhi` tinyint(1) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
+  `id_shipchung` int(11) NOT NULL DEFAULT 0,
+  `id_giaohangnhanh` int(11) NOT NULL DEFAULT 0,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2703,28 +3377,28 @@ INSERT INTO `lh_ship_khuvuc` (`id`, `id_parent`, `tenbaiviet_vi`, `tenbaiviet_en
 --
 
 CREATE TABLE `lh_ship_thanhtoan_setup` (
-                                           `id` int(11) NOT NULL,
-                                           `check_tai_cong_ty` tinyint(1) NOT NULL DEFAULT 1,
-                                           `check_khi_nhan_hang` tinyint(1) NOT NULL DEFAULT 1,
-                                           `check_chuyen_khoan` tinyint(1) NOT NULL DEFAULT 1,
-                                           `check_ngan_luong` tinyint(1) NOT NULL DEFAULT 1,
-                                           `check_bao_kim` tinyint(1) NOT NULL DEFAULT 1,
-                                           `noidung_chuyenkhoan` mediumtext DEFAULT NULL,
-                                           `url_nganluong` varchar(255) DEFAULT NULL,
-                                           `email_nganluong` varchar(255) DEFAULT NULL,
-                                           `maketnoi_nganluong` varchar(255) DEFAULT NULL,
-                                           `matkhau_nganluong` varchar(255) DEFAULT NULL,
-                                           `url_baokim` varchar(255) DEFAULT NULL,
-                                           `email_baokim` varchar(255) DEFAULT NULL,
-                                           `matkhau_baokim` varchar(255) DEFAULT NULL,
-                                           `ma_website_baokim` varchar(255) DEFAULT NULL,
-                                           `api_user_baokim` varchar(255) DEFAULT NULL,
-                                           `api_pass_baokim` varchar(255) DEFAULT NULL,
-                                           `private_key_baokim` mediumtext DEFAULT NULL,
-                                           `email_paypal` varchar(255) DEFAULT NULL,
-                                           `url_paypal` varchar(255) DEFAULT NULL,
-                                           `ti_le_paypal` float NOT NULL DEFAULT 0,
-                                           `check_paypal` tinyint(1) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `check_tai_cong_ty` tinyint(1) NOT NULL DEFAULT 1,
+  `check_khi_nhan_hang` tinyint(1) NOT NULL DEFAULT 1,
+  `check_chuyen_khoan` tinyint(1) NOT NULL DEFAULT 1,
+  `check_ngan_luong` tinyint(1) NOT NULL DEFAULT 1,
+  `check_bao_kim` tinyint(1) NOT NULL DEFAULT 1,
+  `noidung_chuyenkhoan` mediumtext DEFAULT NULL,
+  `url_nganluong` varchar(255) DEFAULT NULL,
+  `email_nganluong` varchar(255) DEFAULT NULL,
+  `maketnoi_nganluong` varchar(255) DEFAULT NULL,
+  `matkhau_nganluong` varchar(255) DEFAULT NULL,
+  `url_baokim` varchar(255) DEFAULT NULL,
+  `email_baokim` varchar(255) DEFAULT NULL,
+  `matkhau_baokim` varchar(255) DEFAULT NULL,
+  `ma_website_baokim` varchar(255) DEFAULT NULL,
+  `api_user_baokim` varchar(255) DEFAULT NULL,
+  `api_pass_baokim` varchar(255) DEFAULT NULL,
+  `private_key_baokim` mediumtext DEFAULT NULL,
+  `email_paypal` varchar(255) DEFAULT NULL,
+  `url_paypal` varchar(255) DEFAULT NULL,
+  `ti_le_paypal` float NOT NULL DEFAULT 0,
+  `check_paypal` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2741,16 +3415,16 @@ INSERT INTO `lh_ship_thanhtoan_setup` (`id`, `check_tai_cong_ty`, `check_khi_nha
 --
 
 CREATE TABLE `lh_ship_vanchuyen_khac` (
-                                          `id` int(11) NOT NULL,
-                                          `id_kv` int(11) NOT NULL DEFAULT 0,
-                                          `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                          `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                          `toi_thieu` int(11) NOT NULL DEFAULT 0,
-                                          `toi_da` int(11) NOT NULL DEFAULT 0,
-                                          `loai` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 //gia tri 1 //kg',
-                                          `phi_van_chuyen` int(11) NOT NULL DEFAULT 0,
-                                          `gia_dieu_chinh` longtext DEFAULT NULL,
-                                          `du_kien` mediumtext DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `id_kv` int(11) NOT NULL DEFAULT 0,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `toi_thieu` int(11) NOT NULL DEFAULT 0,
+  `toi_da` int(11) NOT NULL DEFAULT 0,
+  `loai` tinyint(1) NOT NULL DEFAULT 0 COMMENT '0 //gia tri 1 //kg',
+  `phi_van_chuyen` int(11) NOT NULL DEFAULT 0,
+  `gia_dieu_chinh` longtext DEFAULT NULL,
+  `du_kien` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2771,14 +3445,14 @@ INSERT INTO `lh_ship_vanchuyen_khac` (`id`, `id_kv`, `tenbaiviet_vi`, `tenbaivie
 --
 
 CREATE TABLE `lh_ship_vanchuyen_setup` (
-                                           `id` int(11) NOT NULL,
-                                           `loai_ship` tinyint(1) NOT NULL DEFAULT 1,
-                                           `url_shipchung` varchar(255) DEFAULT NULL,
-                                           `api_shipchung` varchar(255) DEFAULT NULL,
-                                           `url_giaohangnhanh` varchar(255) DEFAULT NULL,
-                                           `api_giaohangnhanh` varchar(255) DEFAULT NULL,
-                                           `kho_tinhthanh` int(11) NOT NULL DEFAULT 0,
-                                           `kho_quanhuyen` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `loai_ship` tinyint(1) NOT NULL DEFAULT 1,
+  `url_shipchung` varchar(255) DEFAULT NULL,
+  `api_shipchung` varchar(255) DEFAULT NULL,
+  `url_giaohangnhanh` varchar(255) DEFAULT NULL,
+  `api_giaohangnhanh` varchar(255) DEFAULT NULL,
+  `kho_tinhthanh` int(11) NOT NULL DEFAULT 0,
+  `kho_quanhuyen` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2795,11 +3469,11 @@ INSERT INTO `lh_ship_vanchuyen_setup` (`id`, `loai_ship`, `url_shipchung`, `api_
 --
 
 CREATE TABLE `lh_slug` (
-                           `id` int(11) NOT NULL,
-                           `bang` varchar(255) DEFAULT NULL,
-                           `slug` varchar(250) DEFAULT NULL,
-                           `id_bang` int(11) NOT NULL DEFAULT 0,
-                           `step` int(11) NOT NULL DEFAULT 0
+  `id` int(11) NOT NULL,
+  `bang` varchar(255) DEFAULT NULL,
+  `slug` varchar(250) DEFAULT NULL,
+  `id_bang` int(11) NOT NULL DEFAULT 0,
+  `step` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2953,23 +3627,23 @@ INSERT INTO `lh_slug` (`id`, `bang`, `slug`, `id_bang`, `step`) VALUES
 --
 
 CREATE TABLE `lh_sponline` (
-                               `id` int(11) NOT NULL,
-                               `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                               `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                               `contact_link` varchar(255) DEFAULT NULL,
-                               `type` tinyint(2) DEFAULT NULL,
-                               `mota_vi` varchar(255) DEFAULT NULL,
-                               `mota_en` varchar(255) DEFAULT NULL,
-                               `phone` varchar(50) DEFAULT NULL,
-                               `id_user` int(11) DEFAULT 0,
-                               `note` varchar(255) DEFAULT NULL,
-                               `opt` int(11) NOT NULL DEFAULT 0,
-                               `ngaydang` int(11) DEFAULT NULL,
-                               `catasort` int(11) NOT NULL DEFAULT 0,
-                               `showhi` tinyint(1) DEFAULT NULL,
-                               `email` varchar(255) DEFAULT NULL,
-                               `duongdantin` varchar(255) DEFAULT NULL,
-                               `icon` varchar(255) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `contact_link` varchar(255) DEFAULT NULL,
+  `type` tinyint(2) DEFAULT NULL,
+  `mota_vi` varchar(255) DEFAULT NULL,
+  `mota_en` varchar(255) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `id_user` int(11) DEFAULT 0,
+  `note` varchar(255) DEFAULT NULL,
+  `opt` int(11) NOT NULL DEFAULT 0,
+  `ngaydang` int(11) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2986,55 +3660,55 @@ INSERT INTO `lh_sponline` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `contact_link
 --
 
 CREATE TABLE `lh_step` (
-                           `id` int(11) NOT NULL,
-                           `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                           `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                           `tenbaiviet_cn` varchar(255) DEFAULT NULL,
-                           `p1_vi` varchar(255) DEFAULT NULL,
-                           `p1_en` varchar(255) DEFAULT NULL,
-                           `p1_cn` varchar(255) DEFAULT NULL,
-                           `p2_vi` varchar(255) DEFAULT NULL,
-                           `p2_en` varchar(255) DEFAULT NULL,
-                           `p2_cn` varchar(255) DEFAULT NULL,
-                           `p3_vi` mediumtext DEFAULT NULL,
-                           `p3_en` mediumtext DEFAULT NULL,
-                           `p3_cn` varchar(255) DEFAULT NULL,
-                           `noidung_vi` mediumtext DEFAULT NULL,
-                           `noidung_en` mediumtext DEFAULT NULL,
-                           `noidung_cn` mediumtext DEFAULT NULL,
-                           `seo_name` varchar(255) DEFAULT NULL,
-                           `catasort` int(11) DEFAULT 0,
-                           `step` tinyint(4) NOT NULL DEFAULT 0,
-                           `ngaydang` int(11) NOT NULL DEFAULT 0,
-                           `duongdantin` varchar(255) DEFAULT NULL,
-                           `icon` varchar(255) DEFAULT NULL,
-                           `seo_title_vi` varchar(255) DEFAULT NULL,
-                           `seo_title_en` varchar(255) DEFAULT NULL,
-                           `seo_title_cn` varchar(255) DEFAULT NULL,
-                           `seo_description_vi` varchar(255) DEFAULT NULL,
-                           `seo_description_en` varchar(255) DEFAULT NULL,
-                           `seo_description_cn` varchar(255) DEFAULT NULL,
-                           `seo_keywords_vi` varchar(255) DEFAULT NULL,
-                           `seo_keywords_en` varchar(255) DEFAULT NULL,
-                           `seo_keywords_cn` varchar(255) DEFAULT NULL,
-                           `num_view` int(11) NOT NULL DEFAULT 0,
-                           `opt` tinyint(1) NOT NULL DEFAULT 0,
-                           `opt1` tinyint(1) NOT NULL DEFAULT 0,
-                           `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                           `size_img` varchar(255) DEFAULT NULL,
-                           `size_img_dm` varchar(255) DEFAULT NULL,
-                           `map_google` mediumtext DEFAULT NULL,
-                           `tenbaiviet_jp` varchar(255) DEFAULT NULL,
-                           `p1_jp` varchar(255) DEFAULT NULL,
-                           `p2_jp` varchar(255) DEFAULT NULL,
-                           `p3_jp` varchar(255) DEFAULT NULL,
-                           `noidung_jp` mediumtext DEFAULT NULL,
-                           `seo_title_jp` varchar(255) DEFAULT NULL,
-                           `seo_description_jp` varchar(255) DEFAULT NULL,
-                           `seo_keywords_jp` varchar(255) DEFAULT NULL,
-                           `mota` longtext DEFAULT NULL,
-                           `noidung_vi_2` longtext DEFAULT NULL,
-                           `mota2` longtext DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `tenbaiviet_cn` varchar(255) DEFAULT NULL,
+  `p1_vi` varchar(255) DEFAULT NULL,
+  `p1_en` varchar(255) DEFAULT NULL,
+  `p1_cn` varchar(255) DEFAULT NULL,
+  `p2_vi` varchar(255) DEFAULT NULL,
+  `p2_en` varchar(255) DEFAULT NULL,
+  `p2_cn` varchar(255) DEFAULT NULL,
+  `p3_vi` mediumtext DEFAULT NULL,
+  `p3_en` mediumtext DEFAULT NULL,
+  `p3_cn` varchar(255) DEFAULT NULL,
+  `noidung_vi` mediumtext DEFAULT NULL,
+  `noidung_en` mediumtext DEFAULT NULL,
+  `noidung_cn` mediumtext DEFAULT NULL,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `catasort` int(11) DEFAULT 0,
+  `step` tinyint(4) NOT NULL DEFAULT 0,
+  `ngaydang` int(11) NOT NULL DEFAULT 0,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `seo_title_vi` varchar(255) DEFAULT NULL,
+  `seo_title_en` varchar(255) DEFAULT NULL,
+  `seo_title_cn` varchar(255) DEFAULT NULL,
+  `seo_description_vi` varchar(255) DEFAULT NULL,
+  `seo_description_en` varchar(255) DEFAULT NULL,
+  `seo_description_cn` varchar(255) DEFAULT NULL,
+  `seo_keywords_vi` varchar(255) DEFAULT NULL,
+  `seo_keywords_en` varchar(255) DEFAULT NULL,
+  `seo_keywords_cn` varchar(255) DEFAULT NULL,
+  `num_view` int(11) NOT NULL DEFAULT 0,
+  `opt` tinyint(1) NOT NULL DEFAULT 0,
+  `opt1` tinyint(1) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `size_img` varchar(255) DEFAULT NULL,
+  `size_img_dm` varchar(255) DEFAULT NULL,
+  `map_google` mediumtext DEFAULT NULL,
+  `tenbaiviet_jp` varchar(255) DEFAULT NULL,
+  `p1_jp` varchar(255) DEFAULT NULL,
+  `p2_jp` varchar(255) DEFAULT NULL,
+  `p3_jp` varchar(255) DEFAULT NULL,
+  `noidung_jp` mediumtext DEFAULT NULL,
+  `seo_title_jp` varchar(255) DEFAULT NULL,
+  `seo_description_jp` varchar(255) DEFAULT NULL,
+  `seo_keywords_jp` varchar(255) DEFAULT NULL,
+  `mota` longtext DEFAULT NULL,
+  `noidung_vi_2` longtext DEFAULT NULL,
+  `mota2` longtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -3064,16 +3738,16 @@ INSERT INTO `lh_step` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `tenbaiviet_cn`, 
 --
 
 CREATE TABLE `lh_thuoctinhchung` (
-                                     `id` int(11) NOT NULL,
-                                     `tenbaiviet_vi` varchar(255) DEFAULT NULL,
-                                     `tenbaiviet_en` varchar(255) DEFAULT NULL,
-                                     `id_parent` int(11) NOT NULL DEFAULT 0,
-                                     `seo_name` varchar(255) DEFAULT NULL,
-                                     `blank` varchar(255) DEFAULT NULL,
-                                     `catasort` int(11) NOT NULL DEFAULT 0,
-                                     `duongdantin` varchar(255) DEFAULT NULL,
-                                     `icon` varchar(255) DEFAULT NULL,
-                                     `showhi` tinyint(4) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `tenbaiviet_vi` varchar(255) DEFAULT NULL,
+  `tenbaiviet_en` varchar(255) DEFAULT NULL,
+  `id_parent` int(11) NOT NULL DEFAULT 0,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `blank` varchar(255) DEFAULT NULL,
+  `catasort` int(11) NOT NULL DEFAULT 0,
+  `duongdantin` varchar(255) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `showhi` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -3106,11 +3780,11 @@ INSERT INTO `lh_thuoctinhchung` (`id`, `tenbaiviet_vi`, `tenbaiviet_en`, `id_par
 --
 
 CREATE TABLE `lh_yeuthich` (
-                               `id` int(11) NOT NULL,
-                               `id_baiviet` int(11) NOT NULL DEFAULT 0,
-                               `id_member` int(11) NOT NULL DEFAULT 0,
-                               `showhi` tinyint(1) NOT NULL DEFAULT 1,
-                               `the_loai` tinyint(4) NOT NULL DEFAULT 1
+  `id` int(11) NOT NULL,
+  `id_baiviet` int(11) NOT NULL DEFAULT 0,
+  `id_member` int(11) NOT NULL DEFAULT 0,
+  `showhi` tinyint(1) NOT NULL DEFAULT 1,
+  `the_loai` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
@@ -3121,157 +3795,157 @@ CREATE TABLE `lh_yeuthich` (
 -- Indexes for table `lh_baiviet`
 --
 ALTER TABLE `lh_baiviet`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_baiviet_chitiet`
 --
 ALTER TABLE `lh_baiviet_chitiet`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_baiviet_img`
 --
 ALTER TABLE `lh_baiviet_img`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_baiviet_sao`
 --
 ALTER TABLE `lh_baiviet_sao`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_baiviet_select_tinhnang`
 --
 ALTER TABLE `lh_baiviet_select_tinhnang`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_baiviet_thuoctinh`
 --
 ALTER TABLE `lh_baiviet_thuoctinh`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_baiviet_tinhnang`
 --
 ALTER TABLE `lh_baiviet_tinhnang`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_banner`
 --
 ALTER TABLE `lh_banner`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_banner_danhmuc`
 --
 ALTER TABLE `lh_banner_danhmuc`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_binhluan`
 --
 ALTER TABLE `lh_binhluan`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_clanguage`
 --
 ALTER TABLE `lh_clanguage`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_counter`
 --
 ALTER TABLE `lh_counter`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_count_date`
 --
 ALTER TABLE `lh_count_date`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_danhmuc`
 --
 ALTER TABLE `lh_danhmuc`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_du_lieu_sn`
 --
 ALTER TABLE `lh_du_lieu_sn`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_email_config`
 --
 ALTER TABLE `lh_email_config`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_email_follow`
 --
 ALTER TABLE `lh_email_follow`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_file_import_data`
 --
 ALTER TABLE `lh_file_import_data`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_form_lienhe`
 --
 ALTER TABLE `lh_form_lienhe`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_lienket`
 --
 ALTER TABLE `lh_lienket`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_lien_ket_nhanh`
 --
 ALTER TABLE `lh_lien_ket_nhanh`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_lien_ket_nhanh_phan_tram`
 --
 ALTER TABLE `lh_lien_ket_nhanh_phan_tram`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_magiamgia`
 --
 ALTER TABLE `lh_magiamgia`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_magiamgia_chitiet`
 --
 ALTER TABLE `lh_magiamgia_chitiet`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_mangxahoi`
 --
 ALTER TABLE `lh_mangxahoi`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_members`
 --
 ALTER TABLE `lh_members`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `tentruycap` (`tentruycap`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `active_subdomain` (`tentruycap`),
@@ -3281,123 +3955,129 @@ ALTER TABLE `lh_members`
 -- Indexes for table `lh_members_log`
 --
 ALTER TABLE `lh_members_log`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_members_nhom`
 --
 ALTER TABLE `lh_members_nhom`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_menu`
 --
 ALTER TABLE `lh_menu`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_module_nhomtaikhoan`
 --
 ALTER TABLE `lh_module_nhomtaikhoan`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_module_page`
 --
 ALTER TABLE `lh_module_page`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_module_setting`
 --
 ALTER TABLE `lh_module_setting`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_module_tinhnang`
 --
 ALTER TABLE `lh_module_tinhnang`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lh_optimized_img`
+--
+ALTER TABLE `lh_optimized_img`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_order`
 --
 ALTER TABLE `lh_order`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_phuongthucthanhtoan`
 --
 ALTER TABLE `lh_phuongthucthanhtoan`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_seo`
 --
 ALTER TABLE `lh_seo`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_seo_name`
 --
 ALTER TABLE `lh_seo_name`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_ship_khuvuc`
 --
 ALTER TABLE `lh_ship_khuvuc`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `id_parent` (`id_parent`);
 
 --
 -- Indexes for table `lh_ship_thanhtoan_setup`
 --
 ALTER TABLE `lh_ship_thanhtoan_setup`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_ship_vanchuyen_khac`
 --
 ALTER TABLE `lh_ship_vanchuyen_khac`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_ship_vanchuyen_setup`
 --
 ALTER TABLE `lh_ship_vanchuyen_setup`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_slug`
 --
 ALTER TABLE `lh_slug`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `slug` (`slug`);
 
 --
 -- Indexes for table `lh_sponline`
 --
 ALTER TABLE `lh_sponline`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_step`
 --
 ALTER TABLE `lh_step`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_thuoctinhchung`
 --
 ALTER TABLE `lh_thuoctinhchung`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `lh_yeuthich`
 --
 ALTER TABLE `lh_yeuthich`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -3407,277 +4087,283 @@ ALTER TABLE `lh_yeuthich`
 -- AUTO_INCREMENT for table `lh_baiviet`
 --
 ALTER TABLE `lh_baiviet`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- AUTO_INCREMENT for table `lh_baiviet_chitiet`
 --
 ALTER TABLE `lh_baiviet_chitiet`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lh_baiviet_img`
 --
 ALTER TABLE `lh_baiviet_img`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `lh_baiviet_sao`
 --
 ALTER TABLE `lh_baiviet_sao`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lh_baiviet_select_tinhnang`
 --
 ALTER TABLE `lh_baiviet_select_tinhnang`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `lh_baiviet_thuoctinh`
 --
 ALTER TABLE `lh_baiviet_thuoctinh`
-    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lh_baiviet_tinhnang`
 --
 ALTER TABLE `lh_baiviet_tinhnang`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `lh_banner`
 --
 ALTER TABLE `lh_banner`
-    MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `lh_banner_danhmuc`
 --
 ALTER TABLE `lh_banner_danhmuc`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `lh_binhluan`
 --
 ALTER TABLE `lh_binhluan`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lh_clanguage`
 --
 ALTER TABLE `lh_clanguage`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1359;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1359;
 
 --
 -- AUTO_INCREMENT for table `lh_counter`
 --
 ALTER TABLE `lh_counter`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_count_date`
 --
 ALTER TABLE `lh_count_date`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `lh_danhmuc`
 --
 ALTER TABLE `lh_danhmuc`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lh_du_lieu_sn`
 --
 ALTER TABLE `lh_du_lieu_sn`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `lh_email_config`
 --
 ALTER TABLE `lh_email_config`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `lh_email_follow`
 --
 ALTER TABLE `lh_email_follow`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `lh_file_import_data`
 --
 ALTER TABLE `lh_file_import_data`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `lh_form_lienhe`
 --
 ALTER TABLE `lh_form_lienhe`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `lh_lienket`
 --
 ALTER TABLE `lh_lienket`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `lh_lien_ket_nhanh`
 --
 ALTER TABLE `lh_lien_ket_nhanh`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_lien_ket_nhanh_phan_tram`
 --
 ALTER TABLE `lh_lien_ket_nhanh_phan_tram`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_magiamgia`
 --
 ALTER TABLE `lh_magiamgia`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lh_magiamgia_chitiet`
 --
 ALTER TABLE `lh_magiamgia_chitiet`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `lh_mangxahoi`
 --
 ALTER TABLE `lh_mangxahoi`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_members`
 --
 ALTER TABLE `lh_members`
-    MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT for table `lh_members_log`
 --
 ALTER TABLE `lh_members_log`
-    MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `lh_members_nhom`
 --
 ALTER TABLE `lh_members_nhom`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_menu`
 --
 ALTER TABLE `lh_menu`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `lh_module_nhomtaikhoan`
 --
 ALTER TABLE `lh_module_nhomtaikhoan`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `lh_module_page`
 --
 ALTER TABLE `lh_module_page`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `lh_module_setting`
 --
 ALTER TABLE `lh_module_setting`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `lh_module_tinhnang`
 --
 ALTER TABLE `lh_module_tinhnang`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+
+--
+-- AUTO_INCREMENT for table `lh_optimized_img`
+--
+ALTER TABLE `lh_optimized_img`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6820;
 
 --
 -- AUTO_INCREMENT for table `lh_order`
 --
 ALTER TABLE `lh_order`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `lh_phuongthucthanhtoan`
 --
 ALTER TABLE `lh_phuongthucthanhtoan`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `lh_seo`
 --
 ALTER TABLE `lh_seo`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_seo_name`
 --
 ALTER TABLE `lh_seo_name`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `lh_ship_khuvuc`
 --
 ALTER TABLE `lh_ship_khuvuc`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=784;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=784;
 
 --
 -- AUTO_INCREMENT for table `lh_ship_thanhtoan_setup`
 --
 ALTER TABLE `lh_ship_thanhtoan_setup`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_ship_vanchuyen_khac`
 --
 ALTER TABLE `lh_ship_vanchuyen_khac`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `lh_ship_vanchuyen_setup`
 --
 ALTER TABLE `lh_ship_vanchuyen_setup`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `lh_slug`
 --
 ALTER TABLE `lh_slug`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
 
 --
 -- AUTO_INCREMENT for table `lh_sponline`
 --
 ALTER TABLE `lh_sponline`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `lh_step`
 --
 ALTER TABLE `lh_step`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `lh_thuoctinhchung`
 --
 ALTER TABLE `lh_thuoctinhchung`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `lh_yeuthich`
 --
 ALTER TABLE `lh_yeuthich`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

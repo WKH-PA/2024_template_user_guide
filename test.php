@@ -20,12 +20,12 @@ foreach ($sql as $rows) {
     $status     =$rows['status'];
     $error      =$rows['error'];
     // Thực hiện hành động với $image nếu cần
+    $result = processImage($krakenInstance, $imagePath, $webDirectory);
 
 
-if (processImage($krakenInstance, $imagePath, $webDirectory)) {
-    $status = 1;
-    $error = '';
-
+if ($result['success']) {
+        $status = 1;
+        $error = '';
     // Cập nhật cơ sở dữ liệu
     $current_date = date('Y-m-d H:i:s');
     $data = [
@@ -37,7 +37,9 @@ if (processImage($krakenInstance, $imagePath, $webDirectory)) {
 
 } else {
     $status = 0;
-    $error = '"Kraken error: " . (isset($data[\'message\']) ? $data[\'message\'] : \'Unknown error\')';
+    $error_message = $result['message'];
+    $error_code = $result['error_code'];
+    $error = "Kraken error: $error_message (Code: $error_code)";
     $current_date = date('Y-m-d H:i:s');
     $data = [
         'status' => $status,
