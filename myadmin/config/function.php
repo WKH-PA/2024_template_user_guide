@@ -3026,7 +3026,7 @@ function processImage($kraken, $imagePath, $webDirectory) {
 			unlink($imagePath);
 		}
 		// Save the optimized image file with the original name
-		file_put_contents($Url . '/' . $imageName, $optimizedImageContent);
+		file_put_contents( '/' . $imageName, $optimizedImageContent);
 		return [
 			'success' => true
 		];

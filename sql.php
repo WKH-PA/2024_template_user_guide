@@ -6,17 +6,19 @@
 	if($_SERVER['HTTP_HOST'] != 'localhost'){
 		error_reporting(0);
 	}
-	$db_localhost 		 		= "localhost";
-	$db_user 			 		= "root";
-	$db_pass 			 		= '';
-	$db_data 			 		= "2020_caosuphurieng";
-	$_SESSION['sub_demo'] 		= "2020_caosuphurieng/";
-	$check_fl_domain 			= "webdemo5.pavietnam.vn";
-	$cache_file   				= "on";
-	$redis_on_off 				= "off";
-	$_SESSION['sub_demo_check'] = false;
-	$_SESSION['thumuc']  		= $_SESSION['sub_demo']."datafiles";
-	$php_vs 					= 7; //"5.6"; // 7
+
+    $db_localhost 		 		= "localhost";
+    $db_user 			 		= "root";
+    $db_pass 			 		= '';
+    $db_data 			 		= "2020_caosuphurieng1";
+    $_SESSION['sub_demo'] 		= "2024_template_user_guide/";
+    $check_fl_domain 			= "172.16.90.105";
+    $cache_file   				= "on";
+    $redis_on_off 				= "off";
+    $_SESSION['sub_demo_check'] = false;
+    $_SESSION['thumuc']  		= $_SESSION['sub_demo']."datafiles";
+    $php_vs 					= 7; //"5.6"; // 7
+
 
 
 	if($_SERVER['HTTP_HOST'] 	!= 'localhost' && $_SERVER['HTTP_HOST'] != $check_fl_domain ) {
