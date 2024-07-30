@@ -102,8 +102,8 @@ foreach ($data_all as $row) {
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <p>Images to process: <span id="total-images"><?php echo $sl; ?></span></p>
-                        <p>Images processed: <span id="processed-images"><?php echo $ht; ?></span></p>
+                        <p>Tổng số ảnh trong hàng chờ : <span id="total-images"><?php echo $sl; ?></span></p>
+                        <p>Số lượng đã tối ưu: <span id="processed-images"><?php echo $ht; ?></span></p>
                         <div class="card-header">
                             <h3 class="card-title">Danh sách ảnh tối ưu</h3>
                             <div class="form-inline">
@@ -163,7 +163,7 @@ foreach ($data_all as $row) {
                                         $displayId++;
                                         ?>
                                         <tr>
-<!--                                            <td class="text-center">--><?//= htmlspecialchars($rows['id']) ?><!--</td>-->
+                                            <!--                                            <td class="text-center">--><?//= htmlspecialchars($rows['id']) ?><!--</td>-->
                                             <td class="text-center"><?= $displayId ?></td>
                                             <td><?= strstr($image_path, 'datafiles') ?></td>
                                             <td><?= $date ?></td>
@@ -171,27 +171,31 @@ foreach ($data_all as $row) {
                                             <td><?= $status ?></td>
                                             <td>
                                                 <?php if ($error): ?>
-                                                    <a href="#" class="error-icon" data-toggle="modal" data-target="#errorModal<?= $cl ?>">
+                                                    <a href="#" class="error-icon" data-toggle="modal" data-target="#errorModal<?= $displayId ?>">
                                                         <i class="fa fa-search"></i>
                                                     </a>
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="errorModal<?= $cl ?>" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel<?= $cl ?>" aria-hidden="true">
+                                                    <div class="modal fade" id="errorModal<?= $displayId ?>" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel<?= $displayId ?>" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="errorModalLabel<?= $cl ?>">Error Details</h5>
+                                                                    <h5 class="modal-title" id="errorModalLabel<?= $displayId ?>">Chi tiết lỗi</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <?= $error ?>
+                                                                    <?= htmlspecialchars($error) ?>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 <?php endif; ?>
                                             </td>
+
                                             <td>
                                                 <?php if ($status == 0) : ?>
                                                     <form action="" method="post" class="d-inline-block">
@@ -245,9 +249,6 @@ foreach ($data_all as $row) {
     $.ajax({
         // ...
         success: function(response) {
-            // ... (Xử lý kết quả trả về từ server)
-
-            // Cập nhật số lượng ảnh
             if (response.status == 1) {
                 processedImages++; // Tăng số ảnh đã xử lý
                 updateImageCount(totalImages, processedImages);

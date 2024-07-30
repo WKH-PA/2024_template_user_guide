@@ -402,12 +402,6 @@ if($favico != ''){
                 </div>
 
             </section>
-
-
-
-
-    </section>
-
             <section class="col-lg-12">
                 <div class="box p10" style="margin-top: 10px">
                     <div class="form-group" stylw=" margin-bottom: 5px;">
