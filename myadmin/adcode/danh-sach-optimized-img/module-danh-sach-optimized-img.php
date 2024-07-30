@@ -3,26 +3,39 @@ include "../vendor/autoload.php";
 $table = '#_optimized_img';
 $totalImages = 0;
 $processedImages = 0;
-$numview  = 50;
+
 $pz       = 0;
 $pzz      = 0;
+$numview  = isset($_GET['numview']) ? intval($_GET['numview']) : 15;
 $statuss = isset($_GET['status']) ? $_GET['status'] : 'ASC';
 if (isset($_GET['pz'])) {
     $pz = intval($_GET['pz']);
     $pzz = ($pz > 0) ? $pz * $numview : 0;
 }
+$uri = '&numview=' . $numview . '&statuss=' . $statuss;
 $displayId = ($pz * $numview);
+// Lấy trạng thái được chọn
 
+
+// Xây dựng điều kiện WHERE cho truy vấn SQL
+$whereClause = "";
+if ($statuss === 'DESC') {
+    $whereClause = " WHERE `status` = 1 ";
+} elseif ($statuss === 'ASC') {
+    $whereClause = " WHERE `status` = 0 ";
+}
 // Truy vấn toàn bộ dữ liệu từ cơ sở dữ liệu
-$sql_all = DB_que("SELECT * FROM `$table` ORDER BY status $statuss");
-$numlist = DB_num($sql_all);
+$sql_all = DB_que("SELECT * FROM `$table`");
+$sql_dl = DB_que("SELECT * FROM `$table` $whereClause ORDER BY status $statuss");
+$numlist = DB_num($sql_dl);
 $numshow = ceil($numlist / $numview);
 // Chuyển đổi kết quả truy vấn thành mảng
 $data_all = mysqli_fetch_all($sql_all, MYSQLI_ASSOC);
-$data_page = array_slice($data_all, $pzz, $numview);
+$data_dl = mysqli_fetch_all($sql_dl, MYSQLI_ASSOC);
+$data_page = array_slice($data_dl, $pzz, $numview);
 $fullpath = $_SERVER['DOCUMENT_ROOT'] . '/' . $_SESSION['thumuc'];
 
-// Thực hiện hành động khi nhấn nút tối ưu toàn bộ
+// Thực hiện hành động khi nhấn nút laays hinh
 if (isset($_POST['execute_all'])) {
     update_db_optimized_img($fullpath);
 }
@@ -31,7 +44,8 @@ if (isset($_POST['execute_single'])) {
     $imagePath = isset($_POST['image_path']) ? $_POST['image_path'] : '';
     $krakenInstance = getValidKrakenInstance();
     $current_date = date('Y-m-d H:i:s');
-    // Process the image using Kraken.io
+
+    // Xử lý ảnh bằng Kraken.io
     $result = processImage($krakenInstance, $imagePath, $webDirectory);
     if ($result['success']) {
         $status = 1;
@@ -44,49 +58,56 @@ if (isset($_POST['execute_single'])) {
         $error = "Kraken error: $error_message (Code: $error_code)";
         $message = 'Có lỗi xảy ra: ' . $error;
     }
-    // Update the database
+
+    // Cập nhật cơ sở dữ liệu
     $data = [
         'status' => $status,
         'updated' => $current_date,
         'error' => $error
     ];
     ACTION_db($data, $table, 'update', NULL, "`id` = {$_POST['id']}");
-    // Pass the message and status to the frontend
+
+    // Truyền thông báo và trạng thái lên frontend
     echo "<script>
-        $(document).ready(function() {
-            // Create a modal element
-            var modal = $('<div class=\"modal_\">' +
-                             '<div class=\"modal-content_\">' +
-                                 '<span class=\"close\">&times;</span>' +
-                                 '<p>$message</p>' +
-                             '</div>' +
-                          '</div>');
+    document.addEventListener('DOMContentLoaded', function() {
+        var message = " . json_encode($message) . "; // Chuyển $message thành chuỗi JSON
+        // Tạo phần tử modal
+        var modal = document.createElement('div');
+        modal.className = 'modal_';
+        var modalContent = document.createElement('div');
+        modalContent.className = 'modal-content_';
+        var closeBtn = document.createElement('span');
+        closeBtn.className = 'close';
+        closeBtn.innerHTML = '×';
+        var messageP = document.createElement('p');
+        messageP.textContent = message; // Sử dụng biến message đã được chuyển đổi
 
-            // Append modal to body
-            $('body').append(modal);
+        modalContent.appendChild(closeBtn);
+        modalContent.appendChild(messageP);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
 
-            // Show modal
-            modal.show();
+        // Hiển thị modal
+        modal.style.display = 'block';
 
-            // Close modal when close button or outside modal is clicked
-            $('.close, .modal').on('click', function() {
+        // Đóng modal khi nhấn nút close hoặc click ra ngoài modal
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            modal.remove();
+        };
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
                 modal.remove();
-              
-            });
-        });
-      </script>";
+            }
+        };
+    });
+</script>";
+}
 
-}
-// Tạo liên kết phân trang với các tham số hiện tại
-function create_pagination_links($numshow, $url_page, $pz, $status) {
-    $pagination_links = '';
-    for ($i = 0; $i < $numshow; $i++) {
-        $active = ($i == $pz) ? 'active' : '';
-        $url = $url_page . '&status=' . $status . '&pz=' . $i;
-        $pagination_links .= "<li class='page-item $active'><a class='page-link' href='$url'>$i</a></li>";
-    }
-    return $pagination_links;
-}
+
+
+
 foreach ($data_all as $row) {
     $totalImages++;
     if ($row['status'] == 1) {
@@ -94,98 +115,139 @@ foreach ($data_all as $row) {
     }
 }
 ?>
-
-<!-- Form cho chức năng tối ưu toàn bộ -->
+<section class="content-header">
+    <h1>Danh sách ảnh tối ưu</h1>
+    <ol class="breadcrumb">
+        <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
+        <li class="active">Danh sách ảnh tối ưu</li>
+    </ol>
+</section>
 <form id="optimize-all-form" action="" method="post">
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <p>Tổng số ảnh trong hàng chờ : <span id="total-images"><?php echo $sl; ?></span></p>
-                        <p>Số lượng đã tối ưu: <span id="processed-images"><?php echo $ht; ?></span></p>
-                        <div class="card-header">
-                            <h3 class="card-title">Danh sách ảnh tối ưu</h3>
-                            <div class="form-inline">
-                                <select id="status-select" name="status" class="form-control modern-select">
-                                    <option value="ASC" <?= $statuss === 'ASC' ? 'selected' : '' ?>>Chưa tối ưu</option>
-                                    <option value="DESC" <?= $statuss === 'DESC' ? 'selected' : '' ?>>Đã tối ưu</option>
-                                </select>
-                                <button type="submit" name="execute_all" class="btn" onclick="return confirmAction()">
-                                    <i class="fa fa-cogs"></i> Lấy hình
-                                </button>
-                                <!-- Bootstrap Modal for Confirmation -->
-                                <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="confirmModalLabel">Xác nhận hành động</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="confirmation-message">
-                                                <p>Bạn có chắc chắn muốn đưa vào hàng chờ tối ưu không?</p>
-                                                <p class="note">Lưu ý rằng những mục trùng tên sẽ không được thêm vào.</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                <button type="button" class="btn btn-primary" id="confirmButton">Xác nhận</button>
-                                            </div>
-                                        </div>
+                <section class="col-lg-12">
+                    <div class="cards-container">
+                        <div class="card custom-card overflow-hidden main-content-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-2">
+                                    <div>
+                                        <span class="text-muted d-block mb-1">Tổng số ảnh trong hàng chờ:</span>
+                                        <h4 class="fw-medium mb-0" id="total-images"><?php echo $totalImages; ?></h4>
+                                    </div>
+                                    <div class="lh-1">
+                                        <span class="avatar avatar-md avatar-rounded bg-warning">
+                                            <ion-icon name="build-sharp"></ion-icon>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card custom-card overflow-hidden main-content-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start justify-content-between mb-2">
+                                    <div>
+                                        <span class="text-muted d-block mb-1">Số lượng đã tối ưu:</span>
+                                        <h4 class="fw-medium mb-0" id="processed-images"><?php echo $processedImages; ?></h4>
+                                    </div>
+                                    <div class="lh-1">
+                                        <span class="avatar avatar-md avatar-rounded bg-success">
+                                            <ion-icon name="checkmark-done-sharp"></ion-icon>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="box">
+                        <div class="box-header">
+
+                            <div class="box-tools">
+                                <div class="dv-hd-locsds">
+                                    <div class="form-group">
+                                        <select name="viewid" id="viewid" class="js_hienthi_ds form-control" onchange='SEARCH_jsstep()'>
+                                            <option value="15" <?php if($numview==15) echo "selected"; ?>>15</option>
+                                            <option value="30" <?php if($numview==30) echo "selected"; ?>>30</option>
+                                            <option value="60" <?php if($numview==60) echo "selected"; ?>>60</option>
+                                            <option value="100" <?php if($numview==100) echo "selected"; ?>>100</option>
+                                            <option value="200" <?php if($numview==200) echo "selected"; ?>>200</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="status-select" name="status" class="form-control modern-select">
+                                            <option value="ASC" <?= $statuss === 'ASC' ? 'selected' : '' ?>>Chưa tối ưu</option>
+                                            <option value="DESC" <?= $statuss === 'DESC' ? 'selected' : '' ?>>Đã tối ưu</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <h3 class="box-title box-title-td pull-right">
+                                    <button type="submit" name="execute_all" class="btn" onclick="return confirmAction()">
+                                        <ion-icon name="cloud-upload-outline"></ion-icon
+                                    </button>
+                                    <span class="tooltip-target" data-tooltip="Nộing gợi ý"></span>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="cards-container" style="display: flex; justify-content: flex-end; gap: 10px;">
+
+                        </div>
+
                         <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover table-bordered">
-                                    <thead class="thead-dark">
+                            <div class="table-responsive no-padding table-danhsach-cont">
+                                <table class="table table-hover table-danhsach">
+                                    <thead>
                                     <tr>
-                                        <th class="text-center">ID</th>
+                                        <th class="w80 text-center">STT</th>
                                         <th>Đường dẫn ảnh</th>
-                                        <th>Ngày tạo</th>
-                                        <th>Ngày cập nhật</th>
-                                        <th>Trạng thái</th>
-                                        <th>Lỗi</th>
-                                        <th>Tùy chọn</th>
+                                        <th class="w100 text-center">Ngày tạo</th>
+                                        <th class="w100 text-center">Ngày cập nhật</th>
+                                        <th class="w100 text-center">Trạng thái</th>
+                                        <th class="w50 text-center">Lỗi</th>
+                                        <th class="w100 text-center">Tùy chọn</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                                    foreach ($data_page as $rows) {
-                                        $ida        = SHOW_text($rows['id']);
-                                        $image_path = SHOW_text($rows['image_path']);
-                                        $date       = date('d-m-Y', strtotime(SHOW_text($rows['date'])));
-                                        $update     = date('d-m-Y', strtotime(SHOW_text($rows['updated'])));
-                                        $status     = SHOW_text($rows['status']);
-                                        $error      = SHOW_text($rows['error']);
-                                        $displayId++;
+                                    foreach ($data_page as $index => $rows) {
+                                        $ida        = htmlspecialchars($rows['id']);
+                                        $image_path = htmlspecialchars($rows['image_path']);
+                                        $date       = date('d-m-Y', strtotime($rows['date']));
+                                        $update     = date('d-m-Y', strtotime($rows['updated']));
+                                        $status = $rows['status'];
+                                        $status_text = ($status == 1) ? 'Đã tối ưu' : 'Chưa tối ưu';
+                                        $status_label_class = ($status == 1) ? 'label-success' : 'label-danger';
+                                        $error      = htmlspecialchars($rows['error']);
                                         ?>
                                         <tr>
-                                            <!--                                            <td class="text-center">--><?//= htmlspecialchars($rows['id']) ?><!--</td>-->
-                                            <td class="text-center"><?= $displayId ?></td>
-                                            <td><?= strstr($image_path, 'datafiles') ?></td>
-                                            <td><?= $date ?></td>
-                                            <td><?= $update ?></td>
-                                            <td><?= $status ?></td>
-                                            <td>
+                                            <td class="text-center"><?= $index + 1 ?></td>
+                                            <td><?= $image_path ?></td>
+                                            <td class="text-center"><?= $date ?></td>
+                                            <td class="text-center"><?= $update ?></td>
+                                            <td class="text-center">
+                                                <span class="label <?= $status_label_class ?>"><?= $status_text ?></span>
+                                            </td>
+                                            <td class="text-center">
                                                 <?php if ($error): ?>
-                                                    <a href="#" class="error-icon" data-toggle="modal" data-target="#errorModal<?= $displayId ?>">
+                                                    <a href="#" class="error-icon" data-toggle="modal" data-target="#errorModal<?= $index ?>">
                                                         <i class="fa fa-search"></i>
                                                     </a>
                                                     <!-- Modal -->
-                                                    <div class="modal fade" id="errorModal<?= $displayId ?>" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel<?= $displayId ?>" aria-hidden="true">
+                                                    <div class="modal fade" id="errorModal<?= $index ?>" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel<?= $index ?>" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="errorModalLabel<?= $displayId ?>">Chi tiết lỗi</h5>
+                                                                    <h5 class="modal-title" id="errorModalLabel<?= $index ?>">Chi tiết lỗi</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <?= htmlspecialchars($error) ?>
+                                                                    <?= $error ?>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -195,13 +257,13 @@ foreach ($data_all as $row) {
                                                     </div>
                                                 <?php endif; ?>
                                             </td>
-
-                                            <td>
+                                            <td class="text-center">
                                                 <?php if ($status == 0) : ?>
                                                     <form action="" method="post" class="d-inline-block">
                                                         <input type="hidden" name="image_path" value="<?= htmlspecialchars($image_path, ENT_QUOTES, 'UTF-8') ?>">
                                                         <input type="hidden" name="id" value="<?= htmlspecialchars($ida, ENT_QUOTES, 'UTF-8') ?>">
-                                                        <button type="submit" name="execute_single" class="btn btn-primary">Tối ưu</button>
+                                                        <button type="submit" name="execute_single" class="btn btn-primary">
+                                                            <i class="fa fa-cog"></i> Tối ưu</button>
                                                     </form>
                                                 <?php endif; ?>
                                             </td>
@@ -214,13 +276,13 @@ foreach ($data_all as $row) {
                                 <nav aria-label="Page navigation" class="pagination-container">
                                     <ul class="pagination justify-content-end">
                                         <?php
-                                        $url_page = isset($url_page) ? $url_page : '';
-                                        echo create_pagination_links($numshow, $url_page, $pz, $statuss);
+                                        PHANTRANG_admin($numshow, $url_page, $pz, $uri);
                                         ?>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -228,7 +290,11 @@ foreach ($data_all as $row) {
     </section>
 </form>
 
+<script src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
 <script>
+    function SEARCH_jsstep(){
+        window.location.href='<?= $url_page ?>&numview='+$('#viewid').val() + '&status=' + $('#status-select').val();
+    }
     document.getElementById('status-select').addEventListener('change', function() {
         // Lấy giá trị từ dropdown
         var status = this.value;
@@ -241,6 +307,17 @@ foreach ($data_all as $row) {
         window.history.pushState({}, '', url.href);
         window.location.reload();
     });
+    function SEARCH_jsstep() {
+        var numview = $('#viewid').val();
+        var status = $('#status-select').val();
+        // Lấy URL hiện tại
+        var url = new URL(window.location.href);
+        // Cập nhật tham số 'numview' và 'status'
+        url.searchParams.set('numview', numview);
+        url.searchParams.set('status', status);
+        // Chuyển hướng đến URL mới
+        window.location.href = url.href;
+    }
     function updateImageCount(total, processed) {
         document.getElementById('total-images').textContent = total;
         document.getElementById('processed-images').textContent = processed;
@@ -255,29 +332,193 @@ foreach ($data_all as $row) {
             }
         }
     });
-
+    $(document).ready(function() {
+        $( "#myButton" ).tooltip({ content: "Nội dung gợi ý" });
+    });
 </script>
 
 <style>
-    .pagination-container {
-        display: flex;
-        justify-content: flex-end; /* Align pagination to the right */
-        margin-top: 10px; /* Margin from the table */
-        margin-bottom: 40px; /* Margin from the bottom */
+    .tooltip-target {
+        margin-right: 8px;
     }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        color: black;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%; /* Position the tooltip above the text */
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+    .box-header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 0;
+        gap: 10px; /* Khoảng cách giữa các phần tử con */
+    }
+
+    .box-title-td {
+        margin: 0;
+    }
+
+    .box-tools {
+        display: flex;
+        gap: 10px; /* Khoảng cách giữa các phần tử con */
+    }
+
+    .form-group {
+        margin: 0;
+    }
+
+
+    /* Container for holding both cards */
+    .cards-container {
+        display: flex;
+        gap: 2rem; /* Space between cards */
+        flex-wrap: wrap; /* Allow cards to wrap if the screen is too small */
+        width: 100%; /* Full width */
+        padding: 1rem; /* Optional: Add padding around the container */
+    }
+
+    /* Card styling */
+    .card.custom-card {
+        flex: 1 1 calc(50% - 2rem);
+        max-width: calc(50% - 2rem);
+        border-radius: 0.75rem; /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+        background-color: #ffffff; /* White background */
+        transition: box-shadow 0.3s ease-in-out; /* Smooth shadow transition */
+        margin-bottom: 1rem; /* Space below each card */
+    }
+
+    /* Add hover effect */
+    .card.custom-card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 992px) {
+        .card.custom-card {
+            flex: 1 1 calc(50% - 2rem); /* 2 cards per row for medium screens */
+            max-width: calc(50% - 2rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card.custom-card {
+            flex: 1 1 100%; /* 1 card per row for small screens */
+            max-width: 100%;
+        }
+    }
+    /* Card body styling */
+    .card.custom-card .card-body {
+        padding: 1.5rem; /* Padding inside the card */
+    }
+
+    /* Flex container for title and avatar */
+    .d-flex {
+        display: flex;
+    }
+
+    .align-items-start {
+        align-items: flex-start; /* Align items at the start of the container */
+    }
+
+    .justify-content-between {
+        justify-content: space-between; /* Space out items */
+    }
+
+    /* Title and metrics */
+    .text-muted {
+        color: #6c757d; /* Gray color for muted text */
+    }
+
+    .fw-medium {
+        font-weight: 500; /* Medium font weight */
+    }
+
+    .mb-0 {
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+
+    .mb-1 {
+        margin-bottom: 0.5rem; /* Margin below the text */
+    }
+
+    .fs-13 {
+        font-size: 0.875rem; /* Adjust font size */
+    }
+
+    /* Avatar styling */
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem; /* Width of avatar */
+        height: 4rem; /* Height of avatar */
+        border-radius: 50%; /* Circle shape */
+        background-color: #17a2b8; /* Background color for the icon (info blue) */
+        color: #ffffff; /* White icon color */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for 3D effect */
+        font-size: 2rem; /* Size of the icon */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    }
+    /* Hover effect */
+    .avatar:hover {
+        background-color: #286090; /* Slightly darker blue on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+    }
+
+    /* Adjust icon size inside the avatar */
+    ion-icon {
+        font-size: 2rem; /* Adjust the size of the icon */
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .avatar {
+            width: 3rem;
+            height: 3rem;
+            font-size: 1.5rem; /* Adjust font size for smaller screens */
+        }
+    }
+    .bg-primary {
+        background-color: #007bff; /* Primary color background */
+    }
+
+    .text-success {
+        color: #28a745; /* Success color for text */
+    }
+
+    .fs-16 {
+        font-size: 1.125rem; /* Larger font size for icons */
+    }
+
+    .ti {
+        font-family: 'Icons', sans-serif; /* Replace with your icon font */
+    }
+
     .card-header {
         display: flex;
         justify-content: space-between; /* Align header content */
         align-items: center; /* Vertical alignment */
-    }
-    .btn {
-        background-color: #30a800; /* Primary color */
-        border: none; /* Remove default border */
-        padding: 7px 14px; /* Smaller padding for a more compact button */
-        border-radius: 6px; /* Slightly rounded corners */
-        font-size: 16px; /* Smaller font size */
-        color: #fff; /* Text color */
-        transition: background-color 0.3s ease; /* Smooth transition effect */
     }
     .form-inline {
         display: flex;

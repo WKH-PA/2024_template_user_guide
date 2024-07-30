@@ -1,4 +1,4 @@
-<?php 
+<?php
 	// DB
 	function DB_que($str, $table = ""){
 		global $glo_db, $php_vs;
@@ -63,18 +63,18 @@
 		if($php_vs == "5.6"){
 			if($col == 1) return mysql_fetch_assoc($sql_que);
 			while ($r   = mysql_fetch_assoc($sql_que)) {
-				if($col == "") 
+				if($col == "")
 					$retuen_arr[] = $r;
-				else 
+				else
 					$retuen_arr[$r[$col]] = $r;
 			}
 		}
 		else {
 			if($col == 1) return mysqli_fetch_assoc($sql_que);
 			while ($r   = mysqli_fetch_assoc($sql_que)) {
-				if($col == "") 
+				if($col == "")
 					$retuen_arr[] = $r;
-				else 
+				else
 					$retuen_arr[$r[$col]] = $r;
 			}
 		}
@@ -105,14 +105,14 @@
 				if($kieu=='add')
 					{
 						if(@in_array($key, $array_remove)) continue;
-						$bang_db		.= "`$key`,";	
+						$bang_db		.= "`$key`,";
 						$bang_value		.= "'".$value."',";
 					}
 				if($kieu=='update')
 					{
 						if(@in_array($key, $array_remove)) continue;
-						$bang_db		.= "`$key`='".$value."',";	
-					}	
+						$bang_db		.= "`$key`='".$value."',";
+					}
 			}
 		$bang_db	 	= substr($bang_db,0,-1);
 		$bang_value 	= substr($bang_value,0,-1);
@@ -122,12 +122,12 @@
 				@DB_que("INSERT INTO `$table`($bang_db) VALUES($bang_value)");
 				//echo "INSERT INTO `$table`($bang_db) VALUES($bang_value)";
 				//exit();
-			} 	
-		if($kieu=='update')  
+			}
+		if($kieu=='update')
 			{
-				@DB_que("UPDATE `$table` SET $bang_db WHERE $condition"); 
+				@DB_que("UPDATE `$table` SET $bang_db WHERE $condition");
 				// echo "UPDATE `$table` SET $bang_db WHERE $condition";
-				
+
 			}
 		DEL_redis_table($table);
 		if($php_vs == "5.6"){
@@ -137,14 +137,14 @@
 			return mysqli_insert_id($glo_db);
 		}
 	}
-	// 
-	// 
+	//
+	//
 	function DANHSACH_page($val, $name, $class= '', $kieu = 0, $disabled = ''){
 		$list_step = DB_fet("*", "#_module_page", "`showhi` = 1", "`sort` ASC", "", "arr");
 		if($kieu 	== 0)
-			{	
+			{
 				$selec 			 	= "<select $disabled id='".$name."' name='".$name."' class='".$class."'>";
-				foreach ($list_step as$value) 
+				foreach ($list_step as$value)
 					{
 						$selec 	   .= '<option '.(($val == $value['id']) ? 'selected="selected"':''). 'value="'.$value['id'].'">'.$value['ten_vi'].'</option>';
 					}
@@ -163,10 +163,10 @@
 	}
 	function thuoctinh_lang($rows, $lang){
 		$list_lang = array();
-		for ($k=1; $k <= 3; $k++) { 
+		for ($k=1; $k <= 3; $k++) {
 			$key_ss  = explode(",", $rows['gia_tri_'.$k.'_vi']);
 			$val_ss  = explode(",", $rows['gia_tri_'.$k.'_en']);
-			for ($i=0; $i < count($key_ss); $i++) { 
+			for ($i=0; $i < count($key_ss); $i++) {
 				if($lang != "vi") {
 					$list_lang[$key_ss[$i]] = $val_ss[$i];
 				}
@@ -180,49 +180,49 @@
  	function LAY_chude_new($val, $step = 0, $name = '', $class = ''){
 		$chude_arr  = DB_fet("*","#_danhmuc", "`showhi` = '1' AND `step` = ".$step."  ", "`catasort` ASC","", "arr");
 		$select 	= '<select name="'.$name.'" id="'.$name.'" class="'.$class.'">
-    						<option value="0">Chọn chủ đề con</option>'; 
+    						<option value="0">Chọn chủ đề con</option>';
     	foreach ($chude_arr as $row_1)
-            {		
+            {
               	$select 		   .= '<option '.(($val == $row_1['id']) ?'selected="selected"':'').'  value="'.$row_1['id'].'">'.$row_1['tenbaiviet_vi'].'</option> ';
-             
+
 			}
 			$select .= '</select>';
-		return $select;	
+		return $select;
 	}
 	function LAY_chude_table($table, $val,  $name = '', $class = '', $kieu = 0,  $id_ht = 0, $chude = 'true'){
 		if($kieu == 0)
 			{
 				$chude_arr  = DB_fet("*",$table, "`showhi` = '1'  ", "`catasort` ASC","", "arr");
 				$select 	= '<select name="'.$name.'" id="'.$name.'" class="'.$class.'">
-	        						<option value="0">Chọn chủ đề con</option>'; 
+	        						<option value="0">Chọn chủ đề con</option>';
 	        	foreach ($chude_arr as $row_1)
-		            {		
+		            {
 		            	if($row_1['id_parent'] != 0) continue;
 		            	$check_dis 			= "";
 		            	$check_dis_trung 	= "";
 		            	if($id_ht == $row_1['id'] && $chude == 'true') $check_dis_trung = 'disabled="disabled"';
 		              	$select 		   .= '<option '.$check_dis.$check_dis_trung.' '.(($val == $row_1['id']) ?'selected="selected"':'').'  value="'.$row_1['id'].'">'.$row_1['tenbaiviet_vi'].'</option> ';
-		              	foreach ($chude_arr as $row_2) 
-				            {		
+		              	foreach ($chude_arr as $row_2)
+				            {
 				            	if($row_2['id_parent'] != $row_1['id']) continue;
 				            	if($id_ht == $row_2['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis1 = 'disabled="disabled"';
 				            	else $check_dis1 = "";
 
 				              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis_trung.' '.(($val == $row_2['id']) ?'selected="selected"':'').'  value="'.$row_2['id'].'">╚═►'.$row_2['tenbaiviet_vi'].'</option> ';
 				              	foreach ($chude_arr as $row_3)
-						            {	
+						            {
 						            	if($row_3['id_parent'] != $row_2['id']) continue;
 						            	if($id_ht == $row_3['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis2 = 'disabled="disabled"';
 				            			else $check_dis2 = "";
 
 						              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis_trung.' '.(($val == $row_3['id']) ?'selected="selected"':'').'  value="'.$row_3['id'].'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►'.$row_3['tenbaiviet_vi'].'</option> ';
-						              	foreach ($chude_arr as $row_4) 
-								            {	
+						              	foreach ($chude_arr as $row_4)
+								            {
 								            	if($row_4['id_parent'] != $row_3['id']) continue;
 								            	if($chude == 'true')
-								            		$check_dis3 = 'disabled="disabled"';	
+								            		$check_dis3 = 'disabled="disabled"';
 								            	else
-								            		$check_dis3 = '';	
+								            		$check_dis3 = '';
 										        $select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis3.$check_dis_trung.' '.(($val == $row_4['id']) ?'selected="selected"':'').'  value="'.$row_4['id'].'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►'.$row_4['tenbaiviet_vi'].'</option> ';
 
 											}
@@ -244,35 +244,35 @@
 			{
 				$chude_arr  = DB_fet("*","#_danhmuc", "`showhi` = '1' AND `step` = ".$step."  ", "`catasort` ASC","", "arr");
 				$select 	= '<select name="'.$name.'" id="'.$name.'" class="'.$class.'">
-	        						<option value="0">Chọn chủ đề con</option>'; 
+	        						<option value="0">Chọn chủ đề con</option>';
 	        	foreach ($chude_arr as $row_1)
-		            {		
+		            {
 		            	if($row_1['id_parent'] != 0) continue;
 		            	$check_dis 			= "";
 		            	$check_dis_trung 	= "";
 		            	if($id_ht == $row_1['id'] && $chude == 'true') $check_dis_trung = 'disabled="disabled"';
 		              	$select 		   .= '<option '.$check_dis.$check_dis_trung.' '.(($val == $row_1['id']) ?'selected="selected"':'').'  value="'.$row_1['id'].'">'.$row_1['tenbaiviet_vi'].'</option> ';
-		              	foreach ($chude_arr as $row_2) 
-				            {		
+		              	foreach ($chude_arr as $row_2)
+				            {
 				            	if($row_2['id_parent'] != $row_1['id']) continue;
 				            	if($id_ht == $row_2['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis1 = 'disabled="disabled"';
 				            	else $check_dis1 = "";
 
 				              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis_trung.' '.(($val == $row_2['id']) ?'selected="selected"':'').'  value="'.$row_2['id'].'">╚═►'.$row_2['tenbaiviet_vi'].'</option> ';
 				              	foreach ($chude_arr as $row_3)
-						            {	
+						            {
 						            	if($row_3['id_parent'] != $row_2['id']) continue;
 						            	if($id_ht == $row_3['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis2 = 'disabled="disabled"';
 				            			else $check_dis2 = "";
 
 						              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis_trung.' '.(($val == $row_3['id']) ?'selected="selected"':'').'  value="'.$row_3['id'].'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►'.$row_3['tenbaiviet_vi'].'</option> ';
-						              	foreach ($chude_arr as $row_4) 
-								            {	
+						              	foreach ($chude_arr as $row_4)
+								            {
 								            	if($row_4['id_parent'] != $row_3['id']) continue;
 								            	if($chude == 'true')
-								            		$check_dis3 = 'disabled="disabled"';	
+								            		$check_dis3 = 'disabled="disabled"';
 								            	else
-								            		$check_dis3 = '';	
+								            		$check_dis3 = '';
 										        $select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis3.$check_dis_trung.' '.(($val == $row_4['id']) ?'selected="selected"':'').'  value="'.$row_4['id'].'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►'.$row_4['tenbaiviet_vi'].'</option> ';
 
 											}
@@ -294,35 +294,35 @@
 			{
 				$chude_arr  = DB_fet("*","#_menu", "`showhi` = '1'", "`catasort` ASC","", "arr");
 				$select 	= '<select name="'.$name.'" id="'.$name.'" class="'.$class.'">
-	        						<option value="0">Chọn menu con</option>'; 
+	        						<option value="0">Chọn menu con</option>';
 	        	foreach ($chude_arr as $row_1)
-		            {		
+		            {
 		            	if($row_1['id_parent'] != 0) continue;
 		            	$check_dis 			= "";
 		            	$check_dis_trung 	= "";
 		            	if($id_ht == $row_1['id'] && $chude == 'true') $check_dis_trung = 'disabled="disabled"';
 		              	$select 		   .= '<option '.$check_dis.$check_dis_trung.' '.(($val == $row_1['id']) ?'selected="selected"':'').'  value="'.$row_1['id'].'">'.$row_1['tenbaiviet_vi'].'</option> ';
-		              	foreach ($chude_arr as $row_2) 
-				            {		
+		              	foreach ($chude_arr as $row_2)
+				            {
 				            	if($row_2['id_parent'] != $row_1['id']) continue;
 				            	if($id_ht == $row_2['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis1 = 'disabled="disabled"';
 				            	else $check_dis1 = "";
 
 				              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis_trung.' '.(($val == $row_2['id']) ?'selected="selected"':'').'  value="'.$row_2['id'].'">╚═►'.$row_2['tenbaiviet_vi'].'</option> ';
 				              	foreach ($chude_arr as $row_3)
-						            {	
+						            {
 						            	if($row_3['id_parent'] != $row_2['id']) continue;
 						            	if($id_ht == $row_3['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis2 = 'disabled="disabled"';
 				            			else $check_dis2 = "";
 
 						              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis_trung.' '.(($val == $row_3['id']) ?'selected="selected"':'').'  value="'.$row_3['id'].'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►'.$row_3['tenbaiviet_vi'].'</option> ';
-						              	foreach ($chude_arr as $row_4) 
-								            {	
+						              	foreach ($chude_arr as $row_4)
+								            {
 								            	if($row_4['id_parent'] != $row_3['id']) continue;
 								            	if($chude == 'true')
-								            		$check_dis3 = 'disabled="disabled"';	
+								            		$check_dis3 = 'disabled="disabled"';
 								            	else
-								            		$check_dis3 = '';	
+								            		$check_dis3 = '';
 										        $select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis3.$check_dis_trung.' '.(($val == $row_4['id']) ?'selected="selected"':'').'  value="'.$row_4['id'].'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►'.$row_4['tenbaiviet_vi'].'</option> ';
 
 											}
@@ -380,7 +380,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	return $menu;
 }
 
-	function UPLOAD_image($file, $folder, $newname = ''){ 
+	function UPLOAD_image($file, $folder, $newname = ''){
 		if(isset($_FILES[$file]) && !$_FILES[$file]['error']){
 			$ext  = explode('.',$_FILES[$file]['name']);
 			$ext  = end($ext);
@@ -396,7 +396,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 				}
 				return $_FILES[$file]['name'];
 			}
-			else return false;	
+			else return false;
 		}
 		return false;
 	}
@@ -437,16 +437,16 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		else if (preg_match('/jpg/i', $ext))
 			{
 				$img = @imagecreatefromjpeg($name);
-			} 
+			}
 		else if(preg_match('/png/i', $ext))
 			{
 				$img = @imagecreatefrompng($name);
-			} 
-		else if(preg_match('/gif/i', $ext)) 
+			}
+		else if(preg_match('/gif/i', $ext))
 			{
 				$img = @imagecreatefromgif($name);
-			} 
-		else if(preg_match('/bmp/i', $ext)) 
+			}
+		else if(preg_match('/bmp/i', $ext))
 			{
 				$img = @imagecreatefrombmp($name);
 			}
@@ -476,19 +476,19 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 
 
 		$new_img = ImageCreateTrueColor($thumb_w, $thumb_h);
-		if($transparency) 
+		if($transparency)
 		{
-			if(preg_match('/png/i', $ext)) 
+			if(preg_match('/png/i', $ext))
 				{
 					imagealphablending($new_img, false);
 					$colorTransparent = imagecolorallocatealpha($new_img, 0, 0, 0, 127);
 					imagefill($new_img, 0, 0, $colorTransparent);
 					imagesavealpha($new_img, true);
-				} 
-			else if(preg_match('/gif/i', $ext)) 
+				}
+			else if(preg_match('/gif/i', $ext))
 			{
 				$trnprt_indx 			= imagecolortransparent($img);
-				if ($trnprt_indx 		>= 0) 
+				if ($trnprt_indx 		>= 0)
 					{
 						$trnprt_color 	= imagecolorsforindex($img, $trnprt_indx);
 						$trnprt_indx 	= imagecolorallocate($new_img, $trnprt_color['red'], $trnprt_color['green'], $trnprt_color['blue']);
@@ -496,48 +496,48 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 						imagecolortransparent($new_img, $trnprt_indx);
 					}
 			}
-		} 
-		else 
+		}
+		else
 			{
 				Imagefill($new_img, 0, 0, imagecolorallocate($new_img, 255, 255, 255));
 			}
 		@imagecopyresampled($new_img, $img, 0,0,0,0, $thumb_w, $thumb_h, $original_width, $original_height);
-	    if($border) 
+	    if($border)
 		    {
 		        $black 		= imagecolorallocate($new_img, 0, 0, 0);
 		        imagerectangle($new_img,0,0, $thumb_w, $thumb_h, $black);
 		    }
-	    if($base64) 
+	    if($base64)
 		    {
 		        ob_start();
 		        imagepng($new_img);
 		        $img 		= ob_get_contents();
 		        ob_end_clean();
 		        $return 	= base64_encode($img);
-		    } 
-		else 
+		    }
+		else
 		{
-	        if(preg_match('/jpeg/i', $ext)) 
+	        if(preg_match('/jpeg/i', $ext))
 		        {
 		                imagejpeg($new_img, $newname);
 		            $return = true;
-		        } 
+		        }
 	        else if( preg_match('/jpg/i', $ext))
 		        {
 		            imagejpeg($new_img, $newname);
 		            $return = true;
-		        } 
+		        }
 	        else if(preg_match('/png/i', $ext))
 		        {
 		            imagepng($new_img, $newname);
 		            $return = true;
-		        } 
-	        else if(preg_match('/gif/i', $ext)) 
+		        }
+	        else if(preg_match('/gif/i', $ext))
 		        {
 		            imagegif($new_img, $newname);
 		            $return = true;
 		        }
-	    	else if(preg_match('/bmp/i', $ext)) 
+	    	else if(preg_match('/bmp/i', $ext))
 		    	{
 		            imagejpeg($new_img, $newname);
 		            $return = true;
@@ -546,42 +546,42 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	    imagedestroy($new_img);
 	    imagedestroy($img);
 	    if($anh != ''){
-	    	@watermark2($newname,$anh);	
+	    	@watermark2($newname,$anh);
 	    }
 	    return $return;
 	}
-	function watermark2($SourceFile, $anh) { 
-		$watermark_root     = $SourceFile; 
+	function watermark2($SourceFile, $anh) {
+		$watermark_root     = $SourceFile;
 		$_image         = $anh;
 
 		$ext_root         = strtolower(substr($watermark_root,-3));
 
-		if($ext_root  =='gif')    $watermark = imagecreatefromgif($watermark_root);  
-		elseif($ext_root=='png')    $watermark = imagecreatefrompng($watermark_root);  
-		elseif($ext_root=='jpg')    $watermark = imagecreatefromjpeg($watermark_root);  
-		elseif($ext_root=='bmp')    $watermark = imagecreatefrombmp($watermark_root);  
-		else              $watermark = imagecreatefromjpeg($watermark_root);  
+		if($ext_root  =='gif')    $watermark = imagecreatefromgif($watermark_root);
+		elseif($ext_root=='png')    $watermark = imagecreatefrompng($watermark_root);
+		elseif($ext_root=='jpg')    $watermark = imagecreatefromjpeg($watermark_root);
+		elseif($ext_root=='bmp')    $watermark = imagecreatefrombmp($watermark_root);
+		else              $watermark = imagecreatefromjpeg($watermark_root);
 
-		$watermark_width  = imagesx($watermark);   
-		$watermark_height   = imagesy($watermark);   
+		$watermark_width  = imagesx($watermark);
+		$watermark_height   = imagesy($watermark);
 
-		$image = imagecreatetruecolor($watermark_width, $watermark_height);  
+		$image = imagecreatetruecolor($watermark_width, $watermark_height);
 		$ext = strtolower(substr($_image,-3));
-		if($ext=='jpg')   $image = @imagecreatefromjpeg($_image);   
-		elseif($ext=='gif') $image = @imagecreatefromgif($_image);   
-		elseif($ext=='png') $image = @imagecreatefrompng($_image);    
+		if($ext=='jpg')   $image = @imagecreatefromjpeg($_image);
+		elseif($ext=='gif') $image = @imagecreatefromgif($_image);
+		elseif($ext=='png') $image = @imagecreatefrompng($_image);
 		elseif($ext=='png') $image = @imagecreatefrombmp($_image);
-		else        $image = @imagecreatefromgd($_image);    
-		$size = getimagesize($_image);   
-		$dest_x = ($size[0] - $watermark_width)/2;   
-		$dest_y = ($size[1] - $watermark_height)/2;   
+		else        $image = @imagecreatefromgd($_image);
+		$size = getimagesize($_image);
+		$dest_x = ($size[0] - $watermark_width)/2;
+		$dest_y = ($size[1] - $watermark_height)/2;
 
-		@imagecopymerge($image, $watermark, $dest_x, $dest_y, 0, 0, $watermark_width, $watermark_height, 100);   
+		@imagecopymerge($image, $watermark, $dest_x, $dest_y, 0, 0, $watermark_width, $watermark_height, 100);
 		@imagejpeg ($image, $SourceFile, 100);
-		@imagedestroy($image);   
+		@imagedestroy($image);
 		@imagedestroy($watermark);
 	}
-	
+
 	function CONVERT_vn($str){
 		$str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
 		$str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
@@ -600,12 +600,12 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		$str = preg_replace("/(đ)/", 'd', $str);
 		$str = preg_replace("/( )/", '-', $str);
 		$str = preg_replace("/%/", 'Phan-Tram', $str);
-		$str = preg_replace("@[^A-Za-z0-9./\-_]+@i","",$str); 
+		$str = preg_replace("@[^A-Za-z0-9./\-_]+@i","",$str);
 		$str = preg_replace("/(--)/", '-', $str);
 		$str = preg_replace("/:/", '-', $str);
 		$str = str_replace("/",'-',$str);
 		return trim($str,"-");
-	}	
+	}
 	function NUMBER_fomat($val){
 		return number_format($val,0,'.','.');
 	}
@@ -663,24 +663,24 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	}
 	function GETNAME_step($step){
 		if($step == 0) return "";
-		$sql_a = DB_que("SELECT `tenbaiviet_vi` FROM `#_step` WHERE `id` = '$step' LIMIT 1");	
-		$sql_a = DB_arr($sql_a, 1);	
+		$sql_a = DB_que("SELECT `tenbaiviet_vi` FROM `#_step` WHERE `id` = '$step' LIMIT 1");
+		$sql_a = DB_arr($sql_a, 1);
 		return $sql_a["tenbaiviet_vi"];
 	}
-	function SHOW_text($text){	
+	function SHOW_text($text){
 		if($_SESSION['sub_demo_check']){
-			$text = str_replace($_SESSION['sub_demo'], "", $text);	
+			$text = str_replace($_SESSION['sub_demo'], "", $text);
 		}
 		$text = preg_replace("/\[mp4](.*)\[mp4]/i", '<div class="video_id_1">
 	      <video width="100%" controls>
 	        <source src="$1" type="video/mp4">
 	      </video>
-	    </div>', $text); 
+	    </div>', $text);
 
 	    if(defined("MOTTY")) {
-	    	$text = preg_replace("/<table(.*?)>/i", '<div class="dv-table-reposive-n"><table$1>', $text); 
-	    	$text = preg_replace("/<\/table>/i", '</table></div>', $text); 
-	    	$text = preg_replace("/\[check]/i", '<img class="img_tich" src="images/icon-check-pink.png">', $text); 
+	    	$text = preg_replace("/<table(.*?)>/i", '<div class="dv-table-reposive-n"><table$1>', $text);
+	    	$text = preg_replace("/<\/table>/i", '</table></div>', $text);
+	    	$text = preg_replace("/\[check]/i", '<img class="img_tich" src="images/icon-check-pink.png">', $text);
 	    }
 	    else {
 	    	$text = str_replace('"', '&quot;', $text);
@@ -690,11 +690,11 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	      audio controls>
 			  <source src="$1" type="audio/mpeg">
 			</audio>
-	    </div>', $text); 
+	    </div>', $text);
 	    $text = str_replace("<script>", "", $text);
 		return stripslashes(trim($text));
 	}
-	function SHOW_input($text){	
+	function SHOW_input($text){
 		$text = strip_tags($text);
 		return stripslashes(mb_strtolower(htmlspecialchars(urldecode($text))));
 	}
@@ -721,7 +721,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		if($seo_name == '') $seo_name = time();
 
 		$id_slug 			= DB_que("SELECT `id` FROM `#_slug` WHERE  `id_bang` = '$id' AND `bang` = '".$bang_slug."' LIMIT 1");
-		
+
 		$data 				= array();
 		$data['bang'] 		= $bang_slug;
 		$data['id_bang'] 	= $id;
@@ -749,12 +749,12 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 				$_SESSION['show_message_off'] = "Seo Name đã tồn tại. Seo Name được thêm tự động!";
 				break;
 			}
-			
-		}	
+
+		}
 
 		$data 				= array();
 		$data_new 			= array();
-		
+
 		$data['step'] 		= $step;
 
 		if(strstr($seo_name,"http://") != '' || strstr($seo_name,"tel:") != '' || strstr($seo_name,"mailto:") != '' || strstr($seo_name,"https://") != '') {
@@ -767,33 +767,33 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 			$data_new['seo_name'] 	= $seo_name;
 		}
 		ACTION_db($data, "#_slug", 'update', NULL, "`id` = $id_slug");
-		ACTION_db($data_new, $bang, 'update', NULL, "`id` = $id");	
+		ACTION_db($data_new, $bang, 'update', NULL, "`id` = $id");
 	}
 	function DANHSACH_chude_href($idactive, $table, $langone, $step){
 		$danhmuc_arr = DB_fet("*","$table","`step` = '$step'  "," `catasort` ASC", "", "arr");
 
 		$box    = "<select class='form-control cls_chude' onchange='SEARCH_jsstep()'>";
 		$box   .= "<option value='0' ".($idactive == 0 ? "selected='selected'" : "").">$langone</option>";
-		foreach ($danhmuc_arr as $rows) 
+		foreach ($danhmuc_arr as $rows)
 			{
 				if($rows['id_parent'] != 0) continue;
 				$cataname 		= $rows['tenbaiviet_vi'];
 				$cataid			= $rows['id'];
 				$box   		   .= "<option value='".$cataid."' ".($cataid == $idactive ? "selected='selected'" : "").">$cataname</option>";
-				foreach ($danhmuc_arr as $rows2) 						
+				foreach ($danhmuc_arr as $rows2)
 				{
 					if($rows2['id_parent'] != $cataid) continue;
 
 					$cataname2 	= $rows2['tenbaiviet_vi'];
 					$cataid2	= $rows2['id'];
 					$box   	   .= "<option value='".$cataid2."' ".($cataid2 == $idactive ? "selected='selected'" : "").">╙─►$cataname2</option>";
-					foreach ($danhmuc_arr as $rows3) 						
+					foreach ($danhmuc_arr as $rows3)
 					{
 						if($rows3['id_parent'] != $cataid2) continue;
 						$cataname3 	= $rows3['tenbaiviet_vi'];
 						$cataid3	= $rows3['id'];
 						$box   	   .= "<option value='".$cataid3."' ".($cataid3 == $idactive ? "selected='selected'" : "").">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╙─►$cataname3</option>";
-						foreach ($danhmuc_arr as $rows4) 						
+						foreach ($danhmuc_arr as $rows4)
 						{
 							if($rows4['id_parent'] != $cataid3) continue;
 
@@ -803,7 +803,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 						}
 					}
 				}
-			
+
 		}
 		$box .= "</select>";
 		return $box;
@@ -835,7 +835,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	        }
 	        else  {
 	        	$sql_ngay_in = DB_que("INSERT INTO `#_count_date` (day,month,year,count) VALUES(".date("j").",".date("n").",".date("Y").",1)");
-	        }	        
+	        }
 		}
 		$sql_show 			= DB_que("SELECT count(*) AS tongso FROM `#_online` LIMIT 1");
 		$sho 				= DB_arr($sql_show, 1);
@@ -856,19 +856,19 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		$kietxuat 	= DB_fet_rd("*", "#_danhmuc", "1 = 1  $slug_step ","`catasort` ASC");
 		$ds_id 		= $id.",";
 
-		foreach ($kietxuat as $r_1) 
+		foreach ($kietxuat as $r_1)
 			{
 				if($r_1['id_parent'] != $id) continue;
 				$ds_id 		.= $r_1['id'].",";
-				foreach ($kietxuat as $r_2) 
+				foreach ($kietxuat as $r_2)
 					{
 						if($r_2['id_parent'] != $r_1['id']) continue;
 						$ds_id 		.= $r_2['id'].",";
-						foreach ($kietxuat as $r_3) 
+						foreach ($kietxuat as $r_3)
 							{
 								if($r_3['id_parent'] != $r_2['id']) continue;
 								$ds_id 		.= $r_3['id'].",";
-								foreach ($kietxuat as $r_4) 
+								foreach ($kietxuat as $r_4)
 									{
 										if($r_4['id_parent'] != $r_3['id']) continue;
 										$ds_id 	.= $r_4['id'].",";
@@ -880,7 +880,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	}
 	function PHANTRANG_v1($current, $total_row, $url, $uri = '')
 		{
-			$url 	 = trim($url, "/"); 
+			$url 	 = trim($url, "/");
 			if($uri != ''){
 				parse_str($uri, $get_array);
 				$uri_test = "";
@@ -899,7 +899,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 
 			$div 				= 5;
 			$row_per_page 		= 1;
-			if(empty($current)) 
+			if(empty($current))
 				$current 		= 1;
 
 			$npage 				= floor($total_row/$row_per_page) + (($total_row%$row_per_page)?1:0);
@@ -909,46 +909,46 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 			$str_paging 		= '';
 
 			if($npage > 0)
-				{	
+				{
 				   	$npage						= intval($total_row / $row_per_page);
 
-				   	if($total_row % $row_per_page >0) 
+				   	if($total_row % $row_per_page >0)
 				   		$npage 					+= 1;
 					if ($npage 					> 1)
-						{	
+						{
 							// if ($current 		!= 1)
-							// {	
+							// {
 							// 	if (($current 	!= 1) && ($current))
 							// 		{
 							// 			$str_paging .= ' <li class="page db_left_pt"><a class="stay" href = "'.$url.'1'.'"><i class="fa fa-chevron-left"></i></a></li>';
-							// 			echo 1;	
+							// 			echo 1;
 							// 		}
 							// 	if (($current-1) > 0)
 							// 		{
-							// 			$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.($current - 1).'"><i class="fa fa-chevron-left"></i></a></li>';	
+							// 			$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.($current - 1).'"><i class="fa fa-chevron-left"></i></a></li>';
 							// 			echo 2;
 							// 		}
 
-							// } 
+							// }
 
-							if($current % $div 			== 0) 
+							if($current % $div 			== 0)
 								{
 									$str_paging			.= ' <li class="page"><a class="active pagination a" href = "'.$url.($current).'">'.$current.'</a></li>';
 								}
 
-							for($i =0 ; $i < $count; $i++)		
+							for($i =0 ; $i < $count; $i++)
 								{
 									$page 				= ($currentDiv*$div + $i);
 									if(($page + 1) 		== $current)
 										$str_paging		.= ' <li class="page"><a class="active pagination" href = "'.$url.($current).'">'.($page + 1);
 									else
-										$str_paging		.= ' <li class="page"><a class="pagination" href = "'.$url.($page + 1).'">'.($page + 1);		
+										$str_paging		.= ' <li class="page"><a class="pagination" href = "'.$url.($page + 1).'">'.($page + 1);
 									$str_paging			.='</a></li>';
 								}
-							// 
+							//
 							$str_paging .= "<div class='gr-r'>";
 							if ($current 	== 1) {
-								$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.'1'.'"><i class="fa fa-chevron-left"></i></a></li>';	
+								$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.'1'.'"><i class="fa fa-chevron-left"></i></a></li>';
 							}
 							else {
 								if (($current 	!= 1) && ($current))
@@ -957,10 +957,10 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 									}
 								if (($current-1) > 0)
 									{
-										$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.($current - 1).'"><i class="fa fa-chevron-left"></i></a></li>';	
+										$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.($current - 1).'"><i class="fa fa-chevron-left"></i></a></li>';
 									}
 							}
-							// 
+							//
 							if ((@$page + 1) >= $count)
 								{
 									if (($current+1) <= $npage)
@@ -969,7 +969,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 										}
 									else if (($current != $npage) && ($npage != 0))
 										{
-											$str_paging .= '<li class="page db_right_pt"><a class=" stay" href = "'.$url.$npage.'"><i class="fa fa-chevron-double-right"></i></a></li>';	
+											$str_paging .= '<li class="page db_right_pt"><a class=" stay" href = "'.$url.$npage.'"><i class="fa fa-chevron-double-right"></i></a></li>';
 										}
 									else {
 										$str_paging .= '<li class="page"><a class=" stay" href = "'.$url.($page + 1).'"><i class="fa fa-chevron-right"></i></a></li>';
@@ -981,7 +981,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 				}
 		}
 	function PHANTRANG($current, $total_row, $url, $uri = ''){
-		$url 	 = trim($url, "/"); 
+		$url 	 = trim($url, "/");
 		if($uri != ''){
 			parse_str($uri, $get_array);
 			$uri_test = "";
@@ -1000,7 +1000,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 
 		$div 				= 5;
 		$row_per_page 		= 1;
-		if(empty($current)) 
+		if(empty($current))
 			$current 		= 1;
 
 		$npage 				= floor($total_row/$row_per_page) + (($total_row%$row_per_page)?1:0);
@@ -1010,38 +1010,38 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		$str_paging 		= '';
 
 		if($npage > 0)
-			{	
+			{
 			   	$npage						= intval($total_row / $row_per_page);
 
-			   	if($total_row % $row_per_page >0) 
+			   	if($total_row % $row_per_page >0)
 			   		$npage 					+= 1;
 				if ($npage 					> 1)
-					{	
+					{
 						if ($current 		!= 1)
-						{	
+						{
 							if (($current 	!= 1) && ($current))
 								{
-									$str_paging .= ' <li class="page db_left_pt"><a class="stay" href = "'.$url.'1'.'"><i class="fa fa-angle-double-left"></i></a></li>';	
+									$str_paging .= ' <li class="page db_left_pt"><a class="stay" href = "'.$url.'1'.'"><i class="fa fa-angle-double-left"></i></a></li>';
 								}
 							if (($current-1) > 0)
 								{
-									$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.($current - 1).'"><i class="fa fa-angle-left"></i></a></li>';	
+									$str_paging .= ' <li class="page"><a class="stay" href = "'.$url.($current - 1).'"><i class="fa fa-angle-left"></i></a></li>';
 								}
 
 						}
 
-						if($current % $div 			== 0) 
+						if($current % $div 			== 0)
 							{
 								$str_paging			.= ' <li class="page"><a class="active pagination a" href = "'.$url.($current).'">'.$current.'</a></li>';
 							}
 
-						for($i =0 ; $i < $count; $i++)		
+						for($i =0 ; $i < $count; $i++)
 							{
 								$page 				= ($currentDiv*$div + $i);
 								if(($page + 1) 		== $current)
 									$str_paging		.= ' <li class="page"><a class="active pagination" href = "'.$url.($current).'">'.($page + 1);
 								else
-									$str_paging		.= ' <li class="page"><a class="pagination" href = "'.$url.($page + 1).'">'.($page + 1);		
+									$str_paging		.= ' <li class="page"><a class="pagination" href = "'.$url.($page + 1).'">'.($page + 1);
 								$str_paging			.='</a></li>';
 							}
 
@@ -1053,7 +1053,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 									}
 								if (($current != $npage) && ($npage != 0))
 									{
-										$str_paging .= '<li class="page db_right_pt"><a class=" stay" href = "'.$url.$npage.'"><i class="fa fa-angle-double-right"></i></a></li>';	
+										$str_paging .= '<li class="page db_right_pt"><a class=" stay" href = "'.$url.$npage.'"><i class="fa fa-angle-double-right"></i></a></li>';
 									}
 							}
 					}
@@ -1079,32 +1079,32 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	}
 	function LAY_email($type){
 		$list_email 	= '';
-		$sql 			= DB_que("SELECT * FROM `#_email_config` WHERE  `showhi` = 1");	
-		$sql 			= DB_arr($sql);	
+		$sql 			= DB_que("SELECT * FROM `#_email_config` WHERE  `showhi` = 1");
+		$sql 			= DB_arr($sql);
 		foreach ($sql as $rim) {
-			if(empty($list_email)) 
+			if(empty($list_email))
 					$list_email 	= $rim['email'];
 			else 	$list_email 	.= ';'.$rim['email'];
 		}
 		return $list_email;
 	}
-	function GUI_email($to_email,$to_name,$subject,$domain,$body, $thongtin, $admin = ""){         
+	function GUI_email($to_email,$to_name,$subject,$domain,$body, $thongtin, $admin = ""){
 		require_once('class.phpmailer.php');
 
 	    // $body             = @eregi_replace("[\]",'',$body);
 	    $mail 			  = new PHPMailer();
 	    $mail->IsSMTP();
 	    $mail->Host       = $thongtin['em_ip'];
-	    $mail->SMTPDebug  = 0;  
-	    $mail->SMTPAuth   = true;  
+	    $mail->SMTPDebug  = 0;
+	    $mail->SMTPAuth   = true;
 	    $mail->CharSet     = "utf-8";
-	    $mail->Username   = $thongtin['em_taikhoan']; 
+	    $mail->Username   = $thongtin['em_taikhoan'];
 	    $mail->Password   = $thongtin['em_pass'];
 	    $frommail         = "info@".$domain;
 	    $mail->SetFrom($frommail, $domain);
 	    $subject          = $subject . " - " .date("H:i A | d/m/Y") ;
 	    $mail->Subject    = $subject;
-	    $mail->AltBody    = $body; 
+	    $mail->AltBody    = $body;
 	    $mail->MsgHTML($body);
 	    $get_name   = explode(";",$to_name);
 	    $get_email  = explode(";",$to_email);
@@ -1161,7 +1161,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	function layCatasort($table, $where = '1'){
 		$sql 	= DB_que("SELECT `catasort` FROM `$table` WHERE ".$where." ORDER BY `catasort` DESC LIMIT 1");
 		$sql 	= DB_arr($sql, 1);
-		$catasort = $sql['catasort'] + 1; 
+		$catasort = $sql['catasort'] + 1;
 		return $catasort;
 	}
 
@@ -1175,7 +1175,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
         	return 0;
         }
     }
- 
+
     function layEmailUser($id) {
 		$sql = DB_que("SELECT `email` FROM `#_members` WHERE `id` = '".$id."' LIMIT 1");
 		$sql = DB_arr($sql, 1);
@@ -1185,7 +1185,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 
 		$div 				= 5;
 		$row_per_page 		= 1;
-		if(empty($current)) 
+		if(empty($current))
 			$current 		= 1;
 
 		$npage 				= floor($total_row/$row_per_page) + (($total_row%$row_per_page)?1:0);
@@ -1201,37 +1201,37 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		$count 				= ($npage<=($currentDiv+1)*$div)?($npage-$currentDiv*$div):$div;
 		$str_paging 		= '';
 		if($npage > 0)
-			{	
+			{
 			   	$npage						= intval($total_row / $row_per_page);
- 
-			   	if($total_row % $row_per_page >0) 
+
+			   	if($total_row % $row_per_page >0)
 			   		$npage 					+= 1;
 				if ($npage 					> 1)
-					{	
+					{
 						if ($current 		!= 1)
-						{	
+						{
 							if (($current 	!= 1) && ($current))
 								{
-									$str_paging .= ' <li class="page db_left_pt"><a class="stay" onclick="LOAD_sp_ajax(\'1\', \''.$list_check.'\')"><<</a></li>';	
+									$str_paging .= ' <li class="page db_left_pt"><a class="stay" onclick="LOAD_sp_ajax(\'1\', \''.$list_check.'\')"><<</a></li>';
 								}
 							if (($current-1) > 0)
 								{
-									$str_paging .= ' <li class="page"><a class="stay" onclick="LOAD_sp_ajax(\''.($current - 1).'\', \''.$list_check.'\')" ><</a></li>';	
+									$str_paging .= ' <li class="page"><a class="stay" onclick="LOAD_sp_ajax(\''.($current - 1).'\', \''.$list_check.'\')" ><</a></li>';
 								}
 						}
 
-						if($current % $div 			== 0) 
+						if($current % $div 			== 0)
 							{
 								$str_paging			.= ' <li class="page"><a class="active pagination a"  onclick="LOAD_sp_ajax(\''.($current).'\', \''.$list_check.'\')" >'.$current.'</a></li>';
 							}
 
-						for($i =0 ; $i < $count; $i++)		
+						for($i =0 ; $i < $count; $i++)
 							{
 								$page 				= ($currentDiv*$div + $i);
 								if(($page + 1) 		== $current)
 									$str_paging		.= ' <li class="page"><a class="active pagination"  onclick="LOAD_sp_ajax(\''.($current - 1).'\', \''.$list_check.'\')" >'.($page + 1);
 								else
-									$str_paging		.= ' <li class="page"><a class="pagination"  onclick="LOAD_sp_ajax(\''.($page + 1).'\', \''.$list_check.'\')" >'.($page + 1);		
+									$str_paging		.= ' <li class="page"><a class="pagination"  onclick="LOAD_sp_ajax(\''.($page + 1).'\', \''.$list_check.'\')" >'.($page + 1);
 								$str_paging			.='</a></li>';
 							}
 
@@ -1243,7 +1243,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 									}
 								if (($current != $npage) && ($npage != 0))
 									{
-										$str_paging .= '<li class="page db_right_pt"><a class=" stay"  onclick="LOAD_sp_ajax(\''.($page).'\', \''.$list_check.'\')">>></a></li>';	
+										$str_paging .= '<li class="page db_right_pt"><a class=" stay"  onclick="LOAD_sp_ajax(\''.($page).'\', \''.$list_check.'\')">>></a></li>';
 									}
 							}
 
@@ -1252,43 +1252,67 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 			}
 	}
 
-	function PHANTRANG_admin($numshow, $url_page, $pz, $uri = ""){
-		if($numshow > 1)
-            {
-				$trangxem 		= $url_page;
-				$pmin 			= $pz-1;
-				$pmax 			= $pz+1;
-				$gioihancuanum 	= 5;
-				if($pz-$gioihancuanum>0) 
-					$batdau 	= $pz-$gioihancuanum;
-				else $batdau 	= 0;
+function PHANTRANG_admin($numshow, $url_page, $pz, $uri = "") {
+	if ($numshow > 1) {
+		$trangxem = $url_page;
+		$pmin = $pz - 1;
+		$pmax = $pz + 1;
+		$hienthi = 5; // Số trang muốn hiển thị
 
-				if($pz+$gioihancuanum < $numshow && $batdau + 10 < $numshow) 
-					$ketthuc 	= $batdau + 10;
-				else 
-					$ketthuc 	= $numshow;
+		// Tính toán vị trí bắt đầu
+		$batdau = $pz - floor($hienthi / 2);
+		$batdau = max(0, $batdau); // Đảm bảo $batdau không nhỏ hơn 0
 
-				if($pz == 0) 
-					echo "<li class='paginate_button previous disabled'><a> &laquo; </a></li>";
-				else 
-					echo "<li class='paginate_button previous'><a href='$trangxem&pz=$pmin".$uri."'> &laquo; </a></li>";
+		// Tính toán vị trí kết thúc
+		$ketthuc = $batdau + $hienthi;
+		$ketthuc = min($ketthuc, $numshow); // Đảm bảo $ketthuc không vượt quá số trang
 
-				for($i 		= $batdau; $i < $ketthuc; $i++)
-				{
-					$k 		= $i+1;
-					if($i 	== $pz) 
-						echo "<li class='paginate_button active' ><a href='$trangxem&pz=$i".$uri."'> $k </a></li>";
-					else 
-						echo "<li class='paginate_button' ><a href='$trangxem&pz=$i".$uri."'> $k </a></li>";
-				}
-				if($pz >= $numshow-1) 
-					echo "<li class='paginate_button next disabled'><a> &raquo; </a></li>";
-				else 
-					echo "<li class='paginate_button next'><a href='$trangxem&pz=$pmax".$uri."'> &raquo; </a></li>";
-            }
+		// Điều chỉnh $batdau nếu $ketthuc chạm giới hạn
+		if ($ketthuc == $numshow && $ketthuc - $batdau < $hienthi) {
+			$batdau = max(0, $ketthuc - $hienthi);
+		}
+
+		// Nút "First"
+		if ($pz > 0) {
+			echo "<li class='paginate_button first'><a href='$trangxem&pz=0".$uri."'> «« </a></li>";
+		} else {
+			echo "<li class='paginate_button first disabled'><a> «« </a></li>";
+		}
+
+		// Nút "Previous"
+		if ($pz == 0) {
+			echo "<li class='paginate_button previous disabled'><a> « </a></li>";
+		} else {
+			echo "<li class='paginate_button previous'><a href='$trangxem&pz=$pmin".$uri."'> « </a></li>";
+		}
+
+		// Các trang số
+		for ($i = $batdau; $i < $ketthuc; $i++) {
+			$k = $i + 1;
+			if ($i == $pz) {
+				echo "<li class='paginate_button active'><a href='$trangxem&pz=$i".$uri."'> $k </a></li>";
+			} else {
+				echo "<li class='paginate_button'><a href='$trangxem&pz=$i".$uri."'> $k </a></li>";
+			}
+		}
+
+		// Nút "Next"
+		if ($pz >= $numshow - 1) {
+			echo "<li class='paginate_button next disabled'><a> » </a></li>";
+		} else {
+			echo "<li class='paginate_button next'><a href='$trangxem&pz=$pmax".$uri."'> » </a></li>";
+		}
+
+		// Nút "Last"
+		if ($pz < $numshow - 1) {
+			echo "<li class='paginate_button last'><a href='$trangxem&pz=" . ($numshow - 1) . $uri . "'> »» </a></li>";
+		} else {
+			echo "<li class='paginate_button last disabled'><a> »» </a></li>";
+		}
 	}
+}
 
-	function GET_bre($id, $step, $full_url, $lang, $thongtin_step, $slug_table, $line = '/'){
+function GET_bre($id, $step, $full_url, $lang, $thongtin_step, $slug_table, $line = '/'){
 		$line = '<span>'.$line.'</span>';
 		$the_bg  	= "";
 		$the_end  	= "";
@@ -1320,7 +1344,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 		}
 		return $list_kietxuat_ch.$list_kietxuat;
 	}
-	function GET_ip(){  
+	function GET_ip(){
 		if(!empty($_SERVER['HTTP_CLIENT_IP'])){
 		    $ip = $_SERVER['HTTP_CLIENT_IP'];
 		}else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
@@ -1344,7 +1368,7 @@ function build_menu_items($items, $val, $parent_id = 0, $id_ht = 0, $chude = 'tr
 	{
         $list_mang  = DB_que("SELECT * FROM `#_module_nhomtaikhoan` WHERE `showhi` = 1 ORDER BY `id` ASC");
         if($_SESSION['phanquyen'] == 1){
-        	$list_array[1] = array('id' => 1, 'ten_vi' => "Administrtor");	
+        	$list_array[1] = array('id' => 1, 'ten_vi' => "Administrtor");
         }
         $list_mang  = DB_arr($list_mang);
         foreach ($list_mang as $r) {
@@ -1467,12 +1491,12 @@ function get_menu_item_by_id($menu_items, $id) {
 				$value 		= stripslashes($value);
 				$value 		= addslashes($value);
 				$data[$key] = $value;
-			} 
+			}
 		}
 
 		$id = ACTION_db($data, $table, "add", NULL);
 		if($step){
-			THEM_seoname($id, $seo_name, $table, $step, "0");	
+			THEM_seoname($id, $seo_name, $table, $step, "0");
 		}
 		//coppy tinh nawng
 		$table = str_replace("#_", "", $table);
@@ -1491,7 +1515,7 @@ function get_menu_item_by_id($menu_items, $id) {
 						$value 		= stripslashes($value);
 						$value 		= addslashes($value);
 						$data[$key] = $value;
-					} 
+					}
 				}
 
 				ACTION_db($data, "#_baiviet_select_tinhnang", "add", NULL);
@@ -1538,17 +1562,17 @@ function get_menu_item_by_id($menu_items, $id) {
 
 	function check_chon_module_danhmuc($row, $class_ul, $class_li, $class_a, $tb_danhmuc){
 		global $full_url, $lang;
-		if($row['step'] != 0) { 
+		if($row['step'] != 0) {
 			if($row['kieu_hien_thi'] == 2) { //baiviet
 				// show list bv
 				$tb_listbv  = DB_fet_rd("*", "`#_baiviet`", "`step` = '".$row['step']."'", "`catasort` DESC, `id` DESC", "","id");
-			
+
 				$return 		= "";
 				foreach ($tb_listbv as $val) {
 					$return    .= '<li class="'.$class_li.'"><a class="'.$class_a.'" href="'.GET_link($full_url, $val['seo_name']).'" icons="&rsaquo;">'.$val['tenbaiviet_'.$lang].'</a></li>';
 				}
 				return $return != "" ? "<ul class='".$class_ul."'>".$return."</ul>" : $return;
-				// end 
+				// end
 			}
 			else if($row['kieu_hien_thi'] == 3){ //danh muc
 
@@ -1593,7 +1617,7 @@ function get_menu_item_by_id($menu_items, $id) {
 					$list_dm_sel_2 = $list_dm_sel_2 != "" ? "<ul class='".$class_ul."'>".$list_dm_sel_2."</ul>" : $list_dm_sel_2;
 					$list_dm_sel .= $list_dm_sel_2.'</li>';
 				}
-				// 
+				//
 				return $list_dm_sel;
 			}
 
@@ -1637,7 +1661,7 @@ function get_menu_item_by_id($menu_items, $id) {
 					$list_dm_sel_2 = $list_dm_sel_2 != "" ? "<ul class='".$class_ul."'>".$list_dm_sel_2."</ul>" : $list_dm_sel_2;
 					$list_dm_sel .= $list_dm_sel_2.'</li>';
 				}
-				// 
+				//
 				return $list_dm_sel != "" ? "<ul class='".$class_ul."'>".$list_dm_sel."</ul>" : $list_dm_sel;
 			}
 		}
@@ -1768,13 +1792,13 @@ function GET_menu_new($full_url, $lang, $class_ul = '', $class_li = '', $class_a
 		$km 		= 0;
 		if($giakm != 0) {
 			$km 	=100 -  (int)($gia * 100 / $giakm);
-			
+
 		}
 		$text_gia 	= $gia != 0 ? number_format($gia).' <span class="dvt">'.$dvt.'</span>' : $lienhe;
 		$text_km 	= $giakm != 0 ? number_format($giakm).' <span class="dvt">'.$dvt.'</span>' : "";
- 
+
 		return array("gia" => $gia, "km" => $giakm, "pt" => $km, "text_gia" => $name_gia." <span class='".$class_gia."'>".$text_gia."</span>", "text_km" => $name_km." <span class='".$class_km."'>".$text_km."</span>");
-		
+
 	}
 	function LOC_char($val){
 	    $val = addslashes(trim($val));
@@ -1802,7 +1826,7 @@ function GET_menu_new($full_url, $lang, $class_ul = '', $class_li = '', $class_a
 	}
 	function LAY_thuoctinhchung($where = ""){
 		if($where != "") $where = " AND $where";
- 
+
 		$thuoctinhchung  = DB_fet_rd("*", "`#_thuoctinhchung`", "`showhi` = 1 $where", "`catasort` ASC, `id` DESC", 0, "id");
 		return $thuoctinhchung;
 	}
@@ -1823,12 +1847,12 @@ function GET_menu_new($full_url, $lang, $class_ul = '', $class_li = '', $class_a
 		$baiviet  = DB_fet("*","`#_baiviet_tinhnang`","`showhi` = 1 AND `step` IN ($step) $where ","$order_by `catasort` ASC, `id` DESC",$limit,"arr", 1);
 		return $baiviet;
 	}
-	
+
 	function LAY_step($id = 0, $limit = 0, $where = ""){
 		if($where 	!= "") 	$where = " $where";
 		if($id 		!= 0) 	$where .= $where != "" ?  " AND `id` IN ($id)" : "  `id` IN ($id)";
 		if($limit 	== 0) 	$limit = "";
- 
+
 		$step  	= DB_fet_rd("*", "`#_step`", $where, "`catasort` ASC, `id` DESC", $limit);
 		if($limit == 1){
 			return reset($step);
@@ -1868,7 +1892,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 		$danhmuc  = DB_fet("*","`#_ship_khuvuc`","`showhi` = 1 $where ","`catasort` ASC, `id` DESC",$limit,"arr", 1);
 		return $danhmuc;
 	}
-	
+
 	function LAY_hinhanhcon($id, $limit  = 0, $the_loai = 0){
 		if($limit  == 0) $limit  = "";
 		$danhsach_img = DB_fet_rd("  * "," `#_baiviet_img` ",""," `sort` ASC, `id` ASC", $limit, "", "`id_parent` = '".$id."' AND `the_loai` = '$the_loai'");
@@ -1882,7 +1906,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 		$danhmuc  = DB_fet("*","`#_lien_ket_nhanh`","`showhi` = 1  $where ","`catasort` ASC, `id` DESC",$limit,"arr", 0);
 		return $danhmuc;
 	}
- 
+
 	function LAY_anhstep_now($step){
 		$danhmuc  = DB_fet_rd(" * "," `#_step` "," `id` = '$step' ","", 1);
 		return reset($danhmuc);
@@ -1921,20 +1945,20 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
         if(in_array($step, $array_tn)) return true;
         return false;
     }
- 
+
     function GET_danhmuc_hang($arr, $id_pr, $hang){
-    	if(!empty($arr[$id_pr]['tenbaiviet_'.$_SESSION['lang']])) 
+    	if(!empty($arr[$id_pr]['tenbaiviet_'.$_SESSION['lang']]))
     		return $arr[$id_pr]['tenbaiviet_'.$_SESSION['lang']];
     	$hang = explode(",", $hang);
     	foreach ($hang as $value) {
-    		if(!empty($arr[$value]['tenbaiviet_'.$_SESSION['lang']])) 
+    		if(!empty($arr[$value]['tenbaiviet_'.$_SESSION['lang']]))
     			return $arr[$value]['tenbaiviet_'.$_SESSION['lang']];
     	}
     }
     function CHECK_phut($time, $glo_lang) {
 		$time_now = time();
 		$tg = $time_now - $time;
-	
+
 		if($tg < 10 && $tg > 0) return $glo_lang['vua_xong'];
 		else if($tg < 60 && $tg > 0) return $tg." ".$glo_lang['giay_truoc'];
 		else if($tg < 3600 && $tg > 0) return (int) ($tg / 60)." ".$glo_lang['phut_truoc'];
@@ -1964,31 +1988,31 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 	function LOAD_gia_xy($khuyenmai, $dongia, $soluong, &$id_sp = "", &$gia_tien = "",  $key = ""){
 
 
-		if($khuyenmai['loai_giam_gia'] == 0) 
+		if($khuyenmai['loai_giam_gia'] == 0)
 			if($dongia >= $khuyenmai['muc_giam_gia']) //chi ap dung sp co gia > gia km
 				$dongia_new = $dongia - $khuyenmai['muc_giam_gia'];
-			else 
+			else
 				$dongia_new = $dongia;
 		else
 			$dongia_new = $dongia - ($dongia*$khuyenmai['muc_giam_gia']/100);
 
 		$thanhtien = 0;
-		for ($i=0; $i < $soluong; $i++) { 
-			$id_sp         .= $key.",";        
+		for ($i=0; $i < $soluong; $i++) {
+			$id_sp         .= $key.",";
 
-			if($i < $khuyenmai['soluong_km_con'] || $khuyenmai['soluong_km_con'] == 0) 
+			if($i < $khuyenmai['soluong_km_con'] || $khuyenmai['soluong_km_con'] == 0)
 				{ $thanhtien += $dongia_new; $gia_tien      .= $dongia_new.";";}
-			else 
+			else
 				{ $thanhtien += $dongia; $gia_tien      .= $dongia.";";}
 		}
-		  
+
 
 		return $thanhtien;
 	}
 	function GET_price_weight($sess_cart){
 		$tongtien	  = 0;
 		$khoi_luong	  = 0;
-	    foreach ($sess_cart as $key => $value) { 
+	    foreach ($sess_cart as $key => $value) {
 	    	$id_sp     = explode("_", $key);
             $id_sp     = $id_sp[0];
 
@@ -2099,7 +2123,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
         return $return;
     }
     function Giao_hang_nhanh($url, $api, $fromDistrict, $toDistrict, $weight, $amount){
-        
+
         $cookiesFile = '/tmp/ghn.txt';
         @unlink($cookiesFile);
 
@@ -2145,8 +2169,8 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
     function SHIP_return($n_tinhthanh, $id_quanhuyen, $total) {
     	$kho            = DB_fet("*","`#_ship_vanchuyen_setup`","`id` = 1 LIMIT 1");
 	    $kho            = DB_arr($kho, 1);
-	    $kho_tinhthanh  = $kho['kho_tinhthanh'];  
-	    $kho_quanhuyen  = $kho['kho_quanhuyen']; 
+	    $kho_tinhthanh  = $kho['kho_tinhthanh'];
+	    $kho_quanhuyen  = $kho['kho_quanhuyen'];
 
 	    $khuvuc         = LAY_khuvuc();
 
@@ -2154,7 +2178,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 	      $n_tinhthanh    = $khuvuc[$n_tinhthanh]['id_shipchung'];
 	      $id_quanhuyen   = $khuvuc[$id_quanhuyen]['id_shipchung'];
 	      $kho_tinhthanh  = $khuvuc[$kho_tinhthanh]['id_shipchung'];
-	      $kho_quanhuyen  = $khuvuc[$kho_quanhuyen]['id_shipchung'];  
+	      $kho_quanhuyen  = $khuvuc[$kho_quanhuyen]['id_shipchung'];
 	    }
 	    else if($kho['loai_ship'] == 3){
 	      $n_tinhthanh    = $khuvuc[$n_tinhthanh]['id_giaohangnhanh'];
@@ -2166,7 +2190,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
     	if($kho['loai_ship'] == 2){
 			$url         = $kho['url_shipchung'];
 			$api         = $kho['api_shipchung'];
-			$return      = SHIP_chung($url, $api, $kho_tinhthanh, $kho_quanhuyen, $n_tinhthanh, $id_quanhuyen, $total['khoiluong']*1000, $total['tontien']);      
+			$return      = SHIP_chung($url, $api, $kho_tinhthanh, $kho_quanhuyen, $n_tinhthanh, $id_quanhuyen, $total['khoiluong']*1000, $total['tontien']);
 			return $return;
 	    }
 	    if($kho['loai_ship'] == 3){
@@ -2203,7 +2227,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
                   </tr>';
         }
 
-      	$nd .= '</tbody></table>'; 
+      	$nd .= '</tbody></table>';
 
       	if($id_active == '')
       		return $nd;
@@ -2213,7 +2237,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
     function CHECK_ma_km_new($ma_khuyen_mai, $glo_lang, $tongtien){
     	if($ma_khuyen_mai 	== "") return false;
     	$check_magiamg      = DB_fet("*","`#_magiamgia_chitiet`","`ma_giam_gia` = '$ma_khuyen_mai' LIMIT 1");
-	    if(!DB_num($check_magiamg)) 
+	    if(!DB_num($check_magiamg))
 	    	return array("err" => 1, "text" => $glo_lang['ma_giam_gia_khong_hop_le']);
 
 	    $check_magiamg    = DB_arr($check_magiamg, 1);
@@ -2221,10 +2245,10 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 	        return array("err" => 1, "text" => $glo_lang['so_lan_su_dung_ma_giam_gia_da_het']);
 
         $ma_giam_gia_val    = DB_fet("*","`#_magiamgia`","`id` = '".$check_magiamg['id_parent']."' LIMIT 1");
-        if(!DB_num($ma_giam_gia_val)) 
+        if(!DB_num($ma_giam_gia_val))
         	return array("err" => 1, "text" => $glo_lang['ma_giam_gia_khong_hop_le']);
-        
-        $ma_giam_gia_val 	= DB_arr($ma_giam_gia_val, 1); 
+
+        $ma_giam_gia_val 	= DB_arr($ma_giam_gia_val, 1);
         if($ma_giam_gia_val['bat_dau'] > time() || $ma_giam_gia_val['ket_thuc'] < time())
         	return array("err" => 1, "text" => $glo_lang['thoi_gian_ap_dung_ma_khuyen_mai_khong_hop_le']);
 
@@ -2234,12 +2258,12 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
         else return false;
 
     	return array("err" => 0, "text" => $glo_lang['ma_giam_gia_hop_le'], "vnd" => $vnd, "all" => 1,  "val" => $ma_giam_gia_val['gia_tri_giam']);
-        
+
     }
     function CHECK_ma_km($ma_khuyen_mai, $glo_lang, $tongtien, $phiship){
     	if($ma_khuyen_mai == "") return false;
     	$check_magiamg      = DB_fet("*","`#_magiamgia_chitiet`","`ma_giam_gia` = '$ma_khuyen_mai' LIMIT 1");
-	    if(!DB_num($check_magiamg)) 
+	    if(!DB_num($check_magiamg))
 	    	return array("err" => 1, "text" => $glo_lang['ma_giam_gia_khong_hop_le']);
 
 	    $check_magiamg    = DB_arr($check_magiamg, 1);
@@ -2247,18 +2271,18 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 	        return array("err" => 1, "text" => $glo_lang['so_lan_su_dung_ma_giam_gia_da_het']);
 
         $ma_giam_gia_val    = DB_fet("*","`#_magiamgia`","`id` = '".$check_magiamg['id_parent']."' LIMIT 1");
-        if(!DB_num($ma_giam_gia_val)) 
+        if(!DB_num($ma_giam_gia_val))
         	return array("err" => 1, "text" => $glo_lang['ma_giam_gia_khong_hop_le']);
-        
-        $ma_giam_gia_val 	= DB_arr($ma_giam_gia_val, 1); 
+
+        $ma_giam_gia_val 	= DB_arr($ma_giam_gia_val, 1);
         if($ma_giam_gia_val['bat_dau'] > time() || $ma_giam_gia_val['ket_thuc'] < time())
         	return array("err" => 1, "text" => $glo_lang['thoi_gian_ap_dung_ma_khuyen_mai_khong_hop_le']);
 
         //mien phi van chuyen
         if($ma_giam_gia_val['loai_km'] == 2) {
-        	if($ma_giam_gia_val['gia_tri_giam'] > $tongtien) 
+        	if($ma_giam_gia_val['gia_tri_giam'] > $tongtien)
         		return array("err" => 1, "text" => $glo_lang['khong_du_dieu_kien_ap_dung_khuyen_mai']);
-        	else 
+        	else
         		return array("err" => 0, "text" => "", "vnd" => 1, "all" => 1,  "val" => $phiship);
         }
         // vnd
@@ -2278,30 +2302,30 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
     		return array("err" => 0, "text" => $glo_lang['ma_giam_gia_hop_le'], "vnd" => $vnd, "all" => 0, "apdung" => $ma_giam_gia_val['ap_dung_khuyen_mail_tren_don_hang'] , "id_sp" => $ma_giam_gia_val['gia_tri_ap_dung'],   "val" => $ma_giam_gia_val['gia_tri_giam']);
     	}
         return false;
-        
+
     }
     function CHECK_val_khuyen_mai($thanhtien, $ma_khuyen_mai, $cart){
-    	if(!$ma_khuyen_mai || $ma_khuyen_mai['err'] == 1) 
+    	if(!$ma_khuyen_mai || $ma_khuyen_mai['err'] == 1)
     		return array("thanh_tien" => $thanhtien, "gia_giam" => 0);
 
     	if($ma_khuyen_mai['all'] 			 == 1){ // tat ca don hang
-    		if($ma_khuyen_mai['vnd'] 		 == 1) 
+    		if($ma_khuyen_mai['vnd'] 		 == 1)
     			return array("thanh_tien" => $thanhtien - $ma_khuyen_mai['val'], "gia_giam" => $ma_khuyen_mai['val']);
 
-    		else if($ma_khuyen_mai['vnd'] 	 == 0) 
+    		else if($ma_khuyen_mai['vnd'] 	 == 0)
     			return array("thanh_tien" => $thanhtien - $thanhtien*$ma_khuyen_mai['val']/100, "gia_giam" => $thanhtien*$ma_khuyen_mai['val']/100);
     		return array("thanh_tien" => $thanhtien, "gia_giam" => 0);
-    	}	
+    	}
     	if($ma_khuyen_mai['all'] 			 == 0){ // theo sp
     		$id_sp 							 = $ma_khuyen_mai['id_sp'];
     		$soluong 						 = $cart[$id_sp];
 
     		$sanpham   	= DB_que("SELECT * FROM `#_baiviet` WHERE `showhi` = 1 AND `id` = '".$id_sp."' LIMIT 1");
-    		if(!DB_num($sanpham)) 
+    		if(!DB_num($sanpham))
     			return array("thanh_tien" => $thanhtien, "gia_giam" => 0);
 
     		$khuyenmai 	= MUA_XtangY($id_sp, $soluong);
-            if($khuyenmai['loai_giam_gia'] == 1) 
+            if($khuyenmai['loai_giam_gia'] == 1)
             	return array("thanh_tien" => $thanhtien, "gia_giam" => 0); // san pham da ap dung ma giam gia truoc
 
             $sanpham    = DB_arr($sanpham, 1);
@@ -2456,7 +2480,7 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 	function GET_sao_sp($num_1, $num_2, $idsp){
     	$sao = 0;
     	if($num_2 != 0) $sao = round((float)($num_1/$num_2));
-    	for ($i=1; $i <= 5; $i++) { 
+    	for ($i=1; $i <= 5; $i++) {
     		$class = !empty($_SESSION['sao'][$idsp]) ? "" : " ad_sao_".$idsp." cur";
     		echo '<span data-sao="'.($num_2 == 0 ? 0 : round((float)($num_1/$num_2))).'" data="'.$idsp.'" class="fa fa-star ad_sao  ad_sao_'.$idsp.'_'.$i.' '.$class.' '.($sao >= $i ? "checked" : "").' " onmouseover="ADD_sao('.$idsp.','.$i.')" onclick="ADD_sao_num(\''.$idsp.'\','.$i.')"></span>';
     	}
@@ -2470,35 +2494,35 @@ function LAY_step1($ids = array(), $limit = 0, $where = "") {
 					$val 		= @explode(",", $val);
 					$chude_arr  = DB_fet("*","#_danhmuc", "`showhi` = '1' AND `step` = ".$step, "`catasort` ASC","", "arr");
 					$select 	= '<select name="'.$name.'" class="'.$class.'" '.$muti.'>
-	            						<option value="0">Không thuộc danh mục</option>'; 
+	            						<option value="0">Không thuộc danh mục</option>';
 	            	foreach ($chude_arr as $row_1)
-			            {		
+			            {
 			            	if($row_1['id_parent'] != 0) continue;
 			            	$check_dis 			= "";
 			            	$check_dis_trung 	= "";
 			            	if($id_ht == $row_1['id'] && $chude == 'true') $check_dis_trung = 'disabled="disabled"';
 			              	$select 		   .= '<option '.$check_dis.$check_dis_trung.' '.(in_array($row_1['id'], $val) ? 'selected="selected"':'').'  value="'.$row_1['id'].'">'.$row_1['tenbaiviet_vi'].'</option> ';
-			              	foreach ($chude_arr as $row_2) 
-					            {		
+			              	foreach ($chude_arr as $row_2)
+					            {
 					            	if($row_2['id_parent'] != $row_1['id']) continue;
 					            	if($id_ht == $row_2['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis1 = 'disabled="disabled"';
 					            	else $check_dis1 = "";
 
 					              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis_trung.' '.(in_array($row_2['id'], $val)  ?'selected="selected"':'').'  value="'.$row_2['id'].'">↳&nbsp;'.$row_2['tenbaiviet_vi'].'</option> ';
 					              	foreach ($chude_arr as $row_3)
-							            {	
+							            {
 							            	if($row_3['id_parent'] != $row_2['id']) continue;
 							            	if($id_ht == $row_3['id'] && $check_dis_trung == '' && $chude == 'true') $check_dis2 = 'disabled="disabled"';
 					            			else $check_dis2 = "";
 
 							              	$select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis_trung.' '.(in_array($row_3['id'], $val) ?'selected="selected"':'').'  value="'.$row_3['id'].'">&nbsp;&nbsp;↳&nbsp;'.$row_3['tenbaiviet_vi'].'</option> ';
-							              	foreach ($chude_arr as $row_4) 
-									            {	
+							              	foreach ($chude_arr as $row_4)
+									            {
 									            	if($row_4['id_parent'] != $row_3['id']) continue;
 									            	if($chude == 'true')
-									            		$check_dis3 = 'disabled="disabled"';	
+									            		$check_dis3 = 'disabled="disabled"';
 									            	else
-									            		$check_dis3 = '';	
+									            		$check_dis3 = '';
 											        $select 		   .= '<option '.$check_dis.$check_dis1.$check_dis2.$check_dis3.$check_dis_trung.' '.(in_array($row_4['id'], $val)?'selected="selected"':'').'  value="'.$row_4['id'].'">&nbsp;&nbsp;&nbsp;&nbsp;↳&nbsp;'.$row_4['tenbaiviet_vi'].'</option> ';
 
 												}
@@ -2534,7 +2558,7 @@ function ADMIN_show_img($duongdan, $icon) {
 
 function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_lang){
 		$tongtien      = 0;
-	    foreach ($cart as $key => $value) { 
+	    foreach ($cart as $key => $value) {
 	    	$id_sp     = explode("_", $key);
             $id_sp     = $id_sp[0];
 			$sanpham   = DB_que("SELECT * FROM `#_baiviet` WHERE `showhi` = 1 AND `id` = '".$id_sp."' LIMIT 1");
@@ -2558,9 +2582,9 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 	      exit();
 	    }
 
-	    $check_phiship      = DB_que("SELECT * FROM `#_ship_vanchuyen_khac` WHERE `id_kv` = '$n_tinhthanh_new2' AND (`toi_thieu` >= '$tongtien' OR `toi_thieu` = 0 ) AND (`toi_da` <= '$tongtien' OR `toi_da` = 0 ) ORDER BY `id` DESC LIMIT 1"); 
+	    $check_phiship      = DB_que("SELECT * FROM `#_ship_vanchuyen_khac` WHERE `id_kv` = '$n_tinhthanh_new2' AND (`toi_thieu` >= '$tongtien' OR `toi_thieu` = 0 ) AND (`toi_da` <= '$tongtien' OR `toi_da` = 0 ) ORDER BY `id` DESC LIMIT 1");
 	    if(!DB_num($check_phiship)) {
-	      $check_phiship      = DB_que("SELECT * FROM `#_ship_vanchuyen_khac` WHERE `id_kv` = '0' AND (`toi_thieu` >= '$tongtien' OR `toi_thieu` = 0 ) AND (`toi_da` <= '$tongtien' OR `toi_da` = 0 ) ORDER BY `id` DESC LIMIT 1"); 
+	      $check_phiship      = DB_que("SELECT * FROM `#_ship_vanchuyen_khac` WHERE `id_kv` = '0' AND (`toi_thieu` >= '$tongtien' OR `toi_thieu` = 0 ) AND (`toi_da` <= '$tongtien' OR `toi_da` = 0 ) ORDER BY `id` DESC LIMIT 1");
 	    }
 	    $check_phiship      = DB_arr($check_phiship, 1);
 	    $gia_dieu_chinh     = json_decode($check_phiship['gia_dieu_chinh'], true);
@@ -2571,8 +2595,8 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 	    else {
 	    	$phi_van_chuyen     = $check_phiship['phi_van_chuyen'];
 	    }
-	    
-	 
+
+
 
 	    $array = array(
 	      "tamtinh" => NUMBER_fomat($tongtien). ' '.$glo_lang['dvt'],
@@ -2583,7 +2607,7 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 
 	    return $array;
 	}
-	
+
 	function PROCESS_data($array){
 		if(is_array($array)) {
 			$data 	= array();
@@ -2604,9 +2628,9 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 		}else{
 			return $array;
 		}
-		
-	}  
-	
+
+	}
+
 	function LAY_banner_new($where, $limit = "")
 		{
 			if($limit != "") {
@@ -2621,11 +2645,11 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 
 		}
 	function LAY_id_step($step) {
-		$check_gia  = DB_que("SELECT * FROM `#_step` WHERE `step` = '$step' ORDER BY `id` DESC LIMIT 1"); 
-		$check_gia  = DB_arr($check_gia, 1); 
+		$check_gia  = DB_que("SELECT * FROM `#_step` WHERE `step` = '$step' ORDER BY `id` DESC LIMIT 1");
+		$check_gia  = DB_arr($check_gia, 1);
 		return $check_gia["id"];
 	}
-	
+
 	function check_gia_sql($id_sp, $id_bvsl, $dongia){
 
 		if($id_bvsl == "") return $dongia;
@@ -2637,12 +2661,12 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 	    sort($id_bvsl);
 	    $id_bvsl = implode(",",$id_bvsl);
 	    // end
-	    // 
+	    //
 		$bvtinhnang   = DB_fet("*","`#_baiviet_thuoctinh`","`id_sp` = '".$id_sp."' AND `phien_ban` = '".trim($id_bvsl)."' ","","","arr");
 		if(count($bvtinhnang)) {
 			$dongia = $bvtinhnang[0]['gia'];
 		}
-        
+
 	    return $dongia;
 	}
 	function LAY_danhmuc_co_ipr($step, $id_parent, $danhmuc) {
@@ -2707,21 +2731,21 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 			return '<img  src="" class="isload isload_full isload_full_2" data-original="'.$fullpath."/".$rows['duongdantin']."/".$thumb.$rows['icon_hover'].'" alt="'.$rows['tenbaiviet_'.$lang].'" />';
 		}
 		return "";
-		
+
 	}
 	function full_href($rows) {
 		global $full_url;
 		$link = $rows['seo_name'];
 		$blank = "";
-		if(strstr($link,"http://") != '' || 
+		if(strstr($link,"http://") != '' ||
   			strstr($link,"https://") != ''){
 			$blank = "_blank";
 		}
 
-  		if(strstr($link,"http://") != '' || 
-  			strstr($link,"https://") != '' || 
-  			strstr($link,"tel:") != '' || 
-  			strstr($link,"skype:") != '' || 
+  		if(strstr($link,"http://") != '' ||
+  			strstr($link,"https://") != '' ||
+  			strstr($link,"tel:") != '' ||
+  			strstr($link,"skype:") != '' ||
   			strstr($link,"mailto:") != '') {
   			$link = $rows['seo_name'];
 
@@ -2758,9 +2782,9 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 		if($baty   != "") $las_url    .= "/".$baty;
 		if($bonty  != "") $las_url    .= "/".$bonty;
 		if($namty  != "") $las_url    .= "/".$namty;
-		
+
 		return $lang == "vi" ? $fullpath.$las_url."/" : $fullpath.'/en'.$las_url."/";
-		
+
 	}
 	function LAY_sponline() {
 		return DB_fet("*","`#_sponline`","`showhi` = 1","`catasort` ASC, `id` DESC", "","arr");
@@ -2894,12 +2918,12 @@ function admin_check($is_mota = 0){
 					//update
 					DB_que("UPDATE `#_lienket` SET `thuc_hien` = `thuc_hien` + 1, `lan_cuoi` = '".time()."' WHERE `tenbaiviet_vi` = '".$link_check['tenbaiviet_vi']."' AND `showhi` = 1 LIMIT 1");
 					//
-					@header("HTTP/1.1 301 Moved Permanently"); 
-					@header("Location: ".$link_check['lien_ket']); 
+					@header("HTTP/1.1 301 Moved Permanently");
+					@header("Location: ".$link_check['lien_ket']);
 					exit();
 				}
 			}
-		} 
+		}
 	}
 	function sanitize_output($buffer) {
 
@@ -2959,7 +2983,8 @@ function getImagesFromDirectory($directory) {
 			$images = array_merge($images, getImagesFromDirectory($file)); // Gọi đệ quy để lấy hình ảnh từ thư mục con
 		} else { // Nếu là tệp
 			if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $file)) { // Kiểm tra xem tệp có phải là hình ảnh không (theo đuôi tệp)
-				$images[] = $file; // Nếu đúng, thêm tệp vào mảng hình ảnh
+				$relativePath = str_replace($directory, 'datafiles', $file);
+				$images[] = $relativePath; // Nếu đúng, thêm tệp vào mảng hình ảnh
 			}
 		}
 	}
@@ -3006,7 +3031,7 @@ function update_db_optimized_img($localDirectory) {
 // Function to process an image
 function processImage($kraken, $imagePath, $webDirectory) {
 	$imageName = basename($imagePath);
-	$Url = dirname($imagePath);
+	$Url = $_SERVER['DOCUMENT_ROOT']. '/' .$_SESSION['thumuc'] ;
 	$imageUrl = $webDirectory . '/' . $imageName;
 
 	// Create parameters for Kraken
@@ -3022,11 +3047,11 @@ function processImage($kraken, $imagePath, $webDirectory) {
 		$optimizedImageUrl = $data['kraked_url'];
 		$optimizedImageContent = file_get_contents($optimizedImageUrl);
 		// Delete the uploaded image
-		if (file_exists($imagePath)) {
-			unlink($imagePath);
+		if (file_exists($Url .'/' . $imageName)) {
+			unlink($Url .'/' . $imageName);
 		}
 		// Save the optimized image file with the original name
-		file_put_contents( '/' . $imageName, $optimizedImageContent);
+		file_put_contents($Url .'/' . $imageName, $optimizedImageContent);
 		return [
 			'success' => true
 		];
