@@ -167,6 +167,22 @@ $sp_step = LAY_step(7, 1);
 
 <?php
 $sp_baiviet = LAY_baiviet(8, 12, "`opt` = 0");
+// Hàm để loại bỏ các phần tử trùng lặp dựa trên một khóa cụ thể (ví dụ: id)
+function remove_duplicates($array, $key) {
+    $temp_array = [];
+    $key_array = [];
+
+    foreach ($array as $val) {
+        if (!in_array($val[$key], $key_array)) {
+            $key_array[] = $val[$key];
+            $temp_array[] = $val;
+        }
+    }
+    return $temp_array;
+}
+
+// Loại bỏ phần tử trùng lặp dựa trên 'id' hoặc khóa duy nhất khác
+$sp_baiviet = remove_duplicates($sp_baiviet, 'id');
 ?>
 <div class="dv-home-doitac">
     <div class="pagewrap">
@@ -175,13 +191,14 @@ $sp_baiviet = LAY_baiviet(8, 12, "`opt` = 0");
         </div>
         <div class="logo_doitac owl-carousel owl-theme owl-custome wow flipInX" id="images_slide">
 
-            <?php foreach ($sp_baiviet as $partner) : ?>
+            <?php
+            foreach ($sp_baiviet as $partner) { ?>
                 <ul>
                     <li>
                         <a <?= full_href($partner) ?>"><?= full_img($partner) ?></a>
                     </li>
                 </ul>
-            <?php endforeach; ?>
+            <?php }?>
         </div>
         <div class="clr"></div>
     </div>

@@ -331,9 +331,6 @@ foreach ($data_all as $row) {
             }
         }
     });
-    $(document).ready(function() {
-        $( "#myButton" ).tooltip({ content: "Nội dung gợi ý" });
-    });
 </script>
 
 <style>

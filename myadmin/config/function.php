@@ -2715,7 +2715,7 @@ function load_phivanchuyen ($cart, $n_tinhthanh_new2, $id_quanhuyen_new, $glo_la
 				return $fullpath."/myadmin/images/no_image_400_312.jpg";
 			}
 		}
-	function full_img($rows, $thumb = 'thumb_'){
+	function full_img($rows, $thumb = ''){
 		global $fullpath, $lang;
 		if($rows['icon'] != '') {
 			$link_img = $fullpath."/".$rows['duongdantin']."/".$thumb.$rows['icon'];

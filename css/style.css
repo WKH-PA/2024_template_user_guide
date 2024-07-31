@@ -2019,21 +2019,47 @@ ul {
     background: #f1f1f1;
 }
 .text-center h3 {text-align: center;}
+/* Container for each carousel item */
+/* Container for each carousel item */
+/* Container for each carousel item */
 .logo_doitac ul {
-    width: calc(100% / 1 - 4px);
+    width: calc(100% / 1 - 4px); /* Adjust based on number of items per row */
     padding: 10px;
     background: #f8f8f8;
     float: left;
     text-align: center;
     transition: all .3s;
     box-shadow: 0px 1px 6px rgb(0 0 0 / 20%);
-    height: 100px;
-    vertical-align: middle;
-    display: flex; margin: 20px 2px 5px;
+    height: 100px; /* Ensure this height suits your design */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    margin: 20px 2px 5px; /* Adjust margins as needed */
+    overflow: hidden; /* Hide any overflow */
+    border-radius: 5px; /* Optional: rounded corners */
 }
+
+/* Style each item within the list */
 .logo_doitac ul li {
-    margin: auto;
+    list-style: none; /* Remove bullet points */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 0; /* Remove any default padding */
+    height: 100%; /* Ensure li takes up full height of ul */
 }
+
+/* Style images to fit within their containers */
+.logo_doitac ul img {
+    max-width: 100%; /* Ensure image scales within the container */
+    max-height: 100%; /* Ensure image fits within the height of the container */
+    object-fit: contain; /* Adjust how the image fits within the container */
+    display: block; /* Remove default inline spacing */
+}
+
+
+
+
 .logo_doitac ul li, .logo_doitac ul li img {
     width: 100%;
     webkit-transition: all 450ms cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -3480,7 +3506,13 @@ a.pro_slide_prev.disabled, a.pro_slide_next.disabled {
 }
 .partner-l {
     width: 40%;
+
     float: left;
+}
+.partner-l img{
+    width: 100%;
+    height: 100%;
+
 }
 .partner-r {
     width: 60%;
