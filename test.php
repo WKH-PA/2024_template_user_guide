@@ -38,13 +38,13 @@ if ($result['success']) {
 } else {
     $status = 0;
     $error_message = $result['message'];
-    $error_code = $result['error_code'];
-    $error = "Kraken error: $error_message (Code: $error_code)";
+    $error =  isset($result['message']) ? $result['message'] : 'UNKNOWN_ERROR';
+    $reason = isset($errorMessages[$error]) ? $errorMessages[$error]['reason'] : $result['message'];
     $current_date = date('Y-m-d H:i:s');
     $data = [
         'status' => $status,
         'updated' => $current_date,
-        'error' => $error
+        'error' => $reason
     ];
     ACTION_db($data, $table, 'update', NULL, "`id` = {$rows['id']}");
 }
