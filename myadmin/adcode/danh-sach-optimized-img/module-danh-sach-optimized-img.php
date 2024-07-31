@@ -499,7 +499,7 @@ foreach ($data_all as $row) {
         }
     }
     .bg-primary {
-        background-color: #007bff; /* Primary color background */
+        background-color: #286090; /* Primary color background */
     }
 
     .text-success {
@@ -539,7 +539,7 @@ foreach ($data_all as $row) {
         /*appearance: none; !* Remove default arrow in other browsers *!*/
     }
     .modern-select:focus {
-        border-color: #007bff; /* Border color on focus */
+        border-color: #286090; /* Border color on focus */
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Shadow on focus */
         outline: none; /* Remove default outline */
     }
@@ -549,12 +549,12 @@ foreach ($data_all as $row) {
         border-radius: 5px; /* Rounded corners */
     }
     .error-icon {
-        color: #007bff; /* Icon color */
+        color: #286090; /* Icon color */
         cursor: pointer; /* Pointer cursor */
     }
 
     .btn-primary {
-        background-color: #007bff; /* Primary color */
+        background-color: #286090; /* Primary color */
         border: none; /* Remove default border */
         padding: 5px 10px; /* Smaller padding for a more compact button */
         border-radius: 6px; /* Slightly rounded corners */
