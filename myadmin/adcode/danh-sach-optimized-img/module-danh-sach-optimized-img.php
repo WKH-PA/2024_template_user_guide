@@ -185,10 +185,9 @@ foreach ($data_all as $row) {
                                     </div>
                                 </div>
                                 <h3 class="box-title box-title-td pull-right">
-                                    <button type="submit" name="execute_all" class="btn" onclick="return confirmAction()">
+                                    <button class="tooltip-target" data-tooltip="Nhấn vào để lấy hình từ server và đẩy vào hàng chờ tối ưu hóa." type="submit" name="execute_all" class="btn" onclick="return confirmAction()">
                                         <ion-icon name="cloud-upload-outline"></ion-icon
                                     </button>
-                                    <span class="tooltip-target" data-tooltip="Nộing gợi ý"></span>
                                 </h3>
                             </div>
                         </div>
@@ -533,11 +532,11 @@ foreach ($data_all as $row) {
         font-size: 16px; /* Adjust font size as needed */
         padding: 5px 10px; /* Adjust padding as needed */
         border: 1px solid #ccc; /* Border color */
-        border-radius: 5px; /* Rounded corners */
+        /*border-radius: 5px; !* Rounded corners *!*/
         background-color: #f9f9f9; /* Background color */
-        -webkit-appearance: none; /* Remove default arrow in Safari */
+        /*-webkit-appearance: none; !* Remove default arrow in Safari *!*/
         -moz-appearance: none; /* Remove default arrow in Firefox */
-        appearance: none; /* Remove default arrow in other browsers */
+        /*appearance: none; !* Remove default arrow in other browsers *!*/
     }
     .modern-select:focus {
         border-color: #007bff; /* Border color on focus */
