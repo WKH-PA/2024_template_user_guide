@@ -347,17 +347,17 @@ foreach ($data_all as $row) {
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="card-footer">
-                                <nav aria-label="Page navigation" class="pagination-container">
-                                    <ul class="pagination justify-content-end">
+                            <div class="box-header">
+                                <div class="paging_simple_numbers">
+                                    <ul class="pagination">
                                         <?php
-                                        PHANTRANG_admin($numshow, $url_page, $pz, $uri);
+                                        PHANTRANG_admin($numshow, $url_page , $pz, $uri);
                                         ?>
                                     </ul>
-                                </nav>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
             </div>
         </div>
@@ -414,6 +414,17 @@ foreach ($data_all as $row) {
 </script>
 
 <style>
+    /* Căn chỉnh khoảng cách bên dưới cho các phần tử */
+    .box-header,
+    .paging_simple_numbers {
+        margin-bottom: 10px; /* Căn lề dưới cho box-header và paging_simple_numbers */
+    }
+
+    /* Nếu bạn chỉ muốn thêm khoảng cách bên trong cho paging_simple_numbers */
+    .paging_simple_numbers {
+        padding-bottom: 10px; /* Thêm khoảng cách bên trong paging_simple_numbers */
+    }
+
     /* Thêm khoảng cách giữa biểu tượng và chữ */
     .tooltip-target .ion-icon {
         margin-right: 8px; /* Điều chỉnh khoảng cách theo ý muốn */
