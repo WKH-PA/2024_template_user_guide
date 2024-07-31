@@ -449,7 +449,7 @@ foreach ($data_all as $row) {
         transition: opacity 0.3s ease;
     }
 
-   
+
 
     .box-header {
         display: flex;
