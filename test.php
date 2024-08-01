@@ -67,7 +67,9 @@ $errorMessages = [
     ]
 ];
 if (!$krakenInstance) {
-    console.error('Error fetching data:', error);
+    // Sử dụng error_log để ghi thông báo lỗi vào file log của server
+    error_log('Error fetching data: Kraken instance is null or invalid.');
+    exit('Error fetching data: Kraken instance is null or invalid.');
 }
 
 // Thực hiện truy vấn để lấy đường dẫn ảnh

@@ -3019,7 +3019,10 @@ function sanitize_output($buffer)
 
 }
 
-// Hàm để tạo đối tượng Kraken nếu thông tin API hợp lệ
+/**
+ * Tạo đối tượng Kraken nếu thông tin API hợp lệ.
+ * @return Kraken|null Trả về đối tượng Kraken nếu thông tin API hợp lệ và quota còn, ngược lại trả về null.
+ */
 function getValidKrakenInstance()
 {
     try {
@@ -3036,7 +3039,9 @@ function getValidKrakenInstance()
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new Exception("Failed to decode JSON: " . json_last_error_msg());
         }
-        foreach (range(1, 5) as $group_number) {
+
+        $group_number = 1; // Initialize group number
+        do {
             $group_key = 'group_' . $group_number;
             if (isset($api_keys[$group_key])) {
                 $api_key = $api_keys[$group_key]['api_key'];
@@ -3046,14 +3051,16 @@ function getValidKrakenInstance()
                     try {
                         $kraken = new Kraken($api_key, $api_secret);
                         if (checkQuota($kraken)) {
-                            return $kraken;
+                            return $kraken; // Return the valid Kraken instance
                         }
                     } catch (Exception $e) {
                         error_log("Failed to initialize Kraken with group $group_number: " . $e->getMessage());
                     }
                 }
             }
-        }
+            $group_number++;
+        } while ($group_number <= 5); // Continue loop until group_number exceeds 5
+
     } catch (Exception $e) {
         error_log("Error in getValidKrakenInstance: " . $e->getMessage());
     }
@@ -3061,12 +3068,24 @@ function getValidKrakenInstance()
 }
 
 
+/**
+ * Kiểm tra xem quota của đối tượng Kraken có còn đủ hay không.
+ * @param Kraken $kraken Đối tượng Kraken cần kiểm tra.
+ * @return bool Trả về true nếu quota còn, false nếu không còn quota.
+ */
 function checkQuota($kraken)
 {
-    $response = $kraken->status(); // Assuming `status` is the method to check quota
-    return $response['quota_remaining'] > 0;
+    $response = $kraken->status(); // Gọi phương thức `status` để lấy thông tin quota
+    return isset($response['quota_remaining'])&& $response['quota_remaining'] > 0 ? true : false ;
+
 }
 
+/**
+ * Kiểm tra xem chuỗi con có tồn tại trong chuỗi chính hay không.
+ * @param string $string Chuỗi chính cần kiểm tra.
+ * @param string $substring Chuỗi con cần tìm trong chuỗi chính.
+ * @return false|string Trả về vị trí của chuỗi con trong chuỗi chính hoặc false nếu không tìm thấy.
+ */
 function removeSubstringBefore($string, $substring)
 {
     $pos = strpos($string, $substring);
@@ -3076,6 +3095,11 @@ function removeSubstringBefore($string, $substring)
     return $string;
 }
 
+/**
+ * Lấy tất cả các tệp hình ảnh từ thư mục chỉ định, bao gồm cả các thư mục con.
+ * @param string $directory Đường dẫn đến thư mục cần quét hình ảnh.
+ * @return array Mảng chứa các đường dẫn tương đối của các tệp hình ảnh từ thư mục gốc .
+ */
 function getImagesFromDirectory($directory)
 {
     $images = []; // Mảng để lưu trữ các tệp hình ảnh
@@ -3094,23 +3118,30 @@ function getImagesFromDirectory($directory)
             }
         }
     } catch (Exception $e) {
-        // Xử lý ngoại lệ, ghi log lỗi
         error_log("Error reading directory $directory: " . $e->getMessage());
     }
-
     return $images; // Trả về mảng hình ảnh
 }
 
+/**
+ * Cập nhật cơ sở dữ liệu với thông tin về các hình ảnh đã tối ưu hóa từ thư mục .
+ * @param string $localDirectory Đường dẫn đến thư mục chứa các hình ảnh cần được kiểm tra và cập nhật.
+ */
 function update_db_optimized_img($localDirectory)
 {
+    $dataToInsert = [];
     $table = '#_optimized_img';
     try {
         $images = getImagesFromDirectory($localDirectory);
-        if ($images === false) {
-            throw new Exception("Failed to get images from directory: $localDirectory");
+        if (empty($images)) {
+            throw new Exception("Failed to get images from directory: $localDirectory or directory is empty");
         }
 
         foreach ($images as $image_path) {
+            if (empty($image_path)) {
+                continue; // Skip empty image paths
+            }
+
             // Xử lý dữ liệu trước khi thêm vào cơ sở dữ liệu
             $current_date = date('Y-m-d H:i:s'); // Ngày hiện tại
             $data = [
@@ -3129,11 +3160,17 @@ function update_db_optimized_img($localDirectory)
                 }
 
                 if (DB_num($existing_record) == 0) {
-                    // Nếu không tồn tại, thêm dữ liệu vào cơ sở dữ liệu
-                    ACTION_db($data, $table, 'add', NULL, NULL);
+                    $dataToInsert[]  = "('{$data['image_path']}', {$data['status']}, '{$data['date']}', '{$data['updated']}', '{$data['error']}')";
                 }
             } catch (Exception $e) {
                 error_log("Error processing image $image_path: " . $e->getMessage());
+            }
+        }
+        if (!empty($dataToInsert)) {
+            $insertQuery = "INSERT INTO `$table` (`image_path`, `status`, `date`, `updated`, `error`) VALUES " . implode(", ", $dataToInsert);
+            $result = DB_que($insertQuery);
+            if ($result === false) {
+                throw new Exception("Insert query failed: " . mysqli_error($yourDatabaseConnection));
             }
         }
     } catch (Exception $e) {
@@ -3141,9 +3178,12 @@ function update_db_optimized_img($localDirectory)
     }
 }
 
-
-
-// Function to process an image
+/**
+ * Function to process an image
+ * @param Kraken $kraken Thể hiện của Kraken để giao tiếp với Kraken API.
+ * @param string $imagePath Đường dẫn tương đối đến hình ảnh cần xử lý.
+ * @return array Một mảng kết hợp chứa các khóa 'success' (boolean) và 'message' (string)
+ */
 function processImage($kraken, $imagePath)
 {
     try {
