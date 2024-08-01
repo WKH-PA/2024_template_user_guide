@@ -2,7 +2,6 @@
 include("myadmin/config/sql.php");
 include "vendor/autoload.php";
 // Local directory path
-$webDirectory = "https://webdemo5.pavietnam.vn/document/datafiles";
 $krakenInstance = getValidKrakenInstance();
 $table = '#_optimized_img';
 $errorMessages = [
@@ -82,7 +81,7 @@ foreach ($sql as $rows) {
     $status     =$rows['status'];
     $error      =$rows['error'];
     // Thực hiện hành động với $image nếu cần
-    $result = processImage($krakenInstance, $imagePath, $webDirectory);
+    $result = processImage($krakenInstance, $imagePath);
 
 
 if ($result['success']) {
@@ -110,7 +109,11 @@ if ($result['success']) {
     ];
     ACTION_db($data, $table, 'update', NULL, "`id` = {$rows['id']}");
 }
+    echo '<pre>';
+    var_dump($imagePath);
+    var_dump($data);
 }
+
 exit;
 ?>
 

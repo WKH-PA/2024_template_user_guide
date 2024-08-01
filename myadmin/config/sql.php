@@ -20,6 +20,7 @@
 
     if($_SERVER['HTTP_HOST'] 	== 'localhost'|| ['HTTP_HOST'] 	== '172.16.90.105') {
         $webDirectory = "https://webdemo5.pavietnam.vn/document/datafiles";
+        $_SESSION['localhost_check']= 0;
     }else{
         $webDirectory = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $_SESSION['thumuc']   ;
     }

@@ -62,12 +62,9 @@ $errorMessages = [
         'reason' => "Không thể lấy tệp từ URL được cung cấp. Vui lòng kiểm tra lại URL."
     ]
 ];
-
-
 $table = '#_optimized_img';
 $totalImages = 0;
 $processedImages = 0;
-
 $pz = 0;
 $pzz = 0;
 $numview = isset($_GET['numview']) ? intval($_GET['numview']) : 15;
@@ -110,13 +107,15 @@ if (isset($_POST['execute_single'])) {
     $current_date = date('Y-m-d H:i:s');
 
     // Process the image using Kraken.io
-    $result = processImage($krakenInstance, $imagePath, $webDirectory);
+    $result = processImage($krakenInstance, $imagePath);
     $status = $result['success'] ? 1 : 0;
-    $error = $result['success'] ? '' : isset($result['message']) ? $result['message'] : 'UNKNOWN_ERROR';
-    $reason = isset($errorMessages[$error]) ? $errorMessages[$error]['reason'] : $result['message'];
+    $error = $result['success'] ? '' : (isset($result['message']) ? $result['message'] : 'UNKNOWN_ERROR');
+    $reason = $result['success'] ? '':(isset($errorMessages[$error]) ? $errorMessages[$error]['reason'] : $error);
     $message = $result['success'] ? $result['message'] : $reason;
 
 //    echo '<pre>';
+//    var_dump($status);
+//    var_dump($result);
 //    var_dump($result['message']);
 //    var_dump($error);
 //    var_dump($reason);
@@ -165,6 +164,7 @@ if (isset($_POST['execute_single'])) {
                     modal.remove();
                 }
             };
+            
         });
       </script>";
 }
@@ -411,6 +411,7 @@ foreach ($data_all as $row) {
             }
         }
     });
+
 </script>
 
 <style>
