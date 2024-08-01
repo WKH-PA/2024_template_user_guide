@@ -112,14 +112,6 @@ if (isset($_POST['execute_single'])) {
     $error = $result['success'] ? '' : (isset($result['message']) ? $result['message'] : 'UNKNOWN_ERROR');
     $reason = $result['success'] ? '':(isset($errorMessages[$error]) ? $errorMessages[$error]['reason'] : $error);
     $message = $result['success'] ? $result['message'] : $reason;
-
-//    echo '<pre>';
-//    var_dump($status);
-//    var_dump($result);
-//    var_dump($result['message']);
-//    var_dump($error);
-//    var_dump($reason);
-//    exit;
     // Update the database
     if (isset($_POST['id']) && !empty($_POST['id'])) {
         $data = [
@@ -133,6 +125,7 @@ if (isset($_POST['execute_single'])) {
     // Pass the message and status to the frontend
     echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
+            var url = new URL(window.location.href);
             var message = " . json_encode($message) . "; // Chuyển $message thành chuỗi JSON
             // Tạo phần tử modal
             var modal = document.createElement('div');
@@ -149,19 +142,21 @@ if (isset($_POST['execute_single'])) {
             modalContent.appendChild(messageP);
             modal.appendChild(modalContent);
             document.body.appendChild(modal);
-
+            
             // Hiển thị modal
             modal.style.display = 'block';
 
             // Đóng modal khi nhấn nút close hoặc click ra ngoài modal
             closeBtn.onclick = function() {
                 modal.style.display = 'none';
+                window.location.href = url.href;
                 modal.remove();
             };
             modal.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = 'none';
                     modal.remove();
+                    
                 }
             };
             
@@ -367,10 +362,6 @@ foreach ($data_all as $row) {
 
 <script src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
 <script>
-    function SEARCH_jsstep() {
-        window.location.href = '<?= $url_page ?>&numview=' + $('#viewid').val() + '&status=' + $('#status-select').val();
-    }
-
     document.getElementById('status-select').addEventListener('change', function () {
         // Lấy giá trị từ dropdown
         var status = this.value;
@@ -381,7 +372,7 @@ foreach ($data_all as $row) {
         url.searchParams.set('status', status);
         // Cập nhật URL mà không tải lại trang
         window.history.pushState({}, '', url.href);
-        window.location.reload();
+        window.location.href = url.href;
     });
 
     function SEARCH_jsstep() {
