@@ -76,7 +76,7 @@ if (isset($_GET['pz'])) {
     $pz = intval($_GET['pz']);
     $pzz = ($pz > 0) ? $pz * $numview : 0;
 }
-$uri = '&numview=' . $numview . '&statuss=' . $statuss;
+$uri = '';
 $displayId = ($pz * $numview);
 // Lấy trạng thái được chọn
 
@@ -351,7 +351,7 @@ foreach ($data_all as $row) {
                                 <div class="paging_simple_numbers">
                                     <ul class="pagination">
                                         <?php
-                                        PHANTRANG_admin($numshow, $url_page , $pz, $uri);
+                                        PHANTRANG_admin($numshow, $url_page.'&numview=' . $numview . '&status=' . $statuss , $pz, $uri);
                                         ?>
                                     </ul>
                                 </div>
