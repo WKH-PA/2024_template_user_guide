@@ -63,27 +63,40 @@ $errorMessages = [
     ]
 ];
 $table = '#_optimized_img';
-$totalImages = 0;
-$processedImages = 0;
-$pz = 0;
-$pzz = 0;
+$totalImages = 0; $processedImages = 0; $pz = 0; $pzz = 0; $uri = '';
 $numview = isset($_GET['numview']) ? intval($_GET['numview']) : 15;
 $statuss = isset($_GET['status']) ? $_GET['status'] : 'ASC';
+$s_ksearch = isset($_GET['ksearch']) ? $_GET['ksearch'] : '';
 if (isset($_GET['pz'])) {
     $pz = intval($_GET['pz']);
     $pzz = ($pz > 0) ? $pz * $numview : 0;
 }
-$uri = '';
 $displayId = ($pz * $numview);
-// Lấy trạng thái được chọn
+if ($s_ksearch != "") {
+    $key_parts = explode(' ', strtolower($s_ksearch));
+    $mo = " AND (";
+
+    foreach ($key_parts as $part) {
+        $mo .= "LOWER(`image_path`) LIKE '%" . $part . "%' OR ";
+        $mo .= "LOWER(`image_path`) LIKE '" . $part . "%' OR ";
+        $mo .= "LOWER(`image_path`) LIKE '%" . $part . "' OR ";
+    }
+
+    // Loại bỏ phần " OR " cuối cùng và đóng ngoặc
+    $mo = rtrim($mo, " OR ") . ")";
+
+    // Mã hóa từ khóa tìm kiếm và thêm vào URI
+    $uri .= '&ksearch=' . rawurlencode($s_ksearch);
+}
+
 
 
 // Xây dựng điều kiện WHERE cho truy vấn SQL
 $whereClause = "";
 if ($statuss === 'DESC') {
-    $whereClause = " WHERE `status` = 1 ";
+    $whereClause = " WHERE `status` = 1 ".$mo;
 } elseif ($statuss === 'ASC') {
-    $whereClause = " WHERE `status` = 0 ";
+    $whereClause = " WHERE `status` = 0 ".$mo;
 }
 // Truy vấn toàn bộ dữ liệu từ cơ sở dữ liệu
 $sql_all = DB_que("SELECT * FROM `$table`");
@@ -171,6 +184,7 @@ foreach ($data_all as $row) {
         $processedImages++;
     }
 }
+
 ?>
 <section class="content-header">
     <h1>Danh sách ảnh tối ưu</h1>
@@ -221,6 +235,13 @@ foreach ($data_all as $row) {
                         <div class="box-header">
                             <div class="box-tools">
                                 <div class="dv-hd-locsds">
+                                    <div class="input-group input-group-sm input-group-sm-timkiem">
+                                        <input name="ksearch" type="text" value="<?=$s_ksearch ?>" class="form-control pull-right key_search" placeholder="Nhập từ khóa tìm kiếm">
+                                        <div class="input-group-btn">
+                                            <button name='search' type="button" class="btn btn-default btn_search_ds" onclick='SEARCH_jsstep()'><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <select name="viewid" id="viewid" class="js_hienthi_ds form-control"
                                                 onchange='SEARCH_jsstep()'>
@@ -346,7 +367,7 @@ foreach ($data_all as $row) {
                                 <div class="paging_simple_numbers">
                                     <ul class="pagination">
                                         <?php
-                                        PHANTRANG_admin($numshow, $url_page.'&numview=' . $numview . '&status=' . $statuss , $pz, $uri);
+                                        PHANTRANG_admin($numshow, $url_page.'&numview=' . $numview . '&status=' . $statuss  , $pz, $uri);
                                         ?>
                                     </ul>
                                 </div>
@@ -374,18 +395,61 @@ foreach ($data_all as $row) {
         window.history.pushState({}, '', url.href);
         window.location.href = url.href;
     });
+    $(document).ready(function() {
+        $('.key_search').bind("keypress", function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                SEARCH_jsstep();
+                return false;
+            }
+        });
 
-    function SEARCH_jsstep() {
-        var numview = $('#viewid').val();
-        var status = $('#status-select').val();
-        // Lấy URL hiện tại
-        var url = new URL(window.location.href);
-        // Cập nhật tham số 'numview' và 'status'
-        url.searchParams.set('numview', numview);
-        url.searchParams.set('status', status);
-        // Chuyển hướng đến URL mới
-        window.location.href = url.href;
-    }
+        function SEARCH_jsstep() {
+            var numview = $('#viewid').val();
+            var status = $('#status-select').val();
+            var ksearch = $(".key_search").val().trim();
+
+            // Lấy URL hiện tại
+            var url = new URL(window.location.href);
+
+            // Cập nhật tham số 'numview' và 'status' nếu có giá trị
+            if (numview) {
+                url.searchParams.set('numview', numview);
+            } else {
+                url.searchParams.delete('numview'); // Xóa tham số nếu không có giá trị
+            }
+
+            if (status) {
+                url.searchParams.set('status', status);
+            } else {
+                url.searchParams.delete('status'); // Xóa tham số nếu không có giá trị
+            }
+
+            if (ksearch) {
+                // Mã hóa chuỗi tìm kiếm cho URL
+                url.searchParams.set('ksearch', encodeURIComponent(ksearch));
+            } else {
+                url.searchParams.delete('ksearch'); // Xóa tham số nếu không có giá trị
+            }
+
+            // Chuyển hướng đến URL mới
+            window.location.href = url.href;
+        }
+
+        function updateSearchInputFromUrl() {
+            var url = new URL(window.location.href);
+            var ksearch = url.searchParams.get('ksearch');
+            if (ksearch) {
+                // Giải mã chuỗi tìm kiếm từ URL và đặt vào ô tìm kiếm
+                $(".key_search").val(decodeURIComponent(ksearch));
+            }
+        }
+
+        // Cập nhật ô tìm kiếm khi trang được tải
+        updateSearchInputFromUrl();
+    });
+
+
 
     function updateImageCount(total, processed) {
         document.getElementById('total-images').textContent = total;
