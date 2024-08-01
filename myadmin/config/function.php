@@ -3049,6 +3049,7 @@ function checkQuota($kraken)
     $response = $kraken->status(); // Assuming `status` is the method to check quota
     return $response['quota_remaining'] > 0;
 }
+
 function removeSubstringBefore($string, $substring)
 {
     $pos = strpos($string, $substring);
@@ -3122,30 +3123,33 @@ function update_db_optimized_img($localDirectory)
 
 
 // Function to process an image
-function processImage($kraken, $imagePath, $webDirectory)
+function processImage($kraken, $imagePath)
 {
-    $imageName = str_replace('datafiles/', '', $imagePath);
-    $Url = $_SERVER['DOCUMENT_ROOT'] . '/' . $_SESSION['thumuc'];
-    $imageUrl = $webDirectory . '/' . $imageName;
-    if (!file_exists($Url . '/' . $imageName)) {
-        return [
-            'success' => false,
-            'message' => 'Không thể lấy tệp từ URL được cung cấp.'
-        ];
-    }
-    // Create parameters for Kraken
-    $params = array(
-        "url" => $imageUrl,
-        "wait" => true
-    );
-    // Send request to Kraken
-    $data = $kraken->url($params);
-//	echo '<pre>';
-//	var_dump($imagePath);
-//    var_dump($imageUrl);
-//    var_dump($imageName);
-//	exit;
-    if ($data['success']) {
+
+    try {
+        global $webDirectory;
+        $imageName = str_replace('datafiles/', '', $imagePath);
+        $Url = $_SERVER['DOCUMENT_ROOT'] . '/' . $_SESSION['thumuc'];
+        $imageUrl = $webDirectory . '/' . $imageName;
+
+        if (!file_exists($Url . '/' . $imageName)) {
+            throw new Exception('Không thể lấy tệp từ URL được cung cấp.', 404);
+        }
+        // cố 1 tấm
+
+        // Create parameters for Kraken
+        $params = array(
+            "url" => $imageUrl,
+            "wait" => true
+        );
+        // Send request to Kraken
+        $data = $kraken->url($params);
+
+        if (!$data['success']) {
+            $error_message = isset($data['message']) ? $data['message'] : 'Kraken API request failed.';
+            throw new Exception($error_message, 405);
+        }
+
         $optimizedImageUrl = $data['kraked_url'];
         $optimizedImageContent = file_get_contents($optimizedImageUrl);
         // Lưu ảnh đã tối ưu với tên gốc (ghi đè nếu ảnh đã tồn tại)
@@ -3154,12 +3158,10 @@ function processImage($kraken, $imagePath, $webDirectory)
             'success' => true,
             'message' => 'Tối ưu ảnh thành công!'
         ];
-    } else {
-        $error_message = isset($data['message']) ? $data['message'] : 'Kraken API request failed.';
-
+    } catch (Exception $ex) {
         return [
             'success' => false,
-            'message' => $error_message
+            'message' => $ex->getMessage()
         ];
     }
 }
