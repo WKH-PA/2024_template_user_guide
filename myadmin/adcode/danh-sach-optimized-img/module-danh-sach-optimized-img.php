@@ -1,67 +1,23 @@
 <?php
 include "../vendor/autoload.php";
 $errorMessages = [
-    'Invalid API Key or Secret.' => [
-        'message' => "Invalid API Key or Secret.",
-        'reason' => "API key hoặc secret key không đúng. Vui lòng kiểm tra lại."
-    ],
-    'Invalid URL.' => [
-        'message' => "Invalid URL.",
-        'reason' => "URL của hình ảnh không hợp lệ hoặc không thể truy cập."
-    ],
-    'File size too large' => [
-        'message' => "File size too large.",
-        'reason' => "Kích thước tệp hình ảnh vượt quá giới hạn cho phép."
-    ],
-    'Unsupported file type.' => [
-        'message' => "Unsupported file type.",
-        'reason' => "Định dạng tệp hình ảnh không được hỗ trợ."
-    ],
-    'Rate limit exceeded.' => [
-        'message' => "Rate limit exceeded.",
-        'reason' => "Số lượng yêu cầu API vượt quá giới hạn cho phép trong một khoảng thời gian nhất định."
-    ],
-    'Authentication error.' => [
-        'message' => "Authentication error.",
-        'reason' => "Lỗi xác thực xảy ra do nhiều nguyên nhân như key sai, hết hạn, v.v."
-    ],
-    'Internal server error.' => [
-        'message' => "Internal server error.",
-        'reason' => "Lỗi nội bộ của server Kraken.io. Thử lại sau một thời gian hoặc liên hệ với hỗ trợ kỹ thuật của Kraken.io."
-    ],
-    'Missing parameter.' => [
-        'message' => "Missing parameter.",
-        'reason' => "Thiếu tham số bắt buộc trong yêu cầu."
-    ],
-    'Invalid parameter.' => [
-        'message' => "Invalid parameter.",
-        'reason' => "Tham số không hợp lệ. Vui lòng kiểm tra lại các giá trị được cung cấp."
-    ],
-    'Quota exceeded.' => [
-        'message' => "Quota exceeded.",
-        'reason' => "Đã vượt quá hạn mức sử dụng dịch vụ. Vui lòng nâng cấp gói dịch vụ hoặc chờ đến khi hạn mức được làm mới."
-    ],
-    'Network error.' => [
-        'message' => "Network error.",
-        'reason' => "Lỗi kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn."
-    ],
-    'Access denied.' => [
-        'message' => "Access denied.",
-        'reason' => "Quyền truy cập bị từ chối. Vui lòng kiểm tra quyền truy cập và xác thực của bạn."
-    ],
-    'Timeout error.' => [
-        'message' => "Timeout error.",
-        'reason' => "Yêu cầu đã vượt quá thời gian chờ. Vui lòng thử lại sau."
-    ],
-    'Invalid signature.' => [
-        'message' => "Invalid signature.",
-        'reason' => "Chữ ký không hợp lệ. Vui lòng kiểm tra và đảm bảo rằng chữ ký được tạo đúng cách."
-    ],
-    "Couldn't get this file from provided URL." => [
-        'message' => "Couldn't get this file from provided URL.",
-        'reason' => "Không thể lấy tệp từ URL được cung cấp. Vui lòng kiểm tra lại URL."
-    ]
+    'Invalid API Key or Secret.' => ['message' => "Invalid API Key or Secret.", 'reason' => "API key hoặc secret key không đúng. Vui lòng kiểm tra lại."],
+    'Invalid URL.' => ['message' => "Invalid URL.", 'reason' => "URL của hình ảnh không hợp lệ hoặc không thể truy cập."],
+    'File size too large' => ['message' => "File size too large.", 'reason' => "Kích thước tệp hình ảnh vượt quá giới hạn cho phép."],
+    'Unsupported file type.' => ['message' => "Unsupported file type.", 'reason' => "Định dạng tệp hình ảnh không được hỗ trợ."],
+    'Rate limit exceeded.' => ['message' => "Rate limit exceeded.", 'reason' => "Số lượng yêu cầu API vượt quá giới hạn cho phép trong một khoảng thời gian nhất định."],
+    'Authentication error.' => ['message' => "Authentication error.", 'reason' => "Lỗi xác thực xảy ra do nhiều nguyên nhân như key sai, hết hạn, v.v."],
+    'Internal server error.' => ['message' => "Internal server error.", 'reason' => "Lỗi nội bộ của server Kraken.io. Thử lại sau một thời gian hoặc liên hệ với hỗ trợ kỹ thuật của Kraken.io."],
+    'Missing parameter.' => ['message' => "Missing parameter.", 'reason' => "Thiếu tham số bắt buộc trong yêu cầu."],
+    'Invalid parameter.' => ['message' => "Invalid parameter.", 'reason' => "Tham số không hợp lệ. Vui lòng kiểm tra lại các giá trị được cung cấp."],
+    'Quota exceeded.' => ['message' => "Quota exceeded.", 'reason' => "Đã vượt quá hạn mức sử dụng dịch vụ. Vui lòng nâng cấp gói dịch vụ hoặc chờ đến khi hạn mức được làm mới."],
+    'Network error.' => ['message' => "Network error.", 'reason' => "Lỗi kết nối mạng. Vui lòng kiểm tra kết nối internet của bạn."],
+    'Access denied.' => ['message' => "Access denied.", 'reason' => "Quyền truy cập bị từ chối. Vui lòng kiểm tra quyền truy cập và xác thực của bạn."],
+    'Timeout error.' => ['message' => "Timeout error.", 'reason' => "Yêu cầu đã vượt quá thời gian chờ. Vui lòng thử lại sau."],
+    'Invalid signature.' => ['message' => "Invalid signature.", 'reason' => "Chữ ký không hợp lệ. Vui lòng kiểm tra và đảm bảo rằng chữ ký được tạo đúng cách."],
+    "Couldn't get this file from provided URL." => ['message' => "Couldn't get this file from provided URL.", 'reason' => "Không thể lấy tệp từ URL được cung cấp. Vui lòng kiểm tra lại URL."]
 ];
+
 $mo = "";
 $table = '#_optimized_img';
 $totalImages = 0; $processedImages = 0; $pz = 0; $pzz = 0; $uri = '';
@@ -77,13 +33,12 @@ if ($s_ksearch != "") {
     $key_parts = explode(' ', strtolower($s_ksearch));
     $mo = " AND (";
     foreach ($key_parts as $part) {
-        $mo .= "LOWER(`image_path`) LIKE '%" . $part . "%' OR ";
-        $mo .= "LOWER(`image_path`) LIKE '" . $part . "%' OR ";
-        $mo .= "LOWER(`image_path`) LIKE '%" . $part . "' OR ";
+        // Adjust to search for exact match of each part
+        $mo .= "LOWER(`image_path`) LIKE '%" . $part . "%' AND ";
     }
-    // Loại bỏ phần " OR " cuối cùng và đóng ngoặc
-    $mo = rtrim($mo, " OR ") . ")";
-    // Mã hóa từ khóa tìm kiếm và thêm vào URI
+    // Remove the last " AND " and close the parentheses
+    $mo = rtrim($mo, " AND ") . ")";
+    // Encode the search keyword and add it to the URI
     $uri .= '&ksearch=' . rawurlencode($s_ksearch);
 }
 
@@ -229,15 +184,12 @@ foreach ($data_all as $row) {
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <select name="viewid" id="viewid" class="js_hienthi_ds form-control"
-                                                onchange='SEARCH_jsstep()'>
+                                        <select name="viewid" id="viewid" class="js_hienthi_ds form-control" onchange='SEARCH_jsstep()'>
                                             <option value="15" <?php if ($numview == 15) echo "selected"; ?>>15</option>
                                             <option value="30" <?php if ($numview == 30) echo "selected"; ?>>30</option>
                                             <option value="60" <?php if ($numview == 60) echo "selected"; ?>>60</option>
-                                            <option value="100" <?php if ($numview == 100) echo "selected"; ?>>100
-                                            </option>
-                                            <option value="200" <?php if ($numview == 200) echo "selected"; ?>>200
-                                            </option>
+                                            <option value="100" <?php if ($numview == 100) echo "selected"; ?>>100</option>
+                                            <option value="200" <?php if ($numview == 200) echo "selected"; ?>>200</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -367,17 +319,14 @@ foreach ($data_all as $row) {
 <script src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
 <script>
     document.getElementById('status-select').addEventListener('change', function () {
-        // Lấy giá trị từ dropdown
         var status = this.value;
-        // Tạo một URL đối tượng mới từ URL hiện tại
         var url = new URL(window.location.href);
         url.searchParams.delete('pz');
-        // Cập nhật tham số 'status'
         url.searchParams.set('status', status);
-        // Cập nhật URL mà không tải lại trang
         window.history.pushState({}, '', url.href);
         window.location.href = url.href;
     });
+
     $(document).ready(function() {
         $('.key_search').bind("keypress", function(e) {
             if (e.keyCode == 13) {
@@ -387,30 +336,28 @@ foreach ($data_all as $row) {
             }
         });
 
-        function SEARCH_jsstep() {
+        // Make sure SEARCH_jsstep is defined before using it
+        window.SEARCH_jsstep = function() {
             var numview = $('#viewid').val();
             var status = $('#status-select').val();
             var ksearch = $(".key_search").val().trim();
-            // Lấy URL hiện tại
             var url = new URL(window.location.href);
-            // Cập nhật tham số 'numview' và 'status' nếu có giá trị
+
             if (numview) {
                 url.searchParams.set('numview', numview);
             } else {
-                url.searchParams.delete('numview'); // Xóa tham số nếu không có giá trị
+                url.searchParams.delete('numview');
             }
             if (status) {
                 url.searchParams.set('status', status);
             } else {
-                url.searchParams.delete('status'); // Xóa tham số nếu không có giá trị
+                url.searchParams.delete('status');
             }
             if (ksearch) {
-                // Mã hóa chuỗi tìm kiếm cho URL
                 url.searchParams.set('ksearch', ksearch);
             } else {
-                url.searchParams.delete('ksearch'); // Xóa tham số nếu không có giá trị
+                url.searchParams.delete('ksearch');
             }
-            // Chuyển hướng đến URL mới
             window.location.href = url.href;
         }
 
@@ -418,12 +365,10 @@ foreach ($data_all as $row) {
             var url = new URL(window.location.href);
             var ksearch = url.searchParams.get('ksearch');
             if (ksearch) {
-                // Giải mã chuỗi tìm kiếm từ URL và đặt vào ô tìm kiếm
                 $(".key_search").val(decodeURIComponent(ksearch));
             }
         }
 
-        // Cập nhật ô tìm kiếm khi trang được tải
         updateSearchInputFromUrl();
     });
 
