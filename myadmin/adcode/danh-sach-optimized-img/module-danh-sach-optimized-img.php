@@ -62,6 +62,7 @@ $errorMessages = [
         'reason' => "Không thể lấy tệp từ URL được cung cấp. Vui lòng kiểm tra lại URL."
     ]
 ];
+$mo = "";
 $table = '#_optimized_img';
 $totalImages = 0; $processedImages = 0; $pz = 0; $pzz = 0; $uri = '';
 $numview = isset($_GET['numview']) ? intval($_GET['numview']) : 15;
@@ -234,12 +235,14 @@ foreach ($data_all as $row) {
                         <div class="box-header">
                             <div class="box-tools">
                                 <div class="dv-hd-locsds">
+
                                     <div class="input-group input-group-sm input-group-sm-timkiem">
                                         <input name="ksearch" type="text" value="<?=$s_ksearch ?>" class="form-control pull-right key_search" placeholder="Nhập từ khóa tìm kiếm">
                                         <div class="input-group-btn">
                                             <button name='search' type="button" class="btn btn-default btn_search_ds" onclick='SEARCH_jsstep()'><i class="fa fa-search"></i></button>
                                         </div>
                                     </div>
+
 
                                     <div class="form-group">
                                         <select name="viewid" id="viewid" class="js_hienthi_ds form-control"
@@ -285,7 +288,7 @@ foreach ($data_all as $row) {
                                         <th class="w100 text-center">Ngày tạo</th>
                                         <th class="w100 text-center">Ngày cập nhật</th>
                                         <th class="w100 text-center">Trạng thái</th>
-                                        <th class="w50 text-center">Lỗi</th>
+                                        <th class="w50 text-center">Vấn đề</th>
                                         <th class="w100 text-center">Tùy chọn</th>
                                     </tr>
                                     </thead>
@@ -469,6 +472,12 @@ foreach ($data_all as $row) {
 </script>
 
 <style>
+    .search-form {
+        z-index: 10; /* Giá trị z-index lớn hơn z-index của modal */
+    }
+    .modal-content {
+        pointer-events: none;
+    }
     /* Căn chỉnh khoảng cách bên dưới cho các phần tử */
     .box-header,
     .paging_simple_numbers {
@@ -514,7 +523,6 @@ foreach ($data_all as $row) {
         opacity: 0;
         transition: opacity 0.3s ease;
     }
-
 
 
     .box-header {
@@ -754,6 +762,7 @@ foreach ($data_all as $row) {
         width: 80%;
         max-width: 600px;
         position: relative;
+        pointer-events: none;
     }
 
 
