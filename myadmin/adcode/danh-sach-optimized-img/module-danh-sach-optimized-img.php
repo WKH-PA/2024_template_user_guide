@@ -76,20 +76,16 @@ $displayId = ($pz * $numview);
 if ($s_ksearch != "") {
     $key_parts = explode(' ', strtolower($s_ksearch));
     $mo = " AND (";
-
     foreach ($key_parts as $part) {
         $mo .= "LOWER(`image_path`) LIKE '%" . $part . "%' OR ";
         $mo .= "LOWER(`image_path`) LIKE '" . $part . "%' OR ";
         $mo .= "LOWER(`image_path`) LIKE '%" . $part . "' OR ";
     }
-
     // Loại bỏ phần " OR " cuối cùng và đóng ngoặc
     $mo = rtrim($mo, " OR ") . ")";
-
     // Mã hóa từ khóa tìm kiếm và thêm vào URI
     $uri .= '&ksearch=' . rawurlencode($s_ksearch);
 }
-
 
 // Xây dựng điều kiện WHERE cho truy vấn SQL
 $whereClause = "";
@@ -118,8 +114,6 @@ if (isset($_POST['execute_single'])) {
     $imagePath = isset($_POST['image_path']) ? $_POST['image_path'] : '';
     $krakenInstance = getValidKrakenInstance();
     $current_date = date('Y-m-d H:i:s');
-
-    // Process the image using Kraken.io
     $result = processImage($krakenInstance, $imagePath);
     $status = $result['success'] ? 1 : 0;
     $error = $result['success'] ? '' : (isset($result['message']) ? $result['message'] : 'UNKNOWN_ERROR');
@@ -150,15 +144,12 @@ if (isset($_POST['execute_single'])) {
             closeBtn.innerHTML = '×';
             var messageP = document.createElement('p');
             messageP.textContent = message; // Sử dụng biến message đã được chuyển đổi
-
             modalContent.appendChild(closeBtn);
             modalContent.appendChild(messageP);
             modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-            
+            document.body.appendChild(modal);           
             // Hiển thị modal
             modal.style.display = 'block';
-
             // Đóng modal khi nhấn nút close hoặc click ra ngoài modal
             closeBtn.onclick = function() {
                 modal.style.display = 'none';
@@ -168,15 +159,12 @@ if (isset($_POST['execute_single'])) {
             modal.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = 'none';
-                    modal.remove();
-                    
+                    modal.remove();                    
                 }
-            };
-            
+            }; 
         });
       </script>";
 }
-
 
 foreach ($data_all as $row) {
     $totalImages++;
@@ -184,7 +172,6 @@ foreach ($data_all as $row) {
         $processedImages++;
     }
 }
-
 ?>
 <section class="content-header">
     <h1>Danh sách ảnh tối ưu</h1>
@@ -236,12 +223,11 @@ foreach ($data_all as $row) {
                             <div class="box-tools">
                                 <div class="dv-hd-locsds">
                                     <div class="form-group">
-                                    <div class="input-group-custom">
-                                        <input name="ksearch" type="text" value="<?=$s_ksearch ?>" class="form-control-custom key_search" placeholder="Nhập từ khóa tìm kiếm">
-                                        <button name='search' type="button" class="btn-custom btn_search_ds" onclick='SEARCH_jsstep()'><i class="fa fa-search"></i></button>
+                                        <div class="input-group-custom">
+                                            <input name="ksearch" type="text" value="<?=$s_ksearch ?>" class="form-control-custom key_search" placeholder="Nhập từ khóa tìm kiếm">
+                                            <button name='search' type="button" class="btn-custom btn_search_ds" onclick='SEARCH_jsstep()'><i class="fa fa-search"></i></button>
+                                        </div>
                                     </div>
-                                    </div>
-
                                     <div class="form-group">
                                         <select name="viewid" id="viewid" class="js_hienthi_ds form-control"
                                                 onchange='SEARCH_jsstep()'>
@@ -271,8 +257,6 @@ foreach ($data_all as $row) {
                                             type="submit" name="execute_all" onclick="return confirmAction()">
                                         <ion-icon name="cloud-upload-outline">  </ion-icon> Tải hình lên
                                     </button>
-
-
                                 </h3>
                             </div>
                         </div>
@@ -372,11 +356,10 @@ foreach ($data_all as $row) {
                                     </ul>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 </form>
@@ -408,30 +391,25 @@ foreach ($data_all as $row) {
             var numview = $('#viewid').val();
             var status = $('#status-select').val();
             var ksearch = $(".key_search").val().trim();
-
             // Lấy URL hiện tại
             var url = new URL(window.location.href);
-
             // Cập nhật tham số 'numview' và 'status' nếu có giá trị
             if (numview) {
                 url.searchParams.set('numview', numview);
             } else {
                 url.searchParams.delete('numview'); // Xóa tham số nếu không có giá trị
             }
-
             if (status) {
                 url.searchParams.set('status', status);
             } else {
                 url.searchParams.delete('status'); // Xóa tham số nếu không có giá trị
             }
-
             if (ksearch) {
                 // Mã hóa chuỗi tìm kiếm cho URL
                 url.searchParams.set('ksearch', ksearch);
             } else {
                 url.searchParams.delete('ksearch'); // Xóa tham số nếu không có giá trị
             }
-
             // Chuyển hướng đến URL mới
             window.location.href = url.href;
         }
@@ -449,8 +427,6 @@ foreach ($data_all as $row) {
         updateSearchInputFromUrl();
     });
 
-
-
     function updateImageCount(total, processed) {
         document.getElementById('total-images').textContent = total;
         document.getElementById('processed-images').textContent = processed;
@@ -466,7 +442,6 @@ foreach ($data_all as $row) {
             }
         }
     });
-
 </script>
 
 <style>
