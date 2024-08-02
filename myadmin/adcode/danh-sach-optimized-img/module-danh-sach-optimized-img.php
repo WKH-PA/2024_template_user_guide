@@ -194,12 +194,8 @@ foreach ($data_all as $row) {
                                     </div>
                                     <div class="form-group">
                                         <select id="status-select" name="status" class="form-control modern-select">
-                                            <option value="ASC" <?= $statuss === 'ASC' ? 'selected' : '' ?>>Chưa tối
-                                                ưu
-                                            </option>
-                                            <option value="DESC" <?= $statuss === 'DESC' ? 'selected' : '' ?>>Đã tối
-                                                ưu
-                                            </option>
+                                            <option value="ASC" <?= $statuss === 'ASC' ? 'selected' : '' ?>>Chưa tối ưu</option>
+                                            <option value="DESC" <?= $statuss === 'DESC' ? 'selected' : '' ?>>Đã tối ưu</option>
                                         </select>
                                     </div>
                                 </div>
@@ -433,7 +429,6 @@ foreach ($data_all as $row) {
     }
 
     /* Căn chỉnh khoảng cách bên dưới cho các phần tử */
-    .box-header,
     .paging_simple_numbers {
         margin-bottom: 10px; /* Căn lề dưới cho box-header và paging_simple_numbers */
     }
@@ -483,42 +478,42 @@ foreach ($data_all as $row) {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding-bottom: 0;
         gap: 10px; /* Khoảng cách giữa các phần tử con */
     }
 
     .box-title-td {
         margin: 0;
     }
-
-    .box-tools {
+    .box-header>.box-tools {
         display: flex;
+        top: 10px;
         gap: 10px; /* Khoảng cách giữa các phần tử con */
     }
-
     .form-group {
         margin: 0;
     }
 
 
-    /* Container for holding both cards */
     .cards-container {
         display: flex;
-        gap: 4rem; /* Space between cards */
         flex-wrap: wrap; /* Allow cards to wrap if the screen is too small */
         width: 100%; /* Full width */
-        padding: 2rem; /* Optional: Add padding around the container */
+        padding: 0,5rem; /* Optional: Add padding around the container */
+        justify-content: space-between; /* Distribute space evenly between cards */
+        box-sizing: border-box; /* Include padding and border in element's total width and height */
     }
 
     /* Card styling */
     .card.custom-card {
-        flex: 1 1 calc(50% - 2rem);
-        max-width: calc(50% - 2rem);
+        flex: 1 1 calc(50% - 1rem); /* Each card takes 50% width minus the total horizontal margin */
+        max-width: calc(50% - 1rem);
         border-radius: 0.75rem; /* Rounded corners */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
         background-color: #ffffff; /* White background */
         transition: box-shadow 0.3s ease-in-out; /* Smooth shadow transition */
-        margin-bottom: 1rem; /* Space below each card */
+        margin-bottom: 2rem; /* Space below each card */
+        /*margin-right: 1rem; !* Horizontal spacing between cards *!*/
+        /*margin-left: 1rem; !* Horizontal spacing between cards *!*/
     }
 
     /* Add hover effect */
@@ -533,6 +528,15 @@ foreach ($data_all as $row) {
             max-width: calc(50% - 2rem);
         }
     }
+
+    @media (max-width: 576px) {
+        .card.custom-card {
+            flex: 1 1 calc(100% - 2rem); /* 1 card per row for small screens */
+            max-width: calc(100% - 2rem);
+        }
+    }
+
+
 
     @media (max-width: 768px) {
         .card.custom-card {

@@ -371,6 +371,9 @@ if($favico != ''){
             </section>
             <section class="col-lg-12">
                 <div class="box p10" style="margin-top: 10px; ">
+                    <div class="form-group">
+                        <label for="exampleInputFile">Quản lý tối ưu ảnh bằng API Key của Kraken.io</label>
+                    </div>
                         <!-- Group API Keys and Secrets -->
                     <?php
                     for ($i = 1; $i <= 5; $i++) {
@@ -378,27 +381,26 @@ if($favico != ''){
                         $api_secret = htmlspecialchars($api_keys["group_$i"]['api_secret'] ?? '');
                         ?>
                         <div style="margin-bottom: 10px;">
-                            <div style="margin-bottom: 10px;">
+                            <div class="form-group">
                                 <strong>Group <?= $i ?></strong>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between;">
-                                <div style="flex: 1; margin-right: 10px;">
-                                    <label for="api_key_<?= $i ?>">API Key:</label>
-                                    <input type="text" style="width: 100%;" name="api_key_<?= $i ?>" id="api_key_<?= $i ?>" value="<?= $api_key ?>" />
-                                </div>
-
-                                <div style="flex: 1;">
-                                    <label for="api_secret_<?= $i ?>">API Secret:</label>
-                                    <input type="text" style="width: 100%;" name="api_secret_<?= $i ?>" id="api_secret_<?= $i ?>" value="<?= $api_secret ?>" />
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div style="flex: 1; margin-right: 10px;">
+                                        <label for="api_key_<?= $i ?>">API Key:</label>
+                                        <input type="text"  style="width: 100%;" name="api_key_<?= $i ?>" id="api_key_<?= $i ?>" value="<?= $api_key ?>" />
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <label for="api_secret_<?= $i ?>">API Secret:</label>
+                                        <input type="text" class="form-control" style="width: 100%;" name="api_secret_<?= $i ?>" id="api_secret_<?= $i ?>" value="<?= $api_secret ?>" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     <?php } ?>
                     <div class="form-group">
-                        <label>Số lượng hình ảnh tối ưu </label>
-                        <input type="text" class="form-control" name="sl_toiuu" value="<?=$sl_toiuu?>">
+                        <label>Số lượng hình ảnh tối ưu (từ 1 đến 100)</label>
+                        <input type="number" class="form-control" name="sl_toiuu" value="<?=$sl_toiuu?>" min="1" max="100" oninput="if(this.value < 1) this.value = 1; if(this.value > 100) this.value = 100;">
                     </div>
+
                 </div>
 
             </section>
