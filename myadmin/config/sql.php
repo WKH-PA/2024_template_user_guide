@@ -17,10 +17,10 @@
 	$_SESSION['sub_demo_check'] = false;
 	$_SESSION['thumuc']  		= $_SESSION['sub_demo']."datafiles";
 	$php_vs 					= 7; //"5.6"; // 7
-$_SESSION['localhost_check']= 0;
+    $_SESSION['localhost_check']= 0;
     if($_SERVER['HTTP_HOST'] 	== 'localhost'|| ['HTTP_HOST'] 	== '172.16.90.105') {
         $webDirectory = "https://webdemo5.pavietnam.vn/document/datafiles";
-        $_SESSION['localhost_check']= 1;
+        $_SESSION['localhost_check']= 0;
     }else{
         $webDirectory = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $_SESSION['thumuc']   ;
     }

@@ -90,7 +90,6 @@ if ($s_ksearch != "") {
 }
 
 
-
 // Xây dựng điều kiện WHERE cho truy vấn SQL
 $whereClause = "";
 if ($statuss === 'DESC') {
@@ -427,7 +426,7 @@ foreach ($data_all as $row) {
 
             if (ksearch) {
                 // Mã hóa chuỗi tìm kiếm cho URL
-                url.searchParams.set('ksearch', encodeURIComponent(ksearch));
+                url.searchParams.set('ksearch', ksearch);
             } else {
                 url.searchParams.delete('ksearch'); // Xóa tham số nếu không có giá trị
             }
