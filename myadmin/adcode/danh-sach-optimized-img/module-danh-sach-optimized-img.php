@@ -235,14 +235,12 @@ foreach ($data_all as $row) {
                         <div class="box-header">
                             <div class="box-tools">
                                 <div class="dv-hd-locsds">
-
-                                    <div class="input-group input-group-sm input-group-sm-timkiem">
-                                        <input name="ksearch" type="text" value="<?=$s_ksearch ?>" class="form-control pull-right key_search" placeholder="Nhập từ khóa tìm kiếm">
-                                        <div class="input-group-btn">
-                                            <button name='search' type="button" class="btn btn-default btn_search_ds" onclick='SEARCH_jsstep()'><i class="fa fa-search"></i></button>
-                                        </div>
+                                    <div class="form-group">
+                                    <div class="input-group-custom">
+                                        <input name="ksearch" type="text" value="<?=$s_ksearch ?>" class="form-control-custom key_search" placeholder="Nhập từ khóa tìm kiếm">
+                                        <button name='search' type="button" class="btn-custom btn_search_ds" onclick='SEARCH_jsstep()'><i class="fa fa-search"></i></button>
                                     </div>
-
+                                    </div>
 
                                     <div class="form-group">
                                         <select name="viewid" id="viewid" class="js_hienthi_ds form-control"
@@ -472,12 +470,48 @@ foreach ($data_all as $row) {
 </script>
 
 <style>
-    .search-form {
-        z-index: 10; /* Giá trị z-index lớn hơn z-index của modal */
+    .input-group-custom {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
-    .modal-content {
-        pointer-events: none;
+
+    .form-control-custom {
+        flex: 1;
+        padding: 8px;
+        border: none;
+        border-radius: 4px 0 0 4px;
+        font-size: 14px;
+        box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
     }
+
+    .btn-custom {
+        padding: 8px 12px;
+        border: none;
+        background-color: #f8f8f8;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-custom i {
+        color: #333;
+    }
+
+    .btn-custom:hover {
+        background-color: #e0e0e0;
+    }
+
+    .btn-custom:active {
+        background-color: #d0d0d0;
+    }
+
     /* Căn chỉnh khoảng cách bên dưới cho các phần tử */
     .box-header,
     .paging_simple_numbers {
