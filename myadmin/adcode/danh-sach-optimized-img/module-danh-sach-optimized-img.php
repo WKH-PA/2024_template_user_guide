@@ -102,18 +102,20 @@ if (isset($_POST['execute_single'])) {
             modalContent.appendChild(closeBtn);
             modalContent.appendChild(messageP);
             modal.appendChild(modalContent);
-            document.body.appendChild(modal);           
+            document.body.appendChild(modal);
+            
             // Hiển thị modal
             modal.style.display = 'block';
             // Đóng modal khi nhấn nút close hoặc click ra ngoài modal
             closeBtn.onclick = function() {
                 modal.style.display = 'none';
-                window.location.href = url.href;
+               window.location.href = url.href;
                 modal.remove();
             };
             modal.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = 'none';
+                    window.location.href = url.href;
                     modal.remove();                    
                 }
             }; 

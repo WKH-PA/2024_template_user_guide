@@ -125,7 +125,33 @@ if(count($sp_baiviet)){
 
 
 <?php }?>
-
+<section class="contact py-100 wow fadeIn" data-wow-duration="2s">
+    <div class="overlay"></div>
+    <div class="pagewrap">
+        <div class="menu-so1">
+            <div class="menu_style">
+                <i class="fa fa-building" aria-hidden="true"></i>
+                <div class="count">3000</div>
+                <h5>CÁC GÓI DỊCH VỤ ĐƯỢC GIAO</h5>
+            </div>
+            <div class="menu_style">
+                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                <div class="count">749</div>
+                <h5>KHÁCH HÀNG HÀI LÒNG</h5>
+            </div>
+            <div class="menu_style">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                <div class="count">1225</div>
+                <h5>CÔNG NHÂN LÀM VIỆC</h5>
+            </div>
+            <div class="menu_style">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <div class="count">400</div>
+                <h5>TỔNG SỐ XE TẢI VẬN CHUYỂN</h5>
+            </div>
+        </div>
+    </div>
+</section>
 <?php
 $sp_baiviet = LAY_baiviet(7, 12, "`opt` = 1");
 $sp_step = LAY_step(7, 1);
@@ -166,40 +192,30 @@ $sp_step = LAY_step(7, 1);
 </div>
 
 <?php
-$sp_baiviet = LAY_baiviet(8, 12, "`opt` = 0");
-// Hàm để loại bỏ các phần tử trùng lặp dựa trên một khóa cụ thể (ví dụ: id)
-function remove_duplicates($array, $key) {
-    $temp_array = [];
-    $key_array = [];
-
-    foreach ($array as $val) {
-        if (!in_array($val[$key], $key_array)) {
-            $key_array[] = $val[$key];
-            $temp_array[] = $val;
-        }
-    }
-    return $temp_array;
-}
-
-// Loại bỏ phần tử trùng lặp dựa trên 'id' hoặc khóa duy nhất khác
-$sp_baiviet = remove_duplicates($sp_baiviet, 'id');
+$sp_baiviet = LAY_baiviet(8, 20, "`opt` = 0");
 ?>
 <div class="dv-home-doitac">
     <div class="pagewrap">
         <div class="sec-title text-center wow fadeInDown">
             <h3><?=$glo_lang['doi-tac-cua-chung-toi']?></h3>
         </div>
-        <div class="logo_doitac owl-carousel owl-theme owl-custome wow flipInX" id="images_slide">
+        <div class="logo_doitac owl-auto owl-carousel owl-theme owl-custome wow flipInX" id="images_slide"
+             data0="3" data1="3" data2="4"
+             data3="5"
+             data4="6" data5="7" is_slidespeed="1000" is_navigation="1"
+             is_autoplay="1">
 
-            <?php
-            foreach ($sp_baiviet as $partner) { ?>
-                <ul>
-                    <li>
-                        <a <?= full_href($partner) ?>"><?= full_img($partner) ?></a>
-                    </li>
-                </ul>
-            <?php }?>
+                <?php
+                foreach ($sp_baiviet as $partner)  { ?>
+                    <ul>
+                        <li><a <?= full_href($partner) ?>"><?= full_img($partner) ?></a></li>
+                    </ul>
+
+                <?php }?>
+
+
         </div>
         <div class="clr"></div>
     </div>
+    <div class="clr"></div>
 </div>

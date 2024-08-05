@@ -25,11 +25,12 @@
                 if(window.sidebar){ document.onmousedown = killCopy; document.onclick = reEnable; }
                 document.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
                 document.addEventListener("keydown", function(e) {
-                    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) { disabledEvent(e); }
-                    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) { disabledEvent(e); }
-                    if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) { disabledEvent(e); }
-                    if (e.ctrlKey && e.keyCode == 85) { disabledEvent(e); }
-                    if (event.keyCode == 123) { disabledEvent(e); }
+                    if (e.ctrlKey && e.shiftKey && e.keyCode == 73) { disabledEvent(e); }// Ctrl + Shift + I
+                    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) { disabledEvent(e); }// Ctrl + Shift + J
+                    if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) { disabledEvent(e); }// Ctrl + S hoặc Command + S (trên Mac)
+                    if (e.ctrlKey && e.keyCode == 85) { disabledEvent(e); }// Ctrl + U
+                    if (event.keyCode == 123) { disabledEvent(e); } //F12
+                    if (e.ctrlKey && e.keyCode == 80) { disabledEvent(e); } // Ctrl + P
                 }, false);
                 function disabledEvent(e) {
                     if (e.stopPropagation) { e.stopPropagation(); }
@@ -38,6 +39,15 @@
                     return false;
                 }
             });
+            window.onbeforeprint = function() {
+                alert("Chế độ in đã bị chặn.");
+                window.onafterprint = function() {
+                    window.close();
+                };
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1);
+            };
         </script>
     <?php } ?>
 </head>
