@@ -1,105 +1,146 @@
 <?php
-//include("config/sql.php");
-//include "../vendor/autoload.php";
-//
-//// Lấy dữ liệu từ cơ sở dữ liệu
-//$result = DB_que("SELECT `api_kraken` FROM `#_seo` LIMIT 1");
-//$sql_se = DB_arr($result, 1);
-//$json_data = $sql_se['api_kraken'] ?? '[]'; // Đảm bảo rằng biến có giá trị hợp lệ
-//$api_keys = json_decode($json_data, true);
-//echo $sql_se['api_kraken'];
-//echo $api_keys;
-//echo $api_secret;
-//$kraken = null;
-//// Lặp qua các nhóm API từ group_1 đến group_5
-//foreach (range(1, 5) as $group_number) {
-//    $group_key = 'group_' . $group_number;
-//    if (isset($api_keys[$group_key])) {
-//        $api_key = $api_keys[$group_key]['api_key'];
-//        $api_secret = $api_keys[$group_key]['api_secret'];
-//        $kraken = createKrakenInstance($api_key, $api_secret);
-//        if ($kraken && checkQuota($kraken)) {
-//            break; // Ngừng lặp khi đã tạo được đối tượng Kraken thành công và còn quota
-//        }
-//    }
-//}
-//
-//$localDirectory = '/opt/lampp/htdocs/2024_template_user_guide/datafiles/images/img'; // Local directory path
-//$webDirectory = "https://webdemo5.pavietnam.vn/document/datafiles/images/img";
-//// Get the list of images from the local directory
-//$images =getImagesFromDirectory($localDirectory);
-////$totalImages = count($images);
-//$table = '#_optimized_img';
-//
-//// Thêm hình ảnh vào cơ sở dữ liệu
-//foreach ($images as $image) {
-//    $imagePath = $conn->real_escape_string($image);
-//    $sql = "INSERT INTO `$table` (image_path, status) VALUES ('$imagePath', 0)";
-//    $conn->query($sql);
-//}
-//// Handle AJAX request
-//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//    $input = json_decode(file_get_contents('php://input'), true);
-//    $imagePath = $input['imagePath'];
-//    if (processImage($kraken, $imagePath, $webDirectory)) {
-//        echo json_encode(['success' => true]);
-//    } else {
-//        echo json_encode(['success' => false]);
-//    }
-//    exit;
-//}
-//?>
-<!---->
-<!--<h1>Image Optimization Progress</h1>-->
-<!--<div id="status">-->
-<!--    <p>Images to process: <span id="total-images">--><?php //echo $totalImages; ?><!--</span></p>-->
-<!--    <p>Images processed: <span id="processed-images">0</span></p>-->
-<!--</div>-->
-<!--<div id="progress-container">-->
-<!--    <div id="progress-bar"></div>-->
-<!--</div>-->
-<!--<button id="start-button">Start Optimization</button>-->
-<!--<script>-->
-<!--    document.getElementById('start-button').addEventListener('click', function() {-->
-<!--        // Lấy danh sách hình ảnh từ biến PHP và chuyển nó thành mảng JavaScript-->
-<!--        var images = --><?php //echo json_encode($images); ?>//;
-//        var totalImages = images.length; // Lấy tổng số lượng hình ảnh
-//        var processedImages = 0; // Biến để đếm số lượng hình ảnh đã được xử lý
-//
-//        // Hàm cập nhật tiến trình xử lý
-//        function updateProgress() {
-//            processedImages++; // Tăng số lượng hình ảnh đã được xử lý lên 1
-//            document.getElementById('processed-images').innerText = processedImages; // Cập nhật số lượng hình ảnh đã xử lý trên giao diện
-//            var progressBar = document.getElementById('progress-bar'); // Lấy thanh tiến trình
-//            progressBar.style.width = (processedImages / totalImages) * 100 + '%'; // Cập nhật chiều rộng của thanh tiến trình theo phần trăm hình ảnh đã xử lý
-//        }
-//
-//        // Duyệt qua từng hình ảnh trong mảng
-//        images.forEach(function(imagePath) {
-//            // Gửi yêu cầu POST để xử lý từng hình ảnh
-//            fetch('', {
-//                method: 'POST',
-//                headers: {
-//                    'Content-Type': 'application/json'
-//                },
-//                body: JSON.stringify({ imagePath: imagePath }) // Gửi đường dẫn hình ảnh trong phần thân của yêu cầu
-//            })
-//                .then(response => response.json()) // Chuyển đổi phản hồi thành JSON
-//                .then(data => {
-//                    if (data.success) {
-//                        updateProgress(); // Nếu xử lý thành công, cập nhật tiến trình
-//                    } else {
-//                        console.error('Failed to process image:', imagePath); // Nếu xử lý thất bại, ghi log lỗi
-//                    }
-//                })
-//                .catch(error => console.error('Error:', error)); // Xử lý lỗi nếu có trong quá trình gửi yêu cầu
-//        });
-//    });
-//</script>
-//
-//<style>
-//    body {font-family: Arial, sans-serif;text-align: center;margin: 20px;}
-//    #progress-container {width: 100%;background-color: #f3f3f3;border: 1px solid #ddd;border-radius: 5px;margin: 20px auto;max-width: 600px;padding: 5px;}
-//    #progress-bar {height: 30px;width: 0;background-color: #4caf50;border-radius: 5px;}
-//    #status {margin-top: 10px;}
-//</style>
+include("config/sql.php");
+// Initialize variables to prevent "Undefined variable" notices
+$amount = $language = $txnRef = $returnUrl = "";
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validate and assign POST data to variables
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
+    $language = isset($_POST['language']) ? $_POST['language'] : null;
+    $txnRef = isset($_POST['txnRef']) ? $_POST['txnRef'] : null;
+    $returnUrl = isset($_POST['returnUrl']) ? $_POST['returnUrl'] : null;
+    // Proceed if all required fields are present
+    if ($amount && $language && $txnRef && $returnUrl) {
+        $thongtin_vnpay = DB_que("SELECT * FROM #_ship_thanhtoan_setup LIMIT 1");
+        $thongtin_vnpay = mysqli_fetch_assoc($thongtin_vnpay);
+
+        $vnp_TmnCode = $thongtin_vnpay['vnp_TmnCode']; // Terminal Id
+        $vnp_HashSecret = $thongtin_vnpay['vnp_HashSecret']; // Secret key
+        $vnp_Url = $thongtin_vnpay['vnp_Url'];
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $amount * 100,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => GET_ip(),
+            "vnp_Locale" => $language,
+            "vnp_OrderInfo" => "Thanh toan GD:" . date('YmdHis'),
+            "vnp_OrderType" => "other",
+            "vnp_ReturnUrl" => $returnUrl,
+            "vnp_TxnRef" => $txnRef,
+        );
+
+        ksort($inputData);
+        $hashdata = "";
+        $query = "";
+
+        foreach ($inputData as $key => $value) {
+            $hashdata .= ($hashdata ? '&' : '') . urlencode($key) . "=" . urlencode($value);
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+        $query .= 'vnp_SecureHash=' . urlencode($vnpSecureHash);
+
+        $paymentUrl = $vnp_Url . "?" . $query;
+
+        // Redirect to the payment URL
+        header('Location: ' . $paymentUrl);
+        exit();
+    } else {
+        // Handle missing input
+        echo "All fields are required.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Tạo mới đơn hàng</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h3 class="text-center">Tạo mới đơn hàng</h3>
+    <form action="" id="frmCreateOrder" method="post">
+        <div class="form-group">
+            <label for="amount">Số tiền</label>
+            <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="amount" type="number" value="10000" />
+        </div>
+        <div class="form-group">
+            <h5>Chọn ngôn ngữ giao diện thanh toán:</h5>
+            <div>
+                <input type="radio" id="language_vn" name="language" value="vn" checked>
+                <label for="language_vn">Tiếng Việt</label>
+            </div>
+            <div>
+                <input type="radio" id="language_en" name="language" value="en">
+                <label for="language_en">Tiếng Anh</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="returnUrl">URL Trả Về</label>
+            <input class="form-control" id="returnUrl" name="returnUrl" type="text" value="http://localhost/2024_template_user_guide/myadmin/upload.php" />
+        </div>
+        <div class="form-group">
+            <label for="txnRef">Mã Giao Dịch</label>
+            <input class="form-control" id="txnRef" name="txnRef" type="text" value="<?php echo rand(1, 10000); ?>" />
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Thanh toán</button>
+    </form>
+    <footer class="footer">
+    <?
+        echo $ip = $_SERVER['HTTP_CLIENT_IP'];
+
+         echo $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+
+        echo $ip = $_SERVER['REMOTE_ADDR'];
+    ?>
+        <p>&copy; VNPAY 2024</p>
+        <??>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

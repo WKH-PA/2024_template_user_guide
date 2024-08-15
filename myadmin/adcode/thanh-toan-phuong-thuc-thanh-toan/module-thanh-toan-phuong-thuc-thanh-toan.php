@@ -173,7 +173,7 @@
                         </div>
                         <div class="clear"></div>
                       </div>
-                      <div class="dv-group-vanchuyen" >
+                      <div class="dv-group-vanchuyen" style="display: none">
                         <div class="dv-left">
                           <h3><img src="images/icon-paypal.png">Thanh toán qua Paypal</h3>
                         </div>
@@ -197,6 +197,30 @@
                         </div>
                         <div class="clear"></div>
                       </div>
+                        <div class="dv-group-vanchuyen" >
+                            <div class="dv-left">
+                                <h3><img src="images/icon-vnpay.png">Thanh toán qua VnPay</h3>
+                            </div>
+                            <div class="dv-right">
+                                <!-- <label class='rad'>
+                            <input type="radio" name="check_vn_pay" value="1" <?=LAY_checked(1, @$check_paypal) ?>> Hiển thị
+                          </label>
+                          <label class='rad'>
+                            <input type="radio" name="check_vn_pay" value="0" <?=LAY_checked(0, @$check_paypal) ?>> Ẩn
+                          </label> -->
+                                <div class="clr"></div>
+                                <label>
+                                    <input type="text" name="vnp_TmnCode" value="<?=!empty($vnp_TmnCode) ? $vnp_TmnCode : ""  ?>" placeholder="Terminal ID">
+                                </label>
+                                <label>
+                                    <input type="text" name="vnp_HashSecret" value="<?=!empty($vnp_HashSecret) ? $vnp_HashSecret : ""  ?>" placeholder="Secret Key">
+                                </label>
+                                <label>
+                                    <input type="text" name="vnp_Url" value="<?=!empty($vnp_Url) ? $vnp_Url: ""  ?>" placeholder="Url thanh toán">
+                                </label>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
                     </div>
                     <div class="box-header">
                       <h3 class="box-title box-title-td pull-right">

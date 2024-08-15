@@ -1102,7 +1102,10 @@ if($motty == "send_form" && isset($_POST['gui_donhang'])){
       include _source."code_site/pa-".$haity.".php";
       exit();
   }
-
+    if ($motty == "vnpay_thanhcong.php") {
+        include _source . "vnpay_thanhcong.php";
+        exit;
+    }
   if($motty == "sitemap.xml"){
       include "sitemap.php";
       exit();
