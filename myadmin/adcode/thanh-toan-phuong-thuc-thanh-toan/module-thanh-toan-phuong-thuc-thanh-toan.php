@@ -197,31 +197,50 @@
                         </div>
                         <div class="clear"></div>
                       </div>
+
+
                         <div class="dv-group-vanchuyen" >
                             <div class="dv-left">
                                 <h3><img src="images/icon-vnpay.png">Thanh toán qua VnPay</h3>
                             </div>
                             <div class="dv-right">
-                                <!-- <label class='rad'>
-                            <input type="radio" name="check_vn_pay" value="1" <?=LAY_checked(1, @$check_paypal) ?>> Hiển thị
+                                 <label class='rad'>
+                            <input type="radio" name="check_vn_pay" value="1" <?=LAY_checked(1, @$check_vn_pay) ?>> LIVE
                           </label>
                           <label class='rad'>
-                            <input type="radio" name="check_vn_pay" value="0" <?=LAY_checked(0, @$check_paypal) ?>> Ẩn
-                          </label> -->
-                                <div class="clr"></div>
-                                <label>
-                                    <input type="text" name="vnp_TmnCode" value="<?=!empty($vnp_TmnCode) ? $vnp_TmnCode : ""  ?>" placeholder="Terminal ID">
-                                </label>
-                                <label>
-                                    <input type="text" name="vnp_HashSecret" value="<?=!empty($vnp_HashSecret) ? $vnp_HashSecret : ""  ?>" placeholder="Secret Key">
-                                </label>
-                                <label>
-                                    <input type="text" name="vnp_Url" value="<?=!empty($vnp_Url) ? $vnp_Url: ""  ?>" placeholder="Url thanh toán">
-                                </label>
+                            <input type="radio" name="check_vn_pay" value="0" <?=LAY_checked(0, @$check_vn_pay) ?>> TEST
+                          </label>
+
+                                <?php if (@$check_vn_pay == 1): ?>
+                                    <!-- Group 1 (LIVE) -->
+                                    <div class="input-group live-inputs">
+                                        <label>
+                                            <input type="text" name="vnp_TmnCode" value="<?= !empty($vnp_TmnCode) ? $vnp_TmnCode : ""  ?>" placeholder="Terminal ID">
+                                        </label>
+                                        <label>
+                                            <input type="text" name="vnp_HashSecret" value="<?= !empty($vnp_HashSecret) ? $vnp_HashSecret : ""  ?>" placeholder="Secret Key">
+                                        </label>
+                                        <label>
+                                            <input type="text" name="vnp_Url" value="<?= !empty($vnp_Url) ? $vnp_Url : ""  ?>" placeholder="Url thanh toán">
+                                        </label>
+                                    </div>
+                                <?php else: ?>
+                                    <!-- Group 2 (TEST) -->
+                                    <div class="input-group test-inputs">
+                                        <label>
+                                            <input type="text" name="vnp_TmnCode_test" value="<?= !empty($vnp_TmnCode_test) ? $vnp_TmnCode_test : ""  ?>" placeholder="Terminal ID Test">
+                                        </label>
+                                        <label>
+                                            <input type="text" name="vnp_HashSecret_test" value="<?= !empty($vnp_HashSecret_test) ? $vnp_HashSecret_test : ""  ?>" placeholder="Secret Key Test">
+                                        </label>
+                                        <label>
+                                            <input type="text" name="vnp_Url_test" value="<?= !empty($vnp_Url_test) ? $vnp_Url_test : ""  ?>" placeholder="Url thanh toán Test">
+                                        </label>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <div class="clear"></div>
                         </div>
-                    </div>
                     <div class="box-header">
                       <h3 class="box-title box-title-td pull-right">
                           <button type="submit" name="addgiatri" class="btn btn-primary" ><i class="fa fa-floppy-o"></i> <?=luu_lai ?></button>

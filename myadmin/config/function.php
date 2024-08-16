@@ -116,8 +116,8 @@ function ACTION_db($array, $table, $kieu = 'add', $array_remove = array(), $cond
 
     if ($kieu == 'add') {
         @DB_que("INSERT INTO `$table`($bang_db) VALUES($bang_value)");
-        //echo "INSERT INTO `$table`($bang_db) VALUES($bang_value)";
-        //exit();
+//        echo "INSERT INTO `$table`($bang_db) VALUES($bang_value)";
+//        exit();
     }
     if ($kieu == 'update') {
         @DB_que("UPDATE `$table` SET $bang_db WHERE $condition");

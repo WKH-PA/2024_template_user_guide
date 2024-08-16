@@ -192,30 +192,25 @@ $sp_step = LAY_step(7, 1);
 </div>
 
 <?php
-$sp_baiviet = LAY_baiviet(8, 20, "`opt` = 0");
+$sp_baiviet = LAY_baiviet(8, '', "`opt` = 0");
 ?>
 <div class="dv-home-doitac">
     <div class="pagewrap">
         <div class="sec-title text-center wow fadeInDown">
-            <h3><?=$glo_lang['doi-tac-cua-chung-toi']?></h3>
+            <h3>Đối tác của chúng tôi</h3>
         </div>
-        <div class="logo_doitac owl-auto owl-carousel owl-theme owl-custome wow flipInX" id="images_slide"
-             data0="3" data1="3" data2="4"
-             data3="5"
-             data4="6" data5="7" is_slidespeed="1000" is_navigation="1"
-             is_autoplay="1">
+        <div class="logo_doitac owl-auto owl-carousel owl-theme owl-custome wow flipInX" id="images_slide">
+            <?php
+            foreach ($sp_baiviet as $partner)  { ?>
+                <ul>
+                    <li><a <?= full_src_muti($partner) ?> ><?= full_img($partner) ?></a></li>
+                </ul>
 
-                <?php
-                foreach ($sp_baiviet as $partner)  { ?>
-                    <ul>
-                        <li><a <?= full_href($partner) ?>"><?= full_img($partner) ?></a></li>
-                    </ul>
-
-                <?php }?>
-
-
+            <?php }?>
         </div>
         <div class="clr"></div>
     </div>
     <div class="clr"></div>
+</div><div class="clr"></div>
 </div>
+

@@ -1,25 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>VNPAY RESPONSE</title>
-    <link href="/vnpay_php/assets/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/vnpay_php/assets/jumbotron-narrow.css" rel="stylesheet">
-    <script src="/vnpay_php/assets/jquery-1.11.3.min.js"></script>
-</head>
-<body>
 <?php
+$error_messages = [
+    "00" => "Giao dịch thành công",
+    "07" => "Trừ tiền thành công. Giao dịch bị nghi ngờ (liên quan tới lừa đảo, giao dịch bất thường).",
+    "09" => "Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.",
+    "10" => "Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần.",
+    "11" => "Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.",
+    "12" => "Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.",
+    "13" => "Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch.",
+    "24" => "Giao dịch không thành công do: Khách hàng hủy giao dịch.",
+    "51" => "Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.",
+    "65" => "Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.",
+    "75" => "Ngân hàng thanh toán đang bảo trì.",
+    "79" => "Giao dịch không thành công do: KH nhập sai mật khẩu thanh toán quá số lần quy định. Xin quý khách vui lòng thực hiện lại giao dịch.",
+    "99" => "Các lỗi khác (lỗi còn lại, không có trong danh sách mã lỗi đã liệt kê).",
+];
 require_once("myadmin/config/function.php");
 
 // Lấy thông tin cấu hình từ cơ sở dữ liệu
 $thongtin_vnpay = DB_que("SELECT * FROM #_ship_thanhtoan_setup LIMIT 1");
 $thongtin_vnpay = mysqli_fetch_assoc($thongtin_vnpay);
-$vnp_HashSecret = $thongtin_vnpay['vnp_HashSecret'];
-
+$vnp_TmnCode = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_TmnCode'] : $thongtin_vnpay['vnp_TmnCode_test'];  // Terminal Id
+$vnp_HashSecret = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_HashSecret'] : $thongtin_vnpay['vnp_HashSecret_test']; // Secret key
+$vnp_Url = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_Url'] : $thongtin_vnpay['vnp_Url_test']; // Payment URL
 // Lấy dữ liệu từ GET
 $vnp_SecureHash = $_GET['vnp_SecureHash'];
 $inputData = array();
@@ -43,7 +45,6 @@ foreach ($inputData as $key => $value) {
 }
 
 $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
-
 // Xác thực dữ liệu và lưu vào cơ sở dữ liệu
 $responseCode = $_GET['vnp_ResponseCode'];
 $txnRef = $_GET['vnp_TxnRef'];
@@ -53,98 +54,101 @@ $transactionStatus = $_GET['vnp_TransactionStatus'];
 $transactionNo = $_GET['vnp_TransactionNo'];
 $bankCode = $_GET['vnp_BankCode'];
 $payDate = $_GET['vnp_PayDate'];
-$vnp_PayDate =$_GET['vnp_PayDate'];
 
 // Chuẩn bị dữ liệu để lưu vào cơ sở dữ liệu
 $data = array(
     'mdh' => $txnRef,
     'noidung' => $orderInfo,
-    'ngaytao' => $vnp_PayDate,
+    'ngaytao' => $payDate,
     'trangthai' => $transactionStatus,
-    'method' => 1,
-    'money' => $_GET['vnp_Amount'],
+    'bankcode' => $bankCode,
+    'method' => '1',
+    'money' => $amount,
     'mgd_vnp' => $transactionNo,
     'error' => ''
 );
 // Kiểm tra mã đơn hàng đã tồn tại chưa
 $checkExist = DB_que("SELECT COUNT(*) as count FROM lh_buy_pay WHERE mdh = '$txnRef'");
 $exist = mysqli_fetch_assoc($checkExist);
+
 // Ghi dữ liệu vào cơ sở dữ liệu
-if ($secureHash == $vnp_SecureHash) {
+if ($responseCode == '00') {
     $data['trangthai'] = ($responseCode == '00') ? 1 : 0;
 } else {
-    $data['error'] = '$responseCode';
+    $data['trangthai'] = ($responseCode == '00') ? 1 : 0;
+    $data['error'] = $responseCode;
 }
+
 // Cập nhật hoặc chèn dữ liệu vào bảng `lh_buy_pay`
-if ($exist['count'] > 0) {
-    // Nếu mã đơn hàng đã tồn tại, thực hiện cập nhật
-    ACTION_db($data, 'lh_buy_pay', 'update', array(), "mdh = '$txnRef'");
-} else {
-    // Nếu mã đơn hàng chưa tồn tại, thực hiện chèn mới
+if ($exist['count'] == 0) {
     ACTION_db($data, 'lh_buy_pay', 'add');
+    $logMessage = "ACTION_db called to add data to lh_buy_pay at " . date('Y-m-d H:i:s') . "\n";
+    echo "<script>console.log(" . json_encode($logMessage) . ");</script>";
 }
+
 ?>
-<!--Begin display -->
+<!-- Begin display -->
 <div class="container">
     <div class="header clearfix">
-        <h3 class="text-muted">VNPAY RESPONSE</h3>
+        <h3 class="text-muted">Kết quả giao dịch VNPAY</h3>
     </div>
-    <div class="table-responsive">
-        <div class="form-group">
-            <label>Mã đơn hàng:</label>
-            <label><?php echo $_GET['vnp_TxnRef'] ?></label>
-        </div>
-        <div class="form-group">
-            <label>Số tiền:</label>
-            <label><?php echo $_GET['vnp_Amount'] ?></label>
-        </div>
-        <div class="form-group">
-            <label>Nội dung thanh toán:</label>
-            <label><?php echo $_GET['vnp_OrderInfo'] ?></label>
-        </div>
-<!--        <div class="form-group">-->
-<!--            <label>Tình trạng:</label>-->
-<!--            <label>--><?php //echo $_GET['vnp_TransactionStatus'] ?><!--</label>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label>Mã phản hồi (vnp_ResponseCode):</label>-->
-<!--            <label>--><?php //echo $_GET['vnp_ResponseCode'] ?><!--</label>-->
-<!--        </div>-->
-        <div class="form-group">
-            <label>Mã GD Tại VNPAY:</label>
-            <label><?php echo $_GET['vnp_TransactionNo'] ?></label>
-        </div>
-        <div class="form-group">
-            <label>Mã Ngân hàng:</label>
-            <label><?php echo $_GET['vnp_BankCode'] ?></label>
-        </div>
-        <div class="form-group">
-            <label>Thời gian thanh toán:</label>
-            <label><?php echo $_GET['vnp_PayDate'] ?></label>
-        </div>
-        <div class="form-group">
-            <label>Kết quả:</label>
-            <label>
-                <?php
-                if ($secureHash == $vnp_SecureHash) {
-                    if ($_GET['vnp_ResponseCode'] == '00') {
-                        echo "<span style='color:blue'>GD Thanh cong</span>";
-                    } else {
-                        echo "<span style='color:red'>GD Khong thanh cong</span>";
-                    }
-                } else {
-                    echo "<span style='color:red'>Chu ky khong hop le</span>";
-                }
-                ?>
-            </label>
-        </div>
+    <div class="form-group">
+        <label>Mã đơn hàng:</label>
+        <div class="value"><?php echo htmlspecialchars($_GET['vnp_TxnRef']); ?></div>
     </div>
-    <p>
-        &nbsp;
-    </p>
-    <footer class="footer">
-        <p>&copy; VNPAY <?php echo date('Y')?></p>
-    </footer>
+    <div class="form-group">
+        <label>Số tiền:</label>
+        <div class="value"><?php echo htmlspecialchars($_GET['vnp_Amount']); ?></div>
+    </div>
+    <div class="form-group">
+        <label>Nội dung thanh toán:</label>
+        <div class="value"><?php echo htmlspecialchars($_GET['vnp_OrderInfo']); ?></div>
+    </div>
+    <div class="form-group">
+        <label>Mã GD Tại VNPAY:</label>
+        <div class="value"><?php echo htmlspecialchars($_GET['vnp_TransactionNo']); ?></div>
+    </div>
+    <div class="form-group">
+        <label>Mã Ngân hàng:</label>
+        <div class="value"><?php echo htmlspecialchars($_GET['vnp_BankCode']); ?></div>
+    </div>
+    <div class="form-group">
+        <label>Thời gian thanh toán:</label>
+        <div class="value"><?php $dateTime = DateTime::createFromFormat('YmdHis', $_GET['vnp_PayDate']); echo $dateTime ? htmlspecialchars($dateTime->format('d/m/Y H:i:s')) : 'Không hợp lệ'; ?></div>
+    </div>
+    <div class="form-group">
+    <div class="result <?php echo ($secureHash == $vnp_SecureHash) ? ($_GET['vnp_ResponseCode'] == '00' ? 'success' : 'error') : 'error'; ?>">
+        <?php
+        if ($secureHash == $vnp_SecureHash) {
+            echo ($_GET['vnp_ResponseCode'] == '00') ? "Giao dịch thành công" : "Giao dịch không thành công";
+        } else {
+            echo "Chữ ký không hợp lệ";
+        }
+        ?>
+    </div>
+    </div>
+    <?php if ($_GET['vnp_ResponseCode'] != '00'): ?>
+        <div class="form-group">
+            <label>Lỗi:</label>
+            <?= $error_messages[$_GET['vnp_ResponseCode']] ?>
+        </div>
+
+    <?php endif; ?>
+
+
 </div>
-</body>
-</html>
+
+
+<style>
+    body {font-family: Arial, sans-serif;color: #333;background-color: #f4f4f4;margin: 0;padding: 0;}
+    .container {max-width: 800px;margin: 0 auto;padding: 20px;background: #fff;border-radius: 8px;box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+    .header {border-bottom: 2px solid #007bff;margin-bottom: 20px;padding-bottom: 10px;}
+    .header h3 {margin: 0;color: #007bff;}
+    .form-group {margin-bottom: 15px;}
+    .form-group label {display: block;font-weight: bold;margin-bottom: 5px;}
+    .form-group .value {font-size: 1.1em;}
+    .result {margin-top: 20px;font-size: 1.2em;font-weight: bold;}
+    .result.success {color: #28a745;}
+    .result.error {color: #dc3545;}
+    footer {margin-top: 20px;text-align: center;font-size: 0.9em;color: #888;}
+</style>

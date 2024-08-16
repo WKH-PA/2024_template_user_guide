@@ -4,7 +4,6 @@
     if($motty == "") {
         include _source."home.php";
     }
-
     else if($motty == "paypal"){
         include "paypal/index.php";
     }
@@ -43,6 +42,8 @@
     // else  if($motty == "doi-mat-khau"){
     //     include _source."doi-mat-khau.php";    
     // }
+
+
 
 
     else  if($motty == "paypal-false" || $motty == "paypal-success" || $motty == "thong-tin-lich-kham") {
