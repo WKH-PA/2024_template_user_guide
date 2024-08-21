@@ -42,10 +42,8 @@
 ?>
 <div class="link_page">
   <div class="pagewrap">
-    <ul>
       <h3><?=$glo_lang['gio_hang'] ?></h3>
-      <li><a href="<?=$full_url ?>"><i class="fa fa-home"></i><?=$glo_lang['trang_chu'] ?></a><span>/</span><a href="<?=$full_url."/gio-hang" ?>"><?=$glo_lang['gio_hang'] ?></a></li>
-    </ul>
+     <a href="<?=$full_url ?>"><i class="fa fa-home"></i><?=$glo_lang['trang_chu'] ?></a><span>/</span><a href="<?=$full_url."/gio-hang" ?>"><?=$glo_lang['gio_hang'] ?></a>
   </div>
 </div>
 
@@ -68,109 +66,77 @@
             else
             { 
           ?>
-          <div id="cart_list" class="tb_rps">
-              <div class="dv-table-reposive dv-table-reposive-cart">
-                <table width="100%" border="0" cellspacing="1" cellpadding="5">
-                  <tr>
-                    <!-- <th class="cls_cart_mb" width="5%">STT</th> -->
-                    <th><?=$glo_lang['cart_ten_sp'] ?></th>
-                    <th width="10%" class="text-center"><?=$glo_lang['cart_qty'] ?></th>
-                    <th width="15%" style="text-align:right"><?=$glo_lang['cart_dongia'] ?></th>
-                    <th width="15%" style="text-align:right"><?=$glo_lang['cart_thanhtien'] ?></th>
-                    <th width="10%" class="text-center"><?=$glo_lang['cart_thaotac'] ?></th>
-                  </tr>
-                  <?php 
-                    $tongtien      = 0;
-                    $stt           = 0;
-                    $tinhnang_arr  = LAY_bv_tinhnang(2);
-                    foreach ($_SESSION['cart'] as $key => $value)  {
-                      $id_sp     = explode("_", $key);
-                      $id_sp     = $id_sp[0];
-                      $stt       ++;
-                      $sanpham   = DB_que("SELECT * FROM `#_baiviet` WHERE `showhi` = 1 AND `id` = '".$id_sp."' LIMIT 1");
-                      if(mysqli_num_rows($sanpham) > 0) {
-                        $sanpham    = mysqli_fetch_assoc($sanpham);
-                        $dongia     = check_gia_sql($id_sp, @$_SESSION['tinhnang'][$key], $sanpham['giatien']);
-
-                        $thanhtien  = $dongia * $value;
-                        $tongtien  += $thanhtien;
-
-                        // lay hinh
-                        $anhsp = checkImage($fullpath, $sanpham['icon'], $sanpham['duongdantin'], 'thumb_');
-                        $check_sl_tinhnang  = DB_fet_rd("* "," `#_baiviet_select_tinhnang` ","`id_baiviet` = '".$id_sp."'","","","id_val");
-
-                        $isthuoctinh = @explode(",", $_SESSION['tinhnang'][$key]);
-                        if(is_array($isthuoctinh)) {
-                          foreach ($isthuoctinh as $ittinh) { 
-                            if(@$check_sl_tinhnang[$ittinh]['icon'] == "") continue;
-                            $anhsp = checkImage($fullpath, $check_sl_tinhnang[$ittinh]['icon'], $check_sl_tinhnang[$ittinh]['duongdantin']);
-                            break;
-                          }
-                        }
-                        // 
-                  ?>
-                   <tr>
-                      <!-- <td class="cls_cart_mb" ><?=$stt ?></td> -->
-                      <td style="text-align:left" title="<?=$glo_lang['cart_ten_sp'] ?>" class="dv-anh-cart-sp">
-                        <a href="<?=GET_link($full_url, SHOW_text($sanpham['seo_name'])) ?>"><img src="<?=$anhsp ?>" alt="<?=SHOW_text($sanpham['tenbaiviet_'.$_SESSION['lang']]) ?>"/></a>
-                        <div class="dv-anh">
-
-                          <a href="<?=GET_link($full_url, SHOW_text($sanpham['seo_name'])) ?>"><?=SHOW_text($sanpham['tenbaiviet_'.$_SESSION['lang']]) ?></a>
-                          <p><?=SHOW_text($sanpham['p1']) ?></p>
-                          <p class="p_mota_cart">
+                <div id="cart_list" class="tb_rps">
+                    <div class="dv-table-reposive dv-table-reposive-cart">
+                        <table width="100%" border="0" cellspacing="1" cellpadding="5">
+                            <thead>
+                            <tr>
+                                <th><?=$glo_lang['cart_ten_sp'] ?></th>
+                                <th width="10%" class="text-center"><?=$glo_lang['cart_qty'] ?></th>
+                                <th width="15%" style="text-align:right"><?=$glo_lang['cart_dongia'] ?></th>
+                                <th width="15%" style="text-align:right"><?=$glo_lang['cart_thanhtien'] ?></th>
+                                <th width="10%" class="text-center"><?=$glo_lang['cart_thaotac'] ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <?php
-                            // foreach ($tinhnang_arr as $tnr) {
-                            //    echo '<span>'.$tnr['tenbaiviet_'.$lang].'</span>';
-                            // }
-                            ?>
-                            <?php
-                              $isthuoctinh = @explode(",", $_SESSION['tinhnang'][$key]);
-                              if(is_array($isthuoctinh)) {
-                                foreach ($isthuoctinh as $ittinh) { 
-                                  if(@$tinhnang_arr[$ittinh]['tenbaiviet_'.$lang] == "") continue;
-                                  echo '<span>'.$tinhnang_arr[$ittinh]['tenbaiviet_'.$lang].'</span>';
-                                }
-                              }
-                            ?>
-                          </p>
-                        </div>
-                      </td>
-                      <td  title="<?=$glo_lang['cart_qty'] ?>">
-                        <div class="mobileqty no_box">
-                          <!-- <input type='button' value='-' class='qtyminus' onclick="add_num_sp('#product-quantity-<?=$id_sp ?>',-1); updateQty_notthis('<?=$full_url."/update-qty/" ?>', '<?=$id_sp ?>');" /> -->
-                          <input type='text' min="1" max="9999" name='quantity' value='<?=$value ?>' class='qty qty_is_soluong' id="product-quantity-<?=$id_sp ?>" onchange='updateQty("<?=$full_url."/update-qty/" ?>","<?=$key ?>", this)' style="width: 50px" />
-                          <!-- <input type='button' value='+' class='qtyplus' onclick="add_num_sp('#product-quantity-<?=$id_sp ?>',+1); updateQty_notthis('<?=$full_url."/update-qty/" ?>', '<?=$id_sp ?>');" /> -->
-                      </div>
+                            $tongtien = 0;
+                            foreach ($_SESSION['cart'] as $key => $value) {
+                                $id_sp = explode("_", $key)[0];
+                                $sanpham = DB_que("SELECT * FROM `#_baiviet` WHERE `showhi` = 1 AND `id` = '".$id_sp."' LIMIT 1");
+                                if(mysqli_num_rows($sanpham) > 0) {
+                                    $sanpham = mysqli_fetch_assoc($sanpham);
+                                    $dongia = check_gia_sql($id_sp, @$_SESSION['tinhnang'][$key], $sanpham['giatien']);
+                                    $thanhtien = $dongia * $value;
+                                    $tongtien += $thanhtien;
+                                    $anhsp = checkImage($fullpath, $sanpham['icon'], $sanpham['duongdantin']);
+                                    ?>
+                                    <tr>
+                                        <td class="dv-anh-cart-sp">
+                                            <a href="<?=GET_link($full_url, SHOW_text($sanpham['seo_name'])) ?>"><img src="<?=$anhsp ?>" alt="<?=SHOW_text($sanpham['tenbaiviet_'.$_SESSION['lang']]) ?>"></a>
+                                            <div class="dv-anh">
+                                                <a href="<?=GET_link($full_url, SHOW_text($sanpham['seo_name'])) ?>"><?=SHOW_text($sanpham['tenbaiviet_'.$_SESSION['lang']]) ?></a>
+                                                <p><?=SHOW_text($sanpham['p1']) ?></p>
+                                                <p class="p_mota_cart">
+                                                    <?php
+                                                    $isthuoctinh = @explode(",", $_SESSION['tinhnang'][$key]);
+                                                    foreach ($isthuoctinh as $ittinh) {
+                                                        if(@$tinhnang_arr[$ittinh]['tenbaiviet_'.$lang] == "") continue;
+                                                        echo '<span>'.$tinhnang_arr[$ittinh]['tenbaiviet_'.$lang].'</span>';
+                                                    }
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="text" min="1" max="9999" name="quantity" value="<?=$value ?>" class="qty qty_is_soluong" id="product-quantity-<?=$id_sp ?>" onchange='updateQty("<?=$full_url."/update-qty/" ?>","<?=$key ?>", this)' />
+                                        </td>
+                                        <td class="text-right"><b><?=($dongia == 0) ? 0 : NUMBER_fomat($dongia)." ".$glo_lang['dvt'] ?></b></td>
+                                        <td class="text-right"><b><span class="td_thanhtien_<?=$key ?>"><?=($thanhtien== 0)  ? 0 : NUMBER_fomat($thanhtien) ?></span> <?=$glo_lang['dvt'] ?></b></td>
+                                        <td class="text-center">
+                                            <form action="" method="post">
+                                                <input type="hidden" name="id_die" value="<?=$key ?>">
+                                                <button type="submit" class="pro_del" name="xoa_sp" onclick="return confirm('<?=$glo_lang['ban_that_su_muon_xoa'] ?>')"><?=$glo_lang['cart_xoa'] ?></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php } } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dv-tongtien no_box">
+    <span id="pro_sum"><?=$glo_lang['cart_tong_tien'] ?>:
+    <label class='tb_tongtien'><?=($tongtien == 0) ? "0": NUMBER_fomat($tongtien)." ".$glo_lang['dvt'] ?></label>
+    </span>
+                    </div>
+                    <div class="dv-btn-cart no_box formBox">
+                        <a href="<?=$link_cart ?>" class="pro_del button mar"><?=$glo_lang['tiep_tuc_mua_hang'] ?></a>
+                        <a onclick="cap_nhat_so_luong()" class="cur button pro_del mar"><?=$glo_lang['cap_nhat_so_luong'] ?><img src="images/loading2.gif" class="ajax_img_loading"></a>
+                        <a href="<?=$full_url?>/dat-hang/" class="pro_del button mar"><?=$glo_lang['gui_don_hang'] ?></a>
+                    </div>
+                </div>
 
-                      </td>
-                      <td style="text-align:right" title="<?=$glo_lang['cart_dongia'] ?>"><b><?=($dongia == 0) ? 0 : NUMBER_fomat($dongia)." ".$glo_lang['dvt'] ?></b></td>
-                      <td style="text-align:right" title="<?=$glo_lang['cart_thanhtien'] ?>"><b><span class="td_thanhtien_<?=$key ?>"><?=($thanhtien== 0)  ? 0 : NUMBER_fomat($thanhtien) ?></span> <?=$glo_lang['dvt'] ?></b></td>
-                      <td title="<?=$glo_lang['cart_thaotac'] ?>">
-                        <form action="" method="post">
-                          <input type="hidden" name="id_die" value="<?=$key ?>" a>
-                          <button type="submit" class="pro_del" name="xoa_sp" onclick="return confirm('<?=$glo_lang['ban_that_su_muon_xoa'] ?>')"><?=$glo_lang['cart_xoa'] ?></button>
-                        </form>
-                      </td>
-                    </tr>
-                  <?php  } } ?>
-                </table>
-              </div>
-              <div class="clr"></div>
-              <div class="dv-tongtien no_box">
-                <input type="hidden" class="cls_datafalse" value="<?=$glo_lang['alert_dat_hang'] ?>">
-                <span id="pro_sum"><?=$glo_lang['cart_tong_tien'] ?>:
-                <label class='tb_tongtien'><?=($tongtien == 0) ? "0": NUMBER_fomat($tongtien)." ".$glo_lang['dvt'] ?></label>
-                </span>
-              </div>
-              <div class="clr"></div>
-              <div class="dv-btn-cart no_box formBox">
-                <a href="<?=$link_cart ?>" class="pro_del button mar"><?=$glo_lang['tiep_tuc_mua_hang'] ?></a> 
-                <a onclick="cap_nhat_so_luong()" class="cur button pro_del mar"><?=$glo_lang['cap_nhat_so_luong'] ?><img src="images/loading2.gif" class="ajax_img_loading"></a> 
-                <a href="<?=$full_url?>/dat-hang/" class="pro_del button mar"><?=$glo_lang['gui_don_hang'] ?></a>
-              </div>
-            <div class="clr"></div>
-          </div>
-          <?php } ?>
+            <?php } ?>
           <!--  -->
           <div class="clr"></div>
         </div>
@@ -183,4 +149,175 @@
   $(function(){
     $(".dangky_giohang ul h3 a, .is_num_cart").html("<?php if(isset($_SESSION['cart'])) echo count($_SESSION['cart']); else echo "0"; ?>");
   })
+  function updateQty(url, key, element) {
+      $(".ajax_img_loading").show();
+      let quantity = element.value;
+
+      $.ajax({
+          type: 'POST',
+          url: url,
+          data: {id: key, quantity: quantity},
+          success: function (response) {
+              location.reload();
+          }
+      });
+  }
+
 </script>
+
+<style>
+    .link_page{
+        margin-top: 110px;
+    }
+
+    /* Cart Container */
+    .dv-gio-hang {
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Table Styling */
+    .dv-table-reposive {
+        overflow-x: auto;
+        border-radius: 15px;
+    }
+
+    .dv-table-reposive table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .dv-table-reposive th, .dv-table-reposive td {
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+    }
+
+    .dv-table-reposive th {
+        background-color: #3498db;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .dv-table-reposive td {
+        background-color: #fff;
+    }
+
+    /* Product Image */
+    .dv-anh-cart-sp img {
+        max-width: 100px;
+        border-radius: 10px;
+        margin-right: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dv-anh {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Product Title and Description */
+    .dv-anh a {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #3498db;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .dv-anh a:hover {
+        color: #2980b9;
+    }
+
+    .p_mota_cart span {
+        display: inline-block;
+        background: #e0f7fa;
+        color: #00796b;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 0.9em;
+    }
+
+    /* Quantity Input */
+    .qty_is_soluong {
+        width: 60px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    /* Buttons */
+    .dv-btn-cart a {
+        padding: 12px 25px;
+        border-radius: 30px;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(45deg, #3498db, #2980b9);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        font-size: 1.1em;
+        margin: 10px 5px;
+        display: inline-block;
+        transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .dv-btn-cart a:hover {
+        background: linear-gradient(45deg, #2980b9, #3498db);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Cart Empty Styling */
+    .cart-empty {
+        font-size: 1.5em;
+        color: #888;
+        text-align: center;
+        margin: 50px 0;
+    }
+
+    .continue-shopping {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .continue-shopping a {
+        font-size: 1.2em;
+        color: #3498db;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .continue-shopping a:hover {
+        color: #2980b9;
+    }
+
+    /* Cart Total */
+    .dv-tongtien {
+        font-size: 1.8em;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 30px;
+    }
+
+    .tb_tongtien {
+        color: #e74c3c;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .dv-table-reposive th, .dv-table-reposive td {
+            padding: 10px;
+        }
+
+        .dv-btn-cart a {
+            font-size: 1em;
+            padding: 10px 20px;
+        }
+    }
+</style>

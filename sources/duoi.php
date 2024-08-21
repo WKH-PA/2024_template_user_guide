@@ -62,57 +62,59 @@
 <?php } ?>
 
 <script>
-
     document.addEventListener('DOMContentLoaded', function() {
         const searchIcon = document.querySelector('.search-icon');
         const searchOverlay = document.querySelector('.search-overlay');
         const searchInput = document.querySelector('.input-search');
         const submitButton = document.querySelector('.submit-button');
 
+        // Kiểm tra xem các phần tử có tồn tại trước khi gán sự kiện cho chúng
         if (searchIcon && searchOverlay && searchInput && submitButton) {
-            // Toggle search overlay visibility when clicking the search icon
+            // Sự kiện khi click vào biểu tượng tìm kiếm
             searchIcon.addEventListener('click', function() {
                 if (searchOverlay.style.display === 'block') {
                     searchOverlay.style.display = 'none';
                 } else {
                     searchOverlay.style.display = 'block';
-                    searchInput.focus(); // Focus on input field
+                    searchInput.focus(); // Tự động focus vào ô tìm kiếm
                 }
             });
 
-            // Hide search overlay when clicking outside of it
+            // Ẩn overlay khi click ra ngoài
             document.addEventListener('click', function(event) {
                 if (!searchOverlay.contains(event.target) && !searchIcon.contains(event.target)) {
                     searchOverlay.style.display = 'none';
                 }
             });
 
-            // Handle form submission when Enter key is pressed in the input field
+            // Gửi form khi nhấn Enter
             searchInput.addEventListener('keypress', function(event) {
                 if (event.key === 'Enter') {
-                    event.preventDefault(); // Prevent default form submission
+                    event.preventDefault(); // Ngăn chặn gửi form mặc định
                     submitForm();
                 }
             });
 
-            // Submit form when the submit button is clicked
+            // Gửi form khi click nút submit
             submitButton.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default form submission
+                event.preventDefault(); // Ngăn chặn gửi form mặc định
                 submitForm();
             });
 
-            // Submit form function
+            // Hàm gửi form
             function submitForm() {
                 const key = searchInput.value.trim();
                 if (key !== '') {
-                    const url = '<?php echo $fullpath.'/search/'?>?key=' + encodeURIComponent(key);
+                    const url = '<?php echo $fullpath."/search/" ?>?key=' + encodeURIComponent(key);
                     window.location.href = url;
                 }
             }
         } else {
+            // Thay vì ghi lỗi ra console, bạn có thể hiển thị thông báo lỗi trên trang hoặc bỏ qua phần mã liên quan
             console.error('One or more required elements are not found in the DOM.');
         }
     });
+
 
 
 </script>

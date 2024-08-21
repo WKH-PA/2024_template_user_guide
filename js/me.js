@@ -480,13 +480,16 @@ function CHECK_send_lienhe(url, id_form, cls) {
                         try {
                             data = JSON.parse(data);
                             if (data.err == 1) {
-
                                 // thanh toan paypal
-                                if($("#type0").length > 0 && $("#type0").is(":checked")){
+                                console.log($());
+                                if($("#typepp").length > 0 && $("#typepp").is(":checked")){
                                     $(".dv-paypal").show();
                                     $(".dv-paypal-cont").show();
                                     TIEN_paypal(data.thanhtien, data.id);
                                     $( ".paypal_form_new" ).click();
+                                }else
+                                if($("#typevnp").length > 0 && $("#typevnp").is(":checked")){
+                                    TIEN_VNPAY(data.thanhtien, data.id);
                                 }
                                 //
                                 else {

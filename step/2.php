@@ -1,11 +1,11 @@
-<div class="banner">
-    <?php
-    $banner_top = LAY_banner_new("`id_parent` = 32");
-    foreach ($banner_top as $rows) {
-        echo '<img src="' . htmlspecialchars($fullpath . "/" . $rows['duongdantin'] . "/" . $rows['icon'], ENT_QUOTES, 'UTF-8') . '" alt="Banner Image" style="width: 100%; height: auto; object-fit: cover;">';
-    }
-    ?>
-</div>
+<!--<div class="banner">-->
+<!--    --><?php
+//    $banner_top = LAY_banner_new("`id_parent` = 32");
+//    foreach ($banner_top as $rows) {
+//        echo '<img src="' . htmlspecialchars($fullpath . "/" . $rows['duongdantin'] . "/" . $rows['icon'], ENT_QUOTES, 'UTF-8') . '" alt="Banner Image" style="width: 100%; height: auto; object-fit: cover;">';
+//    }
+//    ?>
+<!--</div>-->
 <?php
   if((!empty($thongtin_step) && $thongtin_step['num_view'] == 0) || empty($thongtin_step))
       $numview          = 20;
@@ -181,7 +181,7 @@
   // full_src($thongtin_step, '')
 
 ?>
-<!-- <li><a href="<?=$full_url ?>"><i class="fa fa-home"></i><?=$glo_lang['trang_chu'] ?></a><?=$link_p ?> </li> -->
+<!-- <li><a href="--><?//=$full_url ?><!--"><i class="fa fa-home"></i>--><?//=$glo_lang['trang_chu'] ?><!--</a>--><?//=$link_p ?><!-- </li> -->
 <div class="bg_link_page" style="background-image:url(<?=full_src($thongtin_step, '') ?>);">
   <div class="pagewrap">
     <ul>
@@ -197,7 +197,8 @@
         }
         else{
           foreach ($nd_kietxuat as $rows) {
-            $gia = GET_gia($rows['giatien'], $rows['giakm'], $glo_lang['dvt'], $glo_lang['gia_lienhe'], "gia_ban", "gia_km", '','' );
+
+              $gia = GET_gia($rows['giatien'], $rows['giakm'], $glo_lang['dvt'], $glo_lang['gia_lienhe'], "gia_ban", "gia_km", '','' );
             include _source."home_temp.php";
       }}
     ?>
@@ -208,3 +209,72 @@
       <div class="clr"></div>
     </div>
 </div>
+<style>
+    .pro_id {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Mỗi dòng 2 sản phẩm */
+        gap: 30px; /* Khoảng cách giữa các sản phẩm */
+        margin: 40px 0; /* Khoảng cách trên dưới của lưới sản phẩm */
+    }
+    .product-image img {
+        border-bottom: 1px solid #eee;
+        width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
+        height: auto;
+        object-fit: cover;
+    }
+    .bg_link_page {
+        background-size: cover;
+        background-position: center;
+        padding: 250px 0;
+        position: relative;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .bg_link_page h3 {
+        font-size: 8em; /* Tăng kích thước chữ */
+        margin: 0;
+        font-weight: bold; /* Làm chữ đậm hơn */
+        text-transform: uppercase;
+        letter-spacing: 2px; /* Tăng khoảng cách giữa các chữ */
+        font-family: 'Arial', sans-serif; /* Sử dụng Arial, một font phổ biến và an toàn */
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Thêm hiệu ứng bóng đổ để làm chữ nổi bật */
+    }
+    .product-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+    .product-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .product-price {
+        font-size: 1.3em;
+        color: #e74c3c;
+        margin-bottom: 15px;
+    }
+    .product-code {
+        font-size: 1em;
+        color: #777;
+    }
+    .nums.no_box {
+        text-align: center;
+        margin: 30px 0;
+    }
+    .nums.no_box a, .nums.no_box span {
+        display: inline-block;
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 50%;
+        background: #3498db;
+        color: #fff;
+        transition: background 0.3s ease;
+    }
+    .nums.no_box a:hover, .nums.no_box span.current {
+        background: #2980b9;
+    }
+
+</style>

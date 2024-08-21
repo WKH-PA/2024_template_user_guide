@@ -1770,7 +1770,6 @@ function GET_menu_new($full_url, $lang, $class_ul = '', $class_li = '', $class_a
 
 function GET_gia($gia, $giakm, $dvt = '', $lienhe = '', $class_gia = '', $class_km = '', $name_gia = '', $name_km = '')
 {
-
     $km = 0;
     if ($giakm != 0) {
         $km = 100 - (int)($gia * 100 / $giakm);
@@ -1782,6 +1781,7 @@ function GET_gia($gia, $giakm, $dvt = '', $lienhe = '', $class_gia = '', $class_
     return array("gia" => $gia, "km" => $giakm, "pt" => $km, "text_gia" => $name_gia . " <span class='" . $class_gia . "'>" . $text_gia . "</span>", "text_km" => $name_km . " <span class='" . $class_km . "'>" . $text_km . "</span>");
 
 }
+
 
 function LOC_char($val)
 {

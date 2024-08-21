@@ -1,0 +1,86 @@
+<?php
+function processPayment($amount, $txnRef, $language = 'vn') {
+    // Lấy thông tin từ cơ sở dữ liệu
+    $thongtin_vnpay = DB_que("SELECT * FROM #_ship_thanhtoan_setup LIMIT 1");
+    $thongtin_vnpay = mysqli_fetch_assoc($thongtin_vnpay);
+    // Cấu hình VNPAY
+    $vnp_Url = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_Url'] : $thongtin_vnpay['vnp_Url_test'];
+    $vnp_TmnCode = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_TmnCode'] : $thongtin_vnpay['vnp_TmnCode_test'];
+    $vnp_HashSecret = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_HashSecret'] : $thongtin_vnpay['vnp_HashSecret_test'];
+    $returnUrl = "http://localhost/2024_template_user_guide/vnpay_thanhcong.php";
+
+    // Tạo dữ liệu đầu vào cho VNPAY
+    $inputData = array(
+        "vnp_Version" => "2.1.0",
+        "vnp_TmnCode" => $vnp_TmnCode,
+        "vnp_Amount" => $amount * 100, // Số tiền
+        "vnp_Command" => "pay",
+        "vnp_CreateDate" => date('YmdHis'),
+        "vnp_CurrCode" => "VND",
+        "vnp_IpAddr" => $_SERVER['REMOTE_ADDR'],
+        "vnp_Locale" => $language,
+        "vnp_OrderInfo" => "Thanh toan GD:" . $txnRef,
+        "vnp_OrderType" => "other",
+        "vnp_ReturnUrl" => $returnUrl,
+        "vnp_TxnRef" => $txnRef,
+    );
+
+    ksort($inputData);
+    $hashdata = "";
+    $query = "";
+
+    foreach ($inputData as $key => $value) {
+        $hashdata .= ($hashdata ? '&' : '') . urlencode($key) . "=" . urlencode($value);
+        $query .= urlencode($key) . "=" . urlencode($value) . '&';
+    }
+
+    $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
+    $query .= 'vnp_SecureHash=' . urlencode($vnpSecureHash);
+
+    $paymentUrl = $vnp_Url . "?" . $query;
+    echo "<script>window.location.href = '$paymentUrl';</script>";
+    exit();
+}
+
+// Xử lý yêu cầu GET nếu có đủ dữ liệu
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['num_vnp']) && isset($_GET['ma_donhang_vnp'])) {
+    $amount = floatval($_GET['num_vnp']);
+    $txnRef = trim($_GET['ma_donhang_vnp']);
+    $language = isset($_GET['language']) ? trim($_GET['language']) : 'vn';
+
+    processPayment($amount, $txnRef, $language);
+}
+?>
+<script>
+    function TIEN_VNPAY(amount, txnRef) {
+        // Xây dựng đối tượng chứa dữ liệu cần gửi
+        var data = {
+            num_vnp: amount,
+            ma_donhang_vnp: txnRef,
+            language: 'vn'
+        };
+
+        // Xây dựng chuỗi truy vấn
+        var query = new URLSearchParams(data).toString();
+
+        // Gửi yêu cầu POST bằng fetch
+        fetch(window.location.href.split('?')[0], {
+            method: 'POST', // Phương thức POST
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded', // Kiểu nội dung
+            },
+            body: query // Chuyển đổi data thành chuỗi query
+        })
+            .then(response => response.text()) // Nhận phản hồi từ server
+            .then(data => {
+                console.log('Success:', data); // Xử lý dữ liệu trả về
+                // Điều hướng đến trang thành công hoặc xử lý kết quả khác tại đây
+                window.location.href = "http://localhost/2024_template_user_guide/vnpay?" + query; // Redirect nếu cần
+            })
+            .catch((error) => {
+                console.error('Error:', error); // Xử lý lỗi
+            });
+    }
+    // Gọi hàm TIEN_VNPAY với giá trị mẫu
+    // TIEN_VNPAY(100000, 'ORD123456789');
+</script>

@@ -238,6 +238,9 @@
                                         </label>
                                     </div>
                                 <?php endif; ?>
+                                <label>
+                                    <textarea name="vnp_error" placeholder="Error thanh toán"><?= html_entity_decode($vnp_error) ?></textarea>
+                                </label>
                             </div>
                             <div class="clear"></div>
                         </div>

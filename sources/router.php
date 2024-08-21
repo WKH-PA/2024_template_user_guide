@@ -5,7 +5,10 @@
         include _source."home.php";
     }
     else if($motty == "paypal"){
-        include "paypal/index.php";
+        include "paypal.php";
+
+    }else if($motty == "vnpay"){
+        include "vnpay.php";
     }
     else if($motty == "thoat"){
         $_SESSION['id'] = NULL;
@@ -66,18 +69,18 @@
 
             include "step/".$thongtin_step['step'].".php";
     }
-    // else if($motty == "gio-hang")  {
-    //     include _source."cart.php";
-    // }
-    // else if($motty == "dat-hang") {
-    //     include _source."buy.php";
-    // }
-    // else if($motty == "lich-su-mua-hang") {
-    //     include _source."kiem-tra-don-hang.php";
-    // }
-    // else if($motty == "thong-tin-don-hang") {
-    //     include _source."thong-tin-don-hang.php";
-    // }
+     else if($motty == "gio-hang")  {
+         include _source."cart.php";
+     }
+     else if($motty == "dat-hang") {
+         include _source."buy.php";
+     }
+//     else if($motty == "lich-su-mua-hang") {
+//         include _source."kiem-tra-don-hang.php";
+//     }
+//     else if($motty == "thong-tin-don-hang") {
+//         include _source."thong-tin-don-hang.php";
+//     }
 
     // else if($motty == "mat-khau-moi"){
     //     include _source."mat-khau-moi.php";
