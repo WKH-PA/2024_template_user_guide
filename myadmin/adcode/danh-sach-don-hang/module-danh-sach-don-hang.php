@@ -98,7 +98,7 @@
                               <!-- <a onclick="LOAD_exorder()" style="font-size: 13px; padding: 7px 0; display: inline-block; cursor: pointer;"><i class="fa fa-cloud-download" aria-hidden="true"></i> File excel</a> -->
                               <script>
                                 function LOAD_exorder(){
-                                  window.location.href = "?module=quan-ly-don-hang&action=danh-sach.php-don-hang&excel-order=true&db="+$(".date_bg").val()+"&de="+$(".date_end").val();
+                                  window.location.href = "?module=quan-ly-don-hang&action=danh-sach-don-hang&excel-order=true&db="+$(".date_bg").val()+"&de="+$(".date_end").val();
                                 }
                               </script>
                             </div>

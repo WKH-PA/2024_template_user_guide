@@ -957,6 +957,8 @@ if($motty == "send_form" && isset($_POST['gui_donhang'])){
 
 
       $s_thanhtoan      = $_POST['type_payment'];
+
+
       // if($s_thanhtoan   == 1) $s_thanhtoannd = $glo_lang['thanh_toan_tien_mat'];
       // else                    $s_thanhtoannd = $glo_lang['thanh_toan_chuyen_khoan'];
       $s_thanhtoannd    = "";

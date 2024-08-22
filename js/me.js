@@ -63,31 +63,59 @@ function CHECK_divtop(cls){
 var send_d_dangnhap = 0;
 function check_dangnhap_v2(text_false) {
 var check = 0;
-$(".cls_data_check_form_check_dangky").each(function(){
-    var val     = $(this).val().trim();
-    var id      = $(this).attr('id');
-    var rong    = $(this).attr('data-rong');
-    var email   = $(this).attr('data-email');
-    var place   = $(this).attr('placeholder');
+    $(".cls_data_check_form_check_dangky").each(function(){
+        var val     = $(this).val().trim();
+        var id      = $(this).attr('id');
+        var rong    = $(this).attr('data-rong');
+        var email   = $(this).attr('data-email');
+        var phone   = $(this).attr('data-phone');
+        var place   = $(this).attr('placeholder');
 
-    var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if(rong == 1 && (val == "" || val == place)){
-        alert($(this).attr('data-msso'));
+        var regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var regexPhone = /^\d{10}$/; // Regex cho số điện thoại chính xác 10 chữ số
+
+        if (rong == 1 && (val == "" || val == place)) {
+            alert($(this).attr('data-msso'));
+            $(this).focus();
+            $(".ajax_img_loading").hide();
+            check = 1;
+            send_d_dangnhap = 0;
+            return false;
+        }
+        else if (email == 1 && !regexEmail.test(val) && val != "") {
+            alert($(this).attr('data-msso1'));
+            $(this).focus();
+            $(".ajax_img_loading").hide();
+            check = 1;
+            send_d_dangnhap = 0;
+            return false;
+
+    } else if (phone == 1 && !regexPhone.test(val) && val != "") {
+        alert($(this).attr('data-msso1'));
         $(this).focus();
         $(".ajax_img_loading").hide();
         check = 1;
         send_d_dangnhap = 0;
         return false;
-    } 
-    else if(email == 1 && !regex.test(val) && val != ""){
-        alert($(this).attr('data-msso1'));
-        $(this).focus();
-        $(".ajax_img_loading").hide();
-        check = 1;
-        send_d_dangnhap = 0; 
-        return false;
     }
-});
+        else if (id == 's_address' && val.length <= 15) {
+            alert('Địa chỉ phải có ít nhất 16 ký tự.');
+            $(this).focus();
+            $(".ajax_img_loading").hide();
+            check = 1;
+            send_d_dangnhap = 0;
+            return false;
+        }
+        else if (id == 's_fullname' && /\d/.test(val)) {
+            alert('Tên không được chứa số.');
+            $(this).focus();
+            $(".ajax_img_loading").hide();
+            check = 1;
+            send_d_dangnhap = 0;
+            return false;
+        }
+    });
+
 
 if(check == 0){
   if(send_d_dangnhap == 0){

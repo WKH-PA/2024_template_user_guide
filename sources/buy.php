@@ -4,7 +4,8 @@ if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0)
     // ALERT_js($glo_lang['hien_chua_co_san_pham_nao_trong_gio_hang']);
     LOCATION_js($full_url);
 }
-
+$sql = DB_que("SELECT * FROM `#_module_tinhnang` WHERE `m_action` = 'danh-sach-buy-pay' ORDER BY `sort` ASC ");
+$pt  = mysqli_fetch_assoc($sql);
 $thongtin_step  = DB_que("SELECT * FROM `#_step` WHERE `showhi` = 1 AND `id` = 3 LIMIT 1");
 $thongtin_step  = mysqli_fetch_assoc($thongtin_step);
 
@@ -163,30 +164,30 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
                                 <input type="hidden" name="id_token" id="id_token" class="id_token" value="<?=$_SESSION['token'] = md5(RANDOM_chuoi(5)) ?>">
                                 <div class="left">
                                     <li class="name">
-                                        <input type="hidden" name="s_fullname_s" value="<?=base64_encode($glo_lang['ho_va_ten']) ?>">
-                                        <input class="cls_data_check_form" data-rong="1" name="s_fullname" id="s_fullname" type="text" placeholder="<?=$glo_lang['ho_va_ten'] ?> (*)" value="<?=!empty($_POST['s_fullname']) ? $_POST['s_fullname'] : @$hoten ?>" onFocus="if (this.value == '<?=$glo_lang['ho_va_ten'] ?> (*)'){this.value='';}" onBlur="if (this.value == '') {this.value='<?=$glo_lang['ho_va_ten'] ?> (*)';}" data-name="<?=$glo_lang['ho_va_ten'] ?> (*)" data-msso="<?=$glo_lang['nhap_ho_ten'] ?>"/>
+                                        <input type="hidden" name="s_fullname_s" value="<?= base64_encode($glo_lang['ho_va_ten']) ?>">
+                                        <input class="cls_data_check_form" data-rong="1" name="s_fullname" id="s_fullname" type="text" placeholder="<?= $glo_lang['ho_va_ten'] ?> (*)" value="<?= !empty($_POST['s_fullname']) ? $_POST['s_fullname'] : @$hoten ?>" onFocus="if (this.value == '<?= $glo_lang['ho_va_ten'] ?> (*)'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['ho_va_ten'] ?> (*)';}" data-name="<?= $glo_lang['ho_va_ten'] ?> (*)" data-msso="<?= $glo_lang['nhap_ho_ten'] ?>" />
                                     </li>
                                     <li class="phone">
-                                        <input type="hidden" name="s_dienthoai_s" value="<?=base64_encode($glo_lang['so_dien_thoai']) ?>">
-                                        <input class="cls_data_check_form" data-rong="1" data-phone="1" name="s_dienthoai" id="s_dienthoai" type="text" placeholder="<?=$glo_lang['so_dien_thoai'] ?> (*)" value="<?=!empty($_POST['s_dienthoai']) ? $_POST['s_dienthoai'] : @$sodienthoai ?>" onFocus="if (this.value == '<?=$glo_lang['so_dien_thoai'] ?> (*)'){this.value='';}" onBlur="if (this.value == '') {this.value='<?=$glo_lang['so_dien_thoai'] ?> (*)';}" data-name="<?=$glo_lang['so_dien_thoai'] ?> (*)" data-msso="<?=$glo_lang['nhap_so_dien_thoai'] ?>" data-msso1="<?=$glo_lang['so_dien_thoai_khong_hop_le'] ?>"/>
+                                        <input type="hidden" name="s_dienthoai_s" value="<?= base64_encode($glo_lang['so_dien_thoai']) ?>">
+                                        <input class="cls_data_check_form" data-rong="1" data-phone="1" name="s_dienthoai" id="s_dienthoai" type="text" placeholder="<?= $glo_lang['so_dien_thoai'] ?> (*)" value="<?= !empty($_POST['s_dienthoai']) ? $_POST['s_dienthoai'] : @$sodienthoai ?>" onFocus="if (this.value == '<?= $glo_lang['so_dien_thoai'] ?> (*)'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['so_dien_thoai'] ?> (*)';}" data-name="<?= $glo_lang['so_dien_thoai'] ?> (*)" data-msso="<?= $glo_lang['nhap_so_dien_thoai'] ?>" data-msso1="<?= $glo_lang['so_dien_thoai_khong_hop_le'] ?>" />
                                     </li>
                                     <li class="mail">
-                                        <input type="hidden" name="s_email_s" value="<?=base64_encode($glo_lang['email']) ?>">
-                                        <input class="cls_data_check_form"  name="s_email" id="s_email" type="text" placeholder="<?=$glo_lang['email'] ?>" value="<?=!empty($_POST['s_email']) ? $_POST['s_email'] : @$email  ?>" onFocus="if (this.value == '<?=$glo_lang['email'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?=$glo_lang['email'] ?>';}" data-msso="<?=$glo_lang['chua_nhap_dia_chi_email'] ?>" data-msso1="<?=$glo_lang['dia_chi_email_khong_hop_le'] ?>"/>
+                                        <input type="hidden" name="s_email_s" value="<?= base64_encode($glo_lang['email']) ?>">
+                                        <input class="cls_data_check_form" data-rong="1" name="s_email" id="s_email" type="text" placeholder="<?= $glo_lang['email'] ?>" value="<?= !empty($_POST['s_email']) ? $_POST['s_email'] : @$email ?>" onFocus="if (this.value == '<?= $glo_lang['email'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['email'] ?>';}" data-msso="<?= $glo_lang['chua_nhap_dia_chi_email'] ?>" data-msso1="<?= $glo_lang['dia_chi_email_khong_hop_le'] ?>" />
                                     </li>
                                     <li class="local">
-                                        <input type="hidden" name="s_address_s" value="<?=base64_encode($glo_lang['dia_chi']) ?>">
-                                        <input name="s_address" id="s_address" type="text" placeholder="<?=$glo_lang['dia_chi'] ?>" value="<?=!empty($_POST['s_address']) ? $_POST['s_address'] : @$diachi ?>" onFocus="if (this.value == '<?=$glo_lang['dia_chi'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?=$glo_lang['dia_chi'] ?>';}"/>
+                                        <input type="hidden" name="s_address_s" value="<?= base64_encode($glo_lang['dia_chi']) ?>">
+                                        <input class="cls_data_check_form" data-rong="1" name="s_address" id="s_address" type="text" placeholder="<?= $glo_lang['dia_chi'] ?>" value="<?= !empty($_POST['s_address']) ? $_POST['s_address'] : @$diachi ?>" onFocus="if (this.value == '<?= $glo_lang['dia_chi'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['dia_chi'] ?>';}" data-msso="<?= $glo_lang['dia_chi_khong_du'] ?>" />
                                     </li>
-
                                 </div>
                                 <div class="right">
                                     <li class="mess">
-                                        <input type="hidden" name="s_message_s" value="<?=base64_encode($glo_lang['noi_dung_lien_he']) ?>">
-                                        <textarea name="s_message" id="s_message" cols="" rows="" placeholder="<?=$glo_lang['noi_dung_lien_he'] ?>"><?=!empty($_POST['s_message']) ? $_POST['s_message'] : '' ?></textarea>
+                                        <input type="hidden" name="s_message_s" value="<?= base64_encode($glo_lang['noi_dung_lien_he']) ?>">
+                                        <textarea class="cls_data_check_form" name="s_message" id="s_message" cols="" rows="" placeholder="<?= $glo_lang['noi_dung_lien_he'] ?>"><?= !empty($_POST['s_message']) ? $_POST['s_message'] : '' ?></textarea>
                                         <div class="clr"></div>
                                     </li>
                                 </div>
+
                                 <div class="clr"></div>
                                 <div>
                                     <div class="left">
@@ -205,7 +206,6 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
                                 $pthucthanhtoan = DB_fet("*","#_phuongthucthanhtoan","`showhi` = 1","`catasort` DESC","","arr");
                                 foreach ($pthucthanhtoan as $rows) {
                                     $i++;
-//                                    $variable = ($rows['catasort'] != 0) ? $rows['id'] : $rows['payment'];
                                     ?>
                                     <div class="dv-pttt-child">
                                         <input type="radio" value="<?=$rows['id'] ?>" name="type_payment" id="type<?=$rows['id'] ?>" <?=$i == 1 ? "checked='checked'" : "" ?> >
@@ -222,12 +222,15 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
                                         <h3><?=$glo_lang['thanh_toan_paypal'] ?></h3>
                                     </label>
                                 </div>
-                                <div class="dv-pttt-child">
-                                    <input type="radio" value="0" name="type_payment" id="typevnp" <?=!empty($_POST['type_payment']) && $_POST['type_payment'] == 0 ? 'checked="checked"' : '' ?> >
-                                    <label for="typevnp" onclick="$('.dv-ndpm').hide(); $('.dv-ndpm-0').show()">
-                                        <h3>Thanh toan vnpay</h3>
-                                    </label>
-                                </div>
+                                <?php if($pt['showhi'] == 1){ ?>
+                                    <div class="dv-pttt-child">
+                                        <input type="radio" value="0" name="type_payment" id="typevnp" <?=!empty($_POST['type_payment']) && $_POST['type_payment'] == 0 ? 'checked="checked"' : '' ?> >
+                                        <label for="typevnp" onclick="$('.dv-ndpm').hide(); $('.dv-ndpm-0').show()">
+                                            <h3><?=$glo_lang['thanh_toan_vnpay'] ?></h3>
+                                        </label>
+                                    </div>
+                                <?php } ?>
+
                                 <div class="clr"></div>
                                 <?php
                                 $i = 0;
@@ -266,21 +269,12 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
         margin-bottom: 20px;
     }
 
-
-
     .dv-tongtien {
         font-size: 22px;
         font-weight: bold;
         text-align: right;
         margin-top: 15px;
     }
-
-
-
-
-
-
-
 
     .dv-ndphuongthuc-thanhtoan .dv-ndpm {
         background-color: #fff;

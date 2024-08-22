@@ -11,6 +11,11 @@
             </li>
             <div class="clr"></div>
         </div>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">3</span>
+        </div>
+
     </div>
     <div class="dv-header-bt">
         <div class="pagewrap flex">

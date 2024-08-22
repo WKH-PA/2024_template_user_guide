@@ -126,7 +126,12 @@
                                     <?php 
                                         $pthucthanhtoan = DB_fet("*","#_phuongthucthanhtoan","`id` = '".$donhang['thanhtoan']."'","`catasort` DESC",1,"arr");
                                         if(count($pthucthanhtoan)) {
-                                          echo $pthucthanhtoan[0]['tenbaiviet_vi'];
+                                             if($donhang['thanhtoan'] == 0){
+                                                 echo '<a href="?module=quan-ly-don-hang&action=danh-sach-buy-pay&chitiet=true&mdh=' . htmlspecialchars($donhang['madh']) . '" class="btn-link">Thanh toán VNPAY</a>';
+                                             } else{
+                                                 echo $pthucthanhtoan[0]['tenbaiviet_vi'];
+                                             }
+//                                          echo $pthucthanhtoan[0]['tenbaiviet_vi'];
                                         }
                                     ?>   
                                     </td>
@@ -154,6 +159,7 @@
                                 </tr>
 
                                 <?php
+
                                     $idSanphams = explode(',', $donhang['idsp']);
                                     $dongias    = explode(',', $donhang['dongia']);
                                     $soluongs   = explode(',', $donhang['soluong']);
@@ -174,7 +180,7 @@
                                         $tongtien += $thanhtien;
                                         // $tinhnang_arr  = @DB_fet("*","#_baiviet_tinhnang","`id` IN (".@$is_key[$i].")","`catasort` DESC","","arr");
                                         // 
-                                        $anhsp = checkImage($fullpath, $sanpham['icon'], $sanpham['duongdantin'], 'thumb_');
+                                        $anhsp = checkImage($fullpath, $sanpham['icon'], $sanpham['duongdantin'], '');
                                         $check_sl_tinhnang  = DB_fet_rd("* "," `#_baiviet_select_tinhnang` ","`id_baiviet` = '".$value."'","","","id_val");
 
                                         $isthuoctinh = @explode(",", $is_key[$i]);

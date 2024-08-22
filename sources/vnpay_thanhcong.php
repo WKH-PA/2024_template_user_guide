@@ -58,7 +58,7 @@ $checkExist = DB_que("SELECT COUNT(*) as count FROM lh_buy_pay WHERE mdh = '$txn
 $exist = mysqli_fetch_assoc($checkExist);
 if($transactionStatus == '00'){
     $data1=['thanh_toan' => 1];
-    ACTION_db($data1, '#_order', 'update', NULL, "`id` = {$txnRef}");
+    ACTION_db($data1, '#_order', 'update', NULL, "`madh` = '$txnRef'");
 }
 if ($exist['count'] == 0) {
     $rt = ACTION_db($data, 'lh_buy_pay', 'add');
@@ -67,8 +67,16 @@ if ($exist['count'] == 0) {
 }
 ?>
 <div class="container">
-    <div class="header clearfix">
-        <h3 class="text-muted">Kết quả giao dịch VNPAY</h3>
+    <div class="form-group">
+        <div class="result <?php echo ($secureHash == $vnp_SecureHash) ? ($_GET['vnp_ResponseCode'] == '00' ? 'success' : 'error') : 'error'; ?>">
+            <?php
+            if ($secureHash == $vnp_SecureHash) {
+                echo ($_GET['vnp_ResponseCode'] == '00') ? "Giao dịch thành công" : "Giao dịch không thành công";
+            } else {
+                echo "Chữ ký không hợp lệ";
+            }
+            ?>
+        </div>
     </div>
     <div class="form-group">
         <label>Mã đơn hàng:</label>
@@ -76,7 +84,7 @@ if ($exist['count'] == 0) {
     </div>
     <div class="form-group">
         <label>Số tiền:</label>
-        <div class="value"><?php echo htmlspecialchars($_GET['vnp_Amount']/100); ?></div>
+        <div class="value"><?php echo htmlspecialchars(number_format($_GET['vnp_Amount']/100 , 0, ',', '.' ) ." ". $glo_lang['dvt'] ); ?></div>
     </div>
     <div class="form-group">
         <label>Nội dung thanh toán:</label>
@@ -94,17 +102,7 @@ if ($exist['count'] == 0) {
         <label>Thời gian thanh toán:</label>
         <div class="value"><?php $dateTime = DateTime::createFromFormat('YmdHis', $_GET['vnp_PayDate']); echo $dateTime ? htmlspecialchars($dateTime->format('d/m/Y H:i:s')) : 'Không hợp lệ'; ?></div>
     </div>
-    <div class="form-group">
-        <div class="result <?php echo ($secureHash == $vnp_SecureHash) ? ($_GET['vnp_ResponseCode'] == '00' ? 'success' : 'error') : 'error'; ?>">
-            <?php
-            if ($secureHash == $vnp_SecureHash) {
-                echo ($_GET['vnp_ResponseCode'] == '00') ? "Giao dịch thành công" : "Giao dịch không thành công";
-            } else {
-                echo "Chữ ký không hợp lệ";
-            }
-            ?>
-        </div>
-    </div>
+
     <?php if ($_GET['vnp_ResponseCode'] != '00'): ?>
         <div class="form-group">
             <label>Vấn đề xảy ra:</label>
@@ -114,23 +112,96 @@ if ($exist['count'] == 0) {
 
         </div>
     <?php endif; ?>
+    <div class="form-group">
+        <a href="<?= $fullpath ?>" class="btn-home">Quay về trang chủ</a>
+    </div>
+
 </div>
 
 <style>
-    body {font-family: 'Roboto', sans-serif;color: #2c3e50;background-color: #ecf0f1;margin: 0;padding: 0;}
-    .container {max-width: 800px;margin: 40px auto;padding: 30px;background: #ffffff;border-radius: 12px;box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);border: 1px solid #ddd;}
-    .header {border-bottom: 3px solid #3498db;margin-bottom: 30px;padding-bottom: 15px;text-align: center;}
+    body {
+        font-family: 'Roboto', sans-serif;
+        color: #2c3e50;
+        background-color: #ecf0f1;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        min-height: 100vh; /* Đảm bảo chiếm toàn bộ chiều cao viewport */
+    }
+
+    /* Thiết lập cho container chính */
+    .container {
+        max-width: 800px;
+        width: 100%; /* Đảm bảo container không bị giới hạn về chiều rộng */
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+    }
     .header h3 {margin: 0;color: #3498db;font-size: 2em;font-weight: 700;}
-    .form-group {display: flex;align-items: center;margin-bottom: 20px;border-bottom: 1px solid #eee;padding-bottom: 10px;transition: background-color 0.3s ease;}
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #fafafa;
+
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-group label {
+        font-weight: 600;
+        margin-right: 20px;
+        color: #2c3e50;
+        flex: 0 0 200px;
+        font-size: 1.1em;
+        text-align: right;
+    }
+
+    .form-group .value {
+        flex: 1;
+        color: #555;
+        font-size: 1em;
+        padding-left: 10px;
+        border-left: 2px solid #ddd;
+    }
+
     .form-group:hover {background-color: #f9f9f9;}
     .form-group label {font-weight: 600;margin-right: 20px;color: #2c3e50;flex: 0 0 200px;font-size: 1.1em;}
-    .form-group .value {font-size: 1.2em;color: #34495e;padding: 10px;background-color: #f9f9f9;border-radius: 8px;flex: 1;border: 1px solid #ddd;transition: border-color 0.3s ease;}
-    .form-group .value:hover {border-color: #3498db;}
     .result {margin-top: 30px;font-size: 1.4em;font-weight: 700;text-align: center;padding: 15px;border-radius: 8px;}
     .result {margin-top: 30px;font-size: 1.4em;font-weight: 700;text-align: center;padding: 15px;border-radius: 8px;width: 100%;box-sizing: border-box;}
     .result.success {color: #27ae60;background-color: #e9f7ef;border: 1px solid #27ae60;display: flex;align-items: center;justify-content: center;}
     .result.error {color: #e74c3c;background-color: #fdecea;border: 1px solid #e74c3c;display: flex;align-items: center;justify-content: center;}
-    footer {margin-top: 30px;text-align: center;font-size: 0.95em;color: #7f8c8d;}
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.95em;
+        color: #7f8c8d;
+    }
+
+    /* CSS cho nút Quay về trang chủ */
+    .btn-home {
+        display: inline-block;
+        padding: 12px 15px;
+        text-align: center;
+        background-color: transparent;
+        color: #ff4242;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        display: block; /* Để căn giữa nút */
+        text-align: center;
+        width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng */
+    }
+
+
+
+
 </style>
 
 

@@ -122,6 +122,7 @@ function ACTION_db($array, $table, $kieu = 'add', $array_remove = array(), $cond
     if ($kieu == 'update') {
         @DB_que("UPDATE `$table` SET $bang_db WHERE $condition");
 //				 echo "UPDATE `$table` SET $bang_db WHERE $condition";
+//				 exit();
 
     }
     DEL_redis_table($table);

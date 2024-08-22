@@ -29,6 +29,7 @@
 <!-- <li><i class="fa fa-home"></i><a href="<?=$full_url ?>"><?=$glo_lang['trang_chu'] ?></a><?=GET_bre($arr_running['id_parent'], $slug_step, $full_url, $lang, $thongtin_step, $slug_table, '<i class="fa fa-angle-right"></i>') ?></li> -->
 <form method="post" action="<?= $full_url . "/gio-hang/" ?>" id="form_dathang">
     <input type="hidden" name="id" value="<?= $arr_running['id'] ?>">
+
     <?php
     /*        if (!isset($_SESSION['theme_new'])) {
               $mausac_arr       = DB_fet("*","#_mausac","","","", "arr", 1);
@@ -57,7 +58,7 @@
           </div>
         </div>
         --><?php /*}} */ ?>
-</form>
+
 <div class="bg_link_page" style="background-image:url(<?=full_src($thongtin_step, '') ?>);">
   <div class="pagewrap">
     <ul>
@@ -111,6 +112,12 @@
         <div id="sharelink">
           <div class="addthis_toolbox addthis_default_style "> <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a> <a class="addthis_counter addthis_pill_style"></a> </div>
         </div>
+
+          <div class="quantity_box">
+              <label for="quantity"><?= $glo_lang['cart_qty'] ?>:</label>
+              <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px; text-align: center;">
+          </div>
+</form>
         <div class="ct_add">
           <ul>
             <?php

@@ -23,15 +23,19 @@
       }
 
     }
-    $_SESSION['tinhnang'][$id."_".md5($tinhnang)] = $tinhnang;
 
-    if(isset($_POST['qty_cart']) && is_numeric($_POST['qty_cart']) && $_POST['qty_cart'] > 0){
-      $_SESSION['cart'][$id."_".md5($tinhnang)] = $_POST['qty_cart'];
-    }
-    else{
-      $_SESSION['cart'][$id."_".md5($tinhnang)] = 1;
-    }
+      $key = $id."_".md5($tinhnang);
+      $_SESSION['tinhnang'][$key] = $tinhnang;
 
+      // Xử lý số lượng
+      $quantity = isset($_POST['quantity']) && is_numeric($_POST['quantity']) && $_POST['quantity'] > 0 ? intval($_POST['quantity']) : 1;
+
+      // Cập nhật số lượng trong giỏ hàng
+      if(isset($_SESSION['cart'][$key])) {
+          $_SESSION['cart'][$key] += $quantity; // Cộng thêm số lượng
+      } else {
+          $_SESSION['cart'][$key] = $quantity; // Thêm mới sản phẩm vào giỏ hàng
+      }
     LOCATION_js($full_url."/gio-hang/");
   }
 
@@ -109,8 +113,9 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <input type="text" min="1" max="9999" name="quantity" value="<?=$value ?>" class="qty qty_is_soluong" id="product-quantity-<?=$id_sp ?>" onchange='updateQty("<?=$full_url."/update-qty/" ?>","<?=$key ?>", this)' />
+                                            <input type="number" min="1" max="9999" name="quantity" value="<?=$value ?>" class="qty qty_is_soluong" id="product-quantity-<?=$id_sp ?>" onchange='updateQty("<?=$full_url."/update-qty/" ?>","<?=$key ?>", this)' />
                                         </td>
+
                                         <td class="text-right"><b><?=($dongia == 0) ? 0 : NUMBER_fomat($dongia)." ".$glo_lang['dvt'] ?></b></td>
                                         <td class="text-right"><b><span class="td_thanhtien_<?=$key ?>"><?=($thanhtien== 0)  ? 0 : NUMBER_fomat($thanhtien) ?></span> <?=$glo_lang['dvt'] ?></b></td>
                                         <td class="text-center">
@@ -156,7 +161,7 @@
       $.ajax({
           type: 'POST',
           url: url,
-          data: {id: key, quantity: quantity},
+          data: { id: key, quantity: quantity },
           success: function (response) {
               location.reload();
           }

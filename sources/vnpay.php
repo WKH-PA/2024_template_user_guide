@@ -36,7 +36,7 @@ function processPayment($amount, $txnRef, $language = 'vn') {
 
     $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret);
     $query .= 'vnp_SecureHash=' . urlencode($vnpSecureHash);
-
+//    echo ($query);
     $paymentUrl = $vnp_Url . "?" . $query;
     echo "<script>window.location.href = '$paymentUrl';</script>";
     exit();
@@ -45,40 +45,45 @@ function processPayment($amount, $txnRef, $language = 'vn') {
 // Xử lý yêu cầu GET nếu có đủ dữ liệu
 if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['num_vnp']) && isset($_GET['ma_donhang_vnp'])) {
     $amount = floatval($_GET['num_vnp']);
-    $txnRef = trim($_GET['ma_donhang_vnp']);
+    $num_vnp = intval($_GET['ma_donhang_vnp']);
     $language = isset($_GET['language']) ? trim($_GET['language']) : 'vn';
-
+    $sql = DB_que("SELECT `id`, `madh` FROM `#_order` WHERE `id` = $num_vnp LIMIT 1");
+    $madh = mysqli_fetch_assoc($sql);
+    $txnRef = trim($madh['madh']);
+//    echo '<pre>';
+//    var_dump($amount, $txnRef ,$num_vnp, $madh['madh']);
+//    exit;
     processPayment($amount, $txnRef, $language);
 }
 ?>
 <script>
     function TIEN_VNPAY(amount, txnRef) {
-        // Xây dựng đối tượng chứa dữ liệu cần gửi
+        console.log(amount, txnRef)
         var data = {
             num_vnp: amount,
             ma_donhang_vnp: txnRef,
             language: 'vn'
         };
 
-        // Xây dựng chuỗi truy vấn
         var query = new URLSearchParams(data).toString();
-
-        // Gửi yêu cầu POST bằng fetch
+        const fullUrl = window.location.href;
+        const baseUrl = fullUrl.split('/').slice(0, 4).join('/');
         fetch(window.location.href.split('?')[0], {
-            method: 'POST', // Phương thức POST
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded', // Kiểu nội dung
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: query // Chuyển đổi data thành chuỗi query
+            body: query
         })
-            .then(response => response.text()) // Nhận phản hồi từ server
+            .then(response => response.text())
             .then(data => {
-                console.log('Success:', data); // Xử lý dữ liệu trả về
-                // Điều hướng đến trang thành công hoặc xử lý kết quả khác tại đây
-                window.location.href = "http://localhost/2024_template_user_guide/vnpay?" + query; // Redirect nếu cần
+                console.log('Success:', data);
+
+                console.log(baseUrl + "vnpay?" + query);
+                window.location.href = baseUrl + "/vnpay?" + query;
             })
             .catch((error) => {
-                console.error('Error:', error); // Xử lý lỗi
+                console.error('Error:', error);
             });
     }
     // Gọi hàm TIEN_VNPAY với giá trị mẫu
