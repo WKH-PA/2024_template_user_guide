@@ -154,8 +154,8 @@
                                     <th>Tên sản phẩm</th>
                                     <th class="w100 text-center">Mã sản phẩm</th>
                                     <th class="w120 text-center">Đơn giá (VNĐ)</th>
-                                    <th class="w100 text-center">Số lượng</th>
-                                    <th class="w120 text-center">Thành tiền</th>
+                                    <th class="w60 text-center">Số lượng</th>
+                                    <th class="w130 text-center">Thành tiền (VNĐ)</th>
                                 </tr>
 
                                 <?php
@@ -238,7 +238,7 @@
                                 </tr>
                                 <?php } ?> 
                                 <tr>
-                                    <td colspan="7" style="text-align: right;font-size: 14px;">Tổng tiền: <span style="color: #F00;font-weight: 600;"><?=NUMBER_fomat($tongtien + $donhang['phi_ship'] - $donhang['gia_km'])?></span></td>
+                                    <td colspan="7" style="text-align: right;font-size: 14px;">Tổng tiền: <span style="color: #F00;font-weight: 600;"><?=NUMBER_fomat($tongtien + $donhang['phi_ship'] - $donhang['gia_km']) . " VNĐ"?></span></td>
                                 </tr> 
                             </tbody>
                         </table>

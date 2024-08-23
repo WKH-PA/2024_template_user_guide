@@ -145,7 +145,7 @@
                               <a href="<?=$url_page ?>&edit=<?=$ida?>">[Xem chi tiết]</a>&nbsp;
                               
                               <p>
-                                <?=$thanh_toan == 0 ? '<span style="color: red; font-size: 11px;">Đơn hàng chưa thanh toán</span>' : '<span style="color: #10863c; font-size: 11px;">Đơn hàng đã thanh toán ('.$rows['ma_paypal'].')</span>' ?>
+                                <?=$thanh_toan == 0 ? '<span style="color: red; font-size: 11px;">Đơn hàng chưa thanh toán</span>' : '<span style="color: #10863c; font-size: 11px;">Đơn hàng đã thanh toán </span>' ?>
                               </p>
                               <p style="font-size: 12px;"><?=$cus_del == 1 ? "Khách đã xóa đơn hàng này." : "" ?></p>
                             </td>

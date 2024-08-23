@@ -90,14 +90,15 @@ var check = 0;
             send_d_dangnhap = 0;
             return false;
 
-    } else if (phone == 1 && !regexPhone.test(val) && val != "") {
-        alert($(this).attr('data-msso1'));
-        $(this).focus();
-        $(".ajax_img_loading").hide();
-        check = 1;
-        send_d_dangnhap = 0;
-        return false;
-    }
+        } else if (phone == 1 && !regexPhone.test(val) && val != "") {
+            alert($(this).attr('data-msso1'));
+            $(this).focus();
+            $(".ajax_img_loading").hide();
+            check = 1;
+            send_d_dangnhap = 0;
+            console.log(1);
+            return false;
+        }
         else if (id == 's_address' && val.length <= 15) {
             alert('Địa chỉ phải có ít nhất 16 ký tự.');
             $(this).focus();
@@ -431,8 +432,8 @@ function CHECK_send_lienhe(url, id_form, cls) {
             var data_ms = $(this).attr('data-msso');
             var data_m1 = $(this).attr('data-msso1');
 
-            var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            var phone_regex = /^[0-9]+$/;  // Thêm regex kiểm tra số điện thoại
+            var regex = /^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*\@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,4}$/;
+            var phone_regex = /^[0-9]{10}$/;  // Kiểm tra số điện thoại có đúng 10 số
 
             if(rong == 1 && (val == "" || val == place)){
                 if(data_ms != "") alert(data_ms);
@@ -450,7 +451,7 @@ function CHECK_send_lienhe(url, id_form, cls) {
                 icheck_lienhe = 0;
                 return false;
             }
-            else if(phone == 1 && !phone_regex.test(val) && val != ""){
+            else if(phone == 1 && (!phone_regex.test(val) || val.length !== 10) && val != ""){
                 if(data_m1 != "") alert(data_m1);
                 $(this).focus();
                 $(".ajax_img_loading").hide();
@@ -489,27 +490,20 @@ function CHECK_send_lienhe(url, id_form, cls) {
                     icheck_lienhe = 0;
                     $(".ajax_img_loading").hide();
                     if($(".id_token").length == 0){
-                        // console.log(0);
                         if (data == 1) {
-
                             $(id_form)[0].reset();
                             alert($(".lang_ok").val());
                             window.location.reload();
-
                         }
                         else {
                             $("#mabaove").focus();
                             alert($(".lang_false").val());
-                            // console.log(data);
                         }
                         $("#img_contact_cap").attr("src", url+"load-capcha/");
                     }else{
-                        // console.log(1);
                         try {
                             data = JSON.parse(data);
                             if (data.err == 1) {
-                                // thanh toan paypal
-                                console.log($());
                                 if($("#typepp").length > 0 && $("#typepp").is(":checked")){
                                     $(".dv-paypal").show();
                                     $(".dv-paypal-cont").show();
@@ -519,7 +513,6 @@ function CHECK_send_lienhe(url, id_form, cls) {
                                 if($("#typevnp").length > 0 && $("#typevnp").is(":checked")){
                                     TIEN_VNPAY(data.thanhtien, data.id);
                                 }
-                                //
                                 else {
                                     $(id_form)[0].reset();
                                     alert($(".lang_ok").val());
@@ -529,7 +522,6 @@ function CHECK_send_lienhe(url, id_form, cls) {
                             else {
                                 alert($(".lang_false").val());
                                 window.location.reload();
-                                // console.log(data);
                             }
                             $(".id_token").val(data.token);
                         } catch (e) {
@@ -544,6 +536,7 @@ function CHECK_send_lienhe(url, id_form, cls) {
     }
     return false;
 }
+
 
 var icheck_lienhe = 0;
 

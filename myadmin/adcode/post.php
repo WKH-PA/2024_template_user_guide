@@ -137,9 +137,9 @@
           	DB_que("UPDATE `#_form_lienhe` SET `is_nuti` = 1 WHERE `is_nuti` = 0 ", "#_form_lienhe");
         }
 
-        if($action != "danh-sach.php-don-hang") {
+        if($action != "danh-sach-don-hang") {
           	if(is_array($glo_quyen)){
-				$xem = !empty($glo_quyen['danh-sach.php-don-hang']['xem']) ? $glo_quyen['danh-sach.php-don-hang']['xem'] : 0;
+				$xem = !empty($glo_quyen['danh-sach-don-hang']['xem']) ? $glo_quyen['danh-sach-don-hang']['xem'] : 0;
 			}
 			else $xem = 1;
 
@@ -161,7 +161,8 @@
         } 
 
         if($num_dhm) { 
-        	$text_v .= '<li><a href="?module=quan-ly-don-hang&action=danh-sach.php-don-hang">Đơn hàng mới <span>'.$num_dhm.'</a></li>';
+        	$text_v .= '<li><a href="?module=quan-ly-don-hang&action=danh-sach
+-don-hang">Đơn hàng mới <span>'.$num_dhm.'</a></li>';
         } 
  
  		$return = array("text" => $text_v, "tongso" => $tongso);

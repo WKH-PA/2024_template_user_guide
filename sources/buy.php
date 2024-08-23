@@ -173,11 +173,34 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
                                     </li>
                                     <li class="mail">
                                         <input type="hidden" name="s_email_s" value="<?= base64_encode($glo_lang['email']) ?>">
-                                        <input class="cls_data_check_form" data-rong="1" name="s_email" id="s_email" type="text" placeholder="<?= $glo_lang['email'] ?>" value="<?= !empty($_POST['s_email']) ? $_POST['s_email'] : @$email ?>" onFocus="if (this.value == '<?= $glo_lang['email'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['email'] ?>';}" data-msso="<?= $glo_lang['chua_nhap_dia_chi_email'] ?>" data-msso1="<?= $glo_lang['dia_chi_email_khong_hop_le'] ?>" />
+                                        <input class="cls_data_check_form" data-rong="1" data-email="1" name="s_email" id="s_email" type="text" placeholder="<?= $glo_lang['email'] ?> (*) " value="<?= !empty($_POST['s_email']) ? $_POST['s_email'] : @$email ?>" onFocus="if (this.value == '<?= $glo_lang['email'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['email'] ?>';}" data-msso="<?= $glo_lang['chua_nhap_dia_chi_email'] ?>" data-msso1="<?= $glo_lang['dia_chi_email_khong_hop_le'] ?>" />
                                     </li>
                                     <li class="local">
+                                        <input name="address" id="address"  type="text" placeholder="<?= $glo_lang['dia_chi'] ?> (*)">
+                                        <select id="city" name="city" onchange="filterDistricts()">
+                                            <option value="">Chọn Thành Phố</option>
+                                            <?php
+                                            // Kết nối database và lấy danh sách thành phố
+                                            $tp = DB_que("SELECT id, tenbaiviet_vi FROM lh_ship_khuvuc WHERE id_parent = 0");
+                                            while ($row = mysqli_fetch_assoc($tp)) {
+                                                echo "<option value='".$row['id']."'>".$row['tenbaiviet_vi']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+
+                                        <select id="district" name="district">
+                                            <option value="">Chọn Quận/Huyện</option>
+                                            <?php
+                                            // Lấy danh sách quận/huyện
+                                            $quan = DB_que("SELECT id, id_parent, tenbaiviet_vi FROM lh_ship_khuvuc WHERE id_parent > 0 ");
+                                            while($row = mysqli_fetch_assoc($quan)) {
+                                                echo "<option value='".$row['id']."' data-parent='".$row['id_parent']."'>".$row['tenbaiviet_vi']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+
                                         <input type="hidden" name="s_address_s" value="<?= base64_encode($glo_lang['dia_chi']) ?>">
-                                        <input class="cls_data_check_form" data-rong="1" name="s_address" id="s_address" type="text" placeholder="<?= $glo_lang['dia_chi'] ?>" value="<?= !empty($_POST['s_address']) ? $_POST['s_address'] : @$diachi ?>" onFocus="if (this.value == '<?= $glo_lang['dia_chi'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['dia_chi'] ?>';}" data-msso="<?= $glo_lang['dia_chi_khong_du'] ?>" />
+                                        <input type="hidden" class="cls_data_check_form" data-rong="1" name="s_address" id="s_address" type="text" placeholder="<?= $glo_lang['dia_chi'] ?>" value="<?= !empty($_POST['s_address']) ? $_POST['s_address'] : @$diachi ?>" onFocus="if (this.value == '<?= $glo_lang['dia_chi'] ?>'){this.value='';}" onBlur="if (this.value == '') {this.value='<?= $glo_lang['dia_chi'] ?>';}" data-msso="<?= $glo_lang['dia_chi_khong_du'] ?>" />
                                     </li>
                                 </div>
                                 <div class="right">
@@ -257,6 +280,61 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
     </div>
 <?php include _source."paypal.php"; ?>
 <?php include _source."vnpay.php"; ?>
+<script>
+    document.getElementById('FormNameContact_cart').addEventListener('click', function(event) {
+        updateAddress();
+    });
+    function filterDistricts() {
+        var cityId = document.getElementById('city').value;
+        var districtDropdown = document.getElementById('district');
+        var options = districtDropdown.getElementsByTagName('option');
+
+        if (cityId) {
+            districtDropdown.style.display = 'block';
+        } else {
+            districtDropdown.style.display = 'none';
+            districtDropdown.value = "";
+            return;
+        }
+
+        for (var i = 1; i < options.length; i++) { // Bắt đầu từ 1 để bỏ qua option mặc định
+            var option = options[i];
+            var parentId = option.getAttribute('data-parent');
+
+            if (cityId === parentId) {
+                option.style.display = '';
+            } else {
+                option.style.display = 'none';
+            }
+        }
+        districtDropdown.value = "";
+
+    }
+
+    function updateAddress() {
+        var cityDropdown = document.getElementById('city');
+        var districtDropdown = document.getElementById('district');
+        var addressInput = document.getElementById('address');
+
+        // Lấy tên thành phố, quận/huyện và địa chỉ
+        var cityName = cityDropdown.options[cityDropdown.selectedIndex]?.text || '';
+        var districtName = districtDropdown.options[districtDropdown.selectedIndex]?.text || '';
+        var addressName = addressInput?.value || '';
+
+        // Kiểm tra nếu cả 3 biến đều có giá trị
+        if (cityName && districtName && addressName) {
+            var address = addressName + ', ' + districtName + ', ' + cityName;
+            document.getElementById('s_address').value = address;
+            console.log('Updated s_address:', address);
+        } else {
+            console.log('Không thể cập nhật địa chỉ. Vui lòng đảm bảo cả ba trường đều có giá trị.');
+        }
+    }
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {filterDistricts(); });
+</script>
 <style>
     .page_conten_page{
         margin-top: 110px;

@@ -45,7 +45,7 @@ $order_details = mysqli_fetch_assoc($result);
                         </tr>
                         <tr>
                             <th>Số tiền</th>
-                            <td><?= number_format(htmlspecialchars($order_details['money']), 0, ',', '.') ?></td>
+                            <td><?= htmlspecialchars(number_format($order_details['money'], 0, ',', '.') . " VND" ) ?></td>
 
                         </tr>
                         <tr>
