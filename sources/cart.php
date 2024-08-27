@@ -100,7 +100,7 @@
                                             <a href="<?=GET_link($full_url, SHOW_text($sanpham['seo_name'])) ?>"><img src="<?=$anhsp ?>" alt="<?=SHOW_text($sanpham['tenbaiviet_'.$_SESSION['lang']]) ?>"></a>
                                             <div class="dv-anh">
                                                 <a href="<?=GET_link($full_url, SHOW_text($sanpham['seo_name'])) ?>"><?=SHOW_text($sanpham['tenbaiviet_'.$_SESSION['lang']]) ?></a>
-                                                <p><?=SHOW_text($sanpham['p1']) ?></p>
+                                                <p>MS: <?=SHOW_text($sanpham['p1']) ?></p>
                                                 <p class="p_mota_cart">
                                                     <?php
                                                     $isthuoctinh = @explode(",", $_SESSION['tinhnang'][$key]);
