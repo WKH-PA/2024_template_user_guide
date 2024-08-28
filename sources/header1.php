@@ -5,12 +5,23 @@
                 <span><i class="fa fa-phone"></i><?= $glo_lang['phone_ct'] ?></span>
                 <hr>
                 <span><i class="fa fa-envelope-o" aria-hidden="true"></i> <?= $glo_lang['mail_ct'] ?></span>
+                <?php
+                $cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+                ?>
+                <a href="<?=$full_url?>/gio-hang/" class="cart-icon">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="cart-count"><?= $cart_count ?></span>
+                </a>
             </div>
+
             <li class="language">
                 <?php include _source."lang.php"; ?>
             </li>
             <div class="clr"></div>
+
         </div>
+
+
     </div>
     <div class="dv-header-bt">
         <div class="pagewrap flex">
@@ -43,3 +54,6 @@
     <div class="clr"></div>
 </div>
 
+<style>
+
+</style>

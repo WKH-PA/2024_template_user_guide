@@ -10,6 +10,9 @@
     }else if($motty == "vnpay"){
         include "vnpay.php";
     }
+    else if($motty == "test"){
+        include "bottele.php";
+    }
     else if($motty == "thoat"){
         $_SESSION['id'] = NULL;
         unset($_SESSION['id']);

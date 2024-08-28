@@ -330,9 +330,6 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
             console.log('Không thể cập nhật địa chỉ. Vui lòng đảm bảo cả ba trường đều có giá trị.');
         }
     }
-
-
-
     document.addEventListener('DOMContentLoaded', function () {filterDistricts(); });
 </script>
 <style>
@@ -586,6 +583,16 @@ $thongtin_step   = LAY_anhstep_now(LAY_id_step(1));
         margin-right: 10px;
         text-align: center;
     }
-    .dv-send-hd-buy .ajax_img_loading {width: 20px;height: auto;display: none;}
-    .dv-send-hd-buy a.button:hover .ajax_img_loading {display: inline-block;}
+
+    .dv-send-hd-buy .ajax_img_loading {
+        width: 20px;
+        height: auto;
+        display: none;
+    }
+
+    .dv-send-hd-buy a.button:hover .ajax_img_loading {
+        display: inline-block;
+    }
+
+
 </style>

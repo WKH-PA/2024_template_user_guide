@@ -52,6 +52,8 @@ if(!empty($_POST))
     $data['is_tiengviet']       = isset($_POST['is_tiengviet']) ? 1 : 0;
     $data['upload_ckfinder']    = isset($_POST['upload_ckfinder']) ? 1 : 0;
     $data['sl_toiuu']           = $sl_toiuu;
+    $data['token_api_tele'] = $token_api_tele;
+    $data['id_chat_tele'] = $id_chat_tele;
     $api_keys = [
         'group_1' => ['api_key' => $_POST['api_key_1'], 'api_secret' => $_POST['api_secret_1']],
         'group_2' => ['api_key' => $_POST['api_key_2'], 'api_secret' => $_POST['api_secret_2']],
@@ -400,7 +402,19 @@ if($favico != ''){
                         <label>Số lượng hình ảnh tối ưu (từ 1 đến 100)</label>
                         <input type="number" class="form-control" name="sl_toiuu" value="<?=$sl_toiuu?>" min="1" max="100" oninput="if(this.value < 1) this.value = 1; if(this.value > 100) this.value = 100;">
                     </div>
+            </section>
 
+                    <section class="col-lg-12">
+                    <div class="box p10" style="margin-top: 10px">
+                        <div class="form-group">
+                            <label>API Token Telegram </label>
+                            <input type="text" class="form-control" name="token_api_tele" value="<?=$token_api_tele ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>ID Chat Telegram </label>
+                            <input type="text" class="form-control" name="id_chat_tele" value="<?=$id_chat_tele ?>">
+                        </div>
+                    </div>
                 </div>
 
             </section>

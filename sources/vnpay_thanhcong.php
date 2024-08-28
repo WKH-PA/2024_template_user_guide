@@ -64,7 +64,19 @@ if ($exist['count'] == 0) {
     $rt = ACTION_db($data, 'lh_buy_pay', 'add');
     $message = $rt ? "Lưu data thành công: " . addslashes(json_encode($rt)) : "Lưu data thất bại";
     echo "<script>console.log('$message');</script>";
+    writepaymentsLog(
+        $txnRef, // Mã tham chiếu giao dịch
+        ($transactionStatus == '00') ? 1 : 0,
+        $amount, // Số tiền của giao dịch
+        'VNPAY', // Mã ngân hàng
+        $bankCode,
+        (isset($error_messages[$_GET['vnp_ResponseCode']]) ?
+            $error_messages[$_GET['vnp_ResponseCode']] :
+            "Mã lỗi không hợp lệ.")
+    );
 }
+
+
 ?>
 <div class="container">
     <div class="form-group">
@@ -115,6 +127,7 @@ if ($exist['count'] == 0) {
     <div class="form-group">
         <a href="<?= $fullpath ?>" class="btn-home">Quay về trang chủ</a>
     </div>
+
 
 </div>
 
@@ -188,7 +201,7 @@ if ($exist['count'] == 0) {
         padding: 12px 15px;
         text-align: center;
         background-color: transparent;
-        color: #ff4242;
+        color: #000000;
         text-transform: uppercase;
         font-weight: bold;
         border-radius: 5px;

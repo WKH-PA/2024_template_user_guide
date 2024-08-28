@@ -994,8 +994,6 @@ if($motty == "send_form" && isset($_POST['gui_donhang'])){
       $footer        .= $thongtin['email_vi'] != "" ? "<p>".$glo_lang['email'].": ". $thongtin['email_vi']."</p>" : "";
       $footer        .= $thongtin['diachi_'.$lang] != "" ? "<p>".$glo_lang['dia_chi'].": ". $thongtin['diachi_'.$lang]."</p>" : "";
 
-
-
       $tieude_lienhe  = $glo_lang['thong_tin_dat_hang'];
       $diachi_text    = "";
       $khuvuc          = LAY_khuvuc();
@@ -1073,7 +1071,11 @@ if($motty == "send_form" && isset($_POST['gui_donhang'])){
 
       $madh         = 'DH'.mt_rand(1000,9999).$id_order;
       $data1['madh'] = $madh;
+      $paymentMethod = $s_thanhtoan != 0 ? LAY_tieude_kietxuat($s_thanhtoan, '#_phuongthucthanhtoan')  : 'VNPAY' ;
+      writepaymentsLog($madh,'',$don_gia,$paymentMethod);
+
       ACTION_db($data1, "#_order", 'update', NULL, "`id` = $id_order");
+
 
       $message        = str_replace(array("%thongtin_lienhe%", "%footer%", '%logo%', '%thongtinheader%', '%noidung%'),
         array(LOC_char($tieude_lienhe), $footer, LOC_char($logo), $thongtinheader, $noidung), $htmlbox);

@@ -3231,4 +3231,103 @@ function processImage($kraken, $imagePath)
         ];
     }
 }
+function writepaymentsLog($orderId,$status='', $amount, $paymentMethod, $bankpayment = '', $message='') {
+    $logFile = 'datafiles/logs/payments.log';
+    $logDir = dirname($logFile);
+    if (!is_dir($logDir)) { mkdir($logDir, 0777, true); }
+    $currentDateTime = date('H:i:s d-m-Y ');
+    // Chuẩn bị log entry dưới dạng JSON
+    $logEntry = [
+        'timestamp'     => $currentDateTime,
+        'status' => ($status !== '' ? ($status == 0 ? 'Thất bại' : 'Thành công') : ''),
+        'order_id'      => $orderId,
+        'amount'        => number_format($amount, 0, '.', ','),
+        'currency'      => 'VND',
+        'payment_method'=> $paymentMethod,
+        'bankpayment'  => $bankpayment,
+        'message'       => $message
+    ];
+    $jsonLogEntry = json_encode($logEntry, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n";
+    file_put_contents($logFile, $jsonLogEntry, FILE_APPEND);
+//    if($status == 0){
+        sendMessageToTelegram($jsonLogEntry);
+//    }
+
+}
+function sendMessageToTelegram($message) {
+    // Lấy token và chat ID từ cơ sở dữ liệu
+    $telegramApiTokenArray = DB_arr(DB_que('SELECT `token_api_tele` FROM `#_seo` LIMIT 1'),1);
+    $chatIdArray = DB_arr(DB_que('SELECT `id_chat_tele` FROM `#_seo` LIMIT 1'),1);
+
+    $telegramApiToken = isset($telegramApiTokenArray['token_api_tele']) ? $telegramApiTokenArray['token_api_tele'] : null;
+    $chatId = isset($chatIdArray['id_chat_tele']) ? $chatIdArray['id_chat_tele'] : null;
+
+    $url = "https://api.telegram.org/bot" . $telegramApiToken . "/sendMessage";
+
+    $messageData = json_decode($message, true);
+
+    // Kiểm tra và lấy dữ liệu từ $messageData, nếu không có thì gán 'N/A'
+    $timestamp = $messageData['timestamp'] ?? '';
+    $status = $messageData['status'] ?? '';
+    $order_id = $messageData['order_id'] ?? '';
+    $amount = $messageData['amount'] ?? '';
+    $currency = $messageData['currency'] ?? '';
+    $payment_method = $messageData['payment_method'] ?? '';
+    $bankpayment = $messageData['bankpayment'] ?? '';
+    $messageText = $messageData['message'] ?? '';
+    $title = ($status != '') ? 'Kết quả thanh toán:' : 'Thông tin thanh toán:';
+    $statusIcon = ($status == "Thất bại") ? "❌" : "✅";
+    $formattedMessage = "*$title*\n\n";
+
+    if ($timestamp) {
+        $formattedMessage .= "- ⏰ *Thời gian*: $timestamp\n\n";
+    }
+    if ($status) {
+        $formattedMessage .= "- $statusIcon *Trạng thái*: $status\n\n";
+    }
+    if ($order_id) {
+        $formattedMessage .= "- 🆔 *Mã đơn hàng*: $order_id\n\n";
+    }
+    if ($amount && $currency) {
+        $formattedMessage .= "- 💳 *Số tiền*: $amount $currency\n\n";
+    }
+    if ($payment_method) {
+        $formattedMessage .= "- 💰 *Phương thức thanh toán*: $payment_method\n\n";
+    }
+    if ($bankpayment) {
+        $formattedMessage .= "- 🏦 *Ngân hàng*: $bankpayment\n\n";
+    }
+    if ($messageText) {
+        $formattedMessage .= "- 📜 *Thông báo*: $messageText\n\n";
+    }
+
+
+    // Dữ liệu cần gửi (tin nhắn và chat ID)
+    $postData = array(
+        'chat_id' => $chatId,
+        'text' => $formattedMessage,
+        'parse_mode' => 'Markdown'
+    );
+    // Sử dụng CURL để gửi yêu cầu POST đến Telegram API
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+
+    // Kiểm tra lỗi CURL
+    if (curl_errno($ch)) {
+        $error_msg = curl_error($ch);
+        curl_close($ch);
+        return "Lỗi khi gửi yêu cầu: $error_msg";
+    }
+
+    curl_close($ch);
+
+    // Trả về phản hồi từ Telegram API
+    return $response;
+}
+
 
