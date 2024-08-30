@@ -13,7 +13,7 @@ $order_details = mysqli_fetch_assoc($result);
 ?>
 
 <section class="content-header">
-    <h1>Chi Tiết Đơn Hàng</h1>
+    <h1>Chi Tiết Thanh Toán</h1>
     <ol class="breadcrumb">
         <li><a href="<?=$fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
     </ol>
@@ -24,7 +24,7 @@ $order_details = mysqli_fetch_assoc($result);
             <div class="box">
                 <div class="box-header with-border">
                     <h2 class="h2_title" style="width: 100%;">
-                        <i class="fa fa-pencil-square-o"></i> Thông tin đơn hàng
+                        <i class="fa fa-pencil-square-o"></i> Thông tin thanh toán
                     </h2>
                     <h3 class="box-title box-title-td pull-right">
                         <a href="?module=<?=$module ?>&action=<?=$action ?>" class="btn btn-primary">

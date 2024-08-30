@@ -4,7 +4,7 @@ if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0)
     // ALERT_js($glo_lang['hien_chua_co_san_pham_nao_trong_gio_hang']);
     LOCATION_js($full_url);
 }
-$sql = DB_que("SELECT * FROM `#_module_tinhnang` WHERE `m_action` = 'danh-sach-buy-pay' ORDER BY `sort` ASC ");
+$sql = DB_que("SELECT * FROM `#_module_tinhnang` WHERE `m_action` = 'danh-sach-thanh-toan-vnpay' ORDER BY `sort` ASC ");
 $pt  = mysqli_fetch_assoc($sql);
 $thongtin_step  = DB_que("SELECT * FROM `#_step` WHERE `showhi` = 1 AND `id` = 3 LIMIT 1");
 $thongtin_step  = mysqli_fetch_assoc($thongtin_step);

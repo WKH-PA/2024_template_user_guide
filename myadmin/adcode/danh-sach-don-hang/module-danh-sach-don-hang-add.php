@@ -127,7 +127,7 @@
                                         $pthucthanhtoan = DB_fet("*","#_phuongthucthanhtoan","`id` = '".$donhang['thanhtoan']."'","`catasort` DESC",1,"arr");
                                         if(count($pthucthanhtoan)) {
                                              if($donhang['thanhtoan'] == 0){
-                                                 echo '<a href="?module=quan-ly-don-hang&action=danh-sach-buy-pay&chitiet=true&mdh=' . htmlspecialchars($donhang['madh']) . '" class="btn-link">Thanh toán VNPAY</a>';
+                                                 echo '<a href="?module=quan-ly-don-hang&action=danh-sach-thanh-toan-vnpay&chitiet=true&mdh=' . htmlspecialchars($donhang['madh']) . '" class="btn-link">Thanh toán VNPAY</a>';
                                              } else{
                                                  echo $pthucthanhtoan[0]['tenbaiviet_vi'];
                                              }

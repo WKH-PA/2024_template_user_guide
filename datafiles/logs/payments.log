@@ -818,3 +818,43 @@
     "bankpayment": "",
     "message": ""
 }
+{
+    "timestamp": "17:07:42 29-08-2024 ",
+    "status": "",
+    "order_id": "DH5281493",
+    "amount": "120,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "",
+    "message": ""
+}
+{
+    "timestamp": "17:08:43 29-08-2024 ",
+    "status": "Thành công",
+    "order_id": "DH5281493",
+    "amount": "120,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "NCB",
+    "message": "Giao dịch thành công"
+}
+{
+    "timestamp": "23:01:25 29-08-2024 ",
+    "status": "",
+    "order_id": "DH6504494",
+    "amount": "120,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "",
+    "message": ""
+}
+{
+    "timestamp": "23:01:37 29-08-2024 ",
+    "status": "Thất bại",
+    "order_id": "DH6504494",
+    "amount": "120,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "VNPAY",
+    "message": "Giao dịch không thành công do: Khách hàng hủy giao dịch."
+}

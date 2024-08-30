@@ -47,7 +47,7 @@
                                 $nhom_3 .= '<li class="submenu-group"><a href="?id=' . $value_3['id'] . '"><i class="' . ($value_3['icon'] != "" ? $value_3['icon'] : "fa fa-circle-o") . '"></i> ' . $value_3['ten_vi'] . '</a></li>';
                             }
 
-                            $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o" ) . '"></i>&nbsp;&nbsp;' . shorten_text( $value_2['ten_vi'], 28 ). '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
+                            $nhom_2 .= '<li class="main-submenu submenu-group"><a class="d-flex sidebar-menu" href="?id=' . $value_2['id'] . '"><i class="' . ($value_2['icon'] != "" ? $value_2['icon'] : "fa fa-circle-o" ) . '"></i>&nbsp;&nbsp;' . shorten_text( $value_2['ten_vi'], 33 ). '' . ($nhom_3 != "" ? '<svg class="arrow"><use href="svg/icon-sprite.svg#Arrow-right"></use></svg>' : "") . '</a>' . ($nhom_3 != "" ? '<ul class="submenu-wrapper">' . $nhom_3 . '</ul>' : "") . '</li>';
                         }
 
                         if ($value['m_action'] == 'quan-ly-hinh-anh' || in_array($value['id'], ['13', '66', '75', '49', '90'])) {

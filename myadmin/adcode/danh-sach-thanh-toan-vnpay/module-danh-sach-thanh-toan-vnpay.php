@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['chitiet']) || (isset($_GET['edit']) && is_numeric($_GET['edit']))){
-    include "module-danh-sach-buy-pay-chi-tiet.php";
+    include "module-danh-sach-thanh-toan-vnpay-chi-tiet.php";
 }else {
 $mo = "";
 $table = '#_buy_pay';
@@ -78,10 +78,10 @@ if (empty($banks)) {
 }
 ?>
 <section class="content-header">
-    <h1>Danh sách giao dịch</h1>
+    <h1>Danh sách thanh toán VNPAY</h1>
     <ol class="breadcrumb">
         <li><a href="<?= $fullpath_admin ?>"><i class="fa fa-home"></i> Trang chủ</a></li>
-        <li class="active">Danh sách giao dịch</li>
+        <li class="active">Danh sách thanh toán VNpay</li>
     </ol>
 </section>
 <form id="optimize-all-form" action="" method="post">

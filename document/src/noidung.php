@@ -66,7 +66,9 @@ if (!empty($id)) {
             <div class="col-md-9">
                 <div class="card" id="card1">
                     <div class="card-header pb-0">
-                        <a href="<?= $href ?>"><h3>Danh sách <?=(SHOW_text($data['ten_vi'])) ?> <i class="fas fa-link"></i></h3></a>
+                        <a href="<?= $href ?>">
+                            <h3><?= ($module == 'true' ? 'Danh sách ' : '') . SHOW_text($data['ten_vi']) ?><i class="fas fa-link"></i></h3>
+                        </a>
                     </div>
                     <div class="card-body card-wrapper input-group-wrapper">
                         <div class="intro">
@@ -166,7 +168,7 @@ if (!empty($id)) {
                                                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                                 </svg>
-                                                <?= SHOW_text($data['ten_vi']) ?>
+                                                <?= shorten_text(SHOW_text($data['ten_vi']),22) ?>
                                             </a>
                                         </li>
                                         <?php
