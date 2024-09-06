@@ -64,12 +64,28 @@ if(!empty($_POST))
 
     // Lấy dữ liệu từ POST, kiểm tra sự tồn tại trước
     $api_keys = [
-        'group_1' => ['api_key' => $_POST['api_key_1'] ?? '', 'api_secret' => $_POST['api_secret_1'] ?? ''],
-        'group_2' => ['api_key' => $_POST['api_key_2'] ?? '', 'api_secret' => $_POST['api_secret_2'] ?? ''],
-        'group_3' => ['api_key' => $_POST['api_key_3'] ?? '', 'api_secret' => $_POST['api_secret_3'] ?? ''],
-        'group_4' => ['api_key' => $_POST['api_key_4'] ?? '', 'api_secret' => $_POST['api_secret_4'] ?? ''],
-        'group_5' => ['api_key' => $_POST['api_key_5'] ?? '', 'api_secret' => $_POST['api_secret_5'] ?? ''],
+        'group_1' => [
+            'api_key' => isset($_POST['api_key_1']) ? $_POST['api_key_1'] : '',
+            'api_secret' => isset($_POST['api_secret_1']) ? $_POST['api_secret_1'] : ''
+        ],
+        'group_2' => [
+            'api_key' => isset($_POST['api_key_2']) ? $_POST['api_key_2'] : '',
+            'api_secret' => isset($_POST['api_secret_2']) ? $_POST['api_secret_2'] : ''
+        ],
+        'group_3' => [
+            'api_key' => isset($_POST['api_key_3']) ? $_POST['api_key_3'] : '',
+            'api_secret' => isset($_POST['api_secret_3']) ? $_POST['api_secret_3'] : ''
+        ],
+        'group_4' => [
+            'api_key' => isset($_POST['api_key_4']) ? $_POST['api_key_4'] : '',
+            'api_secret' => isset($_POST['api_secret_4']) ? $_POST['api_secret_4'] : ''
+        ],
+        'group_5' => [
+            'api_key' => isset($_POST['api_key_5']) ? $_POST['api_key_5'] : '',
+            'api_secret' => isset($_POST['api_secret_5']) ? $_POST['api_secret_5'] : ''
+        ]
     ];
+
 
     // Chuyển mảng API keys thành JSON
     $json_data = json_encode($api_keys);
