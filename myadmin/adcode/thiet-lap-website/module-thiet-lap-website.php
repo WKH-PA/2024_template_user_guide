@@ -395,8 +395,9 @@ if($favico != ''){
                         <!-- Group API Keys and Secrets -->
                     <?php
                     for ($i = 1; $i <= 5; $i++) {
-                        $api_key = htmlspecialchars($api_keys["group_$i"]['api_key'] ?? '');
-                        $api_secret = htmlspecialchars($api_keys["group_$i"]['api_secret'] ?? '');
+                        $api_key = htmlspecialchars(isset($api_keys["group_$i"]['api_key']) ? $api_keys["group_$i"]['api_key'] : '');
+                        $api_secret = htmlspecialchars(isset($api_keys["group_$i"]['api_secret']) ? $api_keys["group_$i"]['api_secret'] : '');
+
                         ?>
                         <div style="margin-bottom: 10px;">
                             <div class="form-group">
