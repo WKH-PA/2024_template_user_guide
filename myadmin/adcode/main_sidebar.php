@@ -21,7 +21,7 @@
         	<a href="index.php?clear=cache" class="a_is_addmin">[<span>Xóa cache</span>]</a>
         </p>
 
-        <p style="margin-bottom: 5px; font-size: 9px; line-height: 10px; font-weight: 500; color: #c1c1c1;" title="<?=$check_iplogin['ip_login_last'] ?><?=$check_iplogin['ip_login_last_time'] != 0 ? " - ".date("H:i d-m-Y", $check_iplogin['ip_login_last_time']) : "" ?>"><i class="fa fa-map-marker" style="margin-right: 3px"></i> <?=$check_iplogin['ip_login'] ?><?=$check_iplogin['ip_login_time'] != 0 ? " - ".date("H:i d-m-Y", $check_iplogin['ip_login_time']) : "" ?></p>
+<!--        <p style="margin-bottom: 5px; font-size: 9px; line-height: 10px; font-weight: 500; color: #c1c1c1;" title="--><?//=$check_iplogin['ip_login_last'] ?><!----><?//=$check_iplogin['ip_login_last_time'] != 0 ? " - ".date("H:i d-m-Y", $check_iplogin['ip_login_last_time']) : "" ?><!--"><i class="fa fa-map-marker" style="margin-right: 3px"></i> --><?//=$check_iplogin['ip_login'] ?><!----><?//=$check_iplogin['ip_login_time'] != 0 ? " - ".date("H:i d-m-Y", $check_iplogin['ip_login_time']) : "" ?><!--</p>-->
 
     </div>
 </div>
