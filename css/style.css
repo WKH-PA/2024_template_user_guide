@@ -4952,6 +4952,9 @@ body, html {
 }
 
 @media only screen and (max-width: 1199px) {
+    #nav-mobile ul img{
+        display: none;
+    }
     #menu {
         display: none; /* Hide menu button on smaller screens */
     }
@@ -5256,7 +5259,9 @@ body, html {
 }
 
 @media only screen and (max-width: 991px) {
-
+    #nav-mobile ul img{
+        display: none;
+    }
     .social li {
         float: left;
         margin-right: 5px;
@@ -5702,6 +5707,9 @@ body, html {
 }
 
 @media only screen and (max-width: 767px) {
+    #nav-mobile ul img{
+        display: none;
+    }
     #conten, #date, #ITme,#noidungbanner {
         display: none;
     }
@@ -6076,6 +6084,10 @@ body, html {
 
 }
 @media only screen and (max-width: 479px) {
+
+    #nav-mobile ul img{
+        display: none;
+    }
     #conten, #date, #ITme, #noidungbanner {
         display: none;
     }
@@ -6321,6 +6333,9 @@ body, html {
 @media (max-width: 768px) {
     #nav-mobile ul {
         width: 100%; /* Full width trên màn hình nhỏ */
+    }
+    #nav-mobile ul img{
+        display: none;
     }
 }
 
