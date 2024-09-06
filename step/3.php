@@ -73,6 +73,8 @@ include _source . "phantrang_kietxuat.php";
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="clr"></div>
         <div class="nums">
             <ul>
                 <div class="nums no_box">
@@ -82,7 +84,6 @@ include _source . "phantrang_kietxuat.php";
             </ul>
             <div class="clr"></div>
         </div>
-        <div class="clr"></div>
     </div>
 
     <?php include _source."left_conten.php";?>
@@ -90,4 +91,5 @@ include _source . "phantrang_kietxuat.php";
 
 
     <div class="clr"></div>
+
 </div>
