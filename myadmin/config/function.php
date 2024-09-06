@@ -2771,7 +2771,7 @@ function full_src($rows, $thumb = 'thumb_')
     }
 }
 
-function full_img($rows, $thumb = '', $isAjax = false,$type = 'icon', $style='with =100%')
+function full_img($rows, $thumb = '', $isAjax = false, $type = 'icon', $style = 'with =100%')
 {
     global $fullpath, $lang;
     $default_img = $fullpath . "/nguoiquanly/images/no_image_400_312.jpg";
@@ -2784,10 +2784,9 @@ function full_img($rows, $thumb = '', $isAjax = false,$type = 'icon', $style='wi
         return '<img src="' . $link_img . '" data-src="' . $link_img . '"class="img-change isload isload_full isload_full_1" alt="' . htmlspecialchars($rows['tenbaiviet_' . $lang], ENT_QUOTES) . '" />';
     } else {
         // When not using AJAX, use lazy loading
-        return '<img src="' . $default_img . '" data-src="' . $link_img . '" class="lazyload img-change isload isload_full isload_full_1" alt="' . htmlspecialchars($rows['tenbaiviet_' . $lang], ENT_QUOTES)  . '"'.$style. '"/>';
+        return '<img src="' . $default_img . '" data-src="' . $link_img . '" class="lazyload img-change isload isload_full isload_full_1" alt="' . htmlspecialchars($rows['tenbaiviet_' . $lang], ENT_QUOTES) . '"' . $style . '"/>';
     }
 }
-
 
 
 function full_img_hover($rows, $thumb = 'thumb_')
@@ -3035,15 +3034,9 @@ function sanitize_output($buffer)
 function getValidKrakenInstance()
 {
     try {
-        $result = DB_que("SELECT `api_kraken` FROM `#_seo` LIMIT 1");
-        if (!$result) {
-            throw new Exception("Query failed: " . mysqli_error($yourDatabaseConnection));
-        }
-        $sql_se = DB_arr($result, 1);
-        if (!$sql_se) {
-            throw new Exception("Failed to fetch data from the database");
-        }
-        $json_data = $sql_se['api_kraken'] ?? '[]'; // Ensure valid JSON data
+        $result = DB_fet("*", "#_seo", "", "", "1");
+        $result = current($result);
+        $json_data = !empty($result['api_kraken']) ? $result['api_kraken'] : []; // Ensure valid JSON data
         $api_keys = json_decode($json_data, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new Exception("Failed to decode JSON: " . json_last_error_msg());
@@ -3070,31 +3063,34 @@ function getValidKrakenInstance()
             $group_number++;
         } while ($group_number <= 5); // Continue loop until group_number exceeds 5
 
+
     } catch (Exception $e) {
         error_log("Error in getValidKrakenInstance: " . $e->getMessage());
     }
     return null; // Return null if no valid Kraken instance is found
 }
 
-
-/**
- * Kiểm tra xem quota của đối tượng Kraken có còn đủ hay không.
- * @param Kraken $kraken Đối tượng Kraken cần kiểm tra.
- * @return bool Trả về true nếu quota còn, false nếu không còn quota.
- */
+//
+//
+///**
+// * Kiểm tra xem quota của đối tượng Kraken có còn đủ hay không.
+// * @param Kraken $kraken Đối tượng Kraken cần kiểm tra.
+// * @return bool Trả về true nếu quota còn, false nếu không còn quota.
+// */
 function checkQuota($kraken)
 {
     $response = $kraken->status(); // Gọi phương thức `status` để lấy thông tin quota
-    return isset($response['quota_remaining'])&& $response['quota_remaining'] > 0 ? true : false ;
+    return isset($response['quota_remaining']) && $response['quota_remaining'] > 0 ? true : false;
 
 }
 
-/**
- * Kiểm tra xem chuỗi con có tồn tại trong chuỗi chính hay không.
- * @param string $string Chuỗi chính cần kiểm tra.
- * @param string $substring Chuỗi con cần tìm trong chuỗi chính.
- * @return false|string Trả về vị trí của chuỗi con trong chuỗi chính hoặc false nếu không tìm thấy.
- */
+//
+///**
+// * Kiểm tra xem chuỗi con có tồn tại trong chuỗi chính hay không.
+// * @param string $string Chuỗi chính cần kiểm tra.
+// * @param string $substring Chuỗi con cần tìm trong chuỗi chính.
+// * @return false|string Trả về vị trí của chuỗi con trong chuỗi chính hoặc false nếu không tìm thấy.
+// */
 function removeSubstringBefore($string, $substring)
 {
     $pos = strpos($string, $substring);
@@ -3104,11 +3100,12 @@ function removeSubstringBefore($string, $substring)
     return $string;
 }
 
-/**
- * Lấy tất cả các tệp hình ảnh từ thư mục chỉ định, bao gồm cả các thư mục con.
- * @param string $directory Đường dẫn đến thư mục cần quét hình ảnh.
- * @return array Mảng chứa các đường dẫn tương đối của các tệp hình ảnh từ thư mục gốc .
- */
+//
+///**
+// * Lấy tất cả các tệp hình ảnh từ thư mục chỉ định, bao gồm cả các thư mục con.
+// * @param string $directory Đường dẫn đến thư mục cần quét hình ảnh.
+// * @return array Mảng chứa các đường dẫn tương đối của các tệp hình ảnh từ thư mục gốc .
+// */
 function getImagesFromDirectory($directory)
 {
     $images = []; // Mảng để lưu trữ các tệp hình ảnh
@@ -3132,10 +3129,11 @@ function getImagesFromDirectory($directory)
     return $images; // Trả về mảng hình ảnh
 }
 
-/**
- * Cập nhật cơ sở dữ liệu với thông tin về các hình ảnh đã tối ưu hóa từ thư mục .
- * @param string $localDirectory Đường dẫn đến thư mục chứa các hình ảnh cần được kiểm tra và cập nhật.
- */
+//
+///**
+// * Cập nhật cơ sở dữ liệu với thông tin về các hình ảnh đã tối ưu hóa từ thư mục .
+// * @param string $localDirectory Đường dẫn đến thư mục chứa các hình ảnh cần được kiểm tra và cập nhật.
+// */
 function update_db_optimized_img($localDirectory)
 {
     $dataToInsert = [];
@@ -3169,7 +3167,7 @@ function update_db_optimized_img($localDirectory)
                 }
 
                 if (DB_num($existing_record) == 0) {
-                    $dataToInsert[]  = "('{$data['image_path']}', {$data['status']}, '{$data['date']}', '{$data['updated']}', '{$data['error']}')";
+                    $dataToInsert[] = "('{$data['image_path']}', {$data['status']}, '{$data['date']}', '{$data['updated']}', '{$data['error']}')";
                 }
             } catch (Exception $e) {
                 error_log("Error processing image $image_path: " . $e->getMessage());
@@ -3239,33 +3237,39 @@ function processImage($kraken, $imagePath)
         ];
     }
 }
-function writepaymentsLog($orderId,$status='', $amount, $paymentMethod, $bankpayment = '', $message='') {
+
+function writepaymentsLog($orderId, $status = '', $amount, $paymentMethod, $bankpayment = '', $message = '')
+{
     $logFile = 'datafiles/logs/payments.log';
     $logDir = dirname($logFile);
-    if (!is_dir($logDir)) { mkdir($logDir, 0777, true); }
+    if (!is_dir($logDir)) {
+        mkdir($logDir, 0777, true);
+    }
     $currentDateTime = date('H:i:s d-m-Y ');
     // Chuẩn bị log entry dưới dạng JSON
     $logEntry = [
-        'timestamp'     => $currentDateTime,
+        'timestamp' => $currentDateTime,
         'status' => ($status !== '' ? ($status == 0 ? 'Thất bại' : 'Thành công') : ''),
-        'order_id'      => $orderId,
-        'amount'        => number_format($amount, 0, '.', ','),
-        'currency'      => 'VND',
-        'payment_method'=> $paymentMethod,
-        'bankpayment'  => $bankpayment,
-        'message'       => $message
+        'order_id' => $orderId,
+        'amount' => number_format($amount, 0, '.', ','),
+        'currency' => 'VND',
+        'payment_method' => $paymentMethod,
+        'bankpayment' => $bankpayment,
+        'message' => $message
     ];
     $jsonLogEntry = json_encode($logEntry, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n";
     file_put_contents($logFile, $jsonLogEntry, FILE_APPEND);
 //    if($status == 0){
-        sendMessageToTelegram($jsonLogEntry);
+    sendMessageToTelegram($jsonLogEntry);
 //    }
 
 }
-function sendMessageToTelegram($message) {
+
+function sendMessageToTelegram($message)
+{
     // Lấy token và chat ID từ cơ sở dữ liệu
-    $telegramApiTokenArray = DB_arr(DB_que('SELECT `token_api_tele` FROM `#_seo` LIMIT 1'),1);
-    $chatIdArray = DB_arr(DB_que('SELECT `id_chat_tele` FROM `#_seo` LIMIT 1'),1);
+    $telegramApiTokenArray = DB_arr(DB_que('SELECT `token_api_tele` FROM `#_seo` LIMIT 1'), 1);
+    $chatIdArray = DB_arr(DB_que('SELECT `id_chat_tele` FROM `#_seo` LIMIT 1'), 1);
 
     $telegramApiToken = isset($telegramApiTokenArray['token_api_tele']) ? $telegramApiTokenArray['token_api_tele'] : null;
     $chatId = isset($chatIdArray['id_chat_tele']) ? $chatIdArray['id_chat_tele'] : null;
@@ -3275,14 +3279,14 @@ function sendMessageToTelegram($message) {
     $messageData = json_decode($message, true);
 
     // Kiểm tra và lấy dữ liệu từ $messageData, nếu không có thì gán 'N/A'
-    $timestamp = $messageData['timestamp'] ?? '';
-    $status = $messageData['status'] ?? '';
-    $order_id = $messageData['order_id'] ?? '';
-    $amount = $messageData['amount'] ?? '';
-    $currency = $messageData['currency'] ?? '';
-    $payment_method = $messageData['payment_method'] ?? '';
-    $bankpayment = $messageData['bankpayment'] ?? '';
-    $messageText = $messageData['message'] ?? '';
+    $timestamp = !empty($messageData['timestamp']) ? $messageData['timestamp'] : '';
+    $status = !empty($messageData['status']) ? $messageData['status'] : '';
+    $order_id = !empty($messageData['order_id']) ? $messageData['order_id'] : '';
+    $amount = !empty($messageData['amount']) ? $messageData['amount'] : '';
+    $currency = !empty($messageData['currency']) ? $messageData['currency'] : '';
+    $payment_method = !empty($messageData['payment_method']) ? $messageData['payment_method'] : '';
+    $bankpayment = !empty($messageData['bankpayment']) ? $messageData['bankpayment'] : '';
+    $messageText = !empty($messageData['message']) ? $messageData['message'] : '';
     $title = ($status != '') ? 'Kết quả thanh toán:' : 'Thông tin thanh toán:';
     $statusIcon = ($status == "Thất bại") ? "❌" : "✅";
     $formattedMessage = "*$title*\n\n";
