@@ -1,14 +1,14 @@
 <?php
-    // if($thongtin_step['num_view'] == 0)
-    //     $numview          = 10;
-    // else $numview         = $thongtin_step['num_view'];
-
-    // if($slug_table == 'step'){
-    //     $lay_all_kx = LAYDANHSACH_idkietxuat(0, $slug_step);
-    // }
-    // else{
-    //     $lay_all_kx = @LAYDANHSACH_idkietxuat($arr_running['id'], $slug_step);
-    // }
+//     if($thongtin_step['num_view'] == 0)
+//         $numview          = 10;
+//     else $numview         = $thongtin_step['num_view'];
+//
+//     if($slug_table == 'step'){
+//         $lay_all_kx = LAYDANHSACH_idkietxuat(0, $slug_step);
+//     }
+//     else{
+//         $lay_all_kx = @LAYDANHSACH_idkietxuat($arr_running['id'], $slug_step);
+//     }
 
     $pzer                   = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
 

@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <link href="css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script src="path/to/lazysizes.min.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+
     <?php include("css.php"); ?>
     <script type="text/javascript">var fullpath = "<?= $fullpath ?>"; var full_url = "<?= $full_url ?>";</script>
     <?php if (!empty($thongtin['is_saochep']) && $thongtin['is_saochep'] == 1) { ?>

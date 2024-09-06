@@ -858,3 +858,33 @@
     "bankpayment": "VNPAY",
     "message": "Giao dịch không thành công do: Khách hàng hủy giao dịch."
 }
+{
+    "timestamp": "21:41:16 06-09-2024 ",
+    "status": "",
+    "order_id": "DH2007495",
+    "amount": "280,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "",
+    "message": ""
+}
+{
+    "timestamp": "21:42:17 06-09-2024 ",
+    "status": "",
+    "order_id": "DH6137496",
+    "amount": "195,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "",
+    "message": ""
+}
+{
+    "timestamp": "21:42:27 06-09-2024 ",
+    "status": "Thất bại",
+    "order_id": "DH6137496",
+    "amount": "195,000",
+    "currency": "VND",
+    "payment_method": "VNPAY",
+    "bankpayment": "VNPAY",
+    "message": "Giao dịch không thành công do: Khách hàng hủy giao dịch."
+}

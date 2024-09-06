@@ -115,8 +115,7 @@
 
           <div class="quantity_box">
               <label for="quantity"><?= $glo_lang['cart_qty'] ?>:</label>
-              <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px; text-align: center;">
-          </div>
+              <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px; text-align: center; padding: 8px; border: 2px solid #ccc; border-radius: 6px; font-size: 16px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); transition: border-color 0.3s ease;">  </div>
 </form>
         <div class="ct_add">
           <ul>
@@ -159,7 +158,8 @@
     <div class="clr"></div>
   </div>
   <div class="showText">
-    <?=SHOW_text($arr_running['noidung_'.$lang]) ?><div class="clr"></div>
+    <?=SHOW_text($arr_running['noidung_'.$lang]) ?>
+      <div class="clr"></div>
   </div>
   <div class="dv-fb_coment">
     <?php include _source."fb_coment.php"; ?>
@@ -203,4 +203,9 @@
     .h5_giact_sp{
         font-size: 30px
     }
+    .showText p img{
+    width: 100%;
+        margin: 0 auto;
+    }
+
 </style>

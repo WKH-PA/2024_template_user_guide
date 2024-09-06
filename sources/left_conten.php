@@ -37,7 +37,9 @@
                     </a>
                 </li>
                 <li >
-                    <a <?=full_href($rows) ?>><?= SHOW_text($rows['tenbaiviet_' . $lang]) ?></a>
+                    <a <?= full_href($rows) ?>>
+                        <span class="limit-lines"><?= SHOW_text($rows['tenbaiviet_' . $lang]) ?></span>
+                    </a>
                 </li>
                 <div class="clr"></div>
             </div>
@@ -46,4 +48,13 @@
     </div>
 
 </div>
-</div>
+</div><style>
+    .limit-lines {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+

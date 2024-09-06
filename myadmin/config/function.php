@@ -2771,16 +2771,24 @@ function full_src($rows, $thumb = 'thumb_')
     }
 }
 
-function full_img($rows, $thumb = '')
+function full_img($rows, $thumb = '', $isAjax = false,$type = 'icon', $style='with =100%')
 {
     global $fullpath, $lang;
-    if ($rows['icon'] != '') {
-        $link_img = $fullpath . "/" . $rows['duongdantin'] . "/" . $thumb . $rows['icon'];
+    $default_img = $fullpath . "/nguoiquanly/images/no_image_400_312.jpg";
+
+    $link_img = $fullpath . "/" . $rows['duongdantin'] . "/" . $thumb . $rows[$type];
+
+
+    if ($isAjax) {
+        // When using AJAX, load the actual image immediately
+        return '<img src="' . $link_img . '" data-src="' . $link_img . '"class="img-change isload isload_full isload_full_1" alt="' . htmlspecialchars($rows['tenbaiviet_' . $lang], ENT_QUOTES) . '" />';
     } else {
-        $link_img = $fullpath . "/myadmin/images/no_image_400_312.jpg";
+        // When not using AJAX, use lazy loading
+        return '<img src="' . $default_img . '" data-src="' . $link_img . '" class="lazyload img-change isload isload_full isload_full_1" alt="' . htmlspecialchars($rows['tenbaiviet_' . $lang], ENT_QUOTES)  . '"'.$style. '"/>';
     }
-    return '<img  src="" class="isload isload_full isload_full_1" data-original="' . $link_img . '" alt="' . $rows['tenbaiviet_' . $lang] . '" />';
 }
+
+
 
 function full_img_hover($rows, $thumb = 'thumb_')
 {

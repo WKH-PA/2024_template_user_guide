@@ -1231,3 +1231,168 @@ img {
 .cty_ct_more ul p a:hover {
 	text-decoration: underline;
 }
+ .pro_id {
+	 display: grid;
+	 grid-template-columns: repeat(auto-fit, minmax(250px, 2fr)); /* Đảm bảo có tối đa 4 sản phẩm trên hàng */
+	 gap: 30px; /* Khoảng cách giữa các sản phẩm */
+	 margin: 30px 0;
+ }
+
+ .product-item:hover {
+	 transform: translateY(-10px);
+	 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+ }
+
+ .product-image img {
+	 border-bottom: 1px solid #eee;
+	 width: 100%;
+	 object-fit: cover;
+ }
+
+ .product-title {
+	 font-size: 18px;
+	 font-weight: bold;
+	 color: #333;
+	 line-height: 1.4;
+	 height: 45px; /* Cố định chiều cao của tiêu đề cho 2 dòng */
+	 overflow: hidden;
+	 margin-bottom: 10px;
+ }
+
+ .bg_link_page {
+	 background-size: cover;
+	 background-position: center;
+	 padding: 150px 0;
+	 text-align: center;
+	 color: #fff;
+	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+
+ .bg_link_page h3 {
+	 font-size: 48px;
+	 margin: 0;
+	 font-weight: bold;
+	 text-transform: uppercase;
+	 letter-spacing: 2px;
+	 font-family: 'Arial', sans-serif;
+	 text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+ }
+
+ .nums.no_box {
+	 text-align: center;
+	 margin: 30px 0;
+ }
+
+ .nums.no_box a, .nums.no_box span {
+	 display: inline-block;
+	 padding: 10px 15px;
+	 margin: 5px;
+	 border-radius: 50%;
+	 background: #3498db;
+	 color: #fff;
+	 transition: background 0.3s ease;
+ }
+
+ .nums.no_box a:hover, .nums.no_box span.current {
+	 background: #2980b9;
+ }
+
+ @media (max-width: 1024px) {
+	 .product-item {
+		 padding: 15px;
+	 }
+
+	 .product-image img {
+		 height: 100%;
+	 }
+
+	 .product-title {
+		 font-size: 16px; /* Kích thước px cho tiêu đề */
+		 height: 45px; /* Cố định chiều cao cho 2 dòng */
+	 }
+
+	 .bg_link_page h3 {
+		 font-size: 40px;
+	 }
+ }
+
+ @media (max-width: 768px) {
+	 .product-item {
+		 padding: 10px;
+	 }
+
+	 .product-image img {
+		 height: 100%;
+	 }
+
+	 .product-title {
+		 font-size: 16px; /* Điều chỉnh px cho kích thước chữ */
+		 height: 40px; /* Cố định chiều cao cho 2 dòng */
+	 }
+
+	 .bg_link_page h3 {
+		 font-size: 32px;
+	 }
+ }
+
+ /* Điều chỉnh hiển thị danh sách sản phẩm */
+ .product-list {
+	 display: flex;
+	 flex-wrap: wrap;
+	 justify-content: space-between;
+	 padding: 0;
+	 margin: 0;
+	 list-style: none;
+ }
+
+ .product-item:hover {
+	 transform: translateY(-5px); /* Hiệu ứng di chuyển khi hover */
+ }
+
+ .product-link {
+	 text-decoration: none;
+	 color: inherit;
+	 display: block;
+	 padding: 10px;
+ }
+
+ .product-image img {
+	 width: 100%;
+	 object-fit: cover;
+	 border-radius: 8px 8px 0 0; /* Bo tròn góc trên của ảnh */
+ }
+
+ .product-details {
+	 padding: 15px;
+ }
+
+ .product-title {
+	 font-size: 18px; /* Kích thước chữ của tiêu đề */
+	 color: #333;
+
+ }
+
+ .product-price {
+	 font-size: 18px; /* Kích thước chữ của giá */
+	 color: #333; /* Màu chữ mặc định */
+ }
+
+ .original-price {
+	 font-size: 16px; /* Kích thước chữ của giá gốc */
+	 color: #888;
+	 text-decoration: line-through;
+	 margin-right: 10px;
+ }
+
+ .discount-price {
+	 font-size: 22px; /* Kích thước chữ của giá khuyến mãi */
+	 color: #e53935;
+	 font-weight: bold;
+ }
+
+ .product-code {
+	 font-size: 14px; /* Kích thước chữ cho mã sản phẩm */
+	 color: #555;
+	 margin-top: 10px;
+	 font-style: italic;
+ }

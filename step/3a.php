@@ -8,7 +8,7 @@ if(empty($kietxuat_name)) {
 
 $lay_all_kx = LAYDANHSACH_idkietxuat($arr_running['id_parent'], $slug_step);
 
-$wh = " AND `id_parent` = (".$lay_all_kx.") AND `id` <> '".$arr_running['id']."'";
+$wh = " AND `id_parent` IN (".$lay_all_kx.") AND `id` <> '".$arr_running['id']."'";
 $numview = 6;
 
 // Fetch related articles excluding those with specific `catasort` values already present

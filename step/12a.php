@@ -74,3 +74,26 @@ $nd_kietxuat  = DB_fet_rd(" * "," `#_baiviet` "," `step` IN (".$slug_step.") $wh
 
     <div class="clr"></div>
 </div>
+<style>
+    .showText {
+        display: flex;
+        align-items: flex-start; /* Căn chỉnh phần tử theo đỉnh của khối */
+        gap: 20px; /* Khoảng cách giữa hai khối */
+    }
+
+    .partner-l {
+        max-width: 50%; /* Giới hạn chiều rộng của khối chứa icon */
+        flex-shrink: 0; /* Ngăn icon co lại khi nội dung quá lớn */
+    }
+
+    .partner-l img {
+        width: 100%; /* Hình ảnh sẽ không vượt quá khối chứa */
+        height: 50%;
+        object-fit: contain; /* Đảm bảo hình ảnh giữ nguyên tỷ lệ */
+    }
+
+    .partner-r {
+        flex-grow: 1; /* Nội dung chiếm hết không gian còn lại */
+    }
+
+</style>

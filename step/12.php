@@ -1,7 +1,7 @@
 <?php
 // Start of PHP code block
 if ((!empty($thongtin_step) && $thongtin_step['num_view'] == 0) || empty($thongtin_step)) {
-    $numview = 12;
+    $numview = 8;
 } else {
     $numview = $thongtin_step['num_view'];
 }
@@ -70,7 +70,7 @@ if ($is_search != "") {
                 $i = 0;
                 foreach ($nd_kietxuat as $rows) {
                     $i++;
-                    if ($i == 6) $i = 1;
+                    if ($i == 6) $i = 0;
                     ?>
                     <div class="new_id_bs">
                         <li>
@@ -95,8 +95,5 @@ if ($is_search != "") {
         </div>
     </div>
     <?php include _source."left_conten.php";?>
-
-
-
     <div class="clr"></div>
 </div>

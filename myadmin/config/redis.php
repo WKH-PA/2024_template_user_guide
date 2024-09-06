@@ -204,7 +204,9 @@ function DB_fet_rd($sql, $table, $where = "", $order_by = "", $limit = "", $col 
     // end redis cache
 
     $sql_que = DB_que($where_keys);
-
+//    echo'<pre>';
+//    echo $where_keys;
+//    exit();
 
     $array = array();
     if ($php_vs == "5.6") {
