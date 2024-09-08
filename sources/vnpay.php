@@ -1,4 +1,5 @@
 <?php
+include_once "myadmin/config/sql.php";
 function processPayment($amount, $txnRef, $language = 'vn') {
     // Lấy thông tin từ cơ sở dữ liệu
     $thongtin_vnpay = DB_que("SELECT * FROM #_ship_thanhtoan_setup LIMIT 1");
@@ -7,8 +8,11 @@ function processPayment($amount, $txnRef, $language = 'vn') {
     $vnp_Url = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_Url'] : $thongtin_vnpay['vnp_Url_test'];
     $vnp_TmnCode = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_TmnCode'] : $thongtin_vnpay['vnp_TmnCode_test'];
     $vnp_HashSecret = ($thongtin_vnpay['check_vn_pay'] == 1) ? $thongtin_vnpay['vnp_HashSecret'] : $thongtin_vnpay['vnp_HashSecret_test'];
-    $returnUrl = "http://localhost/2024_template_user_guide/vnpay_thanhcong.php";
-
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $requestUri = dirname($_SERVER['REQUEST_URI']);
+    $returnUrl = $protocol . $host . $requestUri . '/vnpay_thanhcong.php';
+    
     // Tạo dữ liệu đầu vào cho VNPAY
     $inputData = array(
         "vnp_Version" => "2.1.0",

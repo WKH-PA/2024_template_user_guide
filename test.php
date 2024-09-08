@@ -1,6 +1,9 @@
 <?php
 include("myadmin/config/sql.php");
 include "vendor/autoload.php";
+
+echo $fullpath;
+exit();
 // Local directory path
 $krakenInstance = getValidKrakenInstance();
 $table = '#_optimized_img';

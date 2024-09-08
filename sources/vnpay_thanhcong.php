@@ -64,7 +64,7 @@ if ($exist['count'] == 0) {
     $rt = ACTION_db($data, 'lh_buy_pay', 'add');
     $message = $rt ? "Lưu data thành công: " . addslashes(json_encode($rt)) : "Lưu data thất bại";
     echo "<script>console.log('$message');</script>";
-    writepaymentsLog(
+    $rt_log = writepaymentsLog(
         $txnRef, // Mã tham chiếu giao dịch
         ($transactionStatus == '00') ? 1 : 0,
         $amount, // Số tiền của giao dịch
@@ -74,6 +74,8 @@ if ($exist['count'] == 0) {
             $error_messages[$_GET['vnp_ResponseCode']] :
             "Mã lỗi không hợp lệ.")
     );
+    $message = $rt_log ? "Lưu log thành công: " : "Lưu log thất bại";
+    echo "<script>console.log('$message');</script>";
 }
 
 

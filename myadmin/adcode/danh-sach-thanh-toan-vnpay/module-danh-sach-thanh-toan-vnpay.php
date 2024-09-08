@@ -208,7 +208,7 @@ if (empty($banks)) {
                                     </ul>
                                 </div>
                             </div>
-                            <? }?>
+                            <?php }?>
                         </div>
                     </div>
                 </section>
@@ -300,3 +300,4 @@ if (empty($banks)) {
 
 
 </style>
+}

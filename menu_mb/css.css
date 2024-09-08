@@ -571,7 +571,7 @@ span#pro_sum { width: 100%; display: block; }
 div #cart_list td { font-size: 14px; line-height: 25px; }
 .dv_kiemtra_donhang_cont li { width: calc(100% - 20px); }
 .dv-load-hd-js p { text-align: right; }
-div .tin_left ul li, div .tti_more li, div .one_new_home_right li { width: 125px; }
+/*div .tin_left ul li, div .tti_more li, div .one_new_home_right li { width: 125px; }*/
 div .one_new_home_right ul h3, div .tti_more ul, div .tin_left ul h4 { width: calc(100% - 125px); float: left; padding-left: 12px; }
 div .one_new_home_right ul h3 a { padding: 0; }
 div .tti_more ul h3 a { font-size: 15px; line-height: 23px; }
@@ -593,7 +593,7 @@ div .viewRight { width: 100%; margin: 15px 0 0; }
 div .contact.contact_lh.contact_lh_cart.no_box .left { width: 100%; float: left; padding-right: 0; }
 div .contact.contact_lh.contact_lh_cart.no_box .right { width: 100%; float: left; padding-left: 0; }
 div .one_new_home ul h3 a, div .tti_more ul h3 a { font-size: 16px; line-height: 23px; }
-div .tin_left ul li, div .tti_more li, div .one_new_home_right li {  width: 110px;}
+/*div .tin_left ul li, div .tti_more li, div .one_new_home_right li {  width: 110px;}*/
 div .dv-buy-gh span.p-tamtinh { width: 100px;  }
 div .one_new_home_right ul h3, div .tti_more ul, div .tin_left ul h4 { width: calc(100% - 110px); float: left; padding-left: 12px; }
 }

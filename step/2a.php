@@ -152,7 +152,7 @@
 <!--    </div>-->
     <div class="clr"></div>
   </div>
-  <div class="titile_page">
+  <div class="titile_page"style="margin-top: 16px;">
     <h3><?=$glo_lang['chi_tiet_san_pham'] ?></h3>
     <span class="home-category-info-header-line"></span>
     <div class="clr"></div>

@@ -9,9 +9,9 @@
 	$db_localhost 		 		= "localhost";
 	$db_user 			 		= "root";
 	$db_pass 			 		= '';
-	$db_data 			 		= "demo_pcl";
+	$db_data 			 		= "1";
 	$_SESSION['sub_demo'] 		= "2024_template_user_guide/";
-	$check_fl_domain 			= "172.16.90.110";
+	$check_fl_domain 			= "192.168.144.1";
 	$cache_file   				= "on";
 	$redis_on_off 				= "off";
 	$_SESSION['sub_demo_check'] = false;
@@ -22,7 +22,7 @@
 
     if($_SERVER['HTTP_HOST'] 	== 'localhost'|| ['HTTP_HOST'] 	== '172.16.90.105') {
         $webDirectory = "https://webdemo5.pavietnam.vn/document/datafiles";
-        $_SESSION['localhost_check']= 0;
+        $_SESSION['localhost_check']= 1;
     }else{
         $webDirectory = 'https://' . $_SERVER['HTTP_HOST'] . '/' . $_SESSION['thumuc']   ;
     }

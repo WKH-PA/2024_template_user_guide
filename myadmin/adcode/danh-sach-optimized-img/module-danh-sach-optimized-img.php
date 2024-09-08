@@ -86,41 +86,44 @@ if (isset($_POST['execute_single'])) {
 
     // Pass the message and status to the frontend
     echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var url = new URL(window.location.href);
-            var message = " . json_encode($message) . "; // Chuyển $message thành chuỗi JSON
-            // Tạo phần tử modal
-            var modal = document.createElement('div');
-            modal.className = 'modal_';
-            var modalContent = document.createElement('div');
-            modalContent.className = 'modal-content_';
-            var closeBtn = document.createElement('span');
-            closeBtn.className = 'close';
-            closeBtn.innerHTML = '×';
-            var messageP = document.createElement('p');
-            messageP.textContent = message; // Sử dụng biến message đã được chuyển đổi
-            modalContent.appendChild(closeBtn);
-            modalContent.appendChild(messageP);
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-            
-            // Hiển thị modal
-            modal.style.display = 'block';
-            // Đóng modal khi nhấn nút close hoặc click ra ngoài modal
-            closeBtn.onclick = function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var message = " . json_encode($message) . "; // Chuyển $message thành chuỗi JSON
+        
+        // Tạo phần tử modal
+        var modal = document.createElement('div');
+        modal.className = 'modal_';
+        var modalContent = document.createElement('div');
+        modalContent.className = 'modal-content_';
+        var closeBtn = document.createElement('span');
+        closeBtn.className = 'close';
+        closeBtn.innerHTML = '×';
+        var messageP = document.createElement('p');
+        messageP.textContent = message; // Sử dụng biến message đã được chuyển đổi
+        modalContent.appendChild(closeBtn);
+        modalContent.appendChild(messageP);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+        
+        // Hiển thị modal
+        modal.style.display = 'block';
+        
+        // Đóng modal khi nhấn nút close hoặc click ra ngoài modal
+        closeBtn.onclick = function(event) {
+            event.preventDefault();  // Ngăn chặn hành động mặc định của nút
+            modal.style.display = 'none';
+            modal.remove();  // Xoá modal khỏi DOM
+        };
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                event.preventDefault();  // Ngăn chặn hành động mặc định của sự kiện click
                 modal.style.display = 'none';
-               window.location.href = url.href;
-                modal.remove();
-            };
-            modal.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                    window.location.href = url.href;
-                    modal.remove();                    
-                }
-            }; 
-        });
-      </script>";
+                modal.remove();  // Xoá modal khỏi DOM
+            }
+        }; 
+    });
+</script>";
+
+
 }
 
 foreach ($data_all as $row) {
