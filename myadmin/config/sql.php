@@ -9,9 +9,9 @@
 	$db_localhost 		 		= "localhost";
 	$db_user 			 		= "root";
 	$db_pass 			 		= '';
-	$db_data 			 		= "1";
+	$db_data 			 		= "demo_pcl";
 	$_SESSION['sub_demo'] 		= "2024_template_user_guide/";
-	$check_fl_domain 			= "192.168.144.1";
+	$check_fl_domain 			= "2024_template_user_guide";
 	$cache_file   				= "on";
 	$redis_on_off 				= "off";
 	$_SESSION['sub_demo_check'] = false;

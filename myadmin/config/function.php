@@ -3217,6 +3217,9 @@ function processImage($kraken, $imagePath)
         ];
         // Gửi yêu cầu tới Kraken
         $data = $kraken->url($params);
+        echo'<pre>';
+        var_dump($kraken->url($params));
+        exit();
         // Kiểm tra phản hồi từ Kraken
         if (!$data['success']) {
             $error_message = isset($data['message']) ? $data['message'] : 'Kraken API request failed.';
