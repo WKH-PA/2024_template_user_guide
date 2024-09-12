@@ -273,9 +273,8 @@
                               <?php } ?>
                             </td>
                               <td class="text-center">
-                                  <?php if(isset($_SESSION['admin'])): ?>
                                       <img src="<?= $full_icon ?>" alt="" class="img_show_ds" style="<?= !empty($icon) ? 'display: block' : 'display: none' ?>" id="img_icon_<?= $cl ?>">
-
+                                    <?php if(isset($_SESSION['admin'])): ?>
                                       <?php if($upckfinder != true): ?>
                                           <input name="icon<?= $cl ?>" type="file" class="form-control" id="exampleInputFile">
                                       <?php else: ?>

@@ -273,7 +273,7 @@ if (empty($banks)) {
     .modern-select {width: 200px;height: 40px;font-size: 16px;padding: 5px 10px;border: 1px solid #ccc;background-color: #f9f9f9;-moz-appearance: none;}
     input[type="hidden"] {display: none;}
     .dv-hd-locsds {display: flex;flex-wrap: wrap;gap: 10px;align-items: flex-start;}
-    .search-group, .date-group {display: flex;align-items: center;gap: 10px;flex: 1 1 auto;min-width: 250px; }
+    .search-group, .date-group {display: flex;align-items: center;gap: 10px;flex: 1 1 auto; }
     .filter-group {flex: 1 1 auto;margin-bottom: 10px;}
     .form-control-custom, .form-control, .btn-custom, .btn-primary {flex-grow: 1;width: 100%;}
     .btn-custom {

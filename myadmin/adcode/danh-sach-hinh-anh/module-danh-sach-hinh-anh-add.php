@@ -72,9 +72,9 @@
           if($hinhanh) {
               $data['icon']   = $hinhanh;
           }
-      } if($icon != '') {
-        $full_icon   = "../$duongdantin/$icon";
-    }
+      }
+
+
 
       if($id == 0){
         $id = ACTION_db($data, $table , 'add', NULL,NULL);
@@ -105,7 +105,8 @@
       $catasort   = layCatasort($table, " `id_parent` = '$id_parent'");
       $catasort   = number_format(SHOW_text($catasort),0,',','.');
     }
-
+if($icon != '') {
+$full_icon   = "../$duongdantin/$icon";}
 ?>
 
 <section class="content-header">
@@ -234,7 +235,7 @@
             <div class="dv-anh-chitiet-img-cont">
               <div class="dv-anh-chitiet-img">
                   <p><i class="fa fa-cloud-upload" aria-hidden="true"></i></p>
-                  <img src="<?=@$full_icon  ?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
+                  <img src="<?=$full_icon?>" alt="" class="img_chile_dangtin" style="<?php if(!empty($full_icon) && $full_icon != "") echo "display: block"; else echo "display: none" ?>" id="img_icon">
                   <?php if($upckfinder != true){ ?>
                       <input type="file" name="icon" id="input_icon" class="cls_hinhanh" accept="image/*" onchange="pa_previewImg(event, '#img_icon','input_icon');">
                   <?php }else{ ?>
